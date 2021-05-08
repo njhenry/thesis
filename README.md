@@ -5,9 +5,9 @@ This repository contains the knitR/LaTeX markup for my doctoral thesis.
 
 ## Contact info
 
-Author: Nathaniel Henry
-Github: [`@njhenry`](https://github.com/njhenry)
-Email: nat.henry7@gmail.com
+- *Author:* Nathaniel Henry
+- *Github:* [`@njhenry`](https://github.com/njhenry)
+- *Email:* nat.henry7@gmail.com
 
 
 ## Repository structure
