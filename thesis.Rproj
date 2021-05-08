@@ -19,4 +19,7 @@ LineEndingConversion: Posix
 QuitChildProcessesOnExit: Yes
 DisableExecuteRprofile: Yes
 
+MarkdownWrap: Column
+MarkdownWrapAtColumn: 90
+
 SpellingDictionary: en_US
