@@ -1,1 +1,1 @@
-- load_libraries: ['knitR', 'data.table', 'R6', 'glue']
+- load_libraries: ['data.table', 'glue', 'knitR', 'R6', 'tinytex']
