@@ -2,13 +2,16 @@
 % Example knitR + LaTeX code from a tutorial: http://edrub.in/ARE212/latexKnitr.html
 %
 
-\documentclass[english, 11pt]{article}
+\documentclass{article}
 
 \usepackage[utf8]{inputenc}
-
 \usepackage{setspace}
-\onehalfspacing
 
+%styles: authoryear, draft, mla, nature, numeric%
+\usepackage[backend=bibtex, style=numeric]{biblatex}
+\addbibresource{/home/nat/Documents/Dropbox/Writing/thesis_materials/Mendeley_export_20210511.bib}
+
+\onehalfspacing
 \title{My beautiful PDF document}
 \author{Nathaniel Henry}
 \date{7 May 2021}
@@ -91,5 +94,11 @@ test_sum <- var_a + var_b
 @
 
 Fun math fact: \Sexpr{var_a} plus \Sexpr{var_b} equals \Sexpr{test_sum}.
+
+\section{BibTeX testing}
+
+Let's try out some citation formatting! Here is a fact \parencite{Aalbers2014, Aalbers2014a}.
+
+\printbibliography
 
 \end{document}
