@@ -49,3 +49,70 @@ remove_temp_files <- function(dir = NULL, match_patterns = NULL){
 }
 
 
+#' @title Config parser for hybrid R+TeX code
+#'
+#' @docType class
+#' @importFrom R6 R6Class
+#' @importFrom glue glue
+#' @importFrom yaml read_yaml
+#' @export
+#'
+#' @return Object of \code{\link{R6Class}} which loads and stores settings to be used for
+#'   document creation.
+#'
+#' @param config_path Full path to config YAML file.
+#' @section Public methods:
+#' \describe{
+#'   \item{\code{new(config_path)}}{
+#'     Initializes a new config object that pulls from a YAML file specified by
+#'     `config_path`. Resolves all file paths and checks that certain headings exist.
+#'   }
+#'   \item{\code{print()}}{Prints the full config object with headings.}
+#'   \item{\code{write_to_file(out_fp)}}{Writes config values to a specified YAML file.}
+#' }
+#' @section Public attributes:
+#' \describe{
+#'   \item{v}{Holds the values read in from the YAML file as a list of lists}
+#' }
+#'
+DocConfig <- R6::R6Class(
+  "DocConfig",
+  ## DocConfig private attributes and methods
+  private = list(),
+
+  ## DocConfig public attributes and methods
+  public = list(
+
+    # Public attribute to hold the YAML file list values
+    v = NULL,
+
+    # Method to instantiate a new DocConfig object. Reads and parses YAML file.
+    initialize = function(config_path){
+      # Check that the config path actually exists
+      if(!file.exists(config_path)){
+        stop(sprintf("Config filepath, %s, does not exist", config_path))
+      }
+      # Read config filepath
+      config_vals <- yaml::read_yaml(config_path)
+      # TODO: Ensure that all required headings are available
+      # TODO: Resolve folder names in filepaths
+      # Set the values as a public attribute
+      self$v <- config_vals
+      message("Config read successfully.")
+      invisible(self)
+    },
+
+    # Print all values
+    print = function(){
+      message(sprintf("CONFIG: \n%s\n", str(self$v)))
+      invisible(self)
+    },
+
+    # Method to write the config values to file
+    write_to_file = function(out_file, verbose=TRUE){
+      yaml::write_yaml(self$v, file=out_file)
+      if(verbose) message(glue::glue("Config written to {out_file} successfully."))
+      invisible(self)
+    }
+  )
+)

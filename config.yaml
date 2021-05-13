@@ -1,1 +1,24 @@
-- load_libraries: ['data.table', 'glue', 'knitR', 'R6', 'tinytex']
+## General settings
+load_libraries: ['data.table', 'glue', 'knitR', 'R6', 'tinytex', 'yaml']
+tex_style: ''
+cite_style: 'nature'
+## Chapter and section titles
+titles:
+  thesis: ''
+  italy: ''
+## Directories (used to resolve brackets in filepaths below)
+dirs:
+  repo: '~/repos/thesis'
+  thesis_docs: '~/Documents/Dropbox/Writing/thesis_resources'
+  graphics: '~/Documents/Dropbox/Writing/thesis_resources/graphics'
+  thesis_data: '~/Documents/Dropbox/Writing/thesis_resources/data'
+## Filepath for the .bib file used across all chapters
+bibtex_fp : '{thesis_docs}/bibliographies/Mendeley_export_20210511.bib'
+## Filepaths: Graphics
+graphics_fps:
+  italy:
+    fig1: ''
+## Filepaths: Input data (to be loaded as tables)
+data_fps:
+  italy:
+    t1: ''
