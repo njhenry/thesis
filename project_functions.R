@@ -95,7 +95,12 @@ DocConfig <- R6::R6Class(
       # Read config filepath
       config_vals <- yaml::read_yaml(config_path)
       # TODO: Ensure that all required headings are available
-      # TODO: Resolve folder names in filepaths
+      # Resolve folder names in filepaths
+      config_vals <- self$resolve_filepaths(
+        resolve_list = config_vals,
+        replace_list = config_vals$dirs
+      )
+
       # Set the values as a public attribute
       self$v <- config_vals
       message("Config read successfully.")
@@ -106,6 +111,32 @@ DocConfig <- R6::R6Class(
     print = function(){
       message(sprintf("CONFIG: \n%s\n", str(self$v)))
       invisible(self)
+    },
+
+    # Resolve all file paths that refer to '{keys}' in the config
+    resolve_filepaths = function(resolve_list, replace_list){
+      # Sub-function to apply across all list items
+      replace_fun <- function(check_item, replace_list){
+        # Only act on character vectors that include a "{replace_key}" sequence
+        if(is.null(check_item)) return(check_item)
+        if(all(is.na(check_item))) return(check_item)
+        if(!'character' %in% class(check_item)) return(check_item)
+        # Check each value
+        key_vec <- names(replace_list)
+        replace_val_match <- paste0('\\{[', paste(key_vec, collapse='|'), ']+\\}')
+        vec_len <- length(check_item)
+        return_vec <- rep(as.character(NA), vec_len)
+        for(ii in 1:vec_len){
+          if(grepl(replace_val_match, check_item[ii])){
+            return_vec[ii] <- glue::glue(check_item[ii], .envir=replace_list)
+          } else {
+            return_vec[ii] <- check_item[ii]
+          }
+        }
+        # Return item with any needed replacements
+        return(return_vec)
+      }
+      return(rapply(resolve_list, replace_fun, how='replace', replace_list=replace_list))
     },
 
     # Method to write the config values to file

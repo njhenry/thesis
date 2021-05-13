@@ -17,8 +17,9 @@ bibtex_fp : '{thesis_docs}/bibliographies/Mendeley_export_20210511.bib'
 ## Filepaths: Graphics
 graphics_fps:
   italy:
-    fig1: ''
+    fig1: '{graphics}/italy/testing.png'
 ## Filepaths: Input data (to be loaded as tables)
 data_fps:
   italy:
-    t1: ''
+    t1: '{thesis_data}/italy/t1_test.csv'
+    t2: '{thesis_data}/italy/t2_test.csv'
