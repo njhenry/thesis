@@ -49,7 +49,49 @@ remove_temp_files <- function(dir = NULL, match_patterns = NULL){
 }
 
 
-#' @title Config parser for hybrid R+TeX code
+#' Load a single dataset
+#'
+#' @description Convenience function for loading a filepath based on extension
+#'
+#' @importFrom data.table fread
+#' @importFrom yaml read_yaml
+#'
+#' @param filepath File location of dataset. Function will error if filepath does not
+#'   exist
+#'
+#' @return Dataset in data.table form, or list form in case of YAML files
+#'
+load_dataset_from_file <- function(filepath){
+  if(!file.exists(filepath)) stop("Path ", filepath, " does not exist!")
+  # Load file based on extension
+  fp_lower <- tolower(filepath)
+  if(grepl('\\.yaml$', fp_lower) | grepl('\\.yml$', fp_lower)){
+    dataset <- yaml::read_yaml(filepath)
+  } else {
+    dataset <- data.table::fread(filepath)
+  }
+  return(dataset)
+}
+
+
+#' Load list of datasets
+#'
+#' @description Load all files from a named list and return as a named list of data.tables
+#'
+#' @param fp_list Named list of file paths to read
+#' @return Named list of datasets
+load_dataset_list <- function(fp_list){
+  if(!"list" %in% class(fp_list)) stop("Input filepath list is not of type 'list'")
+  data_list <- lapply(fp_list, load_dataset_from_file)
+  names(data_list) <- names(fp_list)
+  return(data_list)
+}
+
+
+#' Config parser for hybrid R+TeX code
+#'
+#' @description An R6 class with convenience functions for loading and validating a
+#'   configuration file in YAML format
 #'
 #' @docType class
 #' @importFrom R6 R6Class
@@ -83,10 +125,10 @@ DocConfig <- R6::R6Class(
   ## DocConfig public attributes and methods
   public = list(
 
-    # Public attribute to hold the YAML file list values
-    v = NULL,
+    ## 1) Reserved public methods ------------------------------------------------------->
 
     # Method to instantiate a new DocConfig object. Reads and parses YAML file.
+    # Call this method as: `my_config <- DocConfig.new(config_path='/a/path.yaml')`
     initialize = function(config_path){
       # Check that the config path actually exists
       if(!file.exists(config_path)){
@@ -94,13 +136,13 @@ DocConfig <- R6::R6Class(
       }
       # Read config filepath
       config_vals <- yaml::read_yaml(config_path)
-      # TODO: Ensure that all required headings are available
+      # Ensure that all required headings are available
+      self$check_required_keys(config_vals)
       # Resolve folder names in filepaths
       config_vals <- self$resolve_filepaths(
         resolve_list = config_vals,
         replace_list = config_vals$dirs
       )
-
       # Set the values as a public attribute
       self$v <- config_vals
       message("Config read successfully.")
@@ -110,7 +152,27 @@ DocConfig <- R6::R6Class(
     # Print all values
     print = function(){
       message(sprintf("CONFIG: \n%s\n", str(self$v)))
-      invisible(self)
+      invisible()
+    },
+
+    ## 2) Public attributes ------------------------------------------------------------->
+
+    # YAML file list values
+    v = NULL,
+
+    # Required top-level keys in the config YAML file
+    required_keys = c('load_libraries', 'dirs', 'graphics_fps', 'data_fps'),
+
+    ## 3) Non-reserved public methods --------------------------------------------------->
+
+    # Check that a config list contains all required top-level keys
+    check_required_keys = function(config_list){
+      config_keys <- names(config_list)
+      missing_keys <- setdiff(self$required_keys, config_keys)
+      if(length(missing_keys) > 0){
+        stop("Missing config keys: ", paste(missing_keys, collapse=', '))
+      }
+      invisible()
     },
 
     # Resolve all file paths that refer to '{keys}' in the config
@@ -143,7 +205,7 @@ DocConfig <- R6::R6Class(
     write_to_file = function(out_file, verbose=TRUE){
       yaml::write_yaml(self$v, file=out_file)
       if(verbose) message(glue::glue("Config written to {out_file} successfully."))
-      invisible(self)
+      invisible()
     }
   )
 )
