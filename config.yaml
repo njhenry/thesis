@@ -1,5 +1,7 @@
 ## General settings
-load_libraries: ['data.table', 'glue', 'knitr', 'R6', 'tinytex', 'yaml']
+load_libraries: [
+  'bookdown', 'data.table', 'glue', 'knitr', 'R6', 'rmarkdown', 'tinytex', 'yaml'
+]
 tex_style:
   standalone: 'article'
   thesis: 'ociamthesis'

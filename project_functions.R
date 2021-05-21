@@ -88,7 +88,45 @@ load_dataset_list <- function(fp_list){
 }
 
 
-#' Config parser for hybrid R+TeX code
+#' Match chapter name to file
+#'
+#' @description Match a chapter name to a markdown file within the project repository
+#'
+#' @importFrom glue glue
+#'
+#' @param chapter_name [char] Name of the chapter. This function will search for a file
+#'   matching "{chapter_name}.Rmd" (case-insensitive)
+#' @param repo [char] Path to the top-level directory containing the thesis repository
+#' @param check_subdirs [char, default c('', raw_rmd', 'testing')] Which subdirectories
+#'   should be checked for the Rmd file?
+#'
+#' @return Full path to the chapter file
+#'
+match_chapter_to_file <- function(
+  chapter_name, repo, check_subdirs = c('', 'raw_rmd', 'testing')
+){
+  # Check repo exists
+  if(!dir.exists(repo)) stop(glue::glue("Repository {repo} does not exist"))
+  # Iterate through directories to search for file
+  check_dirs <- file.path(repo, check_subdirs)
+  for(check_dir in check_dirs){
+    match_files <- list.files(
+      check_dir,
+      pattern = glue::glue('^{chapter_name}.Rmd$'),
+      ignore.case = TRUE,
+      full.names = TRUE
+    )
+    if(length(match_files) > 0) return(match_files[1])
+  }
+  # Pattern not found in any subdirectory
+  stop(
+    "File ", chapter_name ,".Rmd not found. Directories checked:\n - ",
+    paste(check_dirs, collapse = '\n - ')
+  )
+}
+
+
+#' Config parser for hybrid Rmd+TeX code
 #'
 #' @description An R6 class with convenience functions for loading and validating a
 #'   configuration file in YAML format

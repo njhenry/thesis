@@ -1,0 +1,71 @@
+--- 
+title: "My very special test chapter"
+author: "Nathaniel Henry"
+date: "`r Sys.Date()`"
+output: bookdown::pdf_book
+documentclass: article
+top-level-division: section
+table-of-contents: false
+# bibliography: [book.bib, packages.bib]
+# biblio-style: apalike
+# link-citations: true
+github-repo: nathenry/thesis
+description: "Just testing what happens when I try to compile a single chapter."
+---
+
+# Abstract
+
+Here is an example test chapter.
+
+
+# Introduction
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer tristique felis nec
+interdum gravida. Pellentesque ac ornare nunc. Maecenas nec rutrum nulla. Cras dapibus
+suscipit arcu, in condimentum risus semper ut. Quisque congue sem a arcu interdum, quis
+blandit purus interdum. Aenean placerat, nibh sed pretium iaculis, massa orci convallis
+dolor, non ullamcorper nisl lacus eget mi. Integer at dolor posuere, tincidunt nisi et,
+pellentesque odio. Donec eget nisi et felis fringilla suscipit a ac quam. Donec in
+dignissim justo, nec pretium libero.
+
+Vivamus tristique, libero sed accumsan faucibus, ex urna porta lacus, at ullamcorper leo
+lectus eget velit. Nunc sit amet turpis libero. Nunc egestas, elit et commodo commodo,
+ipsum neque consectetur ante, rutrum malesuada ante felis vitae lectus. Pellentesque arcu
+ipsum, rhoncus id lobortis ornare, tincidunt eu est. Morbi ullamcorper, lorem id dictum
+condimentum, erat nulla pharetra nisi, quis fringilla sapien enim sit amet libero. Ut
+pulvinar tempor leo euismod elementum. Suspendisse molestie quis enim ut viverra. Nullam
+convallis tempus lorem, sed egestas sem ultrices sed. Fusce sed blandit nisi. Nam
+facilisis aliquet porta. Vestibulum commodo lectus molestie magna convallis, ac volutpat
+turpis auctor. Praesent mollis metus nec tortor ornare, nec tempor enim elementum.
+Vestibulum eget luctus risus, ac molestie felis. Vivamus velit arcu, malesuada quis tellus
+id, maximus posuere enim.
+
+
+# Methods
+
+Donec ut risus nec mi sollicitudin varius eget et nisi. Fusce laoreet bibendum ultricies.
+Proin tempor laoreet tellus, vitae blandit urna tempor et. Integer finibus pellentesque
+leo, eget dignissim mi luctus nec. In posuere vehicula massa sit amet euismod.
+Pellentesque ultricies turpis a leo porta bibendum. Integer tempor nibh sed semper
+suscipit.
+
+
+# Results
+
+Quisque a imperdiet leo, vel consequat eros. Integer molestie laoreet eleifend. Donec
+tempus non sem eget tristique. Nunc porttitor tortor eu dictum eleifend. Fusce augue ex,
+euismod ut leo et, eleifend consectetur risus. Vivamus egestas orci sit amet varius
+egestas. Nulla aliquet gravida neque vitae tincidunt. Maecenas ac consequat orci, sed
+blandit dui. Duis laoreet nisi a mi venenatis ultricies. Sed pulvinar rutrum imperdiet.
+Cras viverra metus in diam mattis dignissim. Fusce vehicula viverra eros ut luctus.
+
+
+# Conclusion
+
+Nam dictum erat vel lorem dapibus, ac malesuada magna efficitur. Nullam sed diam ac ipsum
+facilisis dapibus eu ultricies nisl. Suspendisse potenti. Maecenas suscipit ipsum tortor,
+et euismod lectus egestas in. Integer suscipit nulla id enim lobortis faucibus. Quisque
+metus justo, rutrum vitae aliquet vulputate, fermentum non sem. Pellentesque posuere velit
+quis mauris lacinia, at feugiat neque auctor. Mauris congue mollis accumsan. Ut pharetra
+ut arcu interdum gravida. Sed convallis ante at ex rutrum mollis. Nunc pharetra quis felis
+sed efficitur.
