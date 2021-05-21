@@ -1,25 +1,35 @@
 ## General settings
-load_libraries: ['data.table', 'glue', 'knitR', 'R6', 'tinytex', 'yaml']
-tex_style: ''
-cite_style: 'nature'
+load_libraries: ['data.table', 'glue', 'knitr', 'R6', 'tinytex', 'yaml']
+tex_style:
+  standalone: 'article'
+  thesis: 'ociamthesis'
+cite_style:
+  standalone: 'nature'
+  thesis: 'nature'
 ## Chapter and section titles
-titles:
+title:
   thesis: ''
+  test_chapter: 'My test chapter title'
   italy: ''
+bibtitle:
+
 ## Directories (used to resolve brackets in filepaths below)
 dirs:
   repo: '~/repos/thesis'
   thesis_docs: '~/Documents/Dropbox/Writing/thesis_resources'
   graphics: '~/Documents/Dropbox/Writing/thesis_resources/graphics'
   thesis_data: '~/Documents/Dropbox/Writing/thesis_resources/data'
+
 ## Filepath for the .bib file used across all chapters
 bibtex_fp : '{thesis_docs}/bibliographies/Mendeley_export_20210511.bib'
+
 ## Filepaths: Graphics
 graphics_fps:
-  italy:
-    fig1: '{graphics}/italy/testing.png'
+  test_chapter:
+    fig1: '{graphics}/test_chapter/fig1.png'
+
 ## Filepaths: Input data (to be loaded as tables)
 data_fps:
-  italy:
-    t1: '{thesis_data}/italy/t1_test.csv'
-    t2: '{thesis_data}/italy/t2_test.csv'
+  test_chapter:
+    t1: '{thesis_data}/test_chapter/t1_test.csv'
+    t2: '{thesis_data}/test_chapter/t2_test.csv'

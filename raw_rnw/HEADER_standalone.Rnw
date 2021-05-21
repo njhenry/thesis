@@ -1,0 +1,79 @@
+<<exec = FALSE, echo = FALSE>>=
+  ## #####################################################################################
+  ##
+  ## HEADER TEMPLATE FOR A SINGLE CHAPTER
+  ##
+  ## AUTHOR: Nathaniel Henry
+  ## CREATED: 20 May 2021
+  ## PURPOSE: Header file used to compile a single thesis chapter as a standalone document
+  ##
+  ## EXECUTION: This file is compiled using the runner script `compile_single_chapter.R`
+  ##  1) This RNW header should be knitted into a TEX document by the runner script. It
+  ##     relies on the following being defined in the runner file:
+  ##       - `conf` (R6 object, list-like)
+  ##       - `chapter` (char) Should match a sub-heading within the `conf`
+  ##       - `stub_tex_fp` (char) Path to a TEX file to include in the knitted document.
+  ##     Rather than using the LaTeX `\include{}` command to source external TEX content,
+  ##     the RNW code intersperses TEX from an external file directly into the knitted
+  ##     document.
+  ##  2) After knitting, the TEX file is compiled to PDF using the `tinytex::latexmk()`
+  ##     function in the runner script.
+  ##
+  ## #####################################################################################
+@
+%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+%% Article: \Sexpr{conf$v$title[[chapter]]}
+%% Last compiled on \Sexpr{format(Sys.Date(), '%d %B %Y')}
+%%
+%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%% HEADER ------------------------------------------------------------------------------->
+
+% Set document style
+\documentclass{\Sexpr{conf$v$tex_style$standalone}}
+
+% Include LaTeX packages
+\usepackage[utf8]{inputenc}
+\usepackage{authblk}
+\usepackage{setspace}
+\usepackage[margin=1.25in]{geometry}
+\usepackage{graphicx}
+
+% Set bibliography options
+\usepackage[backend=bibtex, style=\Sexpr{conf$v$cite_style$standalone}]{biblatex}
+\addbibresource{\Sexpr{conf$v$bibtex_fp}}
+
+% Article title
+\title{\Sexpr{conf$v$title[[chapter]]}}
+
+% Author and affiliation list
+<<echo=FALSE, eval=TRUE, results='asis'>>==
+  # TODO auto-generate authors and affiliations for each article
+  cat("\\author[1]{Nathaniel Henry}")
+  cat("\\affil[1]{Big Data Institute, University of Oxford, Oxford, UK}")
+@
+
+% Miscellaneous article styling
+\onehalfspacing
+
+
+%% ARTICLE CONTENT ---------------------------------------------------------------------->
+
+\begin{document}
+
+%% TITLE %%
+\maketitle
+
+
+<<echo=FALSE, eval=TRUE, results='asis'>>==
+  # Echo the full contents of another TEX file into this section
+  tex_content <- readLines(stub_tex_fp)
+  cat(tex_content, sep='\n')
+@
+
+%% BIBLIOGRAPHY %%
+\printbibliography
+
+\end{document}
