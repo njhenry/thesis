@@ -1,6 +1,7 @@
 ## General settings
 load_libraries: [
-  'bookdown', 'data.table', 'glue', 'knitr', 'R6', 'rmarkdown', 'tinytex', 'yaml'
+  'bookdown', 'data.table', 'glue', 'knitr', 'R6', 'rmarkdown', 'rticles', 'tinytex',
+  'yaml'
 ]
 tex_style:
   standalone: 'article'
