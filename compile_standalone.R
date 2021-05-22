@@ -42,22 +42,38 @@ graphics_fps <- conf$v$graphics_fps[[chapter]]
 
 # Find the chapter filepath within the repository
 chapter_rmd_fp <- match_chapter_to_file(chapter_name = chapter, repo = repo)
+chapter_rmd_fp_base <- basename(chapter_rmd_fp)
 
 # Set some output filenames
 tex_dir <- file.path(repo, 'knitted_tex')
 tex_dir_fp_base <- glue::glue('{chapter}.pdf')
 
+
 ## Compile Rmd to TEX and PDF using bookdown -------------------------------------------->
 
+# Prepare input directory
+setwd(dirname(chapter_rmd_fp))
+tempfiles <- list.files('.', pattern='^_main.')
+if(length(tempfiles) > 0) invisible(file.remove(tempfiles))
+
+# Set up a config listing just this Rmd file
+dummy_config <- list(rmd_files = list(latex = chapter_rmd_fp_base))
+dummy_config_fp <- tempfile()
+yaml::write_yaml(dummy_config, file=dummy_config_fp)
+
+# Convert
 tex_dir_fp <- bookdown::render_book(
-  input = chapter_rmd_fp,
+  input = basename(chapter_rmd_fp),
   output_format = bookdown::pdf_book(
-    keep_tex=TRUE,
-    base_format=rmarkdown::pdf_document,
-    toc=FALSE
+    toc = FALSE, base_format = rmarkdown::pdf_document, keep_tex=TRUE
   ),
   output_file = tex_dir_fp_base,
-  output_dir = tex_dir
+  output_dir = tex_dir,
+  config_file = dummy_config_fp
 )
+
 # Move compiled PDF file from repository to final output directory
 invisible(file.rename(from = tex_dir_fp, to = pdf_out_fp))
+
+# Clean up by deleting temporary config
+invisible(file.remove(dummy_config_fp))
