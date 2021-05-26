@@ -57,15 +57,19 @@ tempfiles <- list.files('.', pattern='^_main.')
 if(length(tempfiles) > 0) invisible(file.remove(tempfiles))
 
 # Set up a config listing just this Rmd file
-dummy_config <- list(rmd_files = list(latex = chapter_rmd_fp_base))
+dummy_config <- list(
+  'rmd_files' = list(latex = chapter_rmd_fp_base),
+  'documentclass' = conf$v$tex_style$standalone,
+  'top-level-division' = 'section'
+)
 dummy_config_fp <- tempfile()
 yaml::write_yaml(dummy_config, file=dummy_config_fp)
 
 # Convert
 tex_dir_fp <- bookdown::render_book(
   input = basename(chapter_rmd_fp),
-  output_format = bookdown::pdf_book(
-    toc = FALSE, base_format = rmarkdown::pdf_document, keep_tex=TRUE
+  output_format = bookdown::pdf_document2(
+    toc = FALSE, keep_tex = TRUE, citation_package='biblatex'
   ),
   output_file = tex_dir_fp_base,
   output_dir = tex_dir,

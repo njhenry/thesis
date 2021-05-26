@@ -2,15 +2,10 @@
 title: "My very special test chapter"
 author: "Nathaniel Henry"
 date: "`r Sys.Date()`"
-output: bookdown::pdf_book
-documentclass: article
-top-level-division: section
-table-of-contents: false
-# bibliography: [book.bib, packages.bib]
-# biblio-style: apalike
-# link-citations: true
-github-repo: nathenry/thesis
 description: "Just testing what happens when I try to compile a single chapter."
+bibliography: '/home/nat/Documents/Dropbox/Writing/Mendeley-export-20210511.bib'
+biblatexoptions: [style=nature]
+link-citations: true
 ---
 
 # Abstract
@@ -38,7 +33,7 @@ convallis tempus lorem, sed egestas sem ultrices sed. Fusce sed blandit nisi. Na
 facilisis aliquet porta. Vestibulum commodo lectus molestie magna convallis, ac volutpat
 turpis auctor. Praesent mollis metus nec tortor ornare, nec tempor enim elementum.
 Vestibulum eget luctus risus, ac molestie felis. Vivamus velit arcu, malesuada quis tellus
-id, maximus posuere enim.
+id, maximus posuere enim [@Aalbers2014; @Aalbers].
 
 
 # Methods
@@ -69,3 +64,6 @@ metus justo, rutrum vitae aliquet vulputate, fermentum non sem. Pellentesque pos
 quis mauris lacinia, at feugiat neque auctor. Mauris congue mollis accumsan. Ut pharetra
 ut arcu interdum gravida. Sed convallis ante at ex rutrum mollis. Nunc pharetra quis felis
 sed efficitur.
+
+
+<div id="refs"></div>
