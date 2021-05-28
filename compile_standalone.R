@@ -26,9 +26,8 @@
 # TODO: Convert to CLI
 conf_fp <- '~/repos/thesis/config.yaml'
 chapter <- 'test_chapter'
-pdf_out_fp <- paste0(
-  '~/Documents/Dropbox/Writing/thesis_resources/output/',chapter,'_',Sys.Date(),'.pdf'
-)
+chapter_type <- 'standalone'
+pdf_out_fp <- glue::glue('~/Documents/Dropbox/Writing/thesis/output/{chapter}_{Sys.Date()}.pdf')
 
 # Load config, required packages, and helper functions
 repo <- yaml::read_yaml(conf_fp)$dirs$repo
@@ -59,18 +58,17 @@ if(length(tempfiles) > 0) invisible(file.remove(tempfiles))
 # Set up a config listing just this Rmd file
 dummy_config <- list(
   'rmd_files' = list(latex = chapter_rmd_fp_base),
-  'documentclass' = conf$v$tex_style$standalone,
   'top-level-division' = 'section'
 )
 dummy_config_fp <- tempfile()
 yaml::write_yaml(dummy_config, file=dummy_config_fp)
 
 # Convert
+pdf_args <- list(toc = FALSE, keep_tex = TRUE, citation_package = 'biblatex')
+if(conf$v$preprint) pdf_args$extra_dependencies <- 'arxiv'
 tex_dir_fp <- bookdown::render_book(
   input = basename(chapter_rmd_fp),
-  output_format = bookdown::pdf_document2(
-    toc = FALSE, keep_tex = TRUE, citation_package='biblatex'
-  ),
+  output_format = do.call(bookdown::pdf_document2, args = pdf_args),
   output_file = tex_dir_fp_base,
   output_dir = tex_dir,
   config_file = dummy_config_fp

@@ -3,8 +3,9 @@ title: "My very special test chapter"
 author: "Nathaniel Henry"
 date: "`r Sys.Date()`"
 description: "Just testing what happens when I try to compile a single chapter."
-bibliography: '/home/nat/Documents/Dropbox/Writing/Mendeley-export-20210511.bib'
-biblatexoptions: [style=nature]
+documentclass: "`r conf$v$tex_style[[chapter_type]]`"
+bibliography: "`r conf$v$bibliography`"
+biblatexoptions: [style=`r conf$v$citation_style`]
 link-citations: true
 ---
 

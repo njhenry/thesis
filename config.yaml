@@ -6,6 +6,7 @@ load_libraries: [
 tex_style:
   standalone: 'article'
   thesis: 'ociamthesis'
+preprint: true
 ## Chapter and section titles
 title:
   thesis: ''
@@ -13,19 +14,17 @@ title:
   italy: ''
 
 ## Options that will be passed directly to the bookdown config
-bookdown_options:
-  bibliography: '/home/nat/Documents/Dropbox/Writing/Mendeley-export-20210511.bib'
-  citation_package: 'biblatex'
-  biblatexoptions: '[style=nature, citestyle=draft]'
-  link-citations: true
-  github-repo: 'nathenry/thesis'
+bibliography: '{thesis_docs}/bibliographies/Mendeley-export-20210511.bib'
+citation_style: 'nature'
+link-citations: true
+github-repo: 'nathenry/thesis'
 
 ## Directories (used to resolve brackets in filepaths below)
 dirs:
-  repo: '~/repos/thesis'
-  thesis_docs: '~/Documents/Dropbox/Writing/thesis_resources'
-  graphics: '~/Documents/Dropbox/Writing/thesis_resources/graphics'
-  thesis_data: '~/Documents/Dropbox/Writing/thesis_resources/data'
+  repo: '/home/nat/repos/thesis'
+  thesis_docs: '/home/nat/Documents/Dropbox/Writing/thesis'
+  graphics: '/home/nat/Documents/Dropbox/Writing/thesis/graphics'
+  thesis_data: '/home/nat/Documents/Dropbox/Writing/thesis/data'
 
 ## Filepaths: Graphics
 graphics_fps:

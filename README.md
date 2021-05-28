@@ -30,3 +30,6 @@ used across chapters, including:
 This thesis was written using RStudio version 1.4.1103, executing R version 
 4.0.5. The packages required to execute knitR code are listed as 
 'load_libraries' in `config.yaml`.
+
+This repository uses the George Kour's ArXiv [style
+template](https://github.com/kourgeorge/arxiv-style) for formatting preprints.
