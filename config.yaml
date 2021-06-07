@@ -1,4 +1,4 @@
-## General settings
+   ## General settings
 load_libraries: [
   'bookdown', 'data.table', 'glue', 'knitr', 'R6', 'rmarkdown', 'rticles', 'tinytex',
   'yaml'
@@ -7,11 +7,6 @@ tex_style:
   standalone: 'article'
   thesis: 'ociamthesis'
 preprint: true
-## Chapter and section titles
-title:
-  thesis: ''
-  test_chapter: 'My test chapter title'
-  italy: ''
 
 ## Options that will be passed directly to the bookdown config
 bibliography: '{thesis_docs}/bibliographies/Mendeley-export-20210511.bib'
@@ -30,9 +25,19 @@ dirs:
 graphics_fps:
   test_chapter:
     fig1: '{graphics}/test_chapter/fig1.png'
+  italy:
+    covid_deaths: '{graphics}/italy/fig1_covid_deaths.png'
+    time_series: '{graphics}/italy/fig2_time_series.png'
+    age_excess: '{graphics}/italy/fig3_age_excess.png'
+    age_maps: '{graphics}/italy/fig4_age_maps.png'
+    top_provinces: '{graphics}/italy/fig5_top_provinces.png'
+    excess_neighbors: '{graphics}/italy/fig6_excess_neighbors.png'
+
 
 ## Filepaths: Input data (to be loaded as tables)
 data_fps:
   test_chapter:
     t1: '{thesis_data}/test_chapter/t1_test.csv'
     t2: '{thesis_data}/test_chapter/t2_test.csv'
+  italy:
+    t1: ''
