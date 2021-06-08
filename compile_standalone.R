@@ -56,22 +56,17 @@ tempfiles <- list.files('.', pattern='^_main.')
 if(length(tempfiles) > 0) invisible(file.remove(tempfiles))
 
 # Set up a config listing just this Rmd file
-pandoc_config <- list('suppress-bibliography' = TRUE)
-pandoc_config_fp <- tempfile(fileext='.yaml')
-yaml::write_yaml(pandoc_config, file=pandoc_config_fp)
 dummy_config <- list(
   'rmd_files' = list(latex = chapter_rmd_fp_base),
-  'top-level-division' = 'section',
-  'suppress-bibliography' = TRUE
+  'top-level-division' = 'section'
 )
 dummy_config_fp <- tempfile(fileext='.yaml')
 yaml::write_yaml(dummy_config, file=dummy_config_fp)
 
 # Convert
 pdf_args <- list(
-  toc = FALSE, keep_tex = TRUE, citation_package = 'biblatex', latex_engine = 'xelatex',
-  extra_dependencies = c('doi', 'float'),
-  pandoc_args = c('--metadata-file', pandoc_config_fp)
+  toc = FALSE, keep_tex = TRUE, latex_engine = 'xelatex',
+  extra_dependencies = c('doi', 'float')
 )
 if(conf$v$preprint) pdf_args$extra_dependencies <- c(pdf_args$extra_dependencies, 'arxiv')
 tex_dir_fp <- bookdown::render_book(
@@ -86,4 +81,4 @@ tex_dir_fp <- bookdown::render_book(
 invisible(file.copy(from = tex_dir_fp, to = pdf_out_fp))
 
 # Clean up by deleting temporary config
-invisible(file.remove(dummy_config_fp, pandoc_config_fp))
+invisible(file.remove(dummy_config_fp))

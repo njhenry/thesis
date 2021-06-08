@@ -4,8 +4,7 @@ author: "Authors TBD"
 date: "`r Sys.Date()`"
 documentclass: "`r conf$v$tex_style[[chapter_type]]`"
 bibliography: "`r conf$v$bibliography`"
-suppress-bibliography: true
-biblatexoptions: [style=`r conf$v$citation_style`]
+csl: "`r paste0(conf$v$citation_style, '.csl')`"
 link-citations: true
 ---
 
@@ -19,8 +18,7 @@ captions <- list(
   age_excess = "Mean estimates for weekly excess deaths across Italy by age group, March through May 2020. Two nationwide age group breakdowns are shown to the right for comparison: the national age distribution as of 1 January 2020, and the proportion of nationwide deaths that occurred in each age group during the years 2015 through 2019.",
   age_maps = 'Map of standardized mortality ratios by age group and province over the entire period of March through May 2020. In these figures, \\"significance\\" is calculated as falling outside of the 95\\% uncertainty interval for baseline mortality for a given age group and province during this period.',
   top_provinces = "Concentration of excess mortality burden among the 3, 7, and 22 provinces with the greatest number of excess deaths, out of 107 provinces total. These province groupings respectively accounted for over 25\\%, 50\\%, and 75\\% of the national excess mortality burden between March and May 2020. The graph on the bottom left displays mean estimated excess deaths by province grouping and week during this time period.",
-  excess_neighbors = "Excess deaths vary across provinces within the Lombardy region. (Top left) Map of Northern Italy showing the week when province’s excess mortality was estimated to peak during the first wave of COVID-19 in March through May 2020. (Top right) Map of the peak weekly standardized mortality ratio (SMR) for each province across Northern Italy across all weeks in March through May 2020. (Bottom left) Estimated excess deaths by week for Lodi province. (Bottom right) Estimated excess deaths by week for Varese province.",
-  TESTING = "Test test."
+  excess_neighbors = "Excess deaths vary across provinces within the Lombardy region. (Top left) Map of Northern Italy showing the week when province’s excess mortality was estimated to peak during the first wave of COVID-19 in March through May 2020. (Top right) Map of the peak weekly standardized mortality ratio (SMR) for each province across Northern Italy across all weeks in March through May 2020. (Bottom left) Estimated excess deaths by week for Lodi province. (Bottom right) Estimated excess deaths by week for Varese province."
 )
 ```
 
@@ -145,7 +143,7 @@ The authors wish to thank the Italian National Institute of Statistics for their
 
 # References
 
-\printbibliography[heading=none]
+<div id="refs"></div>
 
 
 # Figures and Tables 
