@@ -1,0 +1,314 @@
+\documentclass[12pt,halfline,a4paper,]{ouparticle}
+
+% Packages I think are necessary for basic Rmarkdown functionality
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{color}
+\usepackage{fancyvrb}
+\usepackage{framed}
+
+% For knitr::kable functionality
+\usepackage{booktabs}
+\usepackage{longtable}
+
+%% To allow better options for figure placement
+%\usepackage{float}
+
+% Packages that are supposedly required by OUP sty file
+\usepackage{amssymb, amsmath, geometry, amsfonts, verbatim, endnotes, setspace}
+
+% For code highlighting I think
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+
+% For making Rmarkdown lists
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+% Part for setting citation format package: natbib
+
+% Part for setting citation format package: biblatex
+
+% Part for indenting CSL refs
+% Pandoc citation processing
+% Pandoc header
+
+\begin{document}
+
+\title{Template for Oxford University Press papers}
+
+\author{%
+\name{Alice Anonymous}\address{Some Institute of Technology}\email{\href{mailto:alice@example.com}{alice@example.com}}
+\and
+\name{Bob Security}\address{Another University}\email{\href{mailto:bob@example.com}{bob@example.com}}\thanks{Corresponding author; Email: \href{mailto:bob@example.com}{bob@example.com}}
+\and
+\name{Cat Memes}\address{Another University}\email{\href{mailto:cat@example.com}{cat@example.com}}
+\and
+\name{Derek Zoolander}\address{Some Institute of Technology}\email{\href{mailto:derek@example.com}{derek@example.com}}
+}
+
+\abstract{This is the abstract.
+
+It consists of two paragraphs.}
+
+\date{2021-05-22}
+
+\keywords{key; dictionary; word}
+
+\maketitle
+
+
+
+\hypertarget{abstract}{%
+\section{Abstract}\label{abstract}}
+
+Here is an example test chapter.
+
+\hypertarget{introduction}{%
+\section{Introduction}\label{introduction}}
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer tristique felis nec
+interdum gravida. Pellentesque ac ornare nunc. Maecenas nec rutrum nulla. Cras dapibus
+suscipit arcu, in condimentum risus semper ut. Quisque congue sem a arcu interdum, quis
+blandit purus interdum. Aenean placerat, nibh sed pretium iaculis, massa orci convallis
+dolor, non ullamcorper nisl lacus eget mi. Integer at dolor posuere, tincidunt nisi et,
+pellentesque odio. Donec eget nisi et felis fringilla suscipit a ac quam. Donec in
+dignissim justo, nec pretium libero.
+
+Vivamus tristique, libero sed accumsan faucibus, ex urna porta lacus, at ullamcorper leo
+lectus eget velit. Nunc sit amet turpis libero. Nunc egestas, elit et commodo commodo,
+ipsum neque consectetur ante, rutrum malesuada ante felis vitae lectus. Pellentesque arcu
+ipsum, rhoncus id lobortis ornare, tincidunt eu est. Morbi ullamcorper, lorem id dictum
+condimentum, erat nulla pharetra nisi, quis fringilla sapien enim sit amet libero. Ut
+pulvinar tempor leo euismod elementum. Suspendisse molestie quis enim ut viverra. Nullam
+convallis tempus lorem, sed egestas sem ultrices sed. Fusce sed blandit nisi. Nam
+facilisis aliquet porta. Vestibulum commodo lectus molestie magna convallis, ac volutpat
+turpis auctor. Praesent mollis metus nec tortor ornare, nec tempor enim elementum.
+Vestibulum eget luctus risus, ac molestie felis. Vivamus velit arcu, malesuada quis tellus
+id, maximus posuere enim.
+
+\hypertarget{methods}{%
+\section{Methods}\label{methods}}
+
+Donec ut risus nec mi sollicitudin varius eget et nisi. Fusce laoreet bibendum ultricies.
+Proin tempor laoreet tellus, vitae blandit urna tempor et. Integer finibus pellentesque
+leo, eget dignissim mi luctus nec. In posuere vehicula massa sit amet euismod.
+Pellentesque ultricies turpis a leo porta bibendum. Integer tempor nibh sed semper
+suscipit.
+
+\hypertarget{results}{%
+\section{Results}\label{results}}
+
+Quisque a imperdiet leo, vel consequat eros. Integer molestie laoreet eleifend. Donec
+tempus non sem eget tristique. Nunc porttitor tortor eu dictum eleifend. Fusce augue ex,
+euismod ut leo et, eleifend consectetur risus. Vivamus egestas orci sit amet varius
+egestas. Nulla aliquet gravida neque vitae tincidunt. Maecenas ac consequat orci, sed
+blandit dui. Duis laoreet nisi a mi venenatis ultricies. Sed pulvinar rutrum imperdiet.
+Cras viverra metus in diam mattis dignissim. Fusce vehicula viverra eros ut luctus.
+
+\hypertarget{conclusion}{%
+\section{Conclusion}\label{conclusion}}
+
+Nam dictum erat vel lorem dapibus, ac malesuada magna efficitur. Nullam sed diam ac ipsum
+facilisis dapibus eu ultricies nisl. Suspendisse potenti. Maecenas suscipit ipsum tortor,
+et euismod lectus egestas in. Integer suscipit nulla id enim lobortis faucibus. Quisque
+metus justo, rutrum vitae aliquet vulputate, fermentum non sem. Pellentesque posuere velit
+quis mauris lacinia, at feugiat neque auctor. Mauris congue mollis accumsan. Ut pharetra
+ut arcu interdum gravida. Sed convallis ante at ex rutrum mollis. Nunc pharetra quis felis
+sed efficitur.
+
+\hypertarget{introduction-1}{%
+\section{Introduction}\label{introduction-1}}
+
+This template is based on the generic OUP template available \href{https://academic.oup.com/icesjms/pages/General_Instructions}{here}. The original OUP sample tex document, providing more details on prefered formatting for LaTeX documents, is included with the template in the file \texttt{ouparticle\_sample.tex}.
+
+Here are two sample references: @Feynman1963118 {[}@Dirac1953888{]}. Bibliography will appear at the end of the document.
+
+\hypertarget{materials-and-methods}{%
+\section{Materials and methods}\label{materials-and-methods}}
+
+An equation with a label for cross-referencing:
+
+\begin{equation}\label{eq:eq1}
+\int^{r_2}_0 F(r,\varphi){\rm d}r\,{\rm d}\varphi = [\sigma r_2/(2\mu_0)]
+\int^{\infty}_0\exp(-\lambda|z_j-z_i|)\lambda^{-1}J_1 (\lambda r_2)J_0
+(\lambda r_i\,\lambda {\rm d}\lambda)
+\end{equation}
+
+This equation can be referenced as follows: Eq. \ref{eq:eq1}
+
+\hypertarget{a-subsection}{%
+\subsection{A subsection}\label{a-subsection}}
+
+A numbered list:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\tightlist
+\item
+  First point
+\item
+  Second point
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Subpoint
+  \end{itemize}
+\end{enumerate}
+
+A bullet list:
+
+\begin{itemize}
+\tightlist
+\item
+  First point
+\item
+  Second point
+\end{itemize}
+
+\hypertarget{results-1}{%
+\section{Results}\label{results-1}}
+
+\hypertarget{generate-a-figure.}{%
+\subsection{Generate a figure.}\label{generate-a-figure.}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{plot}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\DecValTok{10}\NormalTok{,}\AttributeTok{main=}\StringTok{"Some data"}\NormalTok{,}\AttributeTok{xlab=}\StringTok{"Distance (cm)"}\NormalTok{,}\AttributeTok{ylab=}\StringTok{"Time (hours)"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}[p]
+\includegraphics[width=1\linewidth]{test_oup_files/figure-latex/fig1-1} \caption{This is the first figure.}\label{fig:fig1}
+\end{figure}
+
+You can reference this figure as follows: Fig. \ref{fig:fig1}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{plot}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\DecValTok{5}\NormalTok{,}\AttributeTok{pch=}\DecValTok{19}\NormalTok{,}\AttributeTok{main=}\StringTok{"Some data"}\NormalTok{,}\AttributeTok{xlab=}\StringTok{"Distance (cm)"}\NormalTok{,}\AttributeTok{ylab=}\StringTok{"Time (hours)"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}[p]
+\includegraphics[width=1\linewidth]{test_oup_files/figure-latex/fig2-1} \caption{This is the second figure.}\label{fig:fig2}
+\end{figure}
+
+Reference to second figure: Fig. \ref{fig:fig2}
+
+\hypertarget{generate-a-table-using-xtable}{%
+\subsection{\texorpdfstring{Generate a table using \texttt{xtable}}{Generate a table using xtable}}\label{generate-a-table-using-xtable}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df }\OtherTok{=} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{ID=}\DecValTok{1}\SpecialCharTok{:}\DecValTok{3}\NormalTok{,}\AttributeTok{code=}\NormalTok{letters[}\DecValTok{1}\SpecialCharTok{:}\DecValTok{3}\NormalTok{])}
+
+\CommentTok{\# Creates tables that follow OUP guidelines using xtable}
+\FunctionTok{library}\NormalTok{(xtable) }
+\FunctionTok{print}\NormalTok{(}\FunctionTok{xtable}\NormalTok{(df,}\AttributeTok{caption=}\StringTok{"This is the table caption"}\NormalTok{,}\AttributeTok{label=}\StringTok{"tab:tab1"}\NormalTok{),}
+      \AttributeTok{comment=}\ConstantTok{FALSE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{table}[ht]
+\centering
+\begin{tabular}{rrl}
+  \hline
+ & ID & code \\ 
+  \hline
+1 &   1 & a \\ 
+  2 &   2 & b \\ 
+  3 &   3 & c \\ 
+   \hline
+\end{tabular}
+\caption{This is the table caption} 
+\label{tab:tab1}
+\end{table}
+
+You can reference this table as follows: Table \ref{tab:tab1}.
+
+\hypertarget{generate-a-table-using-kable}{%
+\subsection{\texorpdfstring{Generate a table using \texttt{kable}}{Generate a table using kable}}\label{generate-a-table-using-kable}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df }\OtherTok{=} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{ID=}\DecValTok{1}\SpecialCharTok{:}\DecValTok{3}\NormalTok{,}\AttributeTok{code=}\NormalTok{letters[}\DecValTok{1}\SpecialCharTok{:}\DecValTok{3}\NormalTok{])}
+
+\CommentTok{\# kable can alse be used for creating tables}
+\NormalTok{knitr}\SpecialCharTok{::}\FunctionTok{kable}\NormalTok{(df,}\AttributeTok{caption=}\StringTok{"This is the table caption"}\NormalTok{,}\AttributeTok{format=}\StringTok{"latex"}\NormalTok{,}
+             \AttributeTok{booktabs=}\ConstantTok{TRUE}\NormalTok{,}\AttributeTok{label=}\StringTok{"tab2"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{table}
+
+\caption{\label{tab:tab2}This is the table caption}
+\centering
+\begin{tabular}[t]{rl}
+\toprule
+ID & code\\
+\midrule
+1 & a\\
+2 & b\\
+3 & c\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+You can reference this table as follows: Table \ref{tab:tab2}.
+
+\hypertarget{discussion}{%
+\section{Discussion}\label{discussion}}
+
+You can cross-reference sections and subsections as follows: Section \ref{materials-and-methods} and Section \ref{a-subsection}.
+
+\textbf{\emph{Note:}} the last section in the document will be used as the section title for the bibliography.
+
+\hypertarget{references}{%
+\section{References}\label{references}}
+
+
+\begin{notes}[Acknowledgements]
+This is an acknowledgement.
+
+It consists of two paragraphs.
+\end{notes}
+
+
+
+
+\end{document}

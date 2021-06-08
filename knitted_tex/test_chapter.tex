@@ -1,0 +1,170 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{lmodern}
+\usepackage{amsmath}
+\usepackage{ifxetex,ifluatex}
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+  \usepackage{amssymb}
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  pdftitle={My very special test chapter},
+  pdfauthor={Nathaniel Henry},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\usepackage{longtable,booktabs}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{5}
+\usepackage{arxiv}
+\ifluatex
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\usepackage[style=nature]{biblatex}
+\addbibresource{/home/nat/Documents/Dropbox/Writing/thesis/bibliographies/Mendeley-export-20210511.bib}
+\newlength{\cslhangindent}
+\setlength{\cslhangindent}{1.5em}
+\newlength{\csllabelwidth}
+\setlength{\csllabelwidth}{3em}
+\newenvironment{CSLReferences}[2] % #1 hanging-ident, #2 entry spacing
+ {% don't indent paragraphs
+  \setlength{\parindent}{0pt}
+  % turn on hanging indent if param 1 is 1
+  \ifodd #1 \everypar{\setlength{\hangindent}{\cslhangindent}}\ignorespaces\fi
+  % set entry spacing
+  \ifnum #2 > 0
+  \setlength{\parskip}{#2\baselineskip}
+  \fi
+ }%
+ {}
+\usepackage{calc}
+\newcommand{\CSLBlock}[1]{#1\hfill\break}
+\newcommand{\CSLLeftMargin}[1]{\parbox[t]{\csllabelwidth}{#1}}
+\newcommand{\CSLRightInline}[1]{\parbox[t]{\linewidth - \csllabelwidth}{#1}\break}
+\newcommand{\CSLIndent}[1]{\hspace{\cslhangindent}#1}
+
+\title{My very special test chapter}
+\author{Nathaniel Henry}
+\date{2021-05-27}
+
+\begin{document}
+\maketitle
+
+\hypertarget{abstract}{%
+\section{Abstract}\label{abstract}}
+
+Here is an example test chapter.
+
+\hypertarget{introduction}{%
+\section{Introduction}\label{introduction}}
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer tristique felis nec
+interdum gravida. Pellentesque ac ornare nunc. Maecenas nec rutrum nulla. Cras dapibus
+suscipit arcu, in condimentum risus semper ut. Quisque congue sem a arcu interdum, quis
+blandit purus interdum. Aenean placerat, nibh sed pretium iaculis, massa orci convallis
+dolor, non ullamcorper nisl lacus eget mi. Integer at dolor posuere, tincidunt nisi et,
+pellentesque odio. Donec eget nisi et felis fringilla suscipit a ac quam. Donec in
+dignissim justo, nec pretium libero.
+
+Vivamus tristique, libero sed accumsan faucibus, ex urna porta lacus, at ullamcorper leo
+lectus eget velit. Nunc sit amet turpis libero. Nunc egestas, elit et commodo commodo,
+ipsum neque consectetur ante, rutrum malesuada ante felis vitae lectus. Pellentesque arcu
+ipsum, rhoncus id lobortis ornare, tincidunt eu est. Morbi ullamcorper, lorem id dictum
+condimentum, erat nulla pharetra nisi, quis fringilla sapien enim sit amet libero. Ut
+pulvinar tempor leo euismod elementum. Suspendisse molestie quis enim ut viverra. Nullam
+convallis tempus lorem, sed egestas sem ultrices sed. Fusce sed blandit nisi. Nam
+facilisis aliquet porta. Vestibulum commodo lectus molestie magna convallis, ac volutpat
+turpis auctor. Praesent mollis metus nec tortor ornare, nec tempor enim elementum.
+Vestibulum eget luctus risus, ac molestie felis. Vivamus velit arcu, malesuada quis tellus
+id, maximus posuere enim \autocite{Aalbers2014,Aalbers}.
+
+\hypertarget{methods}{%
+\section{Methods}\label{methods}}
+
+Donec ut risus nec mi sollicitudin varius eget et nisi. Fusce laoreet bibendum ultricies.
+Proin tempor laoreet tellus, vitae blandit urna tempor et. Integer finibus pellentesque
+leo, eget dignissim mi luctus nec. In posuere vehicula massa sit amet euismod.
+Pellentesque ultricies turpis a leo porta bibendum. Integer tempor nibh sed semper
+suscipit.
+
+\hypertarget{results}{%
+\section{Results}\label{results}}
+
+Quisque a imperdiet leo, vel consequat eros. Integer molestie laoreet eleifend. Donec
+tempus non sem eget tristique. Nunc porttitor tortor eu dictum eleifend. Fusce augue ex,
+euismod ut leo et, eleifend consectetur risus. Vivamus egestas orci sit amet varius
+egestas. Nulla aliquet gravida neque vitae tincidunt. Maecenas ac consequat orci, sed
+blandit dui. Duis laoreet nisi a mi venenatis ultricies. Sed pulvinar rutrum imperdiet.
+Cras viverra metus in diam mattis dignissim. Fusce vehicula viverra eros ut luctus.
+
+\hypertarget{conclusion}{%
+\section{Conclusion}\label{conclusion}}
+
+Nam dictum erat vel lorem dapibus, ac malesuada magna efficitur. Nullam sed diam ac ipsum
+facilisis dapibus eu ultricies nisl. Suspendisse potenti. Maecenas suscipit ipsum tortor,
+et euismod lectus egestas in. Integer suscipit nulla id enim lobortis faucibus. Quisque
+metus justo, rutrum vitae aliquet vulputate, fermentum non sem. Pellentesque posuere velit
+quis mauris lacinia, at feugiat neque auctor. Mauris congue mollis accumsan. Ut pharetra
+ut arcu interdum gravida. Sed convallis ante at ex rutrum mollis. Nunc pharetra quis felis
+sed efficitur.
+
+\hypertarget{refs}{}
+\begin{CSLReferences}{0}{0}
+\end{CSLReferences}
+
+\printbibliography
+
+\end{document}
