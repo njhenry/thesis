@@ -66,7 +66,7 @@ yaml::write_yaml(dummy_config, file=dummy_config_fp)
 # Convert
 pdf_args <- list(
   toc = FALSE, keep_tex = TRUE, latex_engine = 'xelatex',
-  extra_dependencies = c('doi', 'float')
+  extra_dependencies = c('booktabs', 'doi', 'float', 'makecell', 'url')
 )
 if(conf$v$preprint) pdf_args$extra_dependencies <- c(pdf_args$extra_dependencies, 'arxiv')
 tex_dir_fp <- bookdown::render_book(
@@ -78,7 +78,7 @@ tex_dir_fp <- bookdown::render_book(
 )
 
 # Move compiled PDF file from repository to final output directory
-invisible(file.copy(from = tex_dir_fp, to = pdf_out_fp))
+invisible(file.copy(from = tex_dir_fp, to = pdf_out_fp, overwrite = TRUE))
 
 # Clean up by deleting temporary config
 invisible(file.remove(dummy_config_fp))

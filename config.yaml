@@ -1,7 +1,7 @@
    ## General settings
 load_libraries: [
-  'bookdown', 'data.table', 'glue', 'knitr', 'R6', 'rmarkdown', 'rticles', 'tinytex',
-  'yaml'
+  'bookdown','data.table','dplyr','glue','knitr','kableExtra','R6','rmarkdown','rticles',
+  'tinytex','yaml'
 ]
 tex_style:
   standalone: 'article'
@@ -40,4 +40,5 @@ data_fps:
     t1: '{thesis_data}/test_chapter/t1_test.csv'
     t2: '{thesis_data}/test_chapter/t2_test.csv'
   italy:
-    t1: ''
+    covariates_table: '{thesis_data}/italy/t1_covariates_table.csv'
+    excess_demographics: '{thesis_data}/italy/t2_excess_demographics.csv'

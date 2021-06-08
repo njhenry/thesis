@@ -70,6 +70,13 @@ load_dataset_from_file <- function(filepath){
   } else {
     dataset <- data.table::fread(filepath)
   }
+  # Ensure that newlines are being handled correctly
+  for(cname in colnames(dataset)){
+    if('character' %in% class(dataset[[cname]])){
+      dataset[[cname]] <- gsub('\\n', '\n', dataset[[cname]], fixed=T)
+    }
+  }
+  colnames(dataset) <- gsub('\\n', '\n', colnames(dataset), fixed=T)
   return(dataset)
 }
 

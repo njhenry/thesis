@@ -18,11 +18,14 @@
     footskip=30pt
   }
 }
-
 \widowpenalty=10000
 \clubpenalty=10000
 \flushbottom
 \sloppy
+
+\usepackage{color}
+\usepackage{colortbl}
+\usepackage{multirow}
 
 \newcommand{\headeright}{Preprint}
 \newcommand{\undertitle}{Preprint}
@@ -36,6 +39,9 @@
 \rhead{\scshape \footnotesize \headeright}
 \chead{\shorttitle}
 \cfoot{\thepage}
+
+\usepackage[modulo]{lineno}
+\linenumbers
 
 % create title
 \providecommand{\maketitle}{}
