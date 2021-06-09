@@ -25,7 +25,7 @@
 # Script arguments
 # TODO: Convert to CLI
 conf_fp <- '~/repos/thesis/config.yaml'
-chapter <- 'italy'
+chapter <- 'discussion'
 chapter_type <- 'standalone'
 pdf_out_fp <- glue::glue('~/Documents/Dropbox/Writing/thesis/output/{chapter}_{Sys.Date()}.pdf')
 
@@ -66,7 +66,7 @@ yaml::write_yaml(dummy_config, file=dummy_config_fp)
 # Convert
 pdf_args <- list(
   toc = FALSE, keep_tex = TRUE, latex_engine = 'xelatex',
-  extra_dependencies = c('booktabs', 'doi', 'float', 'makecell', 'url')
+  extra_dependencies = c('booktabs', 'doi', 'float', 'lipsum', 'makecell', 'url')
 )
 if(conf$v$preprint) pdf_args$extra_dependencies <- c(pdf_args$extra_dependencies, 'arxiv')
 tex_dir_fp <- bookdown::render_book(

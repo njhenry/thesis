@@ -1,0 +1,240 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{lmodern}
+\usepackage{amsmath}
+\usepackage{ifxetex,ifluatex}
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+  \usepackage{amssymb}
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  pdftitle={Introduction},
+  pdfauthor={Nathaniel Henry},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\usepackage{longtable,booktabs}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{5}
+\usepackage{booktabs}
+\usepackage{doi}
+\usepackage{float}
+\usepackage{lipsum}
+\usepackage{makecell}
+\usepackage{url}
+\usepackage{arxiv}
+\ifluatex
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\newlength{\cslhangindent}
+\setlength{\cslhangindent}{1.5em}
+\newlength{\csllabelwidth}
+\setlength{\csllabelwidth}{3em}
+\newenvironment{CSLReferences}[2] % #1 hanging-ident, #2 entry spacing
+ {% don't indent paragraphs
+  \setlength{\parindent}{0pt}
+  % turn on hanging indent if param 1 is 1
+  \ifodd #1 \everypar{\setlength{\hangindent}{\cslhangindent}}\ignorespaces\fi
+  % set entry spacing
+  \ifnum #2 > 0
+  \setlength{\parskip}{#2\baselineskip}
+  \fi
+ }%
+ {}
+\usepackage{calc}
+\newcommand{\CSLBlock}[1]{#1\hfill\break}
+\newcommand{\CSLLeftMargin}[1]{\parbox[t]{\csllabelwidth}{#1}}
+\newcommand{\CSLRightInline}[1]{\parbox[t]{\linewidth - \csllabelwidth}{#1}\break}
+\newcommand{\CSLIndent}[1]{\hspace{\cslhangindent}#1}
+
+\title{Introduction}
+\author{Nathaniel Henry}
+\date{2021-06-09}
+
+\begin{document}
+\maketitle
+
+\hypertarget{abstract}{%
+\section{Abstract}\label{abstract}}
+
+\lipsum[1]
+
+\hypertarget{health-system-performance-the-urgent-need-for-better-data}{%
+\section{Health system performance: the urgent need for better data}\label{health-system-performance-the-urgent-need-for-better-data}}
+
+\lipsum[2-6]
+
+\hypertarget{national-health-data-sources-history-and-uses}{%
+\section{National health data sources: history and uses}\label{national-health-data-sources-history-and-uses}}
+
+\lipsum[7-10]
+
+\hypertarget{household-surveys}{%
+\subsection{Household surveys}\label{household-surveys}}
+
+\lipsum[11-15]
+
+\hypertarget{civil-registration-and-vital-statistics-crvs-systems}{%
+\subsection{Civil registration and vital statistics (CRVS) systems}\label{civil-registration-and-vital-statistics-crvs-systems}}
+
+\lipsum[1-5]
+
+\hypertarget{health-surveillance-systems}{%
+\subsection{Health surveillance systems}\label{health-surveillance-systems}}
+
+\lipsum[6-10]
+
+\hypertarget{other-sources}{%
+\subsection{Other sources}\label{other-sources}}
+
+\lipsum[11-15]
+
+\hypertarget{local-estimation-drives-responsive-health-interventions}{%
+\section{Local estimation drives responsive health interventions}\label{local-estimation-drives-responsive-health-interventions}}
+
+\lipsum[1-3]
+
+\hypertarget{disease-mapping-and-small-area-estimation}{%
+\subsection{Disease mapping and small-area estimation}\label{disease-mapping-and-small-area-estimation}}
+
+\lipsum[4-8]
+
+\hypertarget{applications}{%
+\subsection{Applications}\label{applications}}
+
+\lipsum[9-10]
+
+\hypertarget{low--and-middle-income-countries}{%
+\subsubsection{Low- and middle-income countries}\label{low--and-middle-income-countries}}
+
+\lipsum[11-13]
+
+\hypertarget{high-income-countries}{%
+\subsubsection{High-income countries}\label{high-income-countries}}
+
+\lipsum[13-15]
+
+\hypertarget{limitations}{%
+\subsection{Limitations}\label{limitations}}
+
+\lipsum[1-4]
+
+\hypertarget{new-hierarchical-modeling-techniques-for-mapping-health-outcomes-using-incomplete-health-surveillance-data}{%
+\section{New hierarchical modeling techniques for mapping health outcomes using incomplete health surveillance data}\label{new-hierarchical-modeling-techniques-for-mapping-health-outcomes-using-incomplete-health-surveillance-data}}
+
+\lipsum[5-12]
+
+\hypertarget{thesis-structure}{%
+\section{Thesis structure}\label{thesis-structure}}
+
+\lipsum[1-3]
+
+This is an example paragraph. To conclude, let's reference Figure \ref{fig:fig1} and Table \ref{tab:t1}. Here are some example citations.\textsuperscript{\protect\hyperlink{ref-Aalbers}{1},\protect\hyperlink{ref-Aguirre2009}{2}}
+
+\hypertarget{references}{%
+\section{References}\label{references}}
+
+\hypertarget{refs}{}
+\begin{CSLReferences}{0}{0}
+\leavevmode\hypertarget{ref-Aalbers}{}%
+\CSLLeftMargin{1. }
+\CSLRightInline{Aalbers, M. B. {Do Maps Make Geography? Part 3: Reconnecting the Trace}. \emph{ACME: An International E-Journal for Critical Cartographies2} \textbf{13}, 586--588 (2014).}
+
+\leavevmode\hypertarget{ref-Aguirre2009}{}%
+\CSLLeftMargin{2. }
+\CSLRightInline{Aguirre, A. {La mortalidad infantil espa{ñ}ola en el siglo XX}. \emph{Papeles de Poblacion} \textbf{61}, 75--99 (2009).}
+
+\end{CSLReferences}
+
+\newpage
+
+\hypertarget{figures-and-tables}{%
+\section{Figures and Tables}\label{figures-and-tables}}
+
+\begin{figure}[!ht]
+
+{\centering \includegraphics[width=0.7\linewidth,]{/home/nat/Documents/Dropbox/Writing/thesis/graphics/test_chapter/fig1} 
+
+}
+
+\caption{Example caption for a figure.}\label{fig:fig1}
+\end{figure}
+\newpage
+
+\begin{table}
+
+\caption{\label{tab:t1}Example caption for a table.}
+\centering
+\begin{tabular}[t]{rr}
+\toprule
+a & b\\
+\midrule
+\cellcolor{gray!6}{-1.9089035} & \cellcolor{gray!6}{1}\\
+0.4934838 & 2\\
+\cellcolor{gray!6}{-1.2685774} & \cellcolor{gray!6}{3}\\
+0.5779566 & 4\\
+\cellcolor{gray!6}{-0.5309846} & \cellcolor{gray!6}{5}\\
+\addlinespace
+-1.2905178 & 6\\
+\cellcolor{gray!6}{0.1389421} & \cellcolor{gray!6}{7}\\
+-1.4467715 & 8\\
+\cellcolor{gray!6}{-0.2152460} & \cellcolor{gray!6}{9}\\
+-0.4153706 & 10\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\end{document}

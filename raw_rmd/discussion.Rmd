@@ -1,0 +1,104 @@
+---
+title: "Discussion"
+author: "Nathaniel Henry"
+date: "`r Sys.Date()`"
+documentclass: "`r conf$v$tex_style[[chapter_type]]`"
+bibliography: "`r conf$v$bibliography`"
+csl: "`r paste0(conf$v$citation_style, '.csl')`"
+link-citations: true
+---
+
+```{r set_captions, echo=FALSE}
+knitr::opts_chunk$set(fig.pos = "!ht", out.extra = "", fig.align = 'center', echo=FALSE)
+
+# Set caption text
+captions <- list(
+  fig1 = "Example caption for a figure.",
+  t1 = "Example caption for a table."
+)
+```
+
+# Abstract
+
+\lipsum[1]
+
+
+# Spatial modeling to bridge the health data divide
+
+\lipsum[2-10]
+
+
+## New contributions
+
+\lipsum[11-13]
+
+
+## Limitations
+
+\lipsum[14-15]
+
+
+# A framework for disease mapping using incomplete health surveillance data
+
+\lipsum[1-6]
+
+
+## Tailoring for data availability
+
+\lipsum[7-10]
+
+
+## Questioning the completeness assumption in high-resource contexts
+
+\lipsum[11-12]
+
+
+# Policy implications
+
+\lipsum[13-15]
+
+
+## Increasing utility of routine health surveillance
+
+\lipsum[1-6]
+
+
+## Strengthening surveillance systems
+
+\lipsum[7-10]
+
+
+## Communicating uncertainty to the policy community
+
+\lipsum[11-15]
+
+
+# Conclusions
+
+\lipsum[1-5]
+
+This is an example paragraph. To conclude, let's reference Figure \@ref(fig:fig1) and Table \@ref(tab:t1). Here are some example citations [@Aalbers; @Aguirre2009].
+
+
+# References
+
+<div id="refs"></div>
+\newpage
+
+
+# Figures and Tables
+
+```{r fig1, out.width="70%", fig.cap = captions$fig1}
+knitr::include_graphics(graphics_fps$fig1)
+```
+\newpage
+
+```{r t1}
+data_list$t1 %>%
+  dplyr::mutate_all(linebreak, align='l') %>%
+  knitr::kable(
+    'latex', booktabs = T, escape = F, caption = captions$t1,
+    col.names = linebreak(colnames(data_list$t1))
+  ) %>%
+  kable_styling(latex_options = "striped")
+```

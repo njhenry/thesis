@@ -1,0 +1,139 @@
+---
+title: "Joint estimation of neonatal mortality and vital registration completeness across Mexico"
+author: "Nathaniel Henry"
+date: "`r Sys.Date()`"
+documentclass: "`r conf$v$tex_style[[chapter_type]]`"
+bibliography: "`r conf$v$bibliography`"
+csl: "`r paste0(conf$v$citation_style, '.csl')`"
+link-citations: true
+---
+
+```{r set_captions, echo=FALSE}
+knitr::opts_chunk$set(fig.pos = "!ht", out.extra = "", fig.align = 'center', echo=FALSE)
+
+# Set caption text
+captions <- list(
+  fig1 = "Example caption for a figure.",
+  t1 = "Example caption for a table."
+)
+```
+
+# Abstract
+
+\lipsum[1]
+
+
+# Introduction
+
+\lipsum[1]
+
+
+## Neonatal mortality estimation in middle-income countries
+
+\lipsum[2-5]
+
+
+## History of vital statistics in Mexico
+
+\lipsum[6-8]
+
+
+## Estimating local variation in neonatal mortality across Mexico
+
+\lipsum[9-12]
+
+
+# Methods
+
+\lipsum[12-15]
+
+
+## Data preparation
+
+\lipsum[1-3]
+
+
+## Joint estimation of neonatal mortality and CRVS data completeness
+
+\lipsum[4-10]
+
+
+### Prior specification for CRVS completeness
+
+\lipsum[11-12]
+
+
+## Simulation model
+
+\lipsum[13-15]
+
+
+# Results
+
+\lipsum[1]
+
+
+## Predictive validity from simulation
+
+\lipsum[2-8]
+
+
+## Case study: neonatal mortality across Mexico
+
+\lipsum[9-15]
+
+
+# Discussion
+
+\lipsum[1-3]
+
+
+## Performance of the simulation model
+
+\lipsum[4-10]
+
+
+## Local variation in CRVS completeness across Mexico
+
+\lipsum[11-15]
+
+
+## Relationship between neonatal mortality and vital statistics performance
+
+\lipsum[1-3]
+
+
+## Model limitations
+
+\lipsum[4-5]
+
+
+## Conclusions
+
+\lipsum[1]
+
+This is an example paragraph. To conclude, let's reference Figure \@ref(fig:fig1) and Table \@ref(tab:t1). Here are some example citations [@Aalbers; @Aguirre2009].
+
+
+# References
+
+<div id="refs"></div>
+\newpage
+
+
+# Figures and Tables
+
+```{r fig1, out.width="70%", fig.cap = captions$fig1}
+knitr::include_graphics(graphics_fps$fig1)
+```
+\newpage
+
+```{r t1}
+data_list$t1 %>%
+  dplyr::mutate_all(linebreak, align='l') %>%
+  knitr::kable(
+    'latex', booktabs = T, escape = F, caption = captions$t1,
+    col.names = linebreak(colnames(data_list$t1))
+  ) %>%
+  kable_styling(latex_options = "striped")
+```
