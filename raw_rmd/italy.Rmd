@@ -1,6 +1,11 @@
 ---
 title: "Variation in COVID-19 excess mortality by age, sex, and province within Italy"
-author: "Authors TBD"
+author:
+  - "Nathaniel Henry"
+  - "Ahmed Elagali"
+  - "Michele Nguyen"
+  - "Michael Chipeta"
+  - "Catrin Moore"
 date: "`r Sys.Date()`"
 documentclass: "`r conf$v$tex_style[[chapter_type]]`"
 bibliography: "`r conf$v$bibliography`"
@@ -16,9 +21,9 @@ captions <- list(
   covid_deaths = "Registered COVID-19 deaths per 100,000 population by Italian region prior to August 31, 2020. Nationally, 35,500 deaths were registered during this time, or approximately 59 deaths per 100,000 population.",
   time_series = "\\(Top\\) Predicted baseline and observed deaths aggregated nationwide across Italy, March through August 2020. Bounds of the 95\\% uncertainty interval for predicted baseline deaths are shaded in light brown. \\(Bottom\\) Estimated weekly excess deaths across Italy from March through May 2020, in red, compared with medically-certified deaths from COVID-19, in green.",
   age_excess = "Mean estimates for weekly excess deaths across Italy by age group, March through May 2020. Two nationwide age group breakdowns are shown to the right for comparison: the national age distribution as of 1 January 2020, and the proportion of nationwide deaths that occurred in each age group during the years 2015 through 2019.",
-  age_maps = 'Map of standardized mortality ratios by age group and province over the entire period of March through May 2020. In these figures, \\"significance\\" is calculated as falling outside of the 95\\% uncertainty interval for baseline mortality for a given age group and province during this period.',
+  age_maps = 'Map of standardized mortality ratios by age group and province over the entire period of March through May 2020. In these figures, significance is defined as falling outside of the 95\\% uncertainty interval for baseline mortality for a given age group and province during this period.',
   top_provinces = "Concentration of excess mortality burden among the 3, 7, and 22 provinces with the greatest number of excess deaths, out of 107 provinces total. These province groupings respectively accounted for over 25\\%, 50\\%, and 75\\% of the national excess mortality burden between March and May 2020. The graph on the bottom left displays mean estimated excess deaths by province grouping and week during this time period.",
-  excess_neighbors = "Excess deaths vary across provinces within the Lombardy region. \\(Top left\\) Map of Northern Italy showing the week when province’s excess mortality was estimated to peak during the first wave of COVID-19 in March through May 2020. \\(Top right\\) Map of the peak weekly standardized mortality ratio (SMR) for each province across Northern Italy across all weeks in March through May 2020. \\(Bottom left\\) Estimated excess deaths by week for Lodi province. \\(Bottom right\\) Estimated excess deaths by week for Varese province.",
+  excess_neighbors = "Excess deaths vary across provinces within the Lombardy region. \\(Top\\ left\\) Map of Northern Italy showing the week when province’s excess mortality was estimated to peak during the first wave of COVID-19 in March through May 2020. \\(Top\\ right\\) Map of the peak weekly standardized mortality ratio (SMR) for each province across Northern Italy across all weeks in March through May 2020. \\(Bottom\\ left\\) Estimated excess deaths by week for Lodi province. \\(Bottom\\ right\\) Estimated excess deaths by week for Varese province.",
   covariates_table = "Covariates used to estimate baseline mortality by age group, sex, province, and week across Italy from January 2015 through August 2020. The source and space-time resolution of each covariate is listed.",
   excess_demographics = "Estimated excess mortality by age and sex grouping, aggregated to the national level for the weeks of 26 February through 26 May 2020. Nationally, all age-sex groupings experienced significantly elevated mortality compared to the expected baseline during this period."
 )
@@ -160,12 +165,12 @@ knitr::include_graphics(graphics_fps$time_series)
 ```
 \newpage
 
-```{r age-excess, fig.cap = captions$age_excess}
+```{r age-excess, out.width="100%", fig.cap = captions$age_excess}
 knitr::include_graphics(graphics_fps$age_excess)
 ```
 \newpage
 
-```{r age-maps, fig.cap = captions$age_maps}
+```{r age-maps, out.width="100%", fig.cap = captions$age_maps}
 knitr::include_graphics(graphics_fps$age_maps)
 ```
 \newpage
@@ -175,7 +180,7 @@ knitr::include_graphics(graphics_fps$top_provinces)
 ```
 \newpage
 
-```{r excess-neighbors, fig.cap = captions$excess_neighbors}
+```{r excess-neighbors, out.width="100%", fig.cap = captions$excess_neighbors}
 knitr::include_graphics(graphics_fps$excess_neighbors)
 ```
 \newpage
@@ -186,7 +191,7 @@ data_list$excess_demographics %>%
     'latex', booktabs = T, escape = F, caption = captions$excess_demographics,
     col.names = linebreak(colnames(data_list$excess_demographics), align='c'), align = 'c'
   ) %>%
-  kable_styling(latex_options = "striped")
+  kable_styling(latex_options = c("striped", "hold_position"))
 ```
 \newpage
 
@@ -197,5 +202,5 @@ data_list$covariates_table %>%
     'latex', booktabs = T, escape = F, caption = captions$covariates_table,
     col.names = linebreak(colnames(data_list$covariates_table))
   ) %>%
-  kable_styling(latex_options = "striped")
+  kable_styling(latex_options = c("striped", "hold_position"))
 ```
