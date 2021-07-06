@@ -38,7 +38,7 @@
 \IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
 \hypersetup{
   pdftitle={Variation in COVID-19 excess mortality by age, sex, and province within Italy},
-  pdfauthor={Authors TBD},
+  pdfauthor={Nathaniel Henry1; Ahmed Elagali2; Michele Nguyen3; Michael Chipeta1; Catrin Moore1,},
   hidelinks,
   pdfcreator={LaTeX via pandoc}}
 \urlstyle{same} % disable monospaced font for URLs
@@ -100,11 +100,17 @@
 \newcommand{\CSLIndent}[1]{\hspace{\cslhangindent}#1}
 
 \title{Variation in COVID-19 excess mortality by age, sex, and province within Italy}
-\author{Authors TBD}
-\date{2021-06-08}
+\author{Nathaniel Henry\textsuperscript{1} \and Ahmed Elagali\textsuperscript{2} \and Michele Nguyen\textsuperscript{3} \and Michael Chipeta\textsuperscript{1} \and Catrin Moore\textsuperscript{1,*}}
+\date{2021-06-17}
 
 \begin{document}
 \maketitle
+
+\textsuperscript{1} Big Data Institute, Li Ka Shing Centre for Information Discovery, University of Oxford, Oxford, UK\\
+\textsuperscript{2} Telethon Kids Institute, Perth Children Hospital, Perth, Western Australia, Australia\\
+\textsuperscript{3} Asian School of the Environment, Nanyang Technological University, Singapore 639798, Singapore
+
+\textsuperscript{*} Correspondence: \href{mailto:catrin.moore@ndm.ox.ac.uk}{Catrin Moore \textless{}\href{mailto:catrin.moore@ndm.ox.ac.uk}{\nolinkurl{catrin.moore@ndm.ox.ac.uk}}\textgreater{}}
 
 \hypertarget{abstract}{%
 \section{Abstract}\label{abstract}}
@@ -223,12 +229,12 @@ We used five-fold cross validation to compare predictive performance across mult
 
 Because the expected number of deaths in a given province-age-sex-year-week groupings can be very low, particularly in lower age groups, we aggregated all out-of-sample observations across four-week intervals while preserving the other groupings. We then calculated the difference between the out-of-sample recorded deaths and the modeled mortality, and calculated four summary metrics: mean error, root mean squared error, coverage of the 95\% uncertainty intervals, and relative squared error when compared to a simpler model that took the average of mortality rates across in-sample years.
 
-We found that the out-of-sample root mean squared error was 2.40E-5, compared to an average weekly mortality rate of 2.05E-4 across all age groups, suggesting a reasonably good fit for the model's mean estimates. The out-of-sample relative squared error compared to the simpler method of averaging weekly values across other years was 0.870, suggesting that this predictive model substantially outperformed the simpler alternative for the years 2015-2019 even when an entire year of data was held out. The in-sample relative squared error compared to the simpler averaging method was 0.273, a much lower ratio of error, which indicates that the model provides a more flexible fit to the data than the simpler averaging strategy. The out-of-sample coverage of the 95\% uncertainty interval was 97.0\%, and the coverage of the 99\% uncertainty interval was 99.3\%, meaning that the predicted uncertainty bounds are slightly conservative. The procedure for out-of-sample validation and results are discussed in more detail in Supplementary Appendix Section 2.
+We found that the out-of-sample root mean squared error was 2.40E-5, compared to an average weekly mortality rate of 2.05E-4 across all age groups, suggesting a reasonably good fit for the model's mean estimates. The out-of-sample relative squared error compared to the simpler method of averaging weekly values across other years was 0.870, suggesting that this predictive model substantially outperformed the simpler alternative for the years 2015-2019 even when an entire year of data was held out. The in-sample relative squared error compared to the simpler averaging method was 0.273, a much lower ratio of error, which indicates that the model provides a more flexible fit to the data than the simpler averaging strategy. The out-of-sample coverage of the 95\% uncertainty interval was 97.0\%, and the coverage of the 99\% uncertainty interval was 99.3\%, meaning that the predicted uncertainty bounds are slightly conservative. The procedure for out-of-sample validation and results are discussed in more detail in the Supplementary Appendix.
 
 \hypertarget{acknowledgments}{%
 \section{Acknowledgments}\label{acknowledgments}}
 
-The authors wish to thank the Italian National Institute of Statistics for their timely compilation and dissemination of complete vital registration data for Italy, 2015-2020, which enabled this investigation. The computational aspects of this research were supported by the Wellcome Trust Core Award Grant Number 203141/Z/16/Z and the NIHR Oxford BRC. The views expressed are those of the authors and not necessarily those of the NHS, the NIHR or the Department of Health.
+The authors wish to thank the Italian National Institute of Statistics for their timely compilation and dissemination of complete vital registration data for Italy, 2015-2020, which enabled this investigation. AE would like to thank the Bill \& Melinda Gates Foundation for funding his research (OPP1152978). The computational aspects of this research were supported by the Wellcome Trust Core Award Grant Number 203141/Z/16/Z and the NIHR Oxford BRC. The views expressed are those of the authors and not necessarily those of the NHS, the NIHR or the Department of Health.
 
 \hypertarget{references}{%
 \section{References}\label{references}}
@@ -412,7 +418,7 @@ The authors wish to thank the Italian National Institute of Statistics for their
 
 \begin{figure}[!ht]
 
-{\centering \includegraphics{/home/nat/Documents/Dropbox/Writing/thesis/graphics/italy/fig3_age_excess} 
+{\centering \includegraphics[width=1\linewidth,]{/home/nat/Documents/Dropbox/Writing/thesis/graphics/italy/fig3_age_excess} 
 
 }
 
@@ -422,17 +428,17 @@ The authors wish to thank the Italian National Institute of Statistics for their
 
 \begin{figure}[!ht]
 
-{\centering \includegraphics{/home/nat/Documents/Dropbox/Writing/thesis/graphics/italy/fig4_age_maps} 
+{\centering \includegraphics[width=1\linewidth,]{/home/nat/Documents/Dropbox/Writing/thesis/graphics/italy/fig4_age_maps} 
 
 }
 
-\caption{Map of standardized mortality ratios by age group and province over the entire period of March through May 2020. In these figures, \"significance\" is calculated as falling outside of the 95\% uncertainty interval for baseline mortality for a given age group and province during this period.}\label{fig:age-maps}
+\caption{Map of standardized mortality ratios by age group and province over the entire period of March through May 2020. In these figures, significance is defined as falling outside of the 95\% uncertainty interval for baseline mortality for a given age group and province during this period.}\label{fig:age-maps}
 \end{figure}
 \newpage
 
 \begin{figure}[!ht]
 
-{\centering \includegraphics[height=0.85\textheight,]{/home/nat/Documents/Dropbox/Writing/thesis/graphics/italy/fig5_top_provinces} 
+{\centering \includegraphics[width=25in,height=0.85\textheight,]{/home/nat/Documents/Dropbox/Writing/thesis/graphics/italy/fig5_top_provinces} 
 
 }
 
@@ -442,15 +448,15 @@ The authors wish to thank the Italian National Institute of Statistics for their
 
 \begin{figure}[!ht]
 
-{\centering \includegraphics{/home/nat/Documents/Dropbox/Writing/thesis/graphics/italy/fig6_excess_neighbors} 
+{\centering \includegraphics[width=1\linewidth,]{/home/nat/Documents/Dropbox/Writing/thesis/graphics/italy/fig6_excess_neighbors} 
 
 }
 
-\caption{Excess deaths vary across provinces within the Lombardy region. \(Top left\) Map of Northern Italy showing the week when province’s excess mortality was estimated to peak during the first wave of COVID-19 in March through May 2020. \(Top right\) Map of the peak weekly standardized mortality ratio (SMR) for each province across Northern Italy across all weeks in March through May 2020. \(Bottom left\) Estimated excess deaths by week for Lodi province. \(Bottom right\) Estimated excess deaths by week for Varese province.}\label{fig:excess-neighbors}
+\caption{Excess deaths vary across provinces within the Lombardy region. \(Top\ left\) Map of Northern Italy showing the week when province’s excess mortality was estimated to peak during the first wave of COVID-19 in March through May 2020. \(Top\ right\) Map of the peak weekly standardized mortality ratio (SMR) for each province across Northern Italy across all weeks in March through May 2020. \(Bottom\ left\) Estimated excess deaths by week for Lodi province. \(Bottom\ right\) Estimated excess deaths by week for Varese province.}\label{fig:excess-neighbors}
 \end{figure}
 \newpage
 
-\begin{table}
+\begin{table}[!h]
 
 \caption{\label{tab:excess-demographics}Estimated excess mortality by age and sex grouping, aggregated to the national level for the weeks of 26 February through 26 May 2020. Nationally, all age-sex groupings experienced significantly elevated mortality compared to the expected baseline during this period.}
 \centering
@@ -474,7 +480,7 @@ Females & 90 & 11,043 (5,784 to 16,432) & 1.41 (1.18 to 1.76) & 0.58 (1.0\%)\\
 \end{table}
 \newpage
 
-\begin{table}
+\begin{table}[!h]
 
 \caption{\label{tab:covariates-table}Covariates used to estimate baseline mortality by age group, sex, province, and week across Italy from January 2015 through August 2020. The source and space-time resolution of each covariate is listed.}
 \centering
