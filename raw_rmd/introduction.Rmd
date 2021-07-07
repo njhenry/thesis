@@ -26,72 +26,227 @@ captions <- list(
 
 # Health system performance: the urgent need for better data
 
-\lipsum[2-6]
+BLOCK QUOTE
+
+- PAR: Urgency of health goals in an era of inequality
+
+
+- PAR: Increasingly, health system capacity is at the forefront
+
+
+- PAR: Health systems cannot function without the feedback mechanisms created by health data
+
+
+- PAR: Introduction to this section
+
+
 
 
 # National health data sources: history and uses
 
-\lipsum[7-10]
+- PAR: Introduction to section
 
-
-## Household surveys
-
-\lipsum[11-15]
 
 
 ## Civil registration and vital statistics (CRVS) systems
 
-\lipsum[1-5]
+- PAR: What is a CRVS system?
+
+
+- PAR: Brief history of CRVS systems, into the modern era
+
+
+- PAR: How a CRVS system operates
+
+
+- PAR: Uses of CRVS for health system management
+
+
+- PAR: CRVS as a human right
+
+
+- PAR: Estimated completeness of CRVS systems to date
+
+
+- PAR: Implications for the future of CRVS as a data source
+
 
 
 ## Health surveillance systems
 
-\lipsum[6-10]
+- PAR: What is a health surveillance system?
+
+
+- PAR: High-income settings: notifiable infectious diseases
+
+
+- PAR: Lower-income settings: national infectious disease control programs
+  - HIV
+  - TB
+  - Malaria
+
+- PAR: How health surveillance is used
+
+
+## Household surveys
+
+- PAR: How are household surveys used to measure health?
+
+
+- PAR: History and funding of household surveys as a method for health data collection
+
+
+- PAR: Topics covered - how are they chosen?
+
+
+- PAR: Limitations
+
 
 
 ## Other sources
 
-\lipsum[11-15]
+- PAR: Sentinel surveillance sites
 
 
-# Local estimation drives responsive health interventions
+- PAR: Censuses
 
-\lipsum[1-3]
+
+- PAR: Graveyard records
+
+
+## Relationship between health data availability and health system capacity
+
+- PAR: Standards for health data quality, based on UN recommendations
+
+
+- PAR: Vicious cycle of low spending, low quality, low utility for health data
+
+
+- PAR: Tension between long-term need for high-quality health surveillance and short-term incentives
+
+
+- PAR: Funding sources for household surveys
+
+
+
+# Spatial modeling as a tool for responsive health interventions
+
+- PAR: What is spatial and space-time modeling?
+
+
+- PAR: Why use spatial modeling to estimate variation in health?
+
+
+- PAR: Benefits and limitations of spatial modeling
 
 
 ## Disease mapping and small-area estimation
 
-\lipsum[4-8]
+- PAR: Intro
+
+
+- PAR: Background for small area estimation
+
+
+- PAR: Background for disease mapping
+
+
+- PAR: Methodological disagreements
+
+
+- PAR: Similarities
+
+
+### Extensions
+
+- PAR: Extensions and alternatives
 
 
 ## Applications
 
-\lipsum[9-10]
+- PAR: Who does spatial modeling?
 
 
 ### Low- and middle-income countries
 
-\lipsum[11-13]
+- PAR: Mapping disease indicators and risk factors from household surveys
+
+
+- PAR: Milieu - remote sensing technologies, increased data from (eg) HOTOSM and WorldPop
+
+
+- PAR: Program implications for this kind of data
+
 
 
 ### High-income countries
 
-\lipsum[13-15]
+- PAR: Use case 1 - epidemic detection
+
+- PAR: Use case 2 - risk factor identification
+
+- PAR: Use case 3 - advanced demographic modeling
+
+- PAR: Greater data fidelity allows for a wider range of approaches
 
 
 ## Limitations
 
-\lipsum[1-4]
+- PAR: LIMITATION - Uncertainty and its communication
+
+
+- PAR: LIMITATION - model misspecification
+
+
+- PAR: LIMITATION - even with advanced modeling techniques, some analyses are intractable
+
+
+- PAR: LIMITATION - more fundamentally, do these create perverse incentives?
+
 
 
 # New hierarchical modeling techniques for mapping health outcomes using incomplete health surveillance data
 
-\lipsum[5-12]
+- PAR: Creating incentives for improving health surveillance data
+
+
+- PAR: Theoretical grounding for this approach
+
+
+- PAR: Modeling benefits of this approach
+
+
+- PAR: Programmatic benefits of this approach
+
+
+- PAR: Translating goals into principles of model construction and collaboration
+
+
+- PAR: Open sourcing results
+ 
+
 
 
 # Thesis structure
 
-\lipsum[1-3]
+- PAR: Explanation of structure
+
+
+- PAR: India
+
+
+- PAR: Mexico
+
+
+- PAR: Uganda
+
+
+- PAR: Italy
+
+
+- PAR: Themes
+
+
 
 This is an example paragraph. To conclude, let's reference Figure \@ref(fig:fig1) and Table \@ref(tab:t1). Here are some example citations [@Aalbers; @Aguirre2009].
 
