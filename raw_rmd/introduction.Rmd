@@ -26,85 +26,43 @@ captions <- list(
 
 # Health system performance: the urgent need for better data
 
-BLOCK QUOTE
+In 1948, the United Nations Universal Declaration on Human Rights asserted the fundamental and universal right of all people to "a standard of living adequate to the health and well-being of himself and his family, including [...] medical care and necessary social services[@UNGeneralAssembly1948]." However, more than 80 years after this declaration, a person's opportunities to live a long life in good health vary vastly depending on where they live. Gaps in health between countries and regions of the world are well-documented. However, health inequalities also manifest themselves within countries and even within walking distance. They appear in the earliest years of life: in Kano state in northern Nigeria, children are 2.5 times more likely to die before their fifth birthday than children born in the capital, Lagos[@Burstein2019]. They are also apparent in high-resource settings, such as urban counties in the United States, where life expectancy for men has been shown to vary by nearly 20 years across neighborhoods in a single U.S. county[@Dwyer-Lindgren2017]. The multifarious barriers to human flourishing that cause these inequalities at both the local and international level are both ethically troubling and a massive challenge to global health governance[@Ruger2006].
 
-- PAR: Urgency of health goals in an era of inequality
-  - Everyone shares the same fundamental rights to health
-  - However, one's chances of surviving childhood and experiencing a long, healthy life vary vastly depending on where one lives
-  - Across countries
-  - Within countries
-  - This inequality constitutes the largest moral crisis of our generation
+These challenges naturally raise questions about which institutions have the responsibility and capability to provide lifesaving services and remove barriers to human health. The discourse around health on the international stage has shifted over the past 20 years to a conception of "global health," where multilateral institutions and funders have greater perceived agency to coordinate health interventions[@Brown2006]. However, while international funders have successfully coordinated responses to acute mortality and disease threats over the past 20 years, these same experiences have also demonstrated that sustainable health services can only be delivered by health systems that are led by national stakeholders and operated locally[@WorldHealthOrganization2007; @WorldHealthOrganization2010]. Health systems can be defined in terms of their human resources and material components: they are driven by health care workers who rely on a financial and material infrastructure that is, in turn, managed by a constellation of planners, financial intermediaries and governing institutions[@Roberts2008]. They can also be defined in terms of their key operations: the World Health organization (WHO) lists service delivery, health workforce, information, medical products, vaccines and technologies, financing, and leadership and governance as the six core building blocks that constitute a functioning health system[@WorldHealthOrganization2007].
 
-- PAR: What set of actors is responsible for improving access to lifesaving health services?
-  - REF WHO and UN policy briefs
-  - Governance happens across a broad constellation of actors and funders
-  - Ultimately, sustained health services are delivered by in-country service providers
-  - Quality affected by funding, human resources, government management
+While health systems necessarily develop in the context of local conditions and priorities, they share the unifying aim of improving the health of the people they serve. Therefore, any attempt to manage or improve healthcare must be measured against its potential impact on health outcomes[@Roberts2008]. From local hospitals to national ministries of health, health policymakers need to make decisions about efficiently allocating funding, prioritizing at-risk groups, identifying and responding to health crises, and implementing long-term policy development and reform. All of these decisions require a consensual understanding among parties of conditions on the ground &mdash; that is, they require data examining the potential impact of decisions on health outcomes[@AbouZahr2015]. Without data on health outcomes, other sociological and economic analyses can only describe, not drive, health policy[@Roberts2008].
 
-- PAR: National health systems cannot function well without the feedback mechanisms facilitated by health surveillance data
-  - How to run well and improve? DATA.
-  - Examples:
-     - Allocating funding
-     - Identifying at-risk groups
-     - Responding to health crises
-     - Policy development and reform [@Roberts2008]
-  - What is the alternative to a data-driven, outcome-oriented approach? (A: not good)
+Complementary to their service provision activities, both international agencies and national bodies operate data collection and statistics systems that are designed to reveal actionable information about the state of health in a country. Many national ministries of health and statistics maintain Civil Registration and Vital Statistics (CRVS) operations to systematically register vital events such as birth and deaths, as well as surveillance systems for notifiable infectious diseases such as HIV, tuberculosis, and measles. In high-resource countries, largely complete and high-quality health information systems facilitate epidemiological investigation and decision-making. In many lower-resource settings, where the majority of childhood deaths and disease burden are concentrated, CRVS systems may be absent or incomplete, while infectious disease surveillance may be hindered by low completeness and reporting lags. To alleviate this data gap, international health institutions often fund household surveys that systematically collect information about key aspects of health. These surveys can be further supplemented by health modeling approaches: notably, modern spatial statistical modeling can reveal local inequalities that may fall below the sampling frame of the original survey[@Diggle2016].
 
-- PAR: Introduction to this section
-  - Introduction to two data types maintained and governed by national ministries of health and statistics: CRVS and infectious disease surveillance
-     - Brief introduction to their development
-     - Importance for national health policy and management
-     - Current gaps between high-income and low-income countries
-  - Introduction to other data types, primarily household surveys, that are intended to fill the gap left by deficient vital records
-     - Deficiencies in relation to CRVS
-  - Modeling, particularly spatial modeling, as a useful but imperfect tool for enhancing population-level estimates based on survey data
-  - Concern that modeling is "crowding out" demand for health surveillance without offering the same services
-  - Alternative: modeling work that uses deficient CRVS, estimating both completeness and providing a use case
+This thesis asserts that high-quality CRVS and infectious disease surveillance are irreplaceable as a foundation for responsive health decision-making, and that these systems are therefore essential prerequisites for delivering sustainable and equitable health services to all people. The following sections of this chapter introduce the operation of these health data systems as well as the spatial modeling approaches that have been designed to supplement them. Past scholarship on data governance in global health has expressed the concern that modeling approaches have quelled the demand for high-quality national health surveillance without offering the same insights. In conclusion to this chapter, and more expansively throughout this thesis, I offer a partial solution to this problem of data governance: a statistical modeling framework that robustly incorporates deficient health surveillance records to measure health outcomes, and in so doing both estimates bias in the health surveillance system and provides an incentive for its improvement.
+
 
 # National health data sources: history and uses
 
-- PAR: Introduction to section
-
-
 
 ## Civil registration and vital statistics (CRVS) systems
-
-- PAR: What is a CRVS system?
-
-
-- PAR: Brief history of CRVS systems, into the modern era
-  - Death records in England
-  - By what time did many countries have CRVS systems
-  - Colonial CRVS systems
-  - US CRVS system: 
-  - Updated to electronic records
-  - When did LMICs start their health surveillance systems?
 
 - PAR: How a CRVS system operates
   - Birth records:
     - Often legally mandated
   - Death records:
     - Certification
-  - Records flow (eg. United States)
-  - Dissemination and use in country statistical systems
-
-- PAR: Uses of CRVS for health system management
-  - Described above
-  - Examples:
-    - Allocating funding
-    - Identifying at-risk groups
-    - Identifying health crises (opioids)
-    - Health system reform
+  - Records flow[@Setel2007]
+  - Dissemination and use in country statistical systems[@UnitedNationsStatisticsDivision2014]
+  - Passive system; if birth registration not automatic, there may be systematic exclusion of children from vulnerable groups[@Fisker2019; @Hernandez2012]
 
 - PAR: CRVS as a human right
   - Benefits conferred with a birth certificate
-  - Benefits conferred to family with a death certificate
+  - Benefits conferred to family with a death certificate[@Setel2007]
   - Example: Mexico's dual system for birth registration
 
 - PAR: Estimated completeness of CRVS systems to date
-  - TODO: Compare maps of death registration coverage in 2000 and 2017 (all ages and under-5s)
-  - Refer to WHO SCORE report
-  - Causes?
+  - Stems from differences in institutional histories[@Blake1955]
+  - As of 2004, fewer than 1 in 100 residents in Southeast Asia and fewer than 1 in 10 Africans were covered by any birth or death registration system[@Mahapatra2007]; today, enormous gaps in service still remain.
+  - Compare maps of death registration coverage in 2000 and 2017 (all ages and under-5s)[@Roth2018]
+  - Causes of death: studies of cause-of-death registration quality have found that over 30% of all registered deaths in Egypt, Saudi Arabia, Bolivia, and Iraq could not be assigned with
+  certainty to even a broad cause-of-death grouping, compared to less than 10% of registered deaths with the same coding issues in Finland, Australia, and Ireland [@Johnson2021].
+  - LMICs: COVID-19 disrupted CRVS collection in many countries that did not consider it an "essential" service[@AbouZahr2021]
   
 - PAR: Implications for the future of CRVS as a data source
   - Rate of change is too slow
@@ -112,46 +70,36 @@ BLOCK QUOTE
 
 ## Infectious disease surveillance
 
-- PAR: What is a health surveillance system?
-
-
 - PAR: High-income settings: notifiable infectious diseases
   - Notification triggers investigation, contact tracing
-  - List of possible diseases
+  - Weekly surveillance of potentially epidemic infectious disease such as influenza, notifiable infectious diseases such as mumps, and drug resistance[@Thacker1989; @WorldHealthOrganization2017]
+  - Risk assessment and early warning systems[@Vlieg2017]
 
 
 - PAR: Lower-income settings: national infectious disease control programs
-  - Measles
-  - HIV
-  - TB
-  - Malaria
-  - Supplemented by international funding (see IHME Global Health Financing reports)
+  - Measles, HIV, TB, Malaria
+  - Supplemented by international funding[@Mauch2010]
   - Data collection process:
-     - incomplete
+     - Missing data from private care providers[@Uplekar2016]
      - may have gaps after years of delay
      - Possibly hindered by lab access
-     - Sometimes supplemented by new HMIS systems
   - Reported case notifications may be driven by program funding and access rather than underlying burden[@Rood2019]
 
-- PAR: How health surveillance is used
-    - Allocating funding
-    - Identifying at-risk groups
-    - Identifying health crises (opioids)
-    - Health system reform
 
 
 ## Household surveys
 
 - PAR: What are household surveys?
-   - BRIEF history
-   - Collection process
+   - Using DHS and MICS as examples[@Corsi2012; @Khan2019]
+     - DHS funding: USAID
+     - MICS funding: UNICEF
    - Often considered the "gold standard" in countries with deficient vital records or infectious disease surveillance
    - Benefits: systematic, can be detailed, designed to be representative at national level
    - However, limited and sometimes changing topics, smaller sample size, and long time gap
 
-- PAR: Collection process
-   - Using DHS and MICS as examples
-   - Timeline and funding
+- PAR: Collection process:
+   - Timeline and funding:
+     - Dhs
    - Survey design
      - Standards
      - Country input, eg. India
@@ -165,173 +113,38 @@ BLOCK QUOTE
      - Sometimes, includes jittered spatial identifiers
 
 - PAR: Limitations
-   - Limited and sometimes changing topics
+   - Limited changing topics
    - Smaller sample size
+   - Recall biases
    - Can also be biased based on survey team, interview style, etc
    - Long time gap
      - (note retrospective questions)
 
-
-## Other sources
-
-- PAR: Other sources
-  - Graveyard records
-    - Substitute for vital records, with a very limited coverage
-    - How to correct for changing underlying population?
-  - Sentinel surveillance sites
-    - Longitudinal data on populations that may reflect wider national trends
-    - Issue: may not be truly representative over time
-  - Censuses:
-    - Supposedly a full recounting of the population
-    - Useful for demography
-    - Even less information per person, larger time gaps
+## Special cases
 
 - PAR: Special cases: China and India
   - History in India
-    - Development of large household sample surveys, with sample sizes rivaling CRVS
-    - Beginning of CRVS system
+    - Development of large household sample surveys, with sample sizes rivaling CRVS[@Dandona2016].
+    - Beginning of CRVS system in select areas, but still only about 75% complete[Kumar2019].
   - History in China
-    - History of census-based estimation
-    - Combination of regular household censuses in combination with sentinal surveillance,
-      child mortality monitoring, and CRVS/infectious disease surveillance that is rapidly
-      increasing in coverage
+    - History of census-based estimation[@Banister2004]
+    - Combination of regular household censuses in combination with maternal and child
+      mortality monitoring[@He2016], and CRVS/infectious disease surveillance that is rapidly
+      increasing in coverage[@Zeng2020; @Vlieg2017]
 
 
 ## Standards for quality and usability
 
 - PAR: Standards for health data quality, based on UN recommendations:
-  - TODO
+  - Compulsory and universal: Legally mandated, accessible, and using standard definitions nationwide
+  - Timely: Data available in time to be used for decision-making
+  - Accurate information about the individual and vital event
+  - Complete: No individuals or sub-populations missing
+  - Confidential: Individuals not identifiable from publicly-available data[@UnitedNationsStatisticsDivision2014]
+  - Another perspective: SCORE criteria: survey populations and health risks; count births, deaths, and causes of death; optimize health service data; review progress and performance; enable data use for policy and action [@WorldHealthOrganization2021]
 
 
-
-# Spatial modeling as a tool for responsive health interventions
-
-- PAR: What is spatial modeling?
-  - Modeling: Formal statistical assumptions about the "data generation process"
-  - Raw data enters a model, fits underlying parameters, which are then used to predict
-    outcomes for a wider set of locations (discrete or continuous), often with uncertainty
-  - Geostatistical modeling originally used to find gold!
-  - Fundamental tenet: Tobler's first law
-
-- PAR: Why use spatial predictive modeling to estimate variation in health?
-  - Key advantages: "fill in the gaps" left by existing data sources, identify focal areas, inequalities
-  - Key disadvantages: communicating uncertainty, potential misspecification, data limitations, interpretability
-
-
-## Disease mapping and small-area estimation
-
-- PAR: Intro
-  - Both approaches traditionally extend generalized linear mixed-effects regressions to add
-    a spatial component
-  - Decomposition of variation into covariate-predicted, spatially-correlated, and IID
-  - Around for a long time, exploded in the 1990s with the greater convenience of hierarchical modeling techniques
-  - Today, they take advantage of common statistical software and spatial data availability
-
-- PAR: Background for small area estimation
-  - Key: discrete areal units
-  - County-level estimation in agriculture, then population
-  - Health approaches back to the 1990s
-  - Famous applications
-
-- PAR: Background for continuous disease mapping
-  - Key: predicting across a continuous surface where variance-covariance depends on space
-  - How to invert?
-    - Traditionally challenging
-    - SPDE approach
-  - Famous applications
-
-- PAR: Similarities
-  - The same data source might be amenable to either type of modeling
-  - Continuous vs. discrete modeling, but both follow Tobler's law
-
-
-### Extensions
-
-- PAR: Extensions
-  - Space-time modeling
-  - Machine learning methods for covariate generation
-  - Other extensions of regression
-
-- PAR: Other spatial modeling applications in health
-    - hotspot analysis
-    - point pattern analysis
-    - dasymmetric mapping
-
-
-## Applications
-
-- PAR: Who does spatial modeling?
-
-
-### Low- and middle-income countries
-
-- PAR: Mapping disease indicators and risk factors from household surveys
-  - Examples: MAP, IHME, KEMRI
-  - Software widely available and runnable on a personal PC
-
-- PAR: Milieu
-  - Draw predictive power from "covariates" that are well-established
-    - remote sensing technologies
-    - VGI from (eg) HOTOSM
-    - WorldPop (actually a modeled estimate)
-
-- PAR: Short-term program implications for this kind of data:
-  - Used to produce estimates described at the front
-  - Target and design new surveys
-  - Concentrate new programs, funding, etc.
-
-
-### High-income countries
-
-- PAR: Use case 1 - epidemic detection
-  - EuroMOMO
-
-- PAR: Use case 2 - risk factor identification
-  - Norwegian data (spatial study)
-
-- PAR: Use case 3 - advanced demographic modeling
-  - Projections of life expectancy
-
-- PAR: Greater data fidelity allows for a wider range of approaches
-  - Sub-population analyses
-  - Forecasts
-  - Monthly and weekly mortality reports
-
-- PAR: Completeness assumption is often grounded on quality checks; however, this does not
-  mean fidelity is perfect
-  - Examples of data quality checks from SCORE report
-  - Counterexample: COVID-19 mortality reporting issues
-    - Time lag
-    - Negative deaths
-    - Cause misreporting
-
-
-## Limitations
-
-- PAR: LIMITATION - Uncertainty and its communication
-  - Long-term: household surveys in conjunction with statistical modeling leave major
-    gaps in terms of knowledge
-  - Uncertainty from a Bayesian perspective often expressed in terms of Uncertainty
-    Intervals (UI)
-  - In mapping terms: the relative likelihood of different candidate maps
-  - BUT: This uncertainty is difficult to communicate, especially across space
-  - Policy processes do not necessarily incorporate uncertainty
-
-- PAR: LIMITATION - model misspecification
-  - All models built on assumptions
-  - Circularity and "models on top of models"
-  - Example: mortality estimates for infectious diseases: IHME vs. WHO
-
-- PAR: LIMITATION - who benefits? Relationship between modeler, data collector, and country
-  - Statistical modeling still has a high barrier to entry
-  - May create perverse incentives
-  - Concerns of data imperialism
-
-- PAR: LIMITATION - even with advanced modeling techniques, some analyses are intractable
-   - Example: COVID-19 death counts
-
-
-# Relationship between health data availability and health system capacity
+## Relationship between health data availability and health system capacity
 
 - PAR: Tension between long-term need for high-quality health surveillance and short-term incentives
   - Long term: CRVS and infectious disease surveillance convey a set of unique health and 
@@ -344,10 +157,145 @@ BLOCK QUOTE
      - (Related: can we find costing estimates for a functioning CRVS system?)
 
 - PAR: The role of funders and international organizations
-  - Survey funders: awkward position with data governance
-  - Programs run through a health system will encounter many levels of intermediaries
-  - Tracking and accountabiliy becomes obscured
-  - Same issue of short-term versus long-term payoff
+  - Funders have traditionally seen CRVS and infectious disease surveillance systems as de nulla fonts of health statistics, not as goods in their own right. Tradtionally, an office was assigned to improve CRVS capacity, but given no funding or authority to incentivize improvements [@AbouZahr2015]
+  - Difficult challenge: tying together reporting structures across multiple institutions and levels of government, as demonstrated by Nigeria's efforts to institute a mandatory death registration system[@Makinde2020].
+  - Awkward position for funders: control of data collection and governance
+
+
+# Spatial modeling as a tool for responsive health interventions
+
+- PAR: What is spatial modeling?
+  - Modeling: Formal statistical assumptions about the "data generation process"
+  - Bayesian data analysis using hierarchical models, which allows for intuitive understandings
+    of randomness and uncertainty as a product of incomplete information[@McElreath2016].
+  - Raw data enters a model, fits underlying parameters, which are then used to predict
+    outcomes for a wider set of locations (discrete or continuous), often with uncertainty
+
+- PAR: Why use spatial predictive modeling to estimate variation in health?
+  - Key advantages: "fill in the gaps" left by existing data sources, identify focal areas, inequalities
+  - Key disadvantages: communicating uncertainty, potential misspecification, data limitations, interpretability
+
+
+## Disease mapping and small-area estimation
+
+- PAR: Intro
+  - Both approaches traditionally extend generalized linear mixed-effects regressions to add
+    a spatial component
+  - Discrete versus continuous, but both offer statistical formalizations of Tobler's First
+    Law of Geography: "Everything is related to everything else, but near things are more related than distant things[@Tobler1970]."
+  - Small samples are drawn from an underlying risk surface
+  - Decomposition of variation into covariate-predicted, spatially-correlated, and IID[@Riebler2016]
+  - Around for a long time, exploded in the 1990s with the greater availability of statistical
+    software and the development of new spatial modeling frameworks that were computationally 
+    tractable[@Besag1991].
+
+- PAR: Background for small area estimation
+  - Key: a large number of discrete areal units, where the number of sampled individuals might
+    be small for some units, and potentially predictive covariates are available for all
+    spatial units.
+  - The classic Fay-Herriot model formulation, published in 1979 and widely used thereafter,
+    estimated per-capita income across small areal units under the assumption that all
+    observations were sampled independently and share the same variance function, with no
+    spatial dependence[@Fay1979]
+  - Later models added a term for local autocorrelation across space, allowing spatial
+    modelers of health to draw predictive information from the local neighborhood structures
+    across a study area[@Besag1991].
+
+- PAR: Background for continuous disease mapping
+  - Key: Predicting across a continuous surface where variance-covariance depends on space
+  - Geostatistical modeling originally used to find mineral deposits[@Oliver2010]
+  - How to invert?
+    - Traditionally challenging
+    - SPDE approach: approximates this continuous surface using a mesh, allowing for
+      a far more efficient fitting approach[@Lindgren2011;@Miller2020]
+
+- PAR: Extensions
+  - Space-time modeling[@Mercer2015]
+  - Machine learning methods for covariate generation[@bhatt2017]
+  - dasymmetric mapping[@Tatem2017]
+  - Species distribution mapping[@Hay2013]
+  - Other extensions of regression
+  - hotspot analysis
+  - point pattern analysis[@Banerjee2014]
+
+
+## Applications
+
+- PAR: Who does spatial modeling?
+
+
+### Low- and middle-income countries
+
+- PAR: Mapping disease indicators and risk factors from household surveys
+  - Generalizable methods for mapping in low-resource settings based on household surveys [@Diggle2016]
+  - Wide array of possibilities for mapping[@Pigott2015]
+  - Examples:
+    - Malaria: MAP[@Weiss2019;@Nguyen2019]
+    - Childhood infectious diseases and risk factors: IHME [@Osgood-Zimmerman2018]
+    - Spatial variation in health system capacity: KEMRI [@Maina2019]
+    - Child mortality [@Wakefield2020]
+  - Software widely available and runnable on a personal PC
+
+- PAR: Milieu
+  - Draw predictive power from "covariates" that are well-established
+    - remote sensing technologies used to map short-term weather patterns as well as long-term land use and climate change trends[@Ericksen2011]
+    - VGI from (eg) HOTOSM[@Thomson2019]
+    - Modeled estimates, notably WorldPop (actually a modeled estimate)[@Tatem2017]
+
+- PAR: Short-term program implications for this kind of data:
+  - Target and design new surveys
+  - Track the effect of scaling up interventions[@Diggle2016]
+  - Develop new programs [@Pigott2015]
+
+### High-income countries
+
+- PAR:
+  - Greater data fidelity allows for a wider range of approaches
+  - Use case 1 - Estimation of health outcomes for very local areal units, including United States census tracts[@Dwyer-Lindgren2014; @Zhang2014]
+  - Use case 2 - Risk factor detection using observational data [@Liu2019]
+  - Use case 3 - Age-period-cohort models for cancer incidence [@Papoila2014]; demographic modeling over space, age group, and causes of death [@Dwyer-Lindgren2016]
+  - Monthly and weekly mortality reports[@Weinberger2020a]
+
+- PAR: Completeness assumption is often grounded on quality checks; however, this does not
+  mean fidelity is perfect
+  - Examples of data quality checks from SCORE report[@WorldHealthOrganization2021]
+  - Counterexample: COVID-19 mortality reporting issues
+    - Time lag
+    - Negative deaths
+    - Cause misreporting [@Weinberger2020a]
+
+## Limitations
+
+- PAR LIMITATION - Usefulness
+  - Long-term: household surveys in conjunction with statistical modeling leave major
+    gaps in terms of knowledge
+  - Compare to standards: compulsory and universal, timely, accurate, complete, and confidential
+
+- PAR: LIMITATION - Uncertainty and its communication
+  - Uncertainty from a Bayesian perspective often expressed in terms of Uncertainty
+    Intervals (UI)
+  - In mapping terms: The output of Bayesian spatial modeling is a large number of "candidate maps" that represent possible explanations of the underlying data, where better explanations are more likely to be included[@Patil2011]. Mapping outputs typically show summaries, such as the mean and uncertainty, of each pixel or areal unit in a candidate map.
+  - BUT: This uncertainty is difficult to communicate, especially across space.
+    - In this way, maps create meaning and certainty
+  - This question of finality is supported by past research on cartography in policymaking,
+    which has demonstrated how maps can convey a sense of finality to unsettled questions
+    in space: one can settle any doubts with an assertion that "it's there on the map"
+    [@Elwood2006].
+  - Policy processes do not necessarily incorporate uncertainty
+
+- PAR: LIMITATION - model misspecification
+  - All models built on assumptions
+  - Circularity and "models on top of models"
+  - Example: mortality estimates for infectious diseases: IHME vs. WHO[@Tichenor2020] differences largely in areas with little death registration data. Differences in modeling approaches, prior specifications, and processing of the few data sources available (VA) have huge implications for global health policymaking and financing. Larger issue on the local scale.
+
+- PAR: LIMITATION - who benefits? Relationship between modeler, data collector, and country
+  - Statistical modeling still has a high barrier to entry
+  - May create perverse incentives[@Tichenor2020]
+  - Concerns of data imperialism[@Marchais2020]
+  - Data doubles create representations of a country's health and development status that it has no control over, taking away levers for action in decision-making around global health financing and action [@Cinnamon2020a]
+
+- PAR: LIMITATION - even with advanced modeling techniques, some analyses are intractable
+   - Example: COVID-19 death counts
 
 
 # New hierarchical modeling techniques for mapping health outcomes using incomplete health surveillance data
@@ -364,19 +312,24 @@ BLOCK QUOTE
 
 - PAR: Theoretical grounding for this approach
   - Fundamentally, health surveillance is an important building block of a functioning
-    health system
+    health system[@Roberts2008]
+  - In line with the geographic movement towards "critical cartography", this project
+    recognizes that maps are inherently value-laden representations of reality: the
+    assumptions and use cases underlying maps of health have implications for the direction
+    of health policy and reform[@Crampton2006].
   - The spatial aspect of this modelling is important:
+    - Within a CRVS system, the principles of universality, timeliness, accuracy, completeness, and confidentiality (as well as barriers to these) often correspond to local processes that can be assessed using a spatial approach
     - variation across a country can tell us important things about the overall quality
       of the data
     - Barriers to high-quality health data overlap with health service capacity issues at
       the local level -- improving one should improve both
+  - Necessary but not sufficient for adequate health data governance in LMICs, complementary to legal and governmental frameworks[@Tiffin2019]
 
 - PAR: Modeling benefits of this approach
   - Crosswalks common in statistical modeling using a simple correction term, but more
     nuanced approaches to joint estimation are becoming more common thanks to improved
     tools for estimation
-  - Data-generating process includes the generation of CRVS/surveillance data
-  - Bayesian approach
+  - Bayesian hierarchical modeling approach, where the data-generating process includes the generation of CRVS/surveillance data[@Schmertmann2018]
   - Estimate the biases or incompleteness of health surveillance by comparing to a 
     "gold standard" data source
   - Fill in the "gaps" provided by survey data using estimates from high-performing locations
@@ -403,9 +356,11 @@ BLOCK QUOTE
       completeness can be applied both to neonatal mortality (Mexico) and tuberculosis
       incidence (Uganda)
   - Open sourcing results
+    - Modeling approach that brings its own limitations and potential for harm to the foreground [@Cinnamon2020a]
+    - Recognizing that a steep learning curve for GIS and spatial modeling tools still inhibits wide adoption [@Shannon2018]
 
 
-# Thesis structure
+## Thesis structure
 
 - PAR: Explanation of structure
   - Series of country-specific collaborations with implications for broader country
