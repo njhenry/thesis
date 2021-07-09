@@ -323,9 +323,6 @@ In any discussion of national health data systems, China and India deserve parti
     - No alternative to complete, high-quality national health surveillance systems
 
 
-This is an example paragraph. To conclude, let's reference Figure \@ref(fig:fig1) and Table \@ref(tab:t1). Here are some example citations [@Aalbers; @Aguirre2009].
-
-
 # References
 
 <div id="refs"></div>

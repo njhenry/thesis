@@ -73,7 +73,6 @@
 \usepackage{doi}
 \usepackage{float}
 \usepackage{lipsum}
-\usepackage{makecell}
 \usepackage{url}
 \usepackage{arxiv}
 \ifluatex
@@ -101,100 +100,918 @@
 \newcommand{\CSLIndent}[1]{\hspace{\cslhangindent}#1}
 
 \title{Introduction}
-\author{Nathaniel Henry}
-\date{2021-06-09}
+\author{Nathaniel Henry\textsuperscript{}}
+\date{2021-07-09}
 
 \begin{document}
 \maketitle
 
-\hypertarget{abstract}{%
-\section{Abstract}\label{abstract}}
-
-\lipsum[1]
-
 \hypertarget{health-system-performance-the-urgent-need-for-better-data}{%
 \section{Health system performance: the urgent need for better data}\label{health-system-performance-the-urgent-need-for-better-data}}
 
-\lipsum[2-6]
+In 1948, the United Nations Universal Declaration on Human Rights asserted the fundamental and universal right of all people to ``a standard of living adequate to the health and well-being of himself and his family, including {[}\ldots{]} medical care and necessary social services.\textsuperscript{\protect\hyperlink{ref-UNGeneralAssembly1948}{1}}'' However, more than 80 years after this declaration, a person's opportunities to live a long life in good health vary vastly depending on where they live. Gaps in health between countries and regions of the world are well-documented. However, health inequalities also manifest themselves within countries and even within walking distance. They appear in the earliest years of life: in Kano state in northern Nigeria, children are 2.5 times more likely to die before their fifth birthday than children born in the capital, Lagos.\textsuperscript{\protect\hyperlink{ref-Burstein2019}{2}} They are also apparent in high-resource settings, such as urban counties in the United States, where life expectancy for men has been shown to vary by nearly 20 years across neighborhoods in a single U.S. county.\textsuperscript{\protect\hyperlink{ref-Dwyer-Lindgren2017}{3}} The multifarious barriers to human flourishing that cause these inequalities at both the local and international level are both ethically troubling and a massive challenge to global health governance.\textsuperscript{\protect\hyperlink{ref-Ruger2006}{4}}
+
+These challenges naturally raise questions about which institutions have the responsibility and capability to provide lifesaving services and remove barriers to human health. The discourse around health on the international stage has shifted over the past 20 years to a conception of ``global health,'' where multilateral institutions and funders have greater perceived agency to coordinate health interventions.\textsuperscript{\protect\hyperlink{ref-Brown2006}{5}} However, while international funders have successfully coordinated responses to acute mortality and disease threats over the past 20 years, these same experiences have also demonstrated that sustainable health services can only be delivered by health systems that are led by national stakeholders and operated locally.\textsuperscript{\protect\hyperlink{ref-WorldHealthOrganization2007}{6},\protect\hyperlink{ref-WorldHealthOrganization2010}{7}} Health systems can be defined in terms of their human resources and material components: they are driven by health care workers who rely on a financial and material infrastructure that is, in turn, managed by a constellation of planners, financial intermediaries and governing institutions.\textsuperscript{\protect\hyperlink{ref-Roberts2008}{8}} They can also be defined in terms of their key operations: the World Health organization (WHO) lists service delivery, health workforce, information, medical products, vaccines and technologies, financing, and leadership and governance as the six core building blocks that constitute a functioning health system.\textsuperscript{\protect\hyperlink{ref-WorldHealthOrganization2007}{6}}
+
+While health systems necessarily develop in the context of local conditions and priorities, they share the unifying aim of improving the health of the people they serve. Therefore, any attempt to manage or improve healthcare must be measured against its potential impact on health outcomes.\textsuperscript{\protect\hyperlink{ref-Roberts2008}{8}} From local hospitals to national ministries of health, health policymakers need to make decisions about efficiently allocating funding, prioritizing at-risk groups, identifying and responding to health crises, and implementing long-term policy development and reform. All of these decisions require a consensual understanding among parties of conditions on the ground --- that is, they require data examining the potential impact of decisions on health outcomes.\textsuperscript{\protect\hyperlink{ref-AbouZahr2015}{9}} Without data on health outcomes, other sociological and economic analyses can only describe, not drive, health policy.\textsuperscript{\protect\hyperlink{ref-Roberts2008}{8}}
+
+Complementary to their service provision activities, both international agencies and national bodies operate data collection and statistics systems that are designed to reveal actionable information about the state of health in a country. Many national ministries of health and statistics maintain Civil registration and vital statistics (CRVS) operations to systematically register vital events such as birth and deaths, as well as surveillance systems for notifiable infectious diseases such as HIV, tuberculosis (TB), and measles. In high-resource countries, largely complete and high-quality health information systems facilitate epidemiological investigation and decision-making. In many lower-resource settings, where most childhood deaths and disease burden are concentrated, CRVS systems may be absent or incomplete, while infectious disease surveillance may be hindered by low completeness and reporting lags. To alleviate this data gap, international health institutions often fund household surveys that systematically collect information about key aspects of health. These surveys can be further supplemented by health modeling approaches: notably, modern spatial statistical modeling can reveal local inequalities that may fall below the sampling frame of the original survey.\textsuperscript{\protect\hyperlink{ref-Diggle2016}{10}}
+
+This thesis asserts that high-quality CRVS and infectious disease surveillance are irreplaceable as a foundation for responsive health decision-making, and that these systems are therefore essential prerequisites for delivering sustainable and equitable health services to all people. The following sections of this chapter introduce the operation of these health data systems as well as the spatial modeling approaches that have been designed to supplement them. Past scholarship on data governance in global health has expressed the concern that modeling approaches have quelled the demand for high-quality national health surveillance without offering the same insights. In conclusion to this chapter, and more expansively throughout this thesis, I offer a partial solution to this problem of data governance: a statistical modeling framework that robustly incorporates deficient health surveillance records to measure health outcomes, and in so doing both estimates bias in the health surveillance system and provides an incentive for its improvement.
 
 \hypertarget{national-health-data-sources-history-and-uses}{%
 \section{National health data sources: history and uses}\label{national-health-data-sources-history-and-uses}}
 
-\lipsum[7-10]
+\hypertarget{civil-registration-and-vital-statistics-crvs-systems}{%
+\subsection{Civil registration and vital statistics (CRVS) systems}\label{civil-registration-and-vital-statistics-crvs-systems}}
+
+Civil registration and vital statistics (CRVS) systems facilitate the legal registration, compilation, and standardized dissemination of vital events records. Vital events comprise a wide variety of activities that change a person's legal status, including birth, marriage, separation, adoption, emancipation, legitimation, and death, among others. Of these, accurate registration of birth and death are both crucially important for the individual and for understanding population health.
+
+In areas where vital registration is collection, birth and death records are often legally mandated within a certain time window of the vital event. For births and deaths that occur in a health facility, the event can often be registered with an on-site functionary; if this service is not available, the family members of the newborn or deceased individual may be required to register online or at a government office afterwards. If a country legally mandates cause-of-death reporting, an underlying cause of death must be medically registered at the time of death or verified afterwards through a combination of interviews and autopsy. Local registration offices then report key aspects of the registration upwards to their regional and national counterparts, while private and religious health care facilities may compile and share their own records through separate channels. At the national level, these records are then validated and compiled into regular statistical reports, which may report detailed statistics by location, time, and age or cause grouping in the case of death.\textsuperscript{\protect\hyperlink{ref-Setel2007}{11},\protect\hyperlink{ref-UnitedNationsStatisticsDivision2014}{12}} These systems often rely on legal mandates to report rather than actively seeking out new births and deaths: this passive surveillance approach can present a problem in countries where vulnerable groups face greater barriers to vital event reporting.\textsuperscript{\protect\hyperlink{ref-Fisker2019}{13},\protect\hyperlink{ref-Hernandez2012}{14}}
+
+At the population level, detailed CRVS data can provide crucial information to health policymakers; at the individual level, civil and death registration can provide rights and privileges to the registered. In many countries, valid birth certification is the key to accessing school, social services, and health insurance. Recognizing this reality, the government of Mexico declared that free and universal birth registration was a constitutional right of all Mexicans. In the case of death, family members of the deceased may be legally entitled to social and financial support once the death is registered.\textsuperscript{\protect\hyperlink{ref-Setel2007}{11}}
+
+Despite its importance to governance and the individual, birth and death registration is often least functional in the countries where health burden is concentrated. As of 2004, fewer than 1 in 100 residents of Southeast Asia and fewer than 1 in 10 Africans were covered by any birth or death registration.\textsuperscript{\protect\hyperlink{ref-Mahapatra2007}{15}} Today, enormous gaps in service still remain. Figure 1, below, shows the estimated coverage of death registration among children under 5 in 2015 or the most recent year of data available. While almost all high-income countries experienced death registration completeness of over 90\%, death registration coverage remained below 60\% in all states of India. Peru, the Dominican Republic, and the northwestern states of Brazil also had estimated coverage levels below 50\%. In all sub-Saharan African countries besides Botswana and South Africa, no mortality estimates based on vital registration were available after 2010.\textsuperscript{\protect\hyperlink{ref-Roth2018}{16}} A similar geographical pattern shows itself for cause-of-death assignment. One review of cause-of-death registration quality found that over 30\% of all registered deaths in Egypt, Saudi Arabia, Bolivia, and Iraq could not be assigned with certainty to even a broad cause-of-death grouping, compared to less than 10\% of registered deaths with the same coding problems in countries like Finland, Australia, and Ireland.\textsuperscript{\protect\hyperlink{ref-Johnson2021}{17}}
+
+These massive discrepancies are partly attributable to different institutional histories: while England and some American colonies have been tabulating death records since the 17th century\textsuperscript{\protect\hyperlink{ref-Blake1955}{18}}, colonial administrations often offered no vital registration services outside of a limited register for the European colonizers. Wide differences in health spending per capita across countries are also partly to blame, as is the greater fragility of health systems: an early report has found that COVID-19 disrupted CRVS collection in many low-resource settings, which prioritized the provision of other health services instead.\textsuperscript{\protect\hyperlink{ref-AbouZahr2021}{19}} Regardless of cause, the low coverage and variable quality of CRVS in many countries serves as a challenge to its interpretation in the service of health system governance.
+
+\hypertarget{infectious-disease-surveillance}{%
+\subsection{Infectious disease surveillance}\label{infectious-disease-surveillance}}
+
+In addition to vital events, many high-resource settings maintain surveillance systems for so-called ``notifiable infectious diseases'' which are deemed to require health system action, including diseases such as mumps, cholera, hepatitis A, and yellow fever, among others. Under normal operating conditions, any report of a notifiable infectious disease triggers control efforts such as mandatory contact tracing. Reports may be rapidly shared with a central body to allow for risk assessment and early warning of possible outbreaks.\textsuperscript{\protect\hyperlink{ref-Vlieg2017}{20}} In addition to notifiable infectious diseases, high-income health systems tabulate and publish weekly reports on the incidence of diseases such as influenza, HIV, and tuberculosis.\textsuperscript{\protect\hyperlink{ref-Thacker1989}{21}}
+
+While low-income settings may lack the resources to quickly share information about a variety of notifiable infectious diseases, almost all high-burden countries operate national programs for surveillance and control of priority infectious diseases such as HIV, tuberculosis (TB), and malaria. In low- and middle-income countries, these programs are often supplemented by funding from international institutions such as the Global Fund and the United States President's Emergency Plan for AIDS Relief (PEPFAR).\textsuperscript{\protect\hyperlink{ref-Mauch2010}{22}} While these programs typically set up legal reporting requirements for priority infectious diseases, the data collection process can be hampered by a lack of electronic reporting systems; limited access to labs where infections can be bacteriologically confirmed; and missing data from private care providers.\textsuperscript{\protect\hyperlink{ref-Uplekar2016}{23}} A previous investigation of case notifications to a national TB control program in a low-resource setting found that spatial variation in case notifications was driven more by program funding and access to health services than any discernable underlying pattern in disease burden.\textsuperscript{\protect\hyperlink{ref-Rood2019}{24}} As with CRVS data in low-resource settings, these data limitations serve as substantial barriers to the use of infectious disease surveillance to inform health policymaking.
 
 \hypertarget{household-surveys}{%
 \subsection{Household surveys}\label{household-surveys}}
 
-\lipsum[11-15]
+Given the limitations endemic to routine national surveillance data in low-resource settings, health decision makers at the national and international levels often turn to household surveys as the next best source of country health information. These types of surveys are perhaps exemplified by the Demographic and Health Surveys (DHS),\textsuperscript{\protect\hyperlink{ref-Corsi2012}{25}} funded primarily by the U.S. Agency for International Development; as well as the Multiple Indicator Cluster Surveys (MICS),\textsuperscript{\protect\hyperlink{ref-Khan2019}{26}} funded primarily by UNICEF. These survey series are primarily conducted in low- and middle-income countries, and are often considered to be the ``gold standard'' data source in place of deficient vital records or infectious disease surveillance. A standard DHS or MICS survey is designed to be representative at the national or first administrative level, sometimes split by urban and rural respondent groups. Depending on the size of the country, between 100 and approximately 1500 survey cluster sites will be selected, and members of approximately 30-60 households will be surveyed at each site. Survey questions are taken from a standard questionnaire used across a survey rounds. These surveys focus primarily on maternal and child health, reproductive health, nutrition, education, and health behaviors. After households are surveyed over a matter of months, the questionnaires are tabulated by a central agency, and a report is released with national and broad regional summaries for the survey country and year alongside the de-identified individual-level survey response data. In some cases, spatial identifiers are released for each cluster location after ``jittering'' is performed to ensure that the surveyed household are de-identified.
 
-\hypertarget{civil-registration-and-vital-statistics-crvs-systems}{%
-\subsection{Civil registration and vital statistics (CRVS) systems}\label{civil-registration-and-vital-statistics-crvs-systems}}
+As a tool for health decision-making at the national level, household surveys offer several advantages over incomplete health surveillance data. They are designed to be systematic, detailed in certain topics, and representative of the national population. Because many identifying questions are asked by individual household, follow-up research can identify links between risk factors and outcomes for a surveyed country. However, even well-designed and executed surveys must be interpreted with a degree of caution. The topics are deliberately limited, providing little information about diseases that cause high mortality among adults. Time gaps between surveys make inference about time trends in health difficult without simplifying assumptions. Additionally, because the surveys require respondents to recall past events, the responses may be biased in important and nonrandom ways, which can be exacerbated further based on the survey team or question wording in a particular survey round. Perhaps most relevant to the contents of this thesis, the design of these household surveys is not intended to be representative below the level of the country or its top-level administrative units. Researchers have proposed model-based solutions to each of these shortcomings, which will be discussed further in the sections below as well as in later chapters.
 
-\lipsum[1-5]
+\hypertarget{special-cases}{%
+\subsection{Special cases}\label{special-cases}}
 
-\hypertarget{health-surveillance-systems}{%
-\subsection{Health surveillance systems}\label{health-surveillance-systems}}
+In any discussion of national health data systems, China and India deserve particular attention for their approaches to health surveillance. Due to the cost of directly tracking vital events and infectious diseases across the entire population, both countries have developed strategies for regular surveillance of representative sub-populations and priority groups. India is notable for conducting regular household surveys on a scale comparable to CRVS coverage in many other countries: these include the Annual Health Surveys, the District Level Health Surveys, and the National Family Health Surveys.\textsuperscript{\protect\hyperlink{ref-Dandona2016}{27}} The country has also developed a mortality registration system designed to cover select areas of the country: this system was estimated to cover approximately 75\% of its target population as of 2015.\textsuperscript{\protect\hyperlink{ref-Kumar2019}{28}} China has a long history of census-based estimation of population and health status stretching back to the 1940s;\textsuperscript{\protect\hyperlink{ref-Banister2004}{29}} more recently, it estimates national demographic trends using a combination of censuses, household surveys, and a CRVS system that is rapidly increasing in completeness.\textsuperscript{\protect\hyperlink{ref-Zeng2020}{30}} These data sources are supplemented by sentinel surveillance of maternal and child mortality, as well as a nationwide notifiable infectious diseases reporting program.\textsuperscript{\protect\hyperlink{ref-Vlieg2017}{20},\protect\hyperlink{ref-He2017}{31}}
 
-\lipsum[6-10]
+\hypertarget{standards-for-quality-and-usability}{%
+\subsection{Standards for quality and usability}\label{standards-for-quality-and-usability}}
 
-\hypertarget{other-sources}{%
-\subsection{Other sources}\label{other-sources}}
+\begin{itemize}
+\tightlist
+\item
+  PAR: Standards for health data quality, based on UN recommendations:
 
-\lipsum[11-15]
+  \begin{itemize}
+  \tightlist
+  \item
+    Compulsory and universal: Legally mandated, accessible, and using standard definitions nationwide
+  \item
+    Timely: Data available in time to be used for decision-making
+  \item
+    Accurate information about the individual and vital event
+  \item
+    Complete: No individuals or sub-populations missing
+  \item
+    Confidential: Individuals not identifiable from publicly-available data\textsuperscript{\protect\hyperlink{ref-UnitedNationsStatisticsDivision2014}{12}}
+  \item
+    Another perspective: SCORE criteria: survey populations and health risks; count births, deaths, and causes of death; optimize health service data; review progress and performance; enable data use for policy and action\textsuperscript{\protect\hyperlink{ref-WorldHealthOrganization2021}{32}}
+  \end{itemize}
+\end{itemize}
 
-\hypertarget{local-estimation-drives-responsive-health-interventions}{%
-\section{Local estimation drives responsive health interventions}\label{local-estimation-drives-responsive-health-interventions}}
+\hypertarget{relationship-between-health-data-availability-and-health-system-capacity}{%
+\subsection{Relationship between health data availability and health system capacity}\label{relationship-between-health-data-availability-and-health-system-capacity}}
 
-\lipsum[1-3]
+\begin{itemize}
+\tightlist
+\item
+  PAR: Tension between long-term need for high-quality health surveillance and short-term incentives
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Long term: CRVS and infectious disease surveillance convey a set of unique health and
+    social benefits on the covered country
+  \item
+    Short-term:
+
+    \begin{itemize}
+    \tightlist
+    \item
+      Required ramp-up needed for health surveillance to be used as a primary data source
+    \item
+      With health spending per capita extremely low in some countries, how to
+      justify spending money on capacity-building for a health surveillance system
+      that may not be usable for decades, if ever?
+    \item
+      (Related: can we find costing estimates for a functioning CRVS system?)
+    \end{itemize}
+  \end{itemize}
+\item
+  PAR: The role of funders and international organizations
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Funders have traditionally seen CRVS and infectious disease surveillance systems as de nulla fonts of health statistics, not as goods in their own right. Tradtionally, an office was assigned to improve CRVS capacity, but given no funding or authority to incentivize improvements\textsuperscript{\protect\hyperlink{ref-AbouZahr2015}{9}}
+  \item
+    Difficult challenge: tying together reporting structures across multiple institutions and levels of government, as demonstrated by Nigeria's efforts to institute a mandatory death registration system\textsuperscript{\protect\hyperlink{ref-Makinde2020}{33}}.
+  \item
+    Awkward position for funders: control of data collection and governance
+  \end{itemize}
+\end{itemize}
+
+\hypertarget{spatial-modeling-as-a-tool-for-responsive-health-interventions}{%
+\section{Spatial modeling as a tool for responsive health interventions}\label{spatial-modeling-as-a-tool-for-responsive-health-interventions}}
+
+\begin{itemize}
+\tightlist
+\item
+  PAR: What is spatial modeling?
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Modeling: Formal statistical assumptions about the ``data generation process''
+  \item
+    Bayesian data analysis using hierarchical models, which allows for intuitive understandings
+    of randomness and uncertainty as a product of incomplete information\textsuperscript{\protect\hyperlink{ref-McElreath2016}{34}}.
+  \item
+    Raw data enters a model, fits underlying parameters, which are then used to predict
+    outcomes for a wider set of locations (discrete or continuous), often with uncertainty
+  \end{itemize}
+\item
+  PAR: Why use spatial predictive modeling to estimate variation in health?
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Key advantages: ``fill in the gaps'' left by existing data sources, identify focal areas, inequalities
+  \item
+    Key disadvantages: communicating uncertainty, potential misspecification, data limitations, interpretability
+  \end{itemize}
+\end{itemize}
 
 \hypertarget{disease-mapping-and-small-area-estimation}{%
 \subsection{Disease mapping and small-area estimation}\label{disease-mapping-and-small-area-estimation}}
 
-\lipsum[4-8]
+\begin{itemize}
+\tightlist
+\item
+  PAR: Intro
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Both approaches traditionally extend generalized linear mixed-effects regressions to add
+    a spatial component
+  \item
+    Discrete versus continuous, but both offer statistical formalizations of Tobler's First
+    Law of Geography: ``Everything is related to everything else, but near things are more related than distant things\textsuperscript{\protect\hyperlink{ref-Tobler1970}{35}}.''
+  \item
+    Small samples are drawn from an underlying risk surface
+  \item
+    Decomposition of variation into covariate-predicted, spatially-correlated, and IID\textsuperscript{\protect\hyperlink{ref-Riebler2016}{36}}
+  \item
+    Around for a long time, exploded in the 1990s with the greater availability of statistical
+    software and the development of new spatial modeling frameworks that were computationally
+    tractable\textsuperscript{\protect\hyperlink{ref-Besag1991}{37}}.
+  \end{itemize}
+\item
+  PAR: Background for small area estimation
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Key: a large number of discrete areal units, where the number of sampled individuals might
+    be small for some units, and potentially predictive covariates are available for all
+    spatial units.
+  \item
+    The classic Fay-Herriot model formulation, published in 1979 and widely used thereafter,
+    estimated per-capita income across small areal units under the assumption that all
+    observations were sampled independently and share the same variance function, with no
+    spatial dependence\textsuperscript{\protect\hyperlink{ref-III1979a}{38}}
+  \item
+    Later models added a term for local autocorrelation across space, allowing spatial
+    modelers of health to draw predictive information from the local neighborhood structures
+    across a study area\textsuperscript{\protect\hyperlink{ref-Besag1991}{37}}.
+  \end{itemize}
+\item
+  PAR: Background for continuous disease mapping
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Key: Predicting across a continuous surface where variance-covariance depends on space
+  \item
+    Geostatistical modeling originally used to find mineral deposits\textsuperscript{\protect\hyperlink{ref-Oliver2010}{39}}
+  \item
+    How to invert?
+
+    \begin{itemize}
+    \tightlist
+    \item
+      Traditionally challenging
+    \item
+      SPDE approach: approximates this continuous surface using a mesh, allowing for
+      a far more efficient fitting approach\textsuperscript{\protect\hyperlink{ref-Lindgren2011}{40},\protect\hyperlink{ref-Miller2020}{41}}
+    \end{itemize}
+  \end{itemize}
+\item
+  PAR: Extensions
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Space-time modeling\textsuperscript{\protect\hyperlink{ref-Mercer2015}{42}}
+  \item
+    Machine learning methods for covariate generation\textsuperscript{\protect\hyperlink{ref-Bhatt2017}{43}}
+  \item
+    dasymmetric mapping\textsuperscript{\protect\hyperlink{ref-Tatem2017}{44}}
+  \item
+    Species distribution mapping\textsuperscript{\protect\hyperlink{ref-Hay2013}{45}}
+  \item
+    Other extensions of regression
+  \item
+    hotspot analysis
+  \item
+    point pattern analysis\textsuperscript{\protect\hyperlink{ref-Banerjee2014}{46}}
+  \end{itemize}
+\end{itemize}
 
 \hypertarget{applications}{%
 \subsection{Applications}\label{applications}}
 
-\lipsum[9-10]
+\begin{itemize}
+\tightlist
+\item
+  PAR: Who does spatial modeling?
+\end{itemize}
 
 \hypertarget{low--and-middle-income-countries}{%
 \subsubsection{Low- and middle-income countries}\label{low--and-middle-income-countries}}
 
-\lipsum[11-13]
+\begin{itemize}
+\tightlist
+\item
+  PAR: Mapping disease indicators and risk factors from household surveys
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Generalizable methods for mapping in low-resource settings based on household surveys\textsuperscript{\protect\hyperlink{ref-Diggle2016}{10}}
+  \item
+    Wide array of possibilities for mapping\textsuperscript{\protect\hyperlink{ref-Pigott2015}{47}}
+  \item
+    Examples:
+
+    \begin{itemize}
+    \tightlist
+    \item
+      Malaria: MAP\textsuperscript{\protect\hyperlink{ref-Weiss2019}{48},\protect\hyperlink{ref-Nguyen2019}{49}}
+    \item
+      Childhood infectious diseases and risk factors: IHME\textsuperscript{\protect\hyperlink{ref-Osgood-Zimmerman2018}{50}}
+    \item
+      Spatial variation in health system capacity: KEMRI\textsuperscript{\protect\hyperlink{ref-Maina2019}{51}}
+    \item
+      Child mortality\textsuperscript{\protect\hyperlink{ref-Wakefield2020}{52}}
+    \end{itemize}
+  \item
+    Software widely available and runnable on a personal PC
+  \end{itemize}
+\item
+  PAR: Milieu
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Draw predictive power from ``covariates'' that are well-established
+
+    \begin{itemize}
+    \tightlist
+    \item
+      remote sensing technologies used to map short-term weather patterns as well as long-term land use and climate change trends\textsuperscript{\protect\hyperlink{ref-Ericksen2011}{53}}
+    \item
+      VGI from (eg) HOTOSM\textsuperscript{\protect\hyperlink{ref-Thomson2019}{54}}
+    \item
+      Modeled estimates, notably WorldPop (actually a modeled estimate)\textsuperscript{\protect\hyperlink{ref-Tatem2017}{44}}
+    \end{itemize}
+  \end{itemize}
+\item
+  PAR: Short-term program implications for this kind of data:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Target and design new surveys
+  \item
+    Track the effect of scaling up interventions\textsuperscript{\protect\hyperlink{ref-Diggle2016}{10}}
+  \item
+    Develop new programs\textsuperscript{\protect\hyperlink{ref-Pigott2015}{47}}
+  \end{itemize}
+\end{itemize}
 
 \hypertarget{high-income-countries}{%
 \subsubsection{High-income countries}\label{high-income-countries}}
 
-\lipsum[13-15]
+\begin{itemize}
+\tightlist
+\item
+  PAR:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Greater data fidelity allows for a wider range of approaches
+  \item
+    Use case 1 - Estimation of health outcomes for very local areal units, including United States census tracts\textsuperscript{\protect\hyperlink{ref-Dwyer-Lindgren2017}{3},\protect\hyperlink{ref-Zhang2014}{55}}
+  \item
+    Use case 2 - Risk factor detection using observational data\textsuperscript{\protect\hyperlink{ref-Liu2019}{\textbf{Liu2019?}}}
+  \item
+    Use case 3 - Age-period-cohort models for cancer incidence;\textsuperscript{\protect\hyperlink{ref-Papoila2014}{56}} demographic modeling over space, age group, and causes of death\textsuperscript{\protect\hyperlink{ref-Dwyer-Lindgren2016}{57}}
+  \item
+    Monthly and weekly mortality reports\textsuperscript{\protect\hyperlink{ref-Weinberger2020a}{58}}
+  \end{itemize}
+\item
+  PAR: Completeness assumption is often grounded on quality checks; however, this does not
+  mean fidelity is perfect
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Examples of data quality checks from SCORE report\textsuperscript{\protect\hyperlink{ref-WorldHealthOrganization2021}{32}}
+  \item
+    Counterexample: COVID-19 mortality reporting issues
+
+    \begin{itemize}
+    \tightlist
+    \item
+      Time lag
+    \item
+      Negative deaths
+    \item
+      Cause misreporting\textsuperscript{\protect\hyperlink{ref-Weinberger2020a}{58}}
+    \end{itemize}
+  \end{itemize}
+\end{itemize}
 
 \hypertarget{limitations}{%
 \subsection{Limitations}\label{limitations}}
 
-\lipsum[1-4]
+\begin{itemize}
+\tightlist
+\item
+  PAR LIMITATION - Usefulness
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Long-term: household surveys in conjunction with statistical modeling leave major
+    gaps in terms of knowledge
+  \item
+    Compare to standards: compulsory and universal, timely, accurate, complete, and confidential
+  \end{itemize}
+\item
+  PAR: LIMITATION - Uncertainty and its communication
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Uncertainty from a Bayesian perspective often expressed in terms of Uncertainty
+    Intervals (UI)
+  \item
+    In mapping terms: The output of Bayesian spatial modeling is a large number of ``candidate maps'' that represent possible explanations of the underlying data, where better explanations are more likely to be included\textsuperscript{\protect\hyperlink{ref-Patil2011}{59}}. Mapping outputs typically show summaries, such as the mean and uncertainty, of each pixel or areal unit in a candidate map.
+  \item
+    BUT: This uncertainty is difficult to communicate, especially across space.
+
+    \begin{itemize}
+    \tightlist
+    \item
+      In this way, maps create meaning and certainty
+    \end{itemize}
+  \item
+    This question of finality is supported by past research on cartography in policymaking,
+    which has demonstrated how maps can convey a sense of finality to unsettled questions
+    in space: one can settle any doubts with an assertion that ``it's there on the map''.\textsuperscript{\protect\hyperlink{ref-Elwood2006}{60}}
+  \item
+    Policy processes do not necessarily incorporate uncertainty
+  \end{itemize}
+\item
+  PAR: LIMITATION - model misspecification
+
+  \begin{itemize}
+  \tightlist
+  \item
+    All models built on assumptions
+  \item
+    Circularity and ``models on top of models''
+  \item
+    Example: mortality estimates for infectious diseases: IHME vs.~WHO\textsuperscript{\protect\hyperlink{ref-Tichenor2020}{61}} differences largely in areas with little death registration data. Differences in modeling approaches, prior specifications, and processing of the few data sources available (VA) have huge implications for global health policymaking and financing. Larger issue on the local scale.
+  \end{itemize}
+\item
+  PAR: LIMITATION - who benefits? Relationship between modeler, data collector, and country
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Statistical modeling still has a high barrier to entry
+  \item
+    May create perverse incentives\textsuperscript{\protect\hyperlink{ref-Tichenor2020}{61}}
+  \item
+    Concerns of data imperialism\textsuperscript{\protect\hyperlink{ref-Marchais2020}{62}}
+  \item
+    Data doubles create representations of a country's health and development status that it has no control over, taking away levers for action in decision-making around global health financing and action\textsuperscript{\protect\hyperlink{ref-Cinnamon2020a}{63}}
+  \end{itemize}
+\item
+  PAR: LIMITATION - even with advanced modeling techniques, some analyses are intractable
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Example: COVID-19 death counts
+  \end{itemize}
+\end{itemize}
 
 \hypertarget{new-hierarchical-modeling-techniques-for-mapping-health-outcomes-using-incomplete-health-surveillance-data}{%
 \section{New hierarchical modeling techniques for mapping health outcomes using incomplete health surveillance data}\label{new-hierarchical-modeling-techniques-for-mapping-health-outcomes-using-incomplete-health-surveillance-data}}
 
-\lipsum[5-12]
+\begin{itemize}
+\tightlist
+\item
+  PAR: Creating incentives for improving health surveillance data
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Extending spatial modeling to start closing the gap in the health data divide
+  \item
+    Developing models where even deficient vital records can offer insights into the
+    health of a country that are impossible to derive from other sources, offering an
+    incentive for improvement
+
+    \begin{itemize}
+    \tightlist
+    \item
+      Certainty of these models increases as quality of surveillance increases
+    \end{itemize}
+  \item
+    Goal: create a virtuous cycle where health surveillance data can be used for
+    health system strengthening, and better funding/functioning of health systems at the
+    local level lead to improved health surveillance
+  \end{itemize}
+\item
+  PAR: Theoretical grounding for this approach
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Fundamentally, health surveillance is an important building block of a functioning
+    health system\textsuperscript{\protect\hyperlink{ref-Roberts2008}{8}}
+  \item
+    In line with the geographic movement towards ``critical cartography'', this project
+    recognizes that maps are inherently value-laden representations of reality: the
+    assumptions and use cases underlying maps of health have implications for the direction
+    of health policy and reform\textsuperscript{\protect\hyperlink{ref-Crampton2006}{64}}.
+  \item
+    The spatial aspect of this modelling is important:
+
+    \begin{itemize}
+    \tightlist
+    \item
+      Within a CRVS system, the principles of universality, timeliness, accuracy, completeness, and confidentiality (as well as barriers to these) often correspond to local processes that can be assessed using a spatial approach
+    \item
+      variation across a country can tell us important things about the overall quality
+      of the data
+    \item
+      Barriers to high-quality health data overlap with health service capacity issues at
+      the local level -- improving one should improve both
+    \end{itemize}
+  \item
+    Necessary but not sufficient for adequate health data governance in LMICs, complementary to legal and governmental frameworks\textsuperscript{\protect\hyperlink{ref-Tiffin2019}{65}}
+  \end{itemize}
+\item
+  PAR: Modeling benefits of this approach
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Crosswalks common in statistical modeling using a simple correction term, but more
+    nuanced approaches to joint estimation are becoming more common thanks to improved
+    tools for estimation
+  \item
+    Bayesian hierarchical modeling approach, where the data-generating process includes the generation of CRVS/surveillance data\textsuperscript{\protect\hyperlink{ref-Schmertmann2018}{66}}
+  \item
+    Estimate the biases or incompleteness of health surveillance by comparing to a
+    ``gold standard'' data source
+  \item
+    Fill in the ``gaps'' provided by survey data using estimates from high-performing locations
+  \end{itemize}
+\item
+  PAR: Programmatic benefits of this approach
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Use case for health surveillance
+  \item
+    Explicitly track changes in completeness over space and time
+
+    \begin{itemize}
+    \tightlist
+    \item
+      As with health outcomes, CRVS improvement should be targeted and data-driven
+    \end{itemize}
+  \item
+    Spatial approach allows us to identify different levels of policy and funding impact:
+
+    \begin{itemize}
+    \tightlist
+    \item
+      National level
+    \item
+      State level
+    \item
+      Local level
+    \end{itemize}
+  \item
+    Temporal modeling allows for identification of change and possible exemplars/barriers
+    to improvement
+  \item
+    Can also be used to relax the completeness assumption in high-income countries
+  \end{itemize}
+\item
+  PAR: Translating goals into principles of model construction and collaboration
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Understanding the data generating process means country-specific partnerships
+
+    \begin{itemize}
+    \tightlist
+    \item
+      Specific data environment
+    \item
+      Specific history of CRVS development with spatial implications
+    \end{itemize}
+  \item
+    Generalizing these specific models into templates that can be applied across a wide
+    variety of contexts:
+
+    \begin{itemize}
+    \tightlist
+    \item
+      For example, the framework used to jointly model rare health events and surveillance
+      completeness can be applied both to neonatal mortality (Mexico) and tuberculosis
+      incidence (Uganda)
+    \end{itemize}
+  \item
+    Open sourcing results
+
+    \begin{itemize}
+    \tightlist
+    \item
+      Modeling approach that brings its own limitations and potential for harm to the foreground\textsuperscript{\protect\hyperlink{ref-Cinnamon2020a}{63}}
+    \item
+      Recognizing that a steep learning curve for GIS and spatial modeling tools still inhibits wide adoption\textsuperscript{\protect\hyperlink{ref-Shannon2018}{67}}
+    \end{itemize}
+  \end{itemize}
+\end{itemize}
 
 \hypertarget{thesis-structure}{%
-\section{Thesis structure}\label{thesis-structure}}
+\subsection{Thesis structure}\label{thesis-structure}}
 
-\lipsum[1-3]
+\begin{itemize}
+\item
+  PAR: Explanation of structure
 
-This is an example paragraph. To conclude, let's reference Figure \ref{fig:fig1} and Table \ref{tab:t1}. Here are some example citations.\textsuperscript{\protect\hyperlink{ref-Aalbers}{1},\protect\hyperlink{ref-Aguirre2009}{2}}
+  \begin{itemize}
+  \tightlist
+  \item
+    Series of country-specific collaborations with implications for broader country
+    data environments
+  \item
+    Working from lowest availability to highest availability of spatial CRVS data,
+    increasing modeling possibilities
+  \end{itemize}
+\item
+  PAR: India
+\item
+  PAR: Mexico
+\item
+  PAR: Uganda
+\item
+  PAR: Italy
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Relaxing the assumption about fidelity of CRVS data, specifically cause-specific
+    mortality
+  \end{itemize}
+\item
+  PAR: Themes
+
+  \begin{itemize}
+  \tightlist
+  \item
+    The coverage of health surveillance data enables small-population estimation that can inform responsive and equitable health policy
+  \item
+    Jointly estimating local variation in disease burden and input data quality
+  \item
+    Spatial statistical modeling:
+
+    \begin{itemize}
+    \tightlist
+    \item
+      Short-term opportunities to supplement developing health surveillance and household surveys
+    \item
+      No alternative to complete, high-quality national health surveillance systems
+    \end{itemize}
+  \end{itemize}
+\end{itemize}
+
+This is an example paragraph. To conclude, let's reference Figure \ref{fig:fig1} and Table \ref{tab:t1}. Here are some example citations.\textsuperscript{\protect\hyperlink{ref-Aalbers}{68},\protect\hyperlink{ref-Aguirre2009}{69}}
 
 \hypertarget{references}{%
 \section{References}\label{references}}
 
 \hypertarget{refs}{}
 \begin{CSLReferences}{0}{0}
-\leavevmode\hypertarget{ref-Aalbers}{}%
+\leavevmode\hypertarget{ref-UNGeneralAssembly1948}{}%
 \CSLLeftMargin{1. }
+\CSLRightInline{UN General Assembly. {Universal declaration of human rights}. vol. 2 (1948).}
+
+\leavevmode\hypertarget{ref-Burstein2019}{}%
+\CSLLeftMargin{2. }
+\CSLRightInline{Burstein, R. \emph{et al.} {Mapping 123 million neonatal, infant and child deaths between 2000 and 2017}. \emph{Nature} \textbf{574}, 353--358 (2019).}
+
+\leavevmode\hypertarget{ref-Dwyer-Lindgren2017}{}%
+\CSLLeftMargin{3. }
+\CSLRightInline{Dwyer-Lindgren, L. \emph{et al.} {Variation in life expectancy and mortality by cause among neighbourhoods in King County, WA, USA, 1990--2014: a census tract-level analysis for the Global Burden of Disease Study 2015}. \emph{The Lancet Public Health} \textbf{2}, e400--e410 (2017).}
+
+\leavevmode\hypertarget{ref-Ruger2006}{}%
+\CSLLeftMargin{4. }
+\CSLRightInline{Ruger, J. P. {Ethics and governance of global health inequalities}. \emph{Journal of Epidemiology and Community Health} \textbf{60}, 998--1003 (2006).}
+
+\leavevmode\hypertarget{ref-Brown2006}{}%
+\CSLLeftMargin{5. }
+\CSLRightInline{Brown, T. M., Cueto, M. \& Fee, E. {The World Health Organization and the transition from international to global public health}. \emph{American Journal of Public Health} \textbf{96}, 62--72 (2006).}
+
+\leavevmode\hypertarget{ref-WorldHealthOrganization2007}{}%
+\CSLLeftMargin{6. }
+\CSLRightInline{World Health Organization. \emph{{Everybody's business: strengthening health systems to improve health outcomes: WHO's framework for action.}} 1--44 (2007).}
+
+\leavevmode\hypertarget{ref-WorldHealthOrganization2010}{}%
+\CSLLeftMargin{7. }
+\CSLRightInline{World Health Organization. \emph{{Monitoring the Building Blocks of Health Systems: a Handbook of Indicators and Their Measurement Strategies}}. vol. 35 1--92 \url{http://www.annualreviews.org/doi/10.1146/annurev.ecolsys.35.021103.105711} (2010).}
+
+\leavevmode\hypertarget{ref-Roberts2008}{}%
+\CSLLeftMargin{8. }
+\CSLRightInline{Roberts, M. J., Hsiao, W., Berman, P. \& Reich, M. R. \emph{{Getting health reform right: a guide to improving performance and equity}}. (2008).}
+
+\leavevmode\hypertarget{ref-AbouZahr2015}{}%
+\CSLLeftMargin{9. }
+\CSLRightInline{AbouZahr, C. \emph{et al.} {Towards universal civil registration and vital statistics systems: The time is now}. \emph{The Lancet} \textbf{386}, 1407--1418 (2015).}
+
+\leavevmode\hypertarget{ref-Diggle2016}{}%
+\CSLLeftMargin{10. }
+\CSLRightInline{Diggle, P. J. \& Giorgi, E. {Model-Based Geostatistics for Prevalence Mapping in Low-Resource Settings}. \emph{Journal of the American Statistical Association} \textbf{111}, 1096--1120 (2016).}
+
+\leavevmode\hypertarget{ref-Setel2007}{}%
+\CSLLeftMargin{11. }
+\CSLRightInline{Setel, P. W. \emph{et al.} {A scandal of invisibility: making everyone count by counting everyone}. \emph{Lancet} \textbf{370}, 1569--1577 (2007).}
+
+\leavevmode\hypertarget{ref-UnitedNationsStatisticsDivision2014}{}%
+\CSLLeftMargin{12. }
+\CSLRightInline{United Nations Statistics Division. \emph{{Principles and Recommendations for a Vital Statistics System Revision 3}}. (2014).}
+
+\leavevmode\hypertarget{ref-Fisker2019}{}%
+\CSLLeftMargin{13. }
+\CSLRightInline{Fisker, A. B., Rodrigues, A. \& Helleringer, S. {Differences in barriers to birth and death registration in Guinea-Bissau: implications for monitoring national and global health objectives}. \emph{Tropical Medicine and International Health} \textbf{24}, 166--174 (2019).}
+
+\leavevmode\hypertarget{ref-Hernandez2012}{}%
+\CSLLeftMargin{14. }
+\CSLRightInline{Hernández, B. \emph{et al.} {Subregistro de defunciones de menores y certificaci{ó}n de nacimiento en una muestra representativa de los 101 municipios con m{á}s bajo {í}ndice de desarrollo humano en M{é}xico}. \emph{Salud P{ú}blica de M{é}xico} \textbf{54}, 393--400 (2012).}
+
+\leavevmode\hypertarget{ref-Mahapatra2007}{}%
+\CSLLeftMargin{15. }
+\CSLRightInline{Mahapatra, P. \emph{et al.} {Civil registration systems and vital statistics: successes and missed opportunities}. \emph{Lancet} \textbf{370}, 1653--1663 (2007).}
+
+\leavevmode\hypertarget{ref-Roth2018}{}%
+\CSLLeftMargin{16. }
+\CSLRightInline{Roth, G. A. \emph{et al.} {Global, regional, and national age-sex-specific mortality for 282 causes of death in 195 countries and territories, 1980--2017: a systematic analysis for the Global Burden of Disease Study 2017}. \emph{The Lancet} \textbf{392}, 1736--1788 (2018).}
+
+\leavevmode\hypertarget{ref-Johnson2021}{}%
+\CSLLeftMargin{17. }
+\CSLRightInline{Johnson, S. C. \emph{et al.} {Public health utility of cause of death data: applying empirical algorithms to improve data quality}. \emph{BMC Medical Informatics and Decision Making} \textbf{21}, 1--20 (2021).}
+
+\leavevmode\hypertarget{ref-Blake1955}{}%
+\CSLLeftMargin{18. }
+\CSLRightInline{Blake, J. B. {The Early History of Vital Statistics in Massachusetts}. \emph{Bulletin of the History of Medicine} \textbf{29}, 46--68 (1955).}
+
+\leavevmode\hypertarget{ref-AbouZahr2021}{}%
+\CSLLeftMargin{19. }
+\CSLRightInline{AbouZahr, C. \emph{et al.} {The COVID-19 pandemic: Effects on civil registration of births and deaths and on availability and utility of vital events data}. \emph{American Journal of Public Health} \textbf{111}, 1123--1131 (2021).}
+
+\leavevmode\hypertarget{ref-Vlieg2017}{}%
+\CSLLeftMargin{20. }
+\CSLRightInline{Vlieg, W. L. \emph{et al.} {Comparing national infectious disease surveillance systems: China and the Netherlands}. \emph{BMC Public Health} \textbf{17}, 1--9 (2017).}
+
+\leavevmode\hypertarget{ref-Thacker1989}{}%
+\CSLLeftMargin{21. }
+\CSLRightInline{Thacker, S. B., Berkelman, R. L. \& Stroup, D. F. {The Science of Public Health Surveillance}. \emph{Journal of Public Health Policy} \textbf{10}, 187--203 (1989).}
+
+\leavevmode\hypertarget{ref-Mauch2010}{}%
+\CSLLeftMargin{22. }
+\CSLRightInline{Mauch, V. \emph{et al.} {Structure and management of tuberculosis control programs in fragile states-Afghanistan, DR Congo, Haiti, Somalia}. \emph{Health Policy} \textbf{96}, 118--127 (2010).}
+
+\leavevmode\hypertarget{ref-Uplekar2016}{}%
+\CSLLeftMargin{23. }
+\CSLRightInline{Uplekar, M. \emph{et al.} {Mandatory tuberculosis case notification in high tuberculosis-incidence countries: Policy and practice}. \emph{European Respiratory Journal} \textbf{48}, 1571--1581 (2016).}
+
+\leavevmode\hypertarget{ref-Rood2019}{}%
+\CSLLeftMargin{24. }
+\CSLRightInline{Rood, E. \emph{et al.} {A spatial analysis framework to monitor and accelerate progress towards SDG 3 to end TB in Bangladesh}. \emph{ISPRS International Journal of Geo-Information} \textbf{8}, 1--11 (2019).}
+
+\leavevmode\hypertarget{ref-Corsi2012}{}%
+\CSLLeftMargin{25. }
+\CSLRightInline{Corsi, D. J., Neuman, M., Finlay, J. E. \& Subramanian, S. V. {Demographic and health surveys: A profile}. \emph{International Journal of Epidemiology} \textbf{41}, 1602--1613 (2012).}
+
+\leavevmode\hypertarget{ref-Khan2019}{}%
+\CSLLeftMargin{26. }
+\CSLRightInline{Khan, S. \& Hancioglu, A. {Multiple Indicator Cluster Surveys: Delivering Robust Data on Children and Women across the Globe}. \emph{Studies in Family Planning} \textbf{50}, 279--286 (2019).}
+
+\leavevmode\hypertarget{ref-Dandona2016}{}%
+\CSLLeftMargin{27. }
+\CSLRightInline{Dandona, R., Pandey, A. \& Dandona, L. {A review of national health surveys in India}. \emph{Bulletin of the World Health Organization} \textbf{94}, 286--296A (2016).}
+
+\leavevmode\hypertarget{ref-Kumar2019}{}%
+\CSLLeftMargin{28. }
+\CSLRightInline{Kumar, G. A., Dandona, L. \& Dandona, R. {Completeness of death registration in the Civil Registration System, India (2005 to 2015)}. \emph{Indian Journal of Medical Research} \textbf{149}, 740 (2019).}
+
+\leavevmode\hypertarget{ref-Banister2004}{}%
+\CSLLeftMargin{29. }
+\CSLRightInline{Banister, J. \& Hill, K. {Mortality in China 1964-2000}. \emph{Population Studies} \textbf{58}, 55--75 (2004).}
+
+\leavevmode\hypertarget{ref-Zeng2020}{}%
+\CSLLeftMargin{30. }
+\CSLRightInline{Zeng, X. \emph{et al.} {Measuring the completeness of death registration in 2844 Chinese counties in 2018}. \emph{BMC medicine} \textbf{18}, 176 (2020).}
+
+\leavevmode\hypertarget{ref-He2017}{}%
+\CSLLeftMargin{31. }
+\CSLRightInline{He, C. \emph{et al.} {National and subnational all-cause and cause-specific child mortality in China, 1996--2015: a systematic analysis with implications for the Sustainable Development Goals}. \emph{The Lancet Global Health} \textbf{5}, e186--e197 (2017).}
+
+\leavevmode\hypertarget{ref-WorldHealthOrganization2021}{}%
+\CSLLeftMargin{32. }
+\CSLRightInline{World Health Organization. \emph{{SCORE for health data technical package: global report on health data systems and capacity, 2020}}. 1--104 \url{https://www.who.int/publications/global-report-on-health-data-systems-and-capacity-2020} (2021).}
+
+\leavevmode\hypertarget{ref-Makinde2020}{}%
+\CSLLeftMargin{33. }
+\CSLRightInline{Makinde, O. A. \emph{et al.} {Death registration in Nigeria: a systematic literature review of its performance and challenges}. \emph{Global Health Action} \textbf{13}, (2020).}
+
+\leavevmode\hypertarget{ref-McElreath2016}{}%
+\CSLLeftMargin{34. }
+\CSLRightInline{McElreath, R. \emph{{Statistical Rethinking}}. (Taylor {\&} Francis, 2016). doi:\href{https://doi.org/10.1080/09332480.2017.1302722}{10.1080/09332480.2017.1302722}.}
+
+\leavevmode\hypertarget{ref-Tobler1970}{}%
+\CSLLeftMargin{35. }
+\CSLRightInline{Tobler, W. R. {A Computer Movie Simulating Urban Growth in the Detroit Region}. \emph{Economic Geography} \textbf{46}, 234--240 (1970).}
+
+\leavevmode\hypertarget{ref-Riebler2016}{}%
+\CSLLeftMargin{36. }
+\CSLRightInline{Riebler, A. \emph{et al.} {An intuitive Bayesian spatial model for disease mapping that accounts for scaling}. \emph{Statistical Methods in Medical Research} \textbf{25}, 1145--1165 (2016).}
+
+\leavevmode\hypertarget{ref-Besag1991}{}%
+\CSLLeftMargin{37. }
+\CSLRightInline{Besag, J., York, J. \& Mollié, A. {A Bayesian image restoration with two applications in spatial statistics Ann Inst Statist Math 43: 1--59}. \emph{Find this article online} \textbf{43}, 1--20 (1991).}
+
+\leavevmode\hypertarget{ref-III1979a}{}%
+\CSLLeftMargin{38. }
+\CSLRightInline{Fay, R. E. \& Herriot, R. A. {Estimates of Income for Small Places: An Application of James-Stein Procedures to Census Data}. \emph{Journal of the American Statistical Association} \textbf{74}, 269 (1979).}
+
+\leavevmode\hypertarget{ref-Oliver2010}{}%
+\CSLLeftMargin{39. }
+\CSLRightInline{Oliver, M. A. {The Variogram and Kriging}. in \emph{Handbook of applied spatial analysis: Software tools, methods, and applications} (eds. Fischer, M. M. \& Getis, A.) 319--352 (Springer, 2010). doi:\href{https://doi.org/10.1007/978-3-642-03647-7}{10.1007/978-3-642-03647-7}.}
+
+\leavevmode\hypertarget{ref-Lindgren2011}{}%
+\CSLLeftMargin{40. }
+\CSLRightInline{Lindgren, F. \& Rue, H. {An explicit link between Gaussian fields and Gaussian Markov random fields: the stochastic partial differential equation approach}. \emph{Journal of the Royal Statistical Society. Series B} \textbf{73}, 423--498 (2011).}
+
+\leavevmode\hypertarget{ref-Miller2020}{}%
+\CSLLeftMargin{41. }
+\CSLRightInline{Miller, D. L., Glennie, R. \& Seaton, A. E. {Understanding the Stochastic Partial Differential Equation Approach to Smoothing}. \emph{Journal of Agricultural, Biological, and Environmental Statistics} \textbf{25}, 1--16 (2020).}
+
+\leavevmode\hypertarget{ref-Mercer2015}{}%
+\CSLLeftMargin{42. }
+\CSLRightInline{Mercer, L. D. \emph{et al.} {Space--time smoothing of complex survey data: Small area estimation for child mortality}. \emph{Annals of Applied Statistics} \textbf{9}, 1889--1905 (2015).}
+
+\leavevmode\hypertarget{ref-Bhatt2017}{}%
+\CSLLeftMargin{43. }
+\CSLRightInline{Bhatt, S. \emph{et al.} {Improved prediction accuracy for disease risk mapping using Gaussian process stacked generalization}. \emph{Journal of the Royal Society Interface} \textbf{14}, (2017).}
+
+\leavevmode\hypertarget{ref-Tatem2017}{}%
+\CSLLeftMargin{44. }
+\CSLRightInline{Tatem, A. J. {WorldPop, open data for spatial demography}. \emph{Scientific Data} \textbf{4}, 2--5 (2017).}
+
+\leavevmode\hypertarget{ref-Hay2013}{}%
+\CSLLeftMargin{45. }
+\CSLRightInline{Hay, S. I. \emph{et al.} {Global mapping of infectious disease}. \emph{Philosophical Transactions of the Royal Society B: Biological Sciences} \textbf{368}, (2013).}
+
+\leavevmode\hypertarget{ref-Banerjee2014}{}%
+\CSLLeftMargin{46. }
+\CSLRightInline{Banerjee, S., Carlin, B. P. \& Gelfand, A. E. \emph{{Hierarchical modeling and analysis for spatial data}}. (CRC Press, 2014).}
+
+\leavevmode\hypertarget{ref-Pigott2015}{}%
+\CSLLeftMargin{47. }
+\CSLRightInline{Pigott, D. M. \emph{et al.} {Prioritising infectious disease mapping}. \emph{PLoS Neglected Tropical Diseases} \textbf{9}, 1--21 (2015).}
+
+\leavevmode\hypertarget{ref-Weiss2019}{}%
+\CSLLeftMargin{48. }
+\CSLRightInline{Weiss, D. J. \emph{et al.} {Mapping the global prevalence, incidence, and mortality of Plasmodium falciparum, 2000--17: a spatial and temporal modelling study}. \emph{The Lancet} \textbf{394}, 322--331 (2019).}
+
+\leavevmode\hypertarget{ref-Nguyen2019}{}%
+\CSLLeftMargin{49. }
+\CSLRightInline{Nguyen, M. \emph{et al.} {Mapping malaria seasonality: a case study from Madagascar}. 1--13 (2019).}
+
+\leavevmode\hypertarget{ref-Osgood-Zimmerman2018}{}%
+\CSLLeftMargin{50. }
+\CSLRightInline{Osgood-Zimmerman, A. \emph{et al.} {Mapping child growth failure in Africa between 2000 and 2015}. \emph{Nature} \textbf{555}, 41--47 (2018).}
+
+\leavevmode\hypertarget{ref-Maina2019}{}%
+\CSLLeftMargin{51. }
+\CSLRightInline{Maina, J. \emph{et al.} {A spatial database of health facilities managed by the public health sector in sub Saharan Africa}. \emph{Scientific Data} \textbf{6}, 1--8 (2019).}
+
+\leavevmode\hypertarget{ref-Wakefield2020}{}%
+\CSLLeftMargin{52. }
+\CSLRightInline{Wakefield, J., Okonek, T. \& Pedersen, J. {Small Area Estimation for Disease Prevalence Mapping}. \emph{International Statistical Review} insr.12400 (2020) doi:\href{https://doi.org/10.1111/insr.12400}{10.1111/insr.12400}.}
+
+\leavevmode\hypertarget{ref-Ericksen2011}{}%
+\CSLLeftMargin{53. }
+\CSLRightInline{Ericksen, P. \emph{et al.} \emph{{Mapping hotspots of climate change and food insecurity in the global tropics}}. \url{http://www.dfid.gov.uk/r4d/PDF/Outputs/CCAFS/ccafsreport5-climate_hotspots_final.pdf\%0Ahttp://cgspace.cgiar.org/bitstream/handle/10568/3826/ccafsreport5-climate_hotspots_final.pdf?sequence=13} (2011).}
+
+\leavevmode\hypertarget{ref-Thomson2019}{}%
+\CSLLeftMargin{54. }
+\CSLRightInline{Thomson, D. R. \emph{et al.} {Extending Data for Urban Health Decision-Making: a Menu of New and Potential Neighborhood-Level Health Determinants Datasets in LMICs}. \emph{Journal of Urban Health} \textbf{96}, 514--536 (2019).}
+
+\leavevmode\hypertarget{ref-Zhang2014}{}%
+\CSLLeftMargin{55. }
+\CSLRightInline{Zhang, X. \emph{et al.} {Multilevel regression and poststratification for small-area estimation of population health outcomes: A case study of chronic obstructive pulmonary disease prevalence using the behavioral risk factor surveillance system}. \emph{American Journal of Epidemiology} \textbf{179}, 1025--1033 (2014).}
+
+\leavevmode\hypertarget{ref-Papoila2014}{}%
+\CSLLeftMargin{56. }
+\CSLRightInline{Papoila, A. L. \emph{et al.} {Stomach cancer incidence in Southern Portugal 1998-2006: A spatio-temporal analysis}. \emph{Biometrical Journal} \textbf{56}, 403--415 (2014).}
+
+\leavevmode\hypertarget{ref-Dwyer-Lindgren2016}{}%
+\CSLLeftMargin{57. }
+\CSLRightInline{Dwyer-Lindgren, L. \emph{et al.} {US county-level trends in mortality rates for major causes of death, 1980-2014}. \emph{JAMA - Journal of the American Medical Association} \textbf{316}, 2385--2401 (2016).}
+
+\leavevmode\hypertarget{ref-Weinberger2020a}{}%
+\CSLLeftMargin{58. }
+\CSLRightInline{Weinberger, D. M. \emph{et al.} {Estimation of Excess Deaths Associated with the COVID-19 Pandemic in the United States, March to May 2020}. \emph{JAMA Internal Medicine} \textbf{06520}, E1--E9 (2020).}
+
+\leavevmode\hypertarget{ref-Patil2011}{}%
+\CSLLeftMargin{59. }
+\CSLRightInline{Patil, A. P., Gething, P. W., Piel, F. B. \& Hay, S. I. {Bayesian geostatistics in health cartography: The perspective of malaria}. \emph{Trends in Parasitology} \textbf{27}, 246--253 (2011).}
+
+\leavevmode\hypertarget{ref-Elwood2006}{}%
+\CSLLeftMargin{60. }
+\CSLRightInline{Elwood, S. {Beyond cooptation or resistance: Urban spatial politics, community organizations, and GIS-based spatial narratives}. \emph{Annals of the Association of American Geographers} \textbf{96}, 323--341 (2006).}
+
+\leavevmode\hypertarget{ref-Tichenor2020}{}%
+\CSLLeftMargin{61. }
+\CSLRightInline{Tichenor, M. \& Sridhar, D. {Metric partnerships: Global burden of disease estimates within the World Bank, the World Health Organisation and the Institute for Health Metrics and Evaluation}. \emph{Wellcome Open Research} \textbf{4}, (2020).}
+
+\leavevmode\hypertarget{ref-Marchais2020}{}%
+\CSLLeftMargin{62. }
+\CSLRightInline{Marchais, G., Bazuzi, P. \& Amani Lameke, A. {`The data is gold, and we are the gold-diggers': whiteness, race and contemporary academic research in eastern DRC}. \emph{Critical African Studies} \textbf{12}, 372--394 (2020).}
+
+\leavevmode\hypertarget{ref-Cinnamon2020a}{}%
+\CSLLeftMargin{63. }
+\CSLRightInline{Cinnamon, J. {Data inequalities and why they matter for development}. \emph{Information Technology for Development} \textbf{26}, 214--233 (2020).}
+
+\leavevmode\hypertarget{ref-Crampton2006}{}%
+\CSLLeftMargin{64. }
+\CSLRightInline{Crampton, J. W. \& Krygier, J. {An introduction to critical cartography}. \emph{Acme} \textbf{4}, 11--33 (2006).}
+
+\leavevmode\hypertarget{ref-Tiffin2019}{}%
+\CSLLeftMargin{65. }
+\CSLRightInline{Tiffin, N., George, A. \& Lefevre, A. E. {How to use relevant data for maximal benefit with minimal risk: Digital health data governance to protect vulnerable populations in low-income and middle-income countries}. \emph{BMJ Global Health} \textbf{4}, 1--9 (2019).}
+
+\leavevmode\hypertarget{ref-Schmertmann2018}{}%
+\CSLLeftMargin{66. }
+\CSLRightInline{Schmertmann, C. P. \& Gonzaga, M. R. {Bayesian Estimation of Age-Specific Mortality and Life Expectancy for Small Areas With Defective Vital Records}. \emph{Demography} \textbf{55}, 1363--1388 (2018).}
+
+\leavevmode\hypertarget{ref-Shannon2018}{}%
+\CSLLeftMargin{67. }
+\CSLRightInline{Shannon, J. \& Walker, K. {Opening GIScience: A process-based approach}. \emph{International Journal of Geographical Information Science} \textbf{32}, 1911--1926 (2018).}
+
+\leavevmode\hypertarget{ref-Aalbers}{}%
+\CSLLeftMargin{68. }
 \CSLRightInline{Aalbers, M. B. {Do Maps Make Geography? Part 3: Reconnecting the Trace}. \emph{ACME: An International E-Journal for Critical Cartographies2} \textbf{13}, 586--588 (2014).}
 
 \leavevmode\hypertarget{ref-Aguirre2009}{}%
-\CSLLeftMargin{2. }
+\CSLLeftMargin{69. }
 \CSLRightInline{Aguirre, A. {La mortalidad infantil espa{ñ}ola en el siglo XX}. \emph{Papeles de Poblacion} \textbf{61}, 75--99 (2009).}
 
 \end{CSLReferences}
