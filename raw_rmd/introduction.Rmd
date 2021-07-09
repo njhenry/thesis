@@ -32,7 +32,7 @@ These challenges naturally raise questions about which institutions have the res
 
 While health systems necessarily develop in the context of local conditions and priorities, they share the unifying aim of improving the health of the people they serve. Therefore, any attempt to manage or improve healthcare must be measured against its potential impact on health outcomes[@Roberts2008]. From local hospitals to national ministries of health, health policymakers need to make decisions about efficiently allocating funding, prioritizing at-risk groups, identifying and responding to health crises, and implementing long-term policy development and reform. All of these decisions require a consensual understanding among parties of conditions on the ground &mdash; that is, they require data examining the potential impact of decisions on health outcomes[@AbouZahr2015]. Without data on health outcomes, other sociological and economic analyses can only describe, not drive, health policy[@Roberts2008].
 
-Complementary to their service provision activities, both international agencies and national bodies operate data collection and statistics systems that are designed to reveal actionable information about the state of health in a country. Many national ministries of health and statistics maintain Civil Registration and Vital Statistics (CRVS) operations to systematically register vital events such as birth and deaths, as well as surveillance systems for notifiable infectious diseases such as HIV, tuberculosis, and measles. In high-resource countries, largely complete and high-quality health information systems facilitate epidemiological investigation and decision-making. In many lower-resource settings, where the majority of childhood deaths and disease burden are concentrated, CRVS systems may be absent or incomplete, while infectious disease surveillance may be hindered by low completeness and reporting lags. To alleviate this data gap, international health institutions often fund household surveys that systematically collect information about key aspects of health. These surveys can be further supplemented by health modeling approaches: notably, modern spatial statistical modeling can reveal local inequalities that may fall below the sampling frame of the original survey[@Diggle2016].
+Complementary to their service provision activities, both international agencies and national bodies operate data collection and statistics systems that are designed to reveal actionable information about the state of health in a country. Many national ministries of health and statistics maintain Civil registration and vital statistics (CRVS) operations to systematically register vital events such as birth and deaths, as well as surveillance systems for notifiable infectious diseases such as HIV, tuberculosis (TB), and measles. In high-resource countries, largely complete and high-quality health information systems facilitate epidemiological investigation and decision-making. In many lower-resource settings, where most childhood deaths and disease burden are concentrated, CRVS systems may be absent or incomplete, while infectious disease surveillance may be hindered by low completeness and reporting lags. To alleviate this data gap, international health institutions often fund household surveys that systematically collect information about key aspects of health. These surveys can be further supplemented by health modeling approaches: notably, modern spatial statistical modeling can reveal local inequalities that may fall below the sampling frame of the original survey[@Diggle2016].
 
 This thesis asserts that high-quality CRVS and infectious disease surveillance are irreplaceable as a foundation for responsive health decision-making, and that these systems are therefore essential prerequisites for delivering sustainable and equitable health services to all people. The following sections of this chapter introduce the operation of these health data systems as well as the spatial modeling approaches that have been designed to supplement them. Past scholarship on data governance in global health has expressed the concern that modeling approaches have quelled the demand for high-quality national health surveillance without offering the same insights. In conclusion to this chapter, and more expansively throughout this thesis, I offer a partial solution to this problem of data governance: a statistical modeling framework that robustly incorporates deficient health surveillance records to measure health outcomes, and in so doing both estimates bias in the health surveillance system and provides an incentive for its improvement.
 
@@ -42,95 +42,33 @@ This thesis asserts that high-quality CRVS and infectious disease surveillance a
 
 ## Civil registration and vital statistics (CRVS) systems
 
-- PAR: How a CRVS system operates
-  - Birth records:
-    - Often legally mandated
-  - Death records:
-    - Certification
-  - Records flow[@Setel2007]
-  - Dissemination and use in country statistical systems[@UnitedNationsStatisticsDivision2014]
-  - Passive system; if birth registration not automatic, there may be systematic exclusion of children from vulnerable groups[@Fisker2019; @Hernandez2012]
+Civil registration and vital statistics (CRVS) systems facilitate the legal registration, compilation, and standardized dissemination of vital events records. Vital events comprise a wide variety of activities that change a person's legal status, including birth, marriage, separation, adoption, emancipation, legitimation, and death, among others. Of these, accurate registration of birth and death are both crucially important for the individual and for understanding population health.
 
-- PAR: CRVS as a human right
-  - Benefits conferred with a birth certificate
-  - Benefits conferred to family with a death certificate[@Setel2007]
-  - Example: Mexico's dual system for birth registration
+In areas where vital registration is collection, birth and death records are often legally mandated within a certain time window of the vital event. For births and deaths that occur in a health facility, the event can often be registered with an on-site functionary; if this service is not available, the family members of the newborn or deceased individual may be required to register online or at a government office afterwards. If a country legally mandates cause-of-death reporting, an underlying cause of death must be medically registered at the time of death or verified afterwards through a combination of interviews and autopsy. Local registration offices then report key aspects of the registration upwards to their regional and national counterparts, while private and religious health care facilities may compile and share their own records through separate channels. At the national level, these records are then validated and compiled into regular statistical reports, which may report detailed statistics by location, time, and age or cause grouping in the case of death[@Setel2007; @UnitedNationsStatisticsDivision2014]. These systems often rely on legal mandates to report rather than actively seeking out new births and deaths: this passive surveillance approach can present a problem in countries where vulnerable groups face greater barriers to vital event reporting[@Fisker2019; @Hernandez2012].
 
-- PAR: Estimated completeness of CRVS systems to date
-  - Stems from differences in institutional histories[@Blake1955]
-  - As of 2004, fewer than 1 in 100 residents in Southeast Asia and fewer than 1 in 10 Africans were covered by any birth or death registration system[@Mahapatra2007]; today, enormous gaps in service still remain.
-  - Compare maps of death registration coverage in 2000 and 2017 (all ages and under-5s)[@Roth2018]
-  - Causes of death: studies of cause-of-death registration quality have found that over 30% of all registered deaths in Egypt, Saudi Arabia, Bolivia, and Iraq could not be assigned with
-  certainty to even a broad cause-of-death grouping, compared to less than 10% of registered deaths with the same coding issues in Finland, Australia, and Ireland [@Johnson2021].
-  - LMICs: COVID-19 disrupted CRVS collection in many countries that did not consider it an "essential" service[@AbouZahr2021]
-  
-- PAR: Implications for the future of CRVS as a data source
-  - Rate of change is too slow
+At the population level, detailed CRVS data can provide crucial information to health policymakers; at the individual level, civil and death registration can provide rights and privileges to the registered. In many countries, valid birth certification is the key to accessing school, social services, and health insurance. Recognizing this reality, the government of Mexico declared that free and universal birth registration was a constitutional right of all Mexicans. In the case of death, family members of the deceased may be legally entitled to social and financial support once the death is registered[@Setel2007].
+
+Despite its importance to governance and the individual, birth and death registration is often least functional in the countries where health burden is concentrated. As of 2004, fewer than 1 in 100 residents of Southeast Asia and fewer than 1 in 10 Africans were covered by any birth or death registration[@Mahapatra2007]. Today, enormous gaps in service still remain. Figure 1, below, shows the estimated coverage of death registration among children under 5 in 2015 or the most recent year of data available. While almost all high-income countries experienced death registration completeness of over 90%, death registration coverage remained below 60% in all states of India. Peru, the Dominican Republic, and the northwestern states of Brazil also had estimated coverage levels below 50%. In all sub-Saharan African countries besides Botswana and South Africa, no mortality estimates based on vital registration were available after 2010[@Roth2018]. A similar geographical pattern shows itself for cause-of-death assignment. One review of cause-of-death registration quality found that over 30% of all registered deaths in Egypt, Saudi Arabia, Bolivia, and Iraq could not be assigned with certainty to even a broad cause-of-death grouping, compared to less than 10% of registered deaths with the same coding problems in countries like Finland, Australia, and Ireland [@Johnson2021].
+
+These massive discrepancies are partly attributable to different institutional histories: while England and some American colonies have been tabulating death records since the 17th century[@Blake1955], colonial administrations often offered no vital registration services outside of a limited register for the European colonizers. Wide differences in health spending per capita across countries are also partly to blame, as is the greater fragility of health systems: an early report has found that COVID-19 disrupted CRVS collection in many low-resource settings, which prioritized the provision of other health services instead[@AbouZahr2021]. Regardless of cause, the low coverage and variable quality of CRVS in many countries serves as a challenge to its interpretation in the service of health system governance.
 
 
 ## Infectious disease surveillance
 
-- PAR: High-income settings: notifiable infectious diseases
-  - Notification triggers investigation, contact tracing
-  - Weekly surveillance of potentially epidemic infectious disease such as influenza, notifiable infectious diseases such as mumps, and drug resistance[@Thacker1989; @WorldHealthOrganization2017]
-  - Risk assessment and early warning systems[@Vlieg2017]
+In addition to vital events, many high-resource settings maintain surveillance systems for so-called "notifiable infectious diseases" which are deemed to require health system action, including diseases such as mumps, cholera, hepatitis A, and yellow fever, among others. Under normal operating conditions, any report of a notifiable infectious disease triggers control efforts such as mandatory contact tracing. Reports may be rapidly shared with a central body to allow for risk assessment and early warning of possible outbreaks[@Vlieg2017]. In addition to notifiable infectious diseases, high-income health systems tabulate and publish weekly reports on the incidence of diseases such as influenza, HIV, and tuberculosis[@Thacker1989]. 
 
-
-- PAR: Lower-income settings: national infectious disease control programs
-  - Measles, HIV, TB, Malaria
-  - Supplemented by international funding[@Mauch2010]
-  - Data collection process:
-     - Missing data from private care providers[@Uplekar2016]
-     - may have gaps after years of delay
-     - Possibly hindered by lab access
-  - Reported case notifications may be driven by program funding and access rather than underlying burden[@Rood2019]
-
+While low-income settings may lack the resources to quickly share information about a variety of notifiable infectious diseases, almost all high-burden countries operate national programs for surveillance and control of priority infectious diseases such as HIV, tuberculosis (TB), and malaria. In low- and middle-income countries, these programs are often supplemented by funding from international institutions such as the Global Fund and the United States President's Emergency Plan for AIDS Relief (PEPFAR)[@Mauch2010]. While these programs typically set up legal reporting requirements for priority infectious diseases, the data collection process can be hampered by a lack of electronic reporting systems; limited access to labs where infections can be bacteriologically confirmed; and missing data from private care providers[@Uplekar2016]. A previous investigation of case notifications to a national TB control program in a low-resource setting found that spatial variation in case notifications was driven more by program funding and access to health services than any discernable underlying pattern in disease burden[@Rood2019]. As with CRVS data in low-resource settings, these data limitations serve as substantial barriers to the use of infectious disease surveillance to inform health policymaking.
 
 
 ## Household surveys
 
-- PAR: What are household surveys?
-   - Using DHS and MICS as examples[@Corsi2012; @Khan2019]
-     - DHS funding: USAID
-     - MICS funding: UNICEF
-   - Often considered the "gold standard" in countries with deficient vital records or infectious disease surveillance
-   - Benefits: systematic, can be detailed, designed to be representative at national level
-   - However, limited and sometimes changing topics, smaller sample size, and long time gap
+Given the limitations endemic to routine national surveillance data in low-resource settings, health decision makers at the national and international levels often turn to household surveys as the next best source of country health information. These types of surveys are perhaps exemplified by the Demographic and Health Surveys (DHS)[@Corsi2012], funded primarily by the U.S. Agency for International Development; as well as the Multiple Indicator Cluster Surveys (MICS)[@Khan2019], funded primarily by UNICEF. These survey series are primarily conducted in low- and middle-income countries, and are often considered to be the "gold standard" data source in place of deficient vital records or infectious disease surveillance. A standard DHS or MICS survey is designed to be representative at the national or first administrative level, sometimes split by urban and rural respondent groups. Depending on the size of the country, between 100 and approximately 1500 survey cluster sites will be selected, and members of approximately 30-60 households will be surveyed at each site. Survey questions are taken from a standard questionnaire used across a survey rounds. These surveys focus primarily on maternal and child health, reproductive health, nutrition, education, and health behaviors. After households are surveyed over a matter of months, the questionnaires are tabulated by a central agency, and a report is released with national and broad regional summaries for the survey country and year alongside the de-identified individual-level survey response data. In some cases, spatial identifiers are released for each cluster location after "jittering" is performed to ensure that the surveyed household are de-identified.
 
-- PAR: Collection process:
-   - Timeline and funding:
-     - Dhs
-   - Survey design
-     - Standards
-     - Country input, eg. India
-     - Often designed to be representative at the national or admin1 level, by urban/rural
-   - Data collection from a trained survey team
-     - Number of households per cluster, number of clusters per country
-     - Post-processing
-   - What gets publicly released:
-     - Report with key indicators
-     - Deidentified microdata
-     - Sometimes, includes jittered spatial identifiers
-
-- PAR: Limitations
-   - Limited changing topics
-   - Smaller sample size
-   - Recall biases
-   - Can also be biased based on survey team, interview style, etc
-   - Long time gap
-     - (note retrospective questions)
+As a tool for health decision-making at the national level, household surveys offer several advantages over incomplete health surveillance data. They are designed to be systematic, detailed in certain topics, and representative of the national population. Because many identifying questions are asked by individual household, follow-up research can identify links between risk factors and outcomes for a surveyed country. However, even well-designed and executed surveys must be interpreted with a degree of caution. The topics are deliberately limited, providing little information about diseases that cause high mortality among adults. Time gaps between surveys make inference about time trends in health difficult without simplifying assumptions. Additionally, because the surveys require respondents to recall past events, the responses may be biased in important and nonrandom ways, which can be exacerbated further based on the survey team or question wording in a particular survey round. Perhaps most relevant to the contents of this thesis, the design of these household surveys is not intended to be representative below the level of the country or its top-level administrative units. Researchers have proposed model-based solutions to each of these shortcomings, which will be discussed further in the sections below as well as in later chapters.
 
 ## Special cases
 
-- PAR: Special cases: China and India
-  - History in India
-    - Development of large household sample surveys, with sample sizes rivaling CRVS[@Dandona2016].
-    - Beginning of CRVS system in select areas, but still only about 75% complete[Kumar2019].
-  - History in China
-    - History of census-based estimation[@Banister2004]
-    - Combination of regular household censuses in combination with maternal and child
-      mortality monitoring[@He2016], and CRVS/infectious disease surveillance that is rapidly
-      increasing in coverage[@Zeng2020; @Vlieg2017]
+In any discussion of national health data systems, China and India deserve particular attention for their approaches to health surveillance. Due to the cost of directly tracking vital events and infectious diseases across the entire population, both countries have developed strategies for regular surveillance of representative sub-populations and priority groups. India is notable for conducting regular household surveys on a scale comparable to CRVS coverage in many other countries: these include the Annual Health Surveys, the District Level Health Surveys, and the National Family Health Surveys[@Dandona2016]. The country has also developed a mortality registration system designed to cover select areas of the country: this system was estimated to cover approximately 75% of its target population as of 2015[@Kumar2019]. China has a long history of census-based estimation of population and health status stretching back to the 1940s [@Banister2004]; more recently, it estimates national demographic trends using a combination of censuses, household surveys, and a CRVS system that is rapidly increasing in completeness[@Zeng2020]. These data sources are supplemented by sentinel surveillance of maternal and child mortality, as well as a nationwide notifiable infectious diseases reporting program[@He2016; @Vlieg2017].
 
 
 ## Standards for quality and usability
