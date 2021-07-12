@@ -89,129 +89,42 @@ Beginning with the ostensible birth of modern epidemiology, Dr. John Snow's mapp
 
 Health researchers are increasingly using spatial predictive modeling to estimate variation in health burden. These methods can be applied across a wide range of contexts to fill in the gaps left by existing data sources, identify focal areas of disease burden, and reveal inequalities between sub-populations. The rise of Bayesian spatial analyses in health can be partly explained by their increasing ease of use and a history of high-profile applications to health policy. However, any successful application of spatial analyses to health policymaking must also reckon with the disadvantages inherent to this set of methods, including the difficulty of communicating uncertainty across space, potential model misspecification, obscuring data limitations, and model interpretability.
 
-This section introduces two historically distinct approaches to spatial analyses of health and their past applications to assess health burden in both low-resource and high-resource data settings. It highlights both the inherent strengths and potential pitfalls of applying spatial modeling techniques to questions of health policy, which is expanded in later chapters as a key theme of this thesis.
+This section introduces two approaches to spatial analyses of health and their past applications to assess health burden in both low-resource and high-resource data settings. It highlights both the inherent strengths and potential pitfalls of applying spatial modeling techniques to questions of health policy, which is expanded in later chapters as a key theme of this thesis.
 
 
-## Disease mapping and small-area estimation
+## Disease mapping and small area estimation
 
-- PAR: Intro
-  - Both approaches traditionally extend generalized linear mixed-effects regressions to add
-    a spatial component
-  - Discrete versus continuous, but both offer statistical formalizations of Tobler's First
-    Law of Geography: "Everything is related to everything else, but near things are more related than distant things[@Tobler1970]."
-  - Small samples are drawn from an underlying risk surface
-  - Decomposition of variation into covariate-predicted, spatially-correlated, and IID[@Riebler2016]
-  - Around for a long time, exploded in the 1990s with the greater availability of statistical
-    software and the development of new spatial modeling frameworks that were computationally 
-    tractable[@Besag1991].
+Most modern spatial analyses of health trace their roots to one of two historically-distinct but convergent approaches to spatial modeling: small area estimation and geostatistics. As will be highlighted in later chapters, both approaches extend traditional generalized linear mixed-effects regressions by adding model effects that capture spatial variation in the data. While the former methodological tradition emphasizes neighborhood variation across discrete areal units and the latter estimates variation across a continuous spatial surface, both offer statistical formulations of Walter Tobler's famed First Law of Geography: "everything is related to everything else, but near things are more related than distant things[@Tobler1970]." At their core, both approaches work with small, noisy samples of data that are assumed to be drawn from a predictably-structured underlying risk surface. Both approaches also decompose variation in the underlying risk surface into covariate-predicted, spatially-correlated, and independently distributed variation components[@Riebler2016]. Both frameworks were developed throughout the mid-20th century, but exploded in popularity in the 1990s thanks to the greater availability of statistical software and the development of new techniques that increased the computational efficiency of these models[@Besag1991;@Lindgren2011].
 
-- PAR: Background for small area estimation
-  - Key: a large number of discrete areal units, where the number of sampled individuals might
-    be small for some units, and potentially predictive covariates are available for all
-    spatial units.
-  - The classic Fay-Herriot model formulation, published in 1979 and widely used thereafter,
-    estimated per-capita income across small areal units under the assumption that all
-    observations were sampled independently and share the same variance function, with no
-    spatial dependence[@III1979a]
-  - Later models added a term for local autocorrelation across space, allowing spatial
-    modelers of health to draw predictive information from the local neighborhood structures
-    across a study area[@Besag1991].
+As its name implies, small area estimation describes a modeling approach used to estimate an outcome across a number of discrete areal units where the number of individuals sampled might be small for some units. Early model formulations developed to estimate outcomes in this setting did not explicitly account for spatial autocorrelation, although they were fit across spatial units: for example, the classic Fay-Herriot model formulation, published in 1979 to estimate per-capita income across U.S. counties and widely used thereafter, deployed the formal assumption that all county-level observations were sampled independently and shared the same variance function, with no neighborhood dependence[@III1979a]. Later models added a term for local autocorrelation across space, allowing modelers of health to draw predictive information from the local neighborhood structures across a study area[@Besag1991]. Disentangling the contributions of covariate-associated, spatial, and non-spatial random variation remains an active area of research in this field[@MacNab2011; @Riebler2016].
 
-- PAR: Background for continuous disease mapping
-  - Key: Predicting across a continuous surface where variance-covariance depends on space
-  - Geostatistical modeling originally used to find mineral deposits[@Oliver2010]
-  - How to invert?
-    - Traditionally challenging
-    - SPDE approach: approximates this continuous surface using a mesh, allowing for
-      a far more efficient fitting approach[@Lindgren2011;@Miller2020]
+In contrast, geostatistical modeling aims to predict an outcome across a continuous surface where the variance-covariance relationship between any two points depends on their relative positions in space. This class of modeling, under a class of methods known as "kriging," was first widely applied in the 1960's as a method for finding mineral deposits[@Oliver2010]. However, because the methods to find the most likely latent surface initially required that the analyst repeatedly invert a square matrix that scaled with the number of observed points, geostatistical models remained computationally impractical to fit to large datasets even with the advent of modern statistical computing. In 2011, a methodological innovation allowed for the approximation of a continuous surface across a mesh, enabling for far larger models to be fit across continuous space[@Lindgren2011;@Miller2020]. The INLA (Integrated Nested Laplace Approximation) software, which combines this innovation with a fast approximation to a Markov Chain Monte Carlo sampler, has become a widely-used tool for implementing geostatistical models[@Krainski2018;@Rue2009].
 
-- PAR: Extensions
-  - Space-time modeling[@Mercer2015]
-  - Machine learning methods for covariate generation[@Bhatt2017]
-  - dasymmetric mapping[@Tatem2017]
-  - Species distribution mapping[@Hay2013]
-  - Other extensions of regression
-  - hotspot analysis
-  - point pattern analysis[@Banerjee2014]
+While these two methods sit at the core of many modern spatial statistical analyses of health, extensions and alternatives to these two approaches remain an active area of research in health statistics. Extensions to disease mapping have added an additional dimension for space-time analysis[@Mercer2015], incorporated principles from species distribution mapping[@Hay2013], and used machine learning methods to generate spatial covariates that approve the final model fit[@Bhatt2017]. Beyond the framework of mixed effects modeling, other teams have modernized concepts from cartography and Geographic Information Science to estimate outcomes over a large spatial field: notably, the WorldPop project has extended the concept of dasymmetric mapping to estimate human population at a fine geographic scale worldwide[@Tatem2017]. Beyond spatial predictive modeling, another widely applied set of methods identifies "hot spots" by estimating the probability that local deviations from the mean occurred from random chance alone[@Kulldorff1997; @Banerjee2014].
 
 
 ## Applications
 
-- PAR: Who does spatial modeling?
+As spatial predictive modeling methods have grown in popularity, health researchers have quickly seen their utility for mapping disease indicators and risk factors based on household survey data. Under the provenance of "disease mapping", geostatistical and small area analyses have been applied to estimate underlying disease burden based on geolocated data systematically sampled from the population[@Diggle2016], with many possible applications relevant to infectious diseases and maternal and child health[@Pigott2015]. A number of working groups have extended the principles of spatial predictive modeling to map health burden and interventions across many low- and middle-income countries: these include the Malaria Atlas Project (MAP), which primarily maps malaria and related interventions[@Weiss2019;@Nguyen2019]; the Institute for Health Metrics and Evaluation, which has mapped a variety of indicators related to maternal and child health across low- and middle-income countries[@Osgood-Zimmerman2018]; the Kenya Medical Research Institute (KEMRI), which has mapped many health interventions across Kenya and East Africa [@Maina2019]; and networks of demographers who have developed spatial mortality estimation methods using household survey data[@Wakefield2020]. 
 
+These teams benefit not only from the milieu of active spatial methods development in academia and from modeling tools that can be run on a personal computer, but also from an increasingly diverse range of spatial data sources. Both small area and geostatistical models can draw predictive power from covariates, spatially-varying surfaces that may track variation in the outcome. The list of high-quality spatial covariates is growing at a rapid clip: some of the covariates related to health include remotely-sensed estimates of short-term weather patterns, as well as longer-terms land use and climate change trends[@Ericksen2011]. Health datasets based on volunteered geographic information can achieve high coverage in remote areas: for example, the Humanitarian OpenStreetMaps Team has rapidly compiled maps of road and building features in rural areas struck by natural disasters[@Thomson2019]. Modeled estimates of health outcomes and population can also be used as a model input, although this can introduce problems of circularity: the WorldPop dataset, for instance, is an input to many spatial models of health[@Tatem2017].
 
-### Low- and middle-income countries
+In low-income countries, spatial models of health outcomes mapped by these have laid the groundwork for targeted health interventions led by UNICEF, USAID, and the Bill and Melinda Gates Foundation, among others. In lieu of mapping high-quality health surveillance data, these modeled estimates of health outcomes allow multilaterals to target and design new surveys; track the effect and scaling up of interventions; and to develop programs that target the areas in the greatest need[@Diggle2016;@Pigott2015].
 
-- PAR: Mapping disease indicators and risk factors from household surveys
-  - Generalizable methods for mapping in low-resource settings based on household surveys [@Diggle2016]
-  - Wide array of possibilities for mapping[@Pigott2015]
-  - Examples:
-    - Malaria: MAP[@Weiss2019;@Nguyen2019]
-    - Childhood infectious diseases and risk factors: IHME [@Osgood-Zimmerman2018]
-    - Spatial variation in health system capacity: KEMRI [@Maina2019]
-    - Child mortality [@Wakefield2020]
-  - Software widely available and runnable on a personal PC
+In high-income countries, the greater fidelity of surveillance-derived health data allows for a wider range of modeling approaches. Some authors have taken advantage of this greater fidelity to estimate health outcomes among very small areal units, including United States census tracts[@Dwyer-Lindgren2017; @Zhang2014]. Others have split the population further, developing age-period-cohort models for cancer incidence[@Papoila2014] as well as mortality modeling over the dimensions of space, age group, year, and cause of death[@Dwyer-Lindgren2016]. Mortality reports tabulated by week and year have allowed for estimation of seasonality in causes of death as well as the estimation of weekly "excess mortality" above an expected baseline, described further later in this thesis[@Weinberger2020a]. Individually- and spatially-linked records from health surveillance, when confidentially shared with researchers, can also serve as the basis for spatial risk factor detection using observational data[@Liu2019].
 
-- PAR: Milieu
-  - Draw predictive power from "covariates" that are well-established
-    - remote sensing technologies used to map short-term weather patterns as well as long-term land use and climate change trends[@Ericksen2011]
-    - VGI from (eg) HOTOSM[@Thomson2019]
-    - Modeled estimates, notably WorldPop (actually a modeled estimate)[@Tatem2017]
+Health analyses performed in high-income countries are often rely on the assumption that the underlying reported data covered the full population, with no missingness or delays relevant to the analysis: this assumption allows for an analysis where all noise is attributable to small number sampling variation. This assumption is grounded in data validity and completeness audits performed in many high-resource health surveillance systems. However, the COVID-19 pandemic has revealed previously untested weaknesses even in high-resource health surveillance systems, including reporting lags of several weeks, misreported death totals showing up as negative deaths on COVID-19 dashboards, and under-reporting of COVID-19 as an underlying cause of death[@Weinberger2020a].
 
-- PAR: Short-term program implications for this kind of data:
-  - Target and design new surveys
-  - Track the effect of scaling up interventions[@Diggle2016]
-  - Develop new programs [@Pigott2015]
-
-### High-income countries
-
-- PAR:
-  - Greater data fidelity allows for a wider range of approaches
-  - Use case 1 - Estimation of health outcomes for very local areal units, including United States census tracts[@Dwyer-Lindgren2017; @Zhang2014]
-  - Use case 2 - Risk factor detection using observational data [@Liu2019]
-  - Use case 3 - Age-period-cohort models for cancer incidence [@Papoila2014]; demographic modeling over space, age group, and causes of death [@Dwyer-Lindgren2016]
-  - Monthly and weekly mortality reports[@Weinberger2020a]
-
-- PAR: Completeness assumption is often grounded on quality checks; however, this does not
-  mean fidelity is perfect
-  - Examples of data quality checks from SCORE report[@WorldHealthOrganization2021]
-  - Counterexample: COVID-19 mortality reporting issues
-    - Time lag
-    - Negative deaths
-    - Cause misreporting [@Weinberger2020a]
 
 ## Limitations
 
-- PAR LIMITATION - Usefulness
-  - Long-term: household surveys in conjunction with statistical modeling leave major
-    gaps in terms of knowledge
-  - Compare to standards: compulsory and universal, timely, accurate, complete, and confidential
+In low-resource settings, a paucity of data may leave health policymakers with no choice but to respond to data collected from household surveys, possibly in combination with modeled estimates. While modeled household survey estimates may be presented to policymakers as the best possible health information available in a country, they may actually obscure major gaps in knowledge and can possibly distort the consensual understanding of the state of health on the ground, leading to sub-optimal decision making. To understand these limitations, we must compare these estimates to the principles that should be embodied by a successful health surveillance system and briefly explore the political economy of health data production.
 
-- PAR: LIMITATION - Uncertainty and its communication
-  - Uncertainty from a Bayesian perspective often expressed in terms of Uncertainty
-    Intervals (UI)
-  - In mapping terms: The output of Bayesian spatial modeling is a large number of "candidate maps" that represent possible explanations of the underlying data, where better explanations are more likely to be included[@Patil2011]. Mapping outputs typically show summaries, such as the mean and uncertainty, of each pixel or areal unit in a candidate map.
-  - BUT: This uncertainty is difficult to communicate, especially across space.
-    - In this way, maps create meaning and certainty
-  - This question of finality is supported by past research on cartography in policymaking,
-    which has demonstrated how maps can convey a sense of finality to unsettled questions
-    in space: one can settle any doubts with an assertion that "it's there on the map"
-    [@Elwood2006].
-  - Policy processes do not necessarily incorporate uncertainty
+One major limitation particular to spatial analyses of health is the wide uncertainty inherent in these models, along with the difficulty of communicating that uncertainty across space in a map form. In Bayesian statistics, uncertainty is often expressed in terms of 95% Uncertainty Intervals (UIs), which represent the range where the output parameters would fall 95% of the time if the model was properly specified[@McElreath2016]. Translated into a spatial context, the output of Bayesian spatial modeling is a large number of "candidate maps" that represent possible explanations of the underlying data, where better explanations are more likely to be included[@Patil2011]. Summaries of these candidate maps, including the mean and 95% UIs for each pixel-level posterior estimate, can be produced. However, this uncertainty is particularly difficult to communicate across space, where it cannot be intuitively displayed along with a central summary estimate in a single map. Past research on cartography in policymaking provides additional evidence that observers tend to understand summary maps as settled truth: in this way, an astute advocate can convey a sense of finality to unsettled questions in space simply by declaring that "it's there on the map[@Elwood2016]." This tendency, combined with policy processes with no built-in methods for incorporating uncertainty, can lend interpretations to summary maps that may not be supported by the underlying model results. For this reason, spatial modelers of health must be extremely careful to place uncertainty in the foreground of their analyses and reported results.
 
-- PAR: LIMITATION - model misspecification
-  - All models built on assumptions
-  - Circularity and "models on top of models"
-  - Example: mortality estimates for infectious diseases: IHME vs. WHO[@Tichenor2020] differences largely in areas with little death registration data. Differences in modeling approaches, prior specifications, and processing of the few data sources available (VA) have huge implications for global health policymaking and financing. Larger issue on the local scale.
+However, if a spatial model is misspecified, even cautious interpretations of mapped results can mislead policymakers. All models are built on assumptions, with spatial models being particularly sensitive to the selection of predictive covariates and prior assumptions about the strength of spatial neighborhood effects. If modeled spatial estimates are themselves used as covariates in a predictive spatial model, this can lead to a circularity problem of "models on top of models," where the effect of a raw covariate used to predict an intermediate outcome can become overstated in areas where no data was sampled. Because household surveys may offer little to no information about particular causes of death, modeled assumptions can have an outsized role in the results, with no immediate method to check the validity of those results. For example, past differences in global malaria mortality estimates reported by IHME and the WHO were due largely to differences in model assumptions that had an outsized effect in countries where little to no death registration data was available[@Tichenor2020]. In this way, seemingly innocuous choices about modeling approaches, prior specifications, and processing of input data in data-sparse areas can have huge implications for global health policymaking and financing. When the number of areal units to be estimated is large, these same data sparsity issues can manifest even for outcomes that are regularly measured by household surveys. In the past year, varying estimates of COVID-19 death total across Africa underscore that even modern statistical techniques cannot overcome a lack of reliable predictive data.
 
-- PAR: LIMITATION - who benefits? Relationship between modeler, data collector, and country
-  - Statistical modeling still has a high barrier to entry
-  - May create perverse incentives[@Tichenor2020]
-  - Concerns of data imperialism[@Marchais2020]
-  - Data doubles create representations of a country's health and development status that it has no control over, taking away levers for action in decision-making around global health financing and action [@Cinnamon2020a]
-
-- PAR: LIMITATION - even with advanced modeling techniques, some analyses are intractable
-   - Example: COVID-19 death counts
+If we are to measure the success of a health data system by its long-term impact on health outcomes, we must also interrogate a health information system that removes local and national governments from the health data governance equation. Although the computational costs to spatial modeling have dropped dramatically over the past decade, learning spatial statistics without instruction from a current practitioner requires a steep learning curve that serves as a barrier to entry for many health statisticians and epidemiologists worldwide. When high-income institutions collect, manage, and store survey data which other high-income institutions then digest and share with multilaterals as authoritative health estimates, it leaves countries with fewer levers to insert their perspectives into decision-making around global health financing and action[@Cinnamon2020a], sparking fears of extractive data imperialism[@Marchais2020]. Spatial statisticians mapping health outcomes in low-income countries must therefore navigate the potential effects of their actions in a shifting global health funding landscape while also striving for objectivity and reproducibility in their statistical practice &mdash; a challenging proposition.
 
 
 # New hierarchical modeling techniques for mapping health outcomes using incomplete health surveillance data
