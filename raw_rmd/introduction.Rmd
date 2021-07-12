@@ -69,31 +69,18 @@ In any discussion of national health data systems, China and India deserve parti
 
 ## Standards for quality and usability
 
-- PAR: Standards for health data quality, based on UN recommendations:
-  - Compulsory and universal: Legally mandated, accessible, and using standard definitions nationwide
-  - Timely: Data available in time to be used for decision-making
-  - Accurate information about the individual and vital event
-  - Complete: No individuals or sub-populations missing
-  - Confidential: Individuals not identifiable from publicly-available data[@UnitedNationsStatisticsDivision2014]
-  - Another perspective: SCORE criteria: survey populations and health risks; count births, deaths, and causes of death; optimize health service data; review progress and performance; enable data use for policy and action [@WorldHealthOrganization2021]
+Ultimately, health information systems must be evaluated based on their capacity to improve health and well-being both directly, for the recorded individuals, as well in the aggregate, as a tool for developing sound health policy. In line with the effort to improve the quality of health information systems worldwide, multilateral institutions have produced standards by which the quality of these systems can be measured. In its _Principles and Recommendations for a Vital Statistics System (Revision 3)_, the United Nations Statistics Division recommends that CRVS systems should be designed in line with five guiding principles. A CRVS system should be compulsory and universal, meaning that it is legally mandated, accessible, and using standardized definitions nationwide; compiled and vetted results should be prepared in a timely manner; it should contain accurate information about individuals and vital events; it should be complete, with high coverage across all sub-populations; and it should keep individually-identifying information confidential in all publicly-available data releases[@UnitedNationsStatisticsDivision2014]. These principles recognize three aspects of vital records which apply to all health statistics data: they support the legal and human rights of individuals, enable informed health policy-making in the aggregate, and yet may contain potentially compromising information that must be handled sensitively. Indeed, these principles can be extended to evaluate any system or statistical tool that purports to measure the health of a population.
+
+Another perspective was developed in the World Health Organization's SCORE report, which rated countries worldwide based on five necessary capacities for any health information system. These follow the acronymous SCORE criteria. A successful health information system should *S*urvey populations and health risks; *C*ount births, deaths, and causes of death; *O*ptimize health service data; *R*eview progress and performance; and *E*nable data use for policy and action[@WorldHealthOrganization2021]. While these criteria emphasize the combined effect of all available data sources on a country's health surveillance and policymaking capacity, one can also evaluate the ways in which a single source of health data contributes to or distorts these goals.
+
+Throughout this thesis, these evaluation criteria will be applied to CRVS systems, health surveillance systems, household survey and census data sources, and modeled estimates across a diverse set of country data contexts.
 
 
 ## Relationship between health data availability and health system capacity
 
-- PAR: Tension between long-term need for high-quality health surveillance and short-term incentives
-  - Long term: CRVS and infectious disease surveillance convey a set of unique health and 
-    social benefits on the covered country
-  - Short-term:
-     - Required ramp-up needed for health surveillance to be used as a primary data source
-     - With health spending per capita extremely low in some countries, how to
-       justify spending money on capacity-building for a health surveillance system
-       that may not be usable for decades, if ever?
-     - (Related: can we find costing estimates for a functioning CRVS system?)
+It is uncontested among global health actors that, over the long term, high quality health surveillance systems convey a set of unique health and social benefits to covered individuals and the health system as a whole. However, the tension between the long-term benefits and short-term incentives to develop robust health surveillance systems has not been fully explored. Among low- and middle-income countries currently lacking high-quality health surveillance systems, the required spending, training, and infrastructure building required to develop these systems can be extremely expensive. In contexts where per-capita health spending can be as low as a few dollars per year, it can be difficult to justify additional expenses whose full benefits might not become apparent for years or decades to come. Building a national health surveillance system can also entail bridging existing reporting structures across multiple institutions and levels of government. This synthesis be a challenging obstacle even for highly motivated governments, as demonstrated by Nigeria's effort to institute a mandatory death registration system[@Makinde2020].
 
-- PAR: The role of funders and international organizations
-  - Funders have traditionally seen CRVS and infectious disease surveillance systems as de nulla fonts of health statistics, not as goods in their own right. Tradtionally, an office was assigned to improve CRVS capacity, but given no funding or authority to incentivize improvements [@AbouZahr2015]
-  - Difficult challenge: tying together reporting structures across multiple institutions and levels of government, as demonstrated by Nigeria's efforts to institute a mandatory death registration system[@Makinde2020].
-  - Awkward position for funders: control of data collection and governance
+Because robust health information systems can highlight focal health emergencies and inform interventions to reduce health burden, their existence would also benefit the missions of global health funders and aid organizations. However, institutional history and muddled incentives also impede the momentum of international funding for health surveillance in low-resource settings. AbouZahr _et al_ argue that global health actors have traditionally viewed CRvS and infectious disease surveillance purely as fonts of health statistics, not as goods in their own right. This view complicates the argument for health surveillance strengthening in a funding environment where lives saved per dollar is an important metric[@AbouZahr2015]. This is reflected in the early history of international support for CRVS systems: in the early years of the WHO, an office was assigned the task of CRVS strengthening, but was given neither the authority nor the funding to act on its mandate[@AbouZahr2015]. Furthermore, multilateral institutions may have well-developed feedback systems rooted in non-government data sources such as international household survey systems, combined with modeled estimates. If country health surveillance systems are ultimately intended to supplant household surveys as the primary source of health information in a country, the resulting system may be more informative for country health decision making but less informative for funders: even highly-developed health information systems are likely to restrict data sharing and be less comparable across borders than than international household survey series.
 
 
 # Spatial modeling as a tool for responsive health interventions
