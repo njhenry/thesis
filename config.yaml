@@ -9,7 +9,7 @@ tex_style:
 preprint: true
 
 ## Options that will be passed directly to the bookdown config
-bibliography: '{thesis_docs}/bibliographies/Mendeley-export-20210709.bib'
+bibliography: '{thesis_docs}/bibliographies/Mendeley-export-20210712.bib'
 citation_style: 'nature'
 link-citations: true
 github-repo: 'nathenry/thesis'
@@ -24,7 +24,7 @@ dirs:
 ## Filepaths: Graphics
 graphics_fps:
   introduction:
-    fig1: '{graphics}/test_chapter/fig1.png'
+    fig1: '{graphics}/introduction/fig1_CRVS_under_5_mortality_completeness.png'
   india:
     fig1: '{graphics}/test_chapter/fig1.png'
   mexico:
