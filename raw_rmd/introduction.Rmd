@@ -13,8 +13,7 @@ knitr::opts_chunk$set(fig.pos = "!ht", out.extra = "", fig.align = 'center', ech
 
 # Set caption text
 captions <- list(
-  fig1 = "Example caption for a figure.",
-  t1 = "Example caption for a table."
+  fig1 = "Estimated completeness of health surveillance data in the most recent year when surveillance data was available."
 )
 ```
 
@@ -22,7 +21,7 @@ captions <- list(
 
 # Health system performance: the urgent need for better data
 
-In 1948, the United Nations Universal Declaration on Human Rights asserted the fundamental and universal right of all people to "a standard of living adequate to the health and well-being of himself and his family, including [...] medical care and necessary social services.[@UNGeneralAssembly1948]" However, nearly 75 years after this declaration, a person's opportunities to live a long life in good health vary vastly depending on where they live. Gaps in health between countries and regions of the world are well-documented. However, health inequalities also manifest themselves within countries and even within walking distance. They appear in the earliest years of life: in Kano state in northern Nigeria, children are 2.5 times more likely to die before their fifth birthday than children born in the capital, Lagos.[@Burstein2019] They are also apparent in high-resource settings, such as urban counties in the United States, where life expectancy for men has been shown to vary by nearly 20 years across neighborhoods in a single U.S. county.[@Dwyer-Lindgren2017] The multifarious barriers to human flourishing that cause these inequalities at both the local and international level are both ethically troubling and a massive challenge to global health governance.[@Ruger2006]
+In 1948, the United Nations Universal Declaration on Human Rights asserted the fundamental and universal right of all people to "a standard of living adequate to the health and well-being of himself and his family, including [...] medical care and necessary social services.[@UNGeneralAssembly1948]" However, nearly 75 years after this declaration, a person's opportunities to live a full life in good health vary vastly depending on where they live. Gaps in health between countries and regions of the world are well-documented. However, health inequalities also manifest themselves within countries and even within walking distance. They appear in the earliest years of life: in Kano state in northern Nigeria, children are 2.5 times more likely to die before their fifth birthday than children born in the capital, Lagos.[@Burstein2019] They are also apparent in high-resource settings, such as urban counties in the United States, where life expectancy for men has been shown to vary by nearly 20 years across neighborhoods in a single U.S. county.[@Dwyer-Lindgren2017] The multifarious barriers to human flourishing that cause these inequalities at both the local and international level are both ethically troubling and a massive challenge to global health governance.[@Ruger2006]
 
 These challenges naturally raise questions about which institutions have the responsibility and capability to provide lifesaving services and remove barriers to human health. The discourse around health on the international stage has shifted over the past 20 years to a conception of "global health," where multilateral institutions and funders have greater perceived agency to coordinate health interventions.[@Brown2006] However, while international funders have successfully coordinated responses to acute mortality and disease threats over the past 20 years, these same experiences have also demonstrated that sustainable health services can only be delivered by health systems that are led by national stakeholders and operated locally.[@WorldHealthOrganization2007; @WorldHealthOrganization2010] Health systems can be defined in terms of their human resources and material components: they are driven by health care workers who rely on a financial and material infrastructure that is, in turn, managed by a constellation of planners, financial intermediaries and governing institutions.[@Roberts2008] They can also be defined in terms of their key operations: the World Health organization (WHO) lists service delivery, health workforce, information, medical products, vaccines and technologies, financing, and leadership and governance as the six core building blocks that constitute a functioning health system.[@WorldHealthOrganization2007]
 
@@ -45,6 +44,11 @@ In areas where vital registration is collection, birth and death records are oft
 At the population level, detailed CRVS data can provide crucial information to health policymakers; at the individual level, civil and death registration can provide rights and privileges to the registered. In many countries, valid birth certification is the key to accessing school, social services, and health insurance. Recognizing this reality, the government of Mexico declared that free and universal birth registration was a constitutional right of all Mexicans. In the case of death, family members of the deceased may be legally entitled to social and financial support once the death is registered.[@Setel2007]
 
 Despite its importance to governance and the individual, birth and death registration is often least functional in the countries where health burden is concentrated. As of 2004, fewer than 1 in 100 residents of Southeast Asia and fewer than 1 in 10 Africans were covered by any birth or death registration.[@Mahapatra2007] Today, enormous gaps in service still remain. Figure 1, below, shows the estimated coverage of death registration among children under 5 in 2015 or the most recent year of data available. While almost all high-income countries experienced death registration completeness of over 90%, death registration coverage remained below 60% in all states of India. Peru, the Dominican Republic, and the northwestern states of Brazil also had estimated coverage levels below 50%. In all sub-Saharan African countries besides Botswana and South Africa, no mortality estimates based on vital registration were available after 2010.[@Roth2018] A similar geographical pattern shows itself for cause-of-death assignment. One review of cause-of-death registration quality found that over 30% of all registered deaths in Egypt, Saudi Arabia, Bolivia, and Iraq could not be assigned with certainty to even a broad cause-of-death grouping, compared to less than 10% of registered deaths with the same coding problems in countries like Finland, Australia, and Ireland.[@Johnson2021]
+
+```{r fig1, out.width="85%", fig.cap = captions$fig1}
+knitr::include_graphics(graphics_fps$fig1)
+```
+
 
 These massive discrepancies are partly attributable to different institutional histories: while England and some American colonies have been tabulating death records since the 17th century[@Blake1955], colonial administrations often offered no vital registration services outside of a limited register for the European colonizers. Wide differences in health spending per capita across countries are also partly to blame, as is the greater fragility of health systems: an early report has found that COVID-19 disrupted CRVS collection in many low-resource settings, which prioritized the provision of other health services instead.[@AbouZahr2021] Regardless of cause, the low coverage and variable quality of CRVS in many countries serves as a challenge to its interpretation in the service of health system governance.
 
@@ -129,114 +133,24 @@ If we are to measure the success of a health data system by its long-term impact
 
 # New hierarchical modeling techniques for mapping health outcomes using incomplete health surveillance data
 
-- PAR: Creating incentives for improving health surveillance data
-  - Extending spatial modeling to start closing the gap in the health data divide
-  - Developing models where even deficient vital records can offer insights into the
-    health of a country that are impossible to derive from other sources, offering an 
-    incentive for improvement
-    - Certainty of these models increases as quality of surveillance increases
-  - Goal: create a virtuous cycle where health surveillance data can be used for
-    health system strengthening, and better funding/functioning of health systems at the
-    local level lead to improved health surveillance
+This thesis attempts to bridge the divide between the statistical and political economy challenges that impede the development of strong health surveillance systems in low-resource settings. In the following chapters, I introduce a class of spatial statistical models that incorporate deficient vital and health surveillance records to offer new insights about the health of a country that are impossible to derive from other sources. By relying on both household survey data and routine health surveillance, these models simultaneously estimate outcomes of interest and the current completeness of health surveillance data sources. At the same time, thanks to the large sample sizes captured by health surveillance data, outcomes for this class of models will become more certain as the fidelity of the underlying health surveillance data source increases. This creates an incentive for funders whose feedback mechanisms traditionally rely on household surveys to improve the quality of health surveillance data. Ultimately, the goal of this class of models is to enable a virtuous cycle where greater reliance on health surveillance data leads to a greater emphasis on funding for health surveillance and health system strengthening activities, ultimately leading to health outcomes that are both better and better-documented.
 
-- PAR: Theoretical grounding for this approach
-  - Fundamentally, health surveillance is an important building block of a functioning
-    health system[@Roberts2008]
-  - In line with the geographic movement towards "critical cartography", this project
-    recognizes that maps are inherently value-laden representations of reality: the
-    assumptions and use cases underlying maps of health have implications for the direction
-    of health policy and reform[@Crampton2006].
-  - The spatial aspect of this modelling is important:
-    - Within a CRVS system, the principles of universality, timeliness, accuracy, completeness, and confidentiality (as well as barriers to these) often correspond to local processes that can be assessed using a spatial approach
-    - variation across a country can tell us important things about the overall quality
-      of the data
-    - Barriers to high-quality health data overlap with health service capacity issues at
-      the local level -- improving one should improve both
-  - Necessary but not sufficient for adequate health data governance in LMICs, complementary to legal and governmental frameworks[@Tiffin2019]
+This approach recognizes that surveillance of infectious diseases and vital events are irreplaceable building blocks of a functioning health system[@Roberts2008]. By emphasizing both the statistical and political economy challenges inherent to health surveillance strengthening, it aligns with past literature on the "critical cartographic" project that recognizes the inherently value-laden and political implications of maps[@Crampton2006]. The spatial aspect of these models is important, since variation in observed data across a country can provide important clues about the overall quality of a health surveillance data source. The principles of universality, timeliness, accuracy, completeness, and confidentiality in a health surveillance system &mdash; as well as barriers to these &mdash; often correspond to processes in the local health system that can be assessed using a spatial approach. Furthermore, barriers to high-quality health data overlap with health service capacity issues at the local level, and targeting improved data quality may ultimately overlap with efforts to increase access to health care. This approach also recognizes that new statistical methods are a necessary but not sufficient step to work towards adequate health data governance in low- and middle-income countries, which must be complemented by innovations in a country's institutions[@Tiffin2019].
 
-- PAR: Modeling benefits of this approach
-  - Crosswalks common in statistical modeling using a simple correction term, but more
-    nuanced approaches to joint estimation are becoming more common thanks to improved
-    tools for estimation
-  - Bayesian hierarchical modeling approach, where the data-generating process includes the generation of CRVS/surveillance data[@Schmertmann2018]
-  - Estimate the biases or incompleteness of health surveillance by comparing to a 
-    "gold standard" data source
-  - Fill in the "gaps" provided by survey data using estimates from high-performing locations
+The joint survey-surveillance approaches described in this thesis apply recent innovations in the spatial statistics to maximize the information derived from each data type. While simple "crosswalks" with a single correction term have long been deployed to translate between different data types, these approaches incorporate more nuanced approaches to joint estimation, made possible by a new software package that can be used for custom spatial estimation[@Osgood-Zimmerman2021]. These methods all rely on a Bayesian hierarchical modeling approach where the data-generating process also includes the generation of CRVS and health surveillance that is variably incomplete over space, a model type which was only recently shown to be identifiable[@Schmertmann2018]. Using these modeling innovations, countries with incomplete health surveillance data can estimate the biases in that data source by comparing it to the "gold standard" of household survey data. Conversely, spatial and temporal gaps in household survey data can be filled in based on space-time trends identified in the locations where health surveillance is highest.
 
-- PAR: Programmatic benefits of this approach
-  - Use case for health surveillance
-  - Explicitly track changes in completeness over space and time
-    - As with health outcomes, CRVS improvement should be targeted and data-driven
-  - Spatial approach allows us to identify different levels of policy and funding impact:
-    - National level
-    - State level
-    - Local level
-  - Temporal modeling allows for identification of change and possible exemplars/barriers
-    to improvement
-  - Can also be used to relax the completeness assumption in high-income countries
+The programmatic benefits to a space-time modeling approach for health surveillance completeness are readily apparent. As with health system strengthening, health surveillance strengthening should be outcome-driven: by explicitly tracking changes in health surveillance bias over space, this model identifies districts with high data completeness as well as targets for improvement within a country. With a spatial statistical approach, health researchers can target different levels of policy and funding impact, from the local and state to the national level. Modeling changes over time also allows for the identification of possible facilitators of, and barriers to, improvements over time. This approach can even be applied in a high-resource context to check the completeness assumption deployed in most models of health there.
 
-- PAR: Translating goals into principles of model construction and collaboration
-  - Understanding the data generating process means country-specific partnerships
-    - Specific data environment
-    - Specific history of CRVS development with spatial implications
-  - Generalizing these specific models into templates that can be applied across a wide
-    variety of contexts:
-    - For example, the framework used to jointly model rare health events and surveillance
-      completeness can be applied both to neonatal mortality (Mexico) and tuberculosis
-      incidence (Uganda)
-  - Open sourcing results
-    - Modeling approach that brings its own limitations and potential for harm to the foreground [@Cinnamon2020a]
-    - Recognizing that a steep learning curve for GIS and spatial modeling tools still inhibits wide adoption [@Shannon2018]
+Embracing both the statistical and programmatic challenges of health surveillance strengthening also requires translating the language of productive policy engagement into model design principles, and vice versa. Most importantly, to understand the data generating process underlying particular country contexts, this thesis is divided into four country collaborations, emphasizing differences in their data environments and the institutional history of their health surveillance systems. Although the resulting models are tailored to their country contexts, they can be generalized into templates that can be modified and then deployed across a wide variety of contexts. For example, a framework developed to jointly model rare health events and surveillance completeness can be used both to model neonatal mortality in Mexico (Chapter 3) as well as tuberculosis incidence in Uganda (Chapter 4). Productive engagement between modeling and policy also entails a transparent approach to communication that brings model limitations and potential for harm to the foreground of the conversation[@Cinnamon2020a]. The analysis code and data for this thesis has been developed using open-source frameworks whenever possible and released publicly online, while recognizing that a steep learning curve for GIS and spatial modeling may still inhibit their wide adoption[@Shannon2018].
 
 
 ## Thesis structure
 
-- PAR: Explanation of structure
-  - Series of country-specific collaborations with implications for broader country
-    data environments
-  - Working from lowest availability to highest availability of spatial CRVS data, 
-    increasing modeling possibilities
+This thesis is structured as a series of country-specific spatial collaborations. The following chapters explore data contexts in order of increasingly-complete health surveillance systems, demonstrating the enhanced estimation possibilities available to countries as their health information systems become more robust. 
 
-- PAR: India
-
-
-- PAR: Mexico
-
-
-- PAR: Uganda
-
-
-- PAR: Italy
-  - Relaxing the assumption about fidelity of CRVS data, specifically cause-specific
-    mortality
-
-- PAR: Themes
-  - The coverage of health surveillance data enables small-population estimation that can inform responsive and equitable health policy
-  - Jointly estimating local variation in disease burden and input data quality
-  - Spatial statistical modeling:
-    - Short-term opportunities to supplement developing health surveillance and household surveys
-    - No alternative to complete, high-quality national health surveillance systems
+Finally, the concluding chapter will reflect on the methods and themes common across these analyses. The most important of these reveals how the coverage of health surveillance data enables small-population estimation that can inform responsive and equitable health policy. This trend can be explored by jointly estimating local variation in disease burden and input data quality, a novel approach with wider applications in health modeling and elsewhere. Reflecting on the role of spatial statistical modeling in health, this chapter reiterates the short-term opportunities for spatial models to supplement developing health surveillance and household surveys, while confirming that they do not serve as a sustainable alternative to complete, high-quality national health surveillance systems.
 
 
 # References
 
 <div id="refs"></div>
-\newpage
-
-
-# Figures and Tables
-
-```{r fig1, out.width="70%", fig.cap = captions$fig1}
-knitr::include_graphics(graphics_fps$fig1)
-```
-\newpage
-
-```{r t1}
-data_list$t1 %>%
-  dplyr::mutate_all(linebreak, align='l') %>%
-  knitr::kable(
-    'latex', booktabs = T, escape = F, caption = captions$t1,
-    col.names = linebreak(colnames(data_list$t1))
-  ) %>%
-  kable_styling(latex_options = "striped")
-```
