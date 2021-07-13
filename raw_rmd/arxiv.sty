@@ -3,15 +3,15 @@
 \ProcessOptions\relax
 
 % fonts
-% \renewcommand{\rmdefault}{ptm}
-% \renewcommand{\sfdefault}{phv}
+\renewcommand{\rmdefault}{ptm}
+\renewcommand{\sfdefault}{phv}
 
 % set page geometry
 \usepackage[verbose=true,letterpaper]{geometry}
 \AtBeginDocument{
   \newgeometry{
     textheight=9in,
-    textwidth=6.5in,
+    textwidth=5.5in,
     top=1in,
     headheight=14pt,
     headsep=25pt,
@@ -104,6 +104,7 @@
   \vskip 0.4in \@minus 0.1in \center{\@date}   \vskip 0.2in
   }
 }
+\renewcommand{\baselinestretch}{1.75}
 
 % abstract styling
 \renewenvironment{abstract}
