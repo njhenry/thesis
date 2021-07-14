@@ -101,7 +101,7 @@
 
 \title{Variation in COVID-19 excess mortality by age, sex, and province within Italy}
 \author{Nathaniel Henry\textsuperscript{1,*} \and Ahmed Elagali\textsuperscript{2} \and Michele Nguyen\textsuperscript{3} \and Michael Chipeta\textsuperscript{1} \and Catrin Moore\textsuperscript{1}}
-\date{2021-07-13}
+\date{2021-07-14}
 
 \begin{document}
 \maketitle
@@ -124,6 +124,15 @@ Italy received international attention as one of the first countries outside of 
 
 Aside from the timing and magnitude of the first wave of COVID-19 transmission within Italy, two notable features set its COVID-19 epidemic apart from those in other European countries. First, registered COVID-19 cases and deaths were unevenly distributed across the regions of Italy\textsuperscript{\protect\hyperlink{ref-LaMaestra2020}{4}}⁠, and that cause-specific mortality from COVID-19 varied by age and sex\textsuperscript{\protect\hyperlink{ref-Albitar2020}{5}}⁠. Registered COVID-19 deaths were highest in the northern regions of the country, particularly in the region of Lombardy, where the registered COVID-19 death total amounted to over 160 deaths per 100,000 population (Figure \ref{fig:covid-deaths}). Another salient feature of the Italian epidemic was the early recognition among health authorities that registered COVID-19 deaths under-counted the full mortality burden of the epidemic. In May 2020, the Italian National Institute of Statistics (Istat) reported that while 13,700 COVID-19 deaths had been registered across Italy between 20 February and 31 March, deaths from any cause had increased by 25,300 compared to an expected baseline during the same time period, suggesting that the full mortality burden of the COVID-19 epidemic was nearly double what had been previously reported\textsuperscript{\protect\hyperlink{ref-Mannucci2020}{6}}.
 
+\begin{figure}[!hbt]
+
+{\centering \includegraphics[width=0.7\linewidth,]{/home/nat/Documents/Dropbox/Writing/thesis/graphics/italy/fig1_covid_deaths} 
+
+}
+
+\caption{Registered COVID-19 deaths per 100,000 population by Italian region prior to August 31, 2020. Nationally, 35,500 deaths were registered during this time, or approximately 59 deaths per 100,000 population.}\label{fig:covid-deaths}
+\end{figure}
+
 Istat and other research groups drew conclusions about the mortality burden of the COVID-19 pandemic based on a series of excess mortality analyses. Excess mortality analyses attempt to measure the net effect of a discontinuity, such as a COVID-19 outbreak, on all-cause mortality. This is a two-step process: first, the investigator constructs an estimated baseline number of deaths expected during the period in question. While various methods have been used in the past to construct this baseline\textsuperscript{\protect\hyperlink{ref-Serfling1963}{7}--\protect\hyperlink{ref-Noufaily2013}{9}}⁠, previous studies in Italy have averaged the number of deaths recorded by week in the years from 2015 through 2019 to generate a baseline estimate for the same weeks in 2020\textsuperscript{\protect\hyperlink{ref-Alicandro2020}{2},\protect\hyperlink{ref-Michelozzi2020}{10}}⁠. Next, the investigator compares that expected baseline with the count of recorded deaths during the same time period. Excess deaths, a count, are measured as the difference between the observed death count and the expected baseline. Standardized mortality ratios (SMRs) are measured as the ratio between the observed death count and the expected baseline\textsuperscript{\protect\hyperlink{ref-Dickman2004}{11},\protect\hyperlink{ref-Lambert2005}{12}}⁠. Excess mortality analyses of the COVID-19 pandemic are becoming widely used in the media: among others, the Economist, the Financial Times and the New York Times have estimated excess mortality across dozens of countries in Europe, the Americas, and Asia\textsuperscript{\protect\hyperlink{ref-Wu2020}{13}--\protect\hyperlink{ref-FTVisualux5cux26DataJournalismteam2020}{15}}⁠. Previous investigations have also examined how excess mortality analysis can capture deaths caused by COVID-19 but attributed to other causes, as well the indirect mortality burden of the COVID-19 pandemic\textsuperscript{\protect\hyperlink{ref-Weinberger2020a}{8},\protect\hyperlink{ref-U.S.NationalCenterforHealthStatistics2021}{16}}.
 
 This study explores another central issue for excess mortality estimation: how can we detect increases in mortality at the local level or across multiple age groups, where the expected number of baseline deaths in each subpopulation of interest is relatively low? This question addresses a tension central to many forms of public health surveillance, where the imperative to identify clustering and high-risk subgroups in health surveillance data must be balanced against reduced study power and possible biases associated with small samples\textsuperscript{\protect\hyperlink{ref-Thacker1988}{17}}⁠. Any suitable approach for estimating small-group excess mortality must quantify uncertainty due to stochastic variation as well as limited data informing the baseline. Even at the national level, weekly estimates of COVID-19 excess mortality presented without uncertainty intervals can leave viewers confused about what constitutes a meaningful departure from the baseline.
@@ -138,22 +147,90 @@ To better understand the relationship between registered COVID-19 deaths and exc
 
 At the national level, the aggregated results from our model generally agreed with previous national studies on the timing and magnitude of excess deaths associated with the COVID-19 pandemic across Italy. Figure \ref{fig:time-series}, below, shows the estimated weekly death count (in brown) as well as the observed weekly death count (in black) from 26 February through 31 August 2020 across Italy. In line with other studies, the model results suggest that excess mortality peaked on the week of March 25, on the same week as the peak in registered COVID-19 deaths, and then consistently fell until approximately returning to baseline by the end of May 2020, coinciding with the lifting of most lockdown measures across Italy\textsuperscript{\protect\hyperlink{ref-Alicandro2020}{2}}⁠. At no point between June and August 2020 did the observed death count exceed the upper bound of the 95\% uncertainty interval for baseline deaths: as a result, the remainder of this section will focus on excess mortality during the 13-week period from 26 February through 26 May 2020. During these 13 weeks, we estimate that 53,200 excess deaths (95\% uncertainty interval 26,500 to 79,700) were associated with the COVID-19 pandemic, compared with 35,500 deaths registered with COVID-19 as the underlying cause during the same period.
 
+\begin{figure}[!hbt]
+
+{\centering \includegraphics[width=0.7\linewidth,]{/home/nat/Documents/Dropbox/Writing/thesis/graphics/italy/fig2_time_series} 
+
+}
+
+\caption{\(Top\) Predicted baseline and observed deaths aggregated nationwide across Italy, March through August 2020. Bounds of the 95\% uncertainty interval for predicted baseline deaths are shaded in light brown. \(Bottom\) Estimated weekly excess deaths across Italy from March through May 2020, in red, compared with medically-certified deaths from COVID-19, in green.}\label{fig:time-series}
+\end{figure}
+
 \hypertarget{excess-deaths-and-sex}{%
 \subsection{Excess deaths and sex}\label{excess-deaths-and-sex}}
 
 Our findings can be aggregated across sexes and provinces to understand the age structure of excess mortality across Italy. Figure \ref{fig:age-excess} plots weekly excess deaths across the five modeled age categories, while Table \ref{tab:excess-demographics} lists estimated excess deaths by age and sex grouping at the national level. Excess deaths were overwhelmingly concentrated in older age groups: of the estimated 53,200 excess deaths in Italy from March through May 2020, an estimated 51,600, or 97.0\%, of these excess deaths occurred among adults aged 60 and above, while 36,400, or 68\%, occurred in adults older than age 80. Among adults aged 90 and above, women experienced 11,000 (5,800 to 16,400) excess deaths, more than double the 4,400 (2,000 to 6,900) excess deaths among men in the same age group; this reflects the sex composition of the oldest age group, where women made up 72.6\% of the over-90 population in January 2020.
 
+\begin{figure}[!hbt]
+
+{\centering \includegraphics[width=1\linewidth,]{/home/nat/Documents/Dropbox/Writing/thesis/graphics/italy/fig3_age_excess} 
+
+}
+
+\caption{Mean estimates for weekly excess deaths across Italy by age group, March through May 2020. Two nationwide age group breakdowns are shown to the right for comparison: the national age distribution as of 1 January 2020, and the proportion of nationwide deaths that occurred in each age group during the years 2015 through 2019.}\label{fig:age-excess}
+\end{figure}
+
+\begin{table}[!h]
+
+\caption{\label{tab:excess-demographics}Estimated excess mortality by age and sex grouping, aggregated to the national level for the weeks of 26 February through 26 May 2020. Nationally, all age-sex groupings experienced significantly elevated mortality compared to the expected baseline during this period.}
+\centering
+\begin{tabular}[t]{ccccc}
+\toprule
+Sex & Age & \makecell[c]{Excess deaths\\(95\% UI)} & \makecell[c]{Standardized\\Mortality Ratio\\(95\% UI)} & \makecell[c]{Population on\\1 Jan 2020,\\millions (\% total)}\\
+\midrule
+\cellcolor{gray!6}{Males} & \cellcolor{gray!6}{0-59} & \cellcolor{gray!6}{1,081 (918 to 1,240)} & \cellcolor{gray!6}{1.16 (1.13 to 1.19)} & \cellcolor{gray!6}{21.37 (35.5\%)}\\
+Females & 0-59 & 517 (401 to 627) & 1.13 (1.1 to 1.16) & 21.00 (34.9\%)\\
+\cellcolor{gray!6}{Males} & \cellcolor{gray!6}{60-69} & \cellcolor{gray!6}{2,600 (1,152 to 3,990)} & \cellcolor{gray!6}{1.29 (1.11 to 1.52)} & \cellcolor{gray!6}{3.55 (5.9\%)}\\
+Females & 60-69 & 947 (109 to 1,750) & 1.19 (1.02 to 1.41) & 3.87 (6.4\%)\\
+\cellcolor{gray!6}{Males} & \cellcolor{gray!6}{70-79} & \cellcolor{gray!6}{7,703 (4,639 to 10,730)} & \cellcolor{gray!6}{1.42 (1.22 to 1.71)} & \cellcolor{gray!6}{2.75 (4.6\%)}\\
+\addlinespace
+Females & 70-79 & 3,991 (1,885 to 6,048) & 1.33 (1.13 to 1.6) & 3.25 (5.4\%)\\
+\cellcolor{gray!6}{Males} & \cellcolor{gray!6}{80-89} & \cellcolor{gray!6}{10,649 (4,574 to 16,946)} & \cellcolor{gray!6}{1.36 (1.13 to 1.72)} & \cellcolor{gray!6}{1.45 (2.4\%)}\\
+Females & 80-89 & 10,308 (3,675 to 17,110) & 1.32 (1.09 to 1.67) & 2.20 (3.7\%)\\
+\cellcolor{gray!6}{Males} & \cellcolor{gray!6}{90} & \cellcolor{gray!6}{4,405 (1,979 to 6,879)} & \cellcolor{gray!6}{1.36 (1.14 to 1.71)} & \cellcolor{gray!6}{0.22 (0.4\%)}\\
+Females & 90 & 11,043 (5,784 to 16,432) & 1.41 (1.18 to 1.76) & 0.58 (1.0\%)\\
+\bottomrule
+\end{tabular}
+\end{table}
+
 The outsized proportion of excess deaths observed within older age categories reflects two aspects of age-structured mortality across Italy during this period: baseline mortality is highest in older age groups even in normal years, and these age groups also experienced a larger relative increase in mortality during the study period. Figure \ref{fig:age-maps} maps the standardized mortality ratio, or the ratio between observed and baseline mortality rates, by age group and province across the entire 13-week period from 26 February through 26 May 2020. Note that the standardized mortality ratio uniformly increases across the northern provinces of Italy when moving from the 0-59 age group to the 60-69 and 70-79 age groups, and remain heightened in the oldest age groups, with some provinces in Lombardy and Emilia Romagna experiencing over three times the expected baseline mortality in older age groups. The greater increase in excess mortality among older age groups can also be expressed by comparing the proportion of excess mortality with each age group with that age group's share of all-cause mortality in the years 2015 through 2019. Adults over age 60 accounted for 92.6\% of all deaths in the years 2015-2019 (2.99 million deaths out of 3.23 million total), but 97.0\% of all excess mortality in March through May of 2020 (51,600 of 53,200 excess deaths). Similarly, adults over age 80 experienced 63.4\% of all deaths in previous years (2.04 million deaths out of 3.23 million), but 68.4\% of excess mortality (36,400 of 53,200 excess deaths).
+
+\begin{figure}[!hbt]
+
+{\centering \includegraphics[width=1\linewidth,]{/home/nat/Documents/Dropbox/Writing/thesis/graphics/italy/fig4_age_maps} 
+
+}
+
+\caption{Map of standardized mortality ratios by age group and province over the entire period of March through May 2020. In these figures, significance is defined as falling outside of the 95\% uncertainty interval for baseline mortality for a given age group and province during this period.}\label{fig:age-maps}
+\end{figure}
 
 \hypertarget{spatial-concentration}{%
 \subsection{Spatial concentration}\label{spatial-concentration}}
 
 This model is also able to characterize spatial variation in excess mortality during the first wave of the COVID-19 epidemic in Italy. From March through May 2020, just three provinces---Milan, Bergamo, and Brescia, all in the Lombardy region---accounted for 32\% of all excess deaths in Italy, with just 9\% of the country's total population. By including just four other provinces across the Piedmont, Emilia-Romagna, and Liguria regions in northern Italy, nearly one-half of all excess deaths are captured in a region that makes up just 16\% of Italy's population. Expanding further, the 22 provinces with the highest number of excess deaths account for three-quarters of all excess mortality, but just 30\% of Italy's national population. Figure \ref{fig:top-provinces} shows the locations of these province groupings and each group's marginal contribution to the total excess mortality curve from March through May 2020.
 
+\begin{figure}[!p]
+
+{\centering \includegraphics[width=25in,height=0.85\textheight,]{/home/nat/Documents/Dropbox/Writing/thesis/graphics/italy/fig5_top_provinces} 
+
+}
+
+\caption{Concentration of excess mortality burden among the 3, 7, and 22 provinces with the greatest number of excess deaths, out of 107 provinces total. These province groupings respectively accounted for over 25\%, 50\%, and 75\% of the national excess mortality burden between March and May 2020. The graph on the bottom left displays mean estimated excess deaths by province grouping and week during this time period.}\label{fig:top-provinces}
+\end{figure}
+
 \hypertarget{diverse-experiences-of-the-first-wave}{%
 \subsection{Diverse experiences of the first wave}\label{diverse-experiences-of-the-first-wave}}
 
 Comparing Figures \ref{fig:covid-deaths}, \ref{fig:age-maps}, and \ref{fig:top-provinces}, both the timing and geographical distribution of excess mortality during March through May 2020 seem to follow the time pattern of registered COVID-19 mortality by region in that same period: both peaked during the week of 25 March and were concentrated in the northern regions of the country, particularly Lombardy. Figure \ref{fig:excess-neighbors} complicates this analysis by demonstrating two features of excess mortality that are apparent at the province level, but not the regional or national levels. The first feature identifies the geographic center of the peak excess mortality during the COVID-19 first wave. While most news outlets and previous studies have identified Lombardy region as the center of the COVID-19 outbreak, the top-right panel of Figure \ref{fig:excess-neighbors} suggests that the mortality rate increased most in provinces on the border between southwest Lombardy and northwest Emilia-Romagna, adjacent to the Piedmont and Liguria regions. This border effect suggests that the 107 provinces of Italy may be a more informative unit of analysis for both registered COVID-19 deaths and excess mortality than the country's 20 regions.
+
+\begin{figure}[H]
+
+{\centering \includegraphics[width=1\linewidth,]{/home/nat/Documents/Dropbox/Writing/thesis/graphics/italy/fig6_excess_neighbors} 
+
+}
+
+\caption{Excess deaths vary across provinces within the Lombardy region. \(Top\ left\) Map of Northern Italy showing the week when province’s excess mortality was estimated to peak during the first wave of COVID-19 in March through May 2020. \(Top\ right\) Map of the peak weekly standardized mortality ratio (SMR) for each province across Northern Italy across all weeks in March through May 2020. \(Bottom\ left\) Estimated excess deaths by week for Lodi province. \(Bottom\ right\) Estimated excess deaths by week for Varese province.}\label{fig:excess-neighbors}
+\end{figure}
 
 A province-level analysis also demonstrates that within high-burden regions, neighboring provinces experienced varying patterns of excess mortality during the first wave of COVID-19. The bottom two panels of Figure \ref{fig:excess-neighbors} show excess mortality curves for Lodi and Varese, two provinces that both share a border with Milan. Excess mortality in Lodi peaked on the week of March 11, with an SMR of over 6 times the baseline mortality rate; meanwhile, excess mortality in Varese peaked a month later on the week of 8 April, with mortality for that week peaking at over double the baseline rate.
 
@@ -184,6 +261,26 @@ Mortality and population data were downloaded from Istat, the Italian National I
 Population data by sex, age, and province for the years 2015 through 2020 was downloaded from the Istat web data portal\textsuperscript{\protect\hyperlink{ref-ItalianNationalInstituteofStatisticsIstat2020}{26}}⁠. Population counts were aggregated by sex, province, year, and the five age groups listed above.
 
 We downloaded or extracted data for each of seven covariates, listed below in Table \ref{tab:covariates-table}. After extraction, all covariates were normalized and rescaled to have a mean of zero and a standard deviation of 1 across all data observations.
+
+\begin{table}[!h]
+
+\caption{\label{tab:covariates-table}Covariates used to estimate baseline mortality by age group, sex, province, and week across Italy from January 2015 through August 2020. The source and space-time resolution of each covariate is listed.}
+\centering
+\begin{tabular}[t]{lll}
+\toprule
+Covariate & Source & Varies Over\\
+\midrule
+\cellcolor{gray!6}{Total fertility rate} & \cellcolor{gray!6}{Istat} & \cellcolor{gray!6}{Province, Year}\\
+First quarter unemployment & Istat & Province, Sex, Year\\
+\cellcolor{gray!6}{\makecell[l]{Proportion of eligible households receiving at-home\\social services}} & \cellcolor{gray!6}{Istat} & \cellcolor{gray!6}{Province, Year}\\
+\makecell[l]{Proportion of households with taxable annual income\\below 10,000 Euros} & Istat & Province, Year\\
+\cellcolor{gray!6}{Average driving time to the nearest health facility} & \cellcolor{gray!6}{Malaria Atlas Project} & \cellcolor{gray!6}{Province}\\
+\addlinespace
+Average elevation of residence & US Geological Survey & Province\\
+\cellcolor{gray!6}{Temperature} & \cellcolor{gray!6}{MeteoStat} & \cellcolor{gray!6}{Province, Year, Week}\\
+\bottomrule
+\end{tabular}
+\end{table}
 
 \hypertarget{space-time-model}{%
 \subsection{Space-time model}\label{space-time-model}}
@@ -235,6 +332,11 @@ We found that the out-of-sample root mean squared error for the best-performing 
 \section{Acknowledgments}\label{acknowledgments}}
 
 The authors wish to thank the Italian National Institute of Statistics for their timely compilation and dissemination of complete vital registration data for Italy, 2015-2020, which enabled this investigation. AE would like to thank the Bill \& Melinda Gates Foundation for funding his research (OPP1152978). CEM is funded by the United Kingdom's Department of Health and Social Care, the Fleming Fund, the Wellcome Trust (grant number 209142/Z/17/Z), and the Bill and Melinda Gates Foundation (grant number OPP1176062). The computational aspects of this research were supported by the Wellcome Trust Core Award Grant Number 203141/Z/16/Z and the NIHR Oxford BRC. The views expressed are those of the authors and not necessarily those of the NHS, the NIHR or the Department of Health.
+
+\hypertarget{author-contributions}{%
+\section{Author contributions}\label{author-contributions}}
+
+NH and CEM conceived and planned the study. NH identified, extracted, and processed the input data. NH carried out the statistical analyses with assistance and input from AE, MN, and MC. NH wrote the first draft of the manuscript with assistance from CEM and AE, and all authors contributed to subsequent revisions. All authors provided intellectual input into aspects of this study.
 
 \hypertarget{references}{%
 \section{References}\label{references}}
@@ -390,114 +492,5 @@ The authors wish to thank the Italian National Institute of Statistics for their
 \CSLRightInline{Patil, A. P., Gething, P. W., Piel, F. B. \& Hay, S. I. {Bayesian geostatistics in health cartography: The perspective of malaria}. \emph{Trends in Parasitology} \textbf{27}, 246--253 (2011).}
 
 \end{CSLReferences}
-
-\newpage
-
-\hypertarget{figures-and-tables}{%
-\section{Figures and Tables}\label{figures-and-tables}}
-
-\begin{figure}[!ht]
-
-{\centering \includegraphics[width=0.7\linewidth,]{/home/nat/Documents/Dropbox/Writing/thesis/graphics/italy/fig1_covid_deaths} 
-
-}
-
-\caption{Registered COVID-19 deaths per 100,000 population by Italian region prior to August 31, 2020. Nationally, 35,500 deaths were registered during this time, or approximately 59 deaths per 100,000 population.}\label{fig:covid-deaths}
-\end{figure}
-\newpage
-
-\begin{figure}[!ht]
-
-{\centering \includegraphics[width=0.7\linewidth,]{/home/nat/Documents/Dropbox/Writing/thesis/graphics/italy/fig2_time_series} 
-
-}
-
-\caption{\(Top\) Predicted baseline and observed deaths aggregated nationwide across Italy, March through August 2020. Bounds of the 95\% uncertainty interval for predicted baseline deaths are shaded in light brown. \(Bottom\) Estimated weekly excess deaths across Italy from March through May 2020, in red, compared with medically-certified deaths from COVID-19, in green.}\label{fig:time-series}
-\end{figure}
-\newpage
-
-\begin{figure}[!ht]
-
-{\centering \includegraphics[width=1\linewidth,]{/home/nat/Documents/Dropbox/Writing/thesis/graphics/italy/fig3_age_excess} 
-
-}
-
-\caption{Mean estimates for weekly excess deaths across Italy by age group, March through May 2020. Two nationwide age group breakdowns are shown to the right for comparison: the national age distribution as of 1 January 2020, and the proportion of nationwide deaths that occurred in each age group during the years 2015 through 2019.}\label{fig:age-excess}
-\end{figure}
-\newpage
-
-\begin{figure}[!ht]
-
-{\centering \includegraphics[width=1\linewidth,]{/home/nat/Documents/Dropbox/Writing/thesis/graphics/italy/fig4_age_maps} 
-
-}
-
-\caption{Map of standardized mortality ratios by age group and province over the entire period of March through May 2020. In these figures, significance is defined as falling outside of the 95\% uncertainty interval for baseline mortality for a given age group and province during this period.}\label{fig:age-maps}
-\end{figure}
-\newpage
-
-\begin{figure}[!ht]
-
-{\centering \includegraphics[width=25in,height=0.85\textheight,]{/home/nat/Documents/Dropbox/Writing/thesis/graphics/italy/fig5_top_provinces} 
-
-}
-
-\caption{Concentration of excess mortality burden among the 3, 7, and 22 provinces with the greatest number of excess deaths, out of 107 provinces total. These province groupings respectively accounted for over 25\%, 50\%, and 75\% of the national excess mortality burden between March and May 2020. The graph on the bottom left displays mean estimated excess deaths by province grouping and week during this time period.}\label{fig:top-provinces}
-\end{figure}
-\newpage
-
-\begin{figure}[!ht]
-
-{\centering \includegraphics[width=1\linewidth,]{/home/nat/Documents/Dropbox/Writing/thesis/graphics/italy/fig6_excess_neighbors} 
-
-}
-
-\caption{Excess deaths vary across provinces within the Lombardy region. \(Top\ left\) Map of Northern Italy showing the week when province’s excess mortality was estimated to peak during the first wave of COVID-19 in March through May 2020. \(Top\ right\) Map of the peak weekly standardized mortality ratio (SMR) for each province across Northern Italy across all weeks in March through May 2020. \(Bottom\ left\) Estimated excess deaths by week for Lodi province. \(Bottom\ right\) Estimated excess deaths by week for Varese province.}\label{fig:excess-neighbors}
-\end{figure}
-\newpage
-
-\begin{table}[!h]
-
-\caption{\label{tab:excess-demographics}Estimated excess mortality by age and sex grouping, aggregated to the national level for the weeks of 26 February through 26 May 2020. Nationally, all age-sex groupings experienced significantly elevated mortality compared to the expected baseline during this period.}
-\centering
-\begin{tabular}[t]{ccccc}
-\toprule
-Sex & Age & \makecell[c]{Excess deaths\\(95\% UI)} & \makecell[c]{Standardized\\Mortality Ratio\\(95\% UI)} & \makecell[c]{Population on\\1 Jan 2020,\\millions (\% total)}\\
-\midrule
-\cellcolor{gray!6}{Males} & \cellcolor{gray!6}{0-59} & \cellcolor{gray!6}{1,081 (918 to 1,240)} & \cellcolor{gray!6}{1.16 (1.13 to 1.19)} & \cellcolor{gray!6}{21.37 (35.5\%)}\\
-Females & 0-59 & 517 (401 to 627) & 1.13 (1.1 to 1.16) & 21.00 (34.9\%)\\
-\cellcolor{gray!6}{Males} & \cellcolor{gray!6}{60-69} & \cellcolor{gray!6}{2,600 (1,152 to 3,990)} & \cellcolor{gray!6}{1.29 (1.11 to 1.52)} & \cellcolor{gray!6}{3.55 (5.9\%)}\\
-Females & 60-69 & 947 (109 to 1,750) & 1.19 (1.02 to 1.41) & 3.87 (6.4\%)\\
-\cellcolor{gray!6}{Males} & \cellcolor{gray!6}{70-79} & \cellcolor{gray!6}{7,703 (4,639 to 10,730)} & \cellcolor{gray!6}{1.42 (1.22 to 1.71)} & \cellcolor{gray!6}{2.75 (4.6\%)}\\
-\addlinespace
-Females & 70-79 & 3,991 (1,885 to 6,048) & 1.33 (1.13 to 1.6) & 3.25 (5.4\%)\\
-\cellcolor{gray!6}{Males} & \cellcolor{gray!6}{80-89} & \cellcolor{gray!6}{10,649 (4,574 to 16,946)} & \cellcolor{gray!6}{1.36 (1.13 to 1.72)} & \cellcolor{gray!6}{1.45 (2.4\%)}\\
-Females & 80-89 & 10,308 (3,675 to 17,110) & 1.32 (1.09 to 1.67) & 2.20 (3.7\%)\\
-\cellcolor{gray!6}{Males} & \cellcolor{gray!6}{90} & \cellcolor{gray!6}{4,405 (1,979 to 6,879)} & \cellcolor{gray!6}{1.36 (1.14 to 1.71)} & \cellcolor{gray!6}{0.22 (0.4\%)}\\
-Females & 90 & 11,043 (5,784 to 16,432) & 1.41 (1.18 to 1.76) & 0.58 (1.0\%)\\
-\bottomrule
-\end{tabular}
-\end{table}
-\newpage
-
-\begin{table}[!h]
-
-\caption{\label{tab:covariates-table}Covariates used to estimate baseline mortality by age group, sex, province, and week across Italy from January 2015 through August 2020. The source and space-time resolution of each covariate is listed.}
-\centering
-\begin{tabular}[t]{lll}
-\toprule
-Covariate & Source & Varies Over\\
-\midrule
-\cellcolor{gray!6}{Total fertility rate} & \cellcolor{gray!6}{Istat} & \cellcolor{gray!6}{Province, Year}\\
-First quarter unemployment & Istat & Province, Sex, Year\\
-\cellcolor{gray!6}{\makecell[l]{Proportion of eligible households receiving at-home\\social services}} & \cellcolor{gray!6}{Istat} & \cellcolor{gray!6}{Province, Year}\\
-\makecell[l]{Proportion of households with taxable annual income\\below 10,000 Euros} & Istat & Province, Year\\
-\cellcolor{gray!6}{Average driving time to the nearest health facility} & \cellcolor{gray!6}{Malaria Atlas Project} & \cellcolor{gray!6}{Province}\\
-\addlinespace
-Average elevation of residence & US Geological Survey & Province\\
-\cellcolor{gray!6}{Temperature} & \cellcolor{gray!6}{MeteoStat} & \cellcolor{gray!6}{Province, Year, Week}\\
-\bottomrule
-\end{tabular}
-\end{table}
 
 \end{document}
