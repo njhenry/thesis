@@ -13,7 +13,7 @@
     textheight=9in,
     textwidth=5.5in,
     top=1in,
-    headheight=14pt,
+    headheight=12pt,
     headsep=25pt,
     footskip=30pt
   }
@@ -27,7 +27,7 @@
 \usepackage{colortbl}
 \usepackage{multirow}
 
-\newcommand{\headeright}{Preprint}
+\newcommand{\headeright}{}
 \newcommand{\undertitle}{Preprint}
 \newcommand{\shorttitle}{\@title}
 
@@ -114,6 +114,11 @@
 {
   \end{quote}
 }
+
+% caption style
+\usepackage[hang,bf,sf]{caption}
+\renewcommand{\captionfont}{\small}
+\renewcommand{\captionlabelfont}{\sffamily}
 
 \renewcommand{\baselinestretch}{1.5}
 \endinput
