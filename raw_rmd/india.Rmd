@@ -25,21 +25,95 @@ captions <- list(
 
 # Introduction
 
-\lipsum[1-3]
+PAR: In India, there is an increasing need for local mortality data to inform health policy
+  - REF
+  - REF to commitments
+
+PAR: Despite several overlapping mortality surveillance systems, none offer local insight
+  without modeling
+  
+PAR: Strategy - use the only local one to model U5M by district, then compare systems
+  - 
 
 
-## Household surveys as a tool for health system planning
+## Mortality across Indian states: progress, transition, and inequality
 
-\lipsum[4-6]
+PAR: Progress in under-5 mortality and political commitment
 
+PAR: Epi transition
 
-## Under-5 mortality across Indian states: progress and inequality
+PAR: Apparent inequality across and within states, notably between urban and rural areas
 
-\lipsum[7-9]
 
 ## The need for local estimation
 
-\lipsum[10-11]
+PAR: Commitments to target focal hot spots of low life expectancy, "leave no one behind"
+
+PAR: If you can't measure it, you can't act on it. Does the available data match the
+  commitment?
+
+
+## Tracking local variation in mortality across India
+
+PAR: Overview
+  - According to the 1969 Registration of Births and Deaths Act,[TODO CITE RBD ACT] birth
+    and death registration are rights owed to every Indian citizen.
+
+PAR: SRS 1
+ - Implemented nationally in 1970, sample size expanded throughout the latter half of the 1970s [@Bhat2002]
+ - As of 2020, covered a sample size of approximately XX million across XX urban and XX rural sampling units [TODO SRS TOTALS]
+ - Sampling strategy:
+    - When a sampling unit is added, a census of the area is conducted
+    - Vital events are registered continually, with a survey conducted every six months for an independent count and demographic update [@Mahapatra2010]
+
+PAR: CRS
+  - To accomplish the goal of universal civil registration of births and deaths, the
+    Indian government maintains the Civil Registration System (CRS) to register
+    vital events nationwide.
+  - Continuous registration relies on individual reporting of vital events, which falls
+    to household heads in cases where births and deaths occur in the home, or to facility
+    heads for vital events that occur in institutional settings. This self-report principle
+    can be challenging given the large number of births and deaths that occur at home or in
+    private facilities [@Mohanty2018; TODO PRIVATE FACILITIES]
+  - However, the Indian government has targeted complete birth and death registration [CITE],
+    and has developed strategies for full registration based on digital registration [CITE].
+  - Completeness of the CRS is the pathway by which all Indian citizens can access the
+    rights offered by legal birth and death registration.
+
+PAR: Survey systems
+  - Three major survey series conducted by the Indian government: the District-Level Household Surveys (DLHS); the National Family Health Surveys (NFHS), conducted in partnership with the international Demographic and Health Surveys program; and the Annual Health Surveys (AHS). Of these, the AHS is the largest, with over 4.3 million households captured in its 2013 sample.[@Dandona2016]
+  - While these surveys use differing sampling strategies, survey different household members, and collect information on diverse topics, all three capture retrospective information on child mortality by requesting birth histories from women of reproductive age.[@Dandona2016]
+  - While both the DLHS and NFHS surveys are conducted in five-year intervals, a two-year gap between them offers temporal survey coverage that is unparalleled in other countries.
+  - However, inconsistent coverage of questions related to adult mortality and non-communicable disease burden limit their utility for understanding the course of the epidemiological transition across India.[@Dandona2016]
+
+PAR: Relative quality of data sources
+ - SRS considered to be the gold standard for mortality reporting across the country, and
+   has been used as the baseline for past studies of the completeness of CRS mortality
+   reporting. However, the coverage of the CRS has been increasing: using SRS as the
+   baseline, a study estimated that CRS coverage increased from 55% to 77% nationally, with
+   completeness approaching 100% in nine states.[@Kumar2019]
+ - However, the Register General of India which maintains the SRS has only infrequently
+   published estimates of the source's completeness. An independent investigation of
+   SRS completeness using the Brass Generalized Growth Balance method found that at the
+   state level, the completeness of death registration in the SRS between 1981-1990 varied
+   between 81% and 100% for males and 74% to 95% for females.[@Bhat2002] A more recent
+   study of SRS completeness using the Preston and Coale method estimated that SRS 
+   completeness varied between 77% and 99% between 1990 and 2007 without a clear trend of
+   improving completeness over time; notably, this study also found that SRS in the state
+   of Andhra Pradesh captured only 58% of deaths in 2007, the final year of
+   estimation.[@Mahidol2010]
+ - Additionally, the SRS and CRS do not report mortality at the sub-state level, except for
+   the infant mortality rate (IMR), which the SRS has begun to report by district grouping
+   in recent years.[@Mahidol2010]
+ - The survey systems report township-level geographic information associated with each
+   sample cluster, but these surveys capture only retrospective information about child
+   mortality that is subject to possible response biases.[@Dandona2016]
+
+PAR: Strategy of this paper:
+  - Using modeling approaches to estimate child mortality using survey data
+  - Compare to SRS and CRS
+  - Apply principles of CRVS quality - could local reporting of SRS and CRS improve 
+    health delivery across India?
 
 
 # Methods
@@ -68,54 +142,218 @@ captions <- list(
 \lipsum[12-15]
 
 
+## Comparisons to CRS and SRS data at the most detailed spatial level available
+
+PAR: Methods
+  - Aggregate survey data to the most detailed levels reported for SRS and CRS
+    - SRS: District groupings
+    - Survey, SRS, and CRS: State groupings
+  - Compare estimates and uncertainty in 2000-2017
+  - Rather than using one source as a "gold standard", comparing all three with uncertainty
+    to understand potential systematic biases in each data source
+
+
 # Results
 
-\lipsum[1-2]
+PAR: Found dramatic variation at the district level that was not revealed by state-level
+  differences. Projections to 2030 generally show a convergence in mortality, although
+  these estimates show wide uncertainty in district-level projections
+
+PAR: CRS vs SRS vs survey-based models
 
 
 ## District-level mortality and rankings
 
-\lipsum[3-6]
+PAR: National summaries
+  - Highest and lowest nationally
+  - Relationship to the mean nationally
+  - High and low states
+
+PAR: Differences between distributions of IMR, U5MR, and NMR across the country
+  - Hot spots for U5MR, IMR, NMR specifically
+  - General similarities
+
+(FIG: Maps of U5MR, IMR, and NMR across India in 2000 and 2017)
+
+PAR: Change over time
+  - Decrease nationally, 2000 to 2017
+  - Fastest decrease in (X mortality type), notably in (X region)
+  - Urban vs rural?
+  
+(FIG: ARC by district in U5MR, 2000 to 2017)
+
+PAR: Differences across districts within the same state
+  - Note 1-2 states where these differences were pronounced
+
+(FIG: High-low plot of district U5MR, IMR, and NMR by Indian state)
+
+PAR: Concentration of number of deaths by district
+  - How many deaths could be averted by reducing child mortality in districts above X%?
+  - XX% of deaths were concentrated in districts containing YY% of the population
 
 
 ## Comparison to 2025 and 2030 mortality targets
 
-\lipsum[7-8]
+PAR: Relationship to U5MR targets, with uncertainty
+  - How many districts have already met the goal?
+  - How many districts are on track to meet the goal?
+  - How does uncertainty cloud our understanding of future trends?
+
+PAR: Relationship to IMR and NMR targets, with uncertainty
+  - How many districts have already met the goal?
+  - How many districts are on track to meet the goal?
+  - How does uncertainty cloud our understanding of future trends?
+
+(FIG: U5MR in 2000, 2017, 2030 (projected) with uncertainty in 3 key states)
+
+
+## Comparing local estimates from CRS, SRS, and survey-based estimates
+
+PAR: Strategy - combine to level reported by all three
+
+(FIG: IMR for all three, at the most detailed level available)
+
+PAR: Uncertainty in estimates
+  - In what states are there significant differences?
+  - In what states are there differences that look large, but are actually non-significant due to wide uncertainty intervals?
 
 
 # Discussion
 
-\lipsum[9-10]
+PAR: Important new insights from modelling of child mortality
+
+PAR: However, still limitations compared to what could be learned from SRS and CRS data
+  - Uncertainty
+  - Only capturing neonatal, infant, and child mortality, which is measured across all household surveys in a way that can be reconstructed as a time series
 
 
 ## Scale and inequality in mortality
 
-\lipsum[11-14]
+PAR: Scale of reporting matters when investigating differences in mortality
+  - Inequality by state only (XX%)
+  - Inequality by district greater
+  - Hot and cold spots in each state
+
+PAR: Targeting reduced child and infant deaths
+  - Impact of reducing child deaths to target
+  - Impact of reducing child deaths in a subset of districts to a higher target?
+
+PAR: Program implications
+  - Resource allocation
+  - Pilot programs should be targeted to high-need districts
+  - Can be done by state, and by district within states
 
 
 ## Relationship with determinants of child health
 
-\lipsum[1-2]
+PAR: Relationship to maternal education, strongest predictor
+  - Lit support
+  - Holding maternal education constant since 2000, we can assess the number of child deaths
+    averted as XX
+  - In a multivariable linear regression, the coefficient associated with maternal education
+    must be interpreted carefully
+
+PAR: Relationships with the urban/rural divide
+  - Used as covariates; also can be used as reporting units
+  - Different definitions of urban vs. rural: distance to population centers, administrative definitions, land use
+  - Standard administrative definitions in Indian survey reporting
+  - Difference in N/I/U5MR by urban/rural in 2017: (from GBD)
 
 
 ## Limitations of survey-based spatial mortality mapping
 
-\lipsum[3-8]
+PAR: Programmatic conundrum - the most recent time period is of the most interest, but
+  has the least data due to the retrospective nature of birth histories
+   - Nature of retrospective data
+   - Another issue with retrospective estimates - possible reporting bias that increases
+     further in the past. An investigation in India found that this bias seemed to be small
+     over the time period observed (max 16 years in the past for one survey)
+   - Still, retrospective observations were capped at 10 years in the past
+
+(FIG: Number of U5 individuals covered by year from survey data, 2000 to 2017)
+
+PAR: Potential bias due to model specification
+  - May not be a parametric relationship with predictors
+  - Capped to observed values - this avoids unfounded extrapolation, but may also miss
+    extreme values that were not found in any sampled location
 
 
 ### Uncertainty in rankings
 
-\lipsum[9-10]
+PAR: Programmatic implications in rankings - but how much do they mean?
+
+PAR: Communicating uncertainty in rankings
+
+(FIG: Ranked districts in 2000, 2017, and 2030 (est) with uncertainty showing flattened outcomes in 2017)
 
 
 ### Uncertainty in forecasting
 
-\lipsum[11-12]
+PAR: Greater uncertainty and less between-district inequality in 2017 mean that the 
+  standard methods for forecasting have great uncertainty both in relationship to targets
+  and inter-district rankings several years out.
+
+
+## Opportunities offered by spatial reporting of CRS and SRS data
+
+PAR: How to interpret three estimates of IMR that can conflict?
+  - Following other papers comparing multiple sources of death registration, we take a holistic
+    approach to completeness. SRS and survey-based results both have similar intentions and
+    comparable sample sizes, although only SRS is compiled annually and features surveys to
+    ensure quality.
+  - CRS should act as a floor for mortality reporting. We can also understand the intention
+    of CRS not just as a health surveillance system, but also as the foundation for legal
+    rights offered to all Indian citizens (CR vs VS).
+
+(FIG: Map showing where CRS, SRS, or survey-based estimates were highest)
+
+PAR: Comparison to principles of CRVS quality
+  - universality, timeliness, accuracy, completeness, and confidentiality [@UnitedNationsStatisticsDivision2014]
+  - Completeness: largely covered by this chapter
+  - Universality: only CRS is intended to cover all residents of India
+  - Accuracy: Cause-of-death classification subject to additional biases, particularly
+    when retrospectively recording deaths that occurred in the home.[@Kotabagi2004]
+  - Timeliness: 
+  - Confidentiality: Confidentiality for all-cause mortality tabulations can still be ensured
+    at the district level, where population is typically in the tens of millions. Even for
+    cause-specific reporting, a spatially-resolved CRS tabulations could follow standards
+    for other countries such as the United States that require aggregation of any death
+    totals below a fixed count threshold.[@Thacker1988]
+
+PAR: Possible extensions to other age groups
+  - How applicable are these findings to completeness of adult mortality?
+  - Estimates from other countries suggest that death reporting rates may be lower for
+    children under 5 than for adults, possibly due in part to different conceptions of
+    "mortality" in the neonatal context or social insurance programs offered to the
+    relatives of deceased adults.[CITE; @Kumar2005]
+  - On the other hand, in some cases there may be disincentives to report adult mortality,
+    such as for families who would lose a regular pension upon registration of death.[@Kumar2005]
+  - In India, adult women have lower rates of death registration than adult men, reflecting
+    legal requirements for property inheritance in a patriarchal society.[@Gupta2016]
+  - One near-certainty is that adult mortality, like child mortality, is distributed unequally
+    across the country in patterns not fully reflected by state-level tabulations.
+
+PAR: Program implications of spatially-resolved CRS and SRS data 
+  - Could be used for many more health conditions beyond child mortality
+  - TODO: Relate to health goals!
 
 
 ## Conclusions
 
-\lipsum[1]
+PAR: Contribution of this paper
+  - Demand for estimates in local variation of health, particularly for MNCH
+  - Despite this, no data system can be used to estimate district-level variation in mortality
+    and disease burden without modeling
+  - Models from survey data
+  - Despite new insights, local reporting of CRS and SRS data needed to better understand
+    variation in health burden by country
+    
+PAR: Transition to Mexico chapter
+  - Even incomplete CRVS data can contribute to a greater understanding of health status
+    when reported at the local level
+  - Methods development allows for both CRVS and survey data to be combined into more
+    robust estimates of all-cause mortality (to be shown in the next chapter)
+
 
 This is an example paragraph. To conclude, let's reference Figure \@ref(fig:fig1) and Table \@ref(tab:t1). Here are some example citations [@Aalbers; @Aguirre2009].
 
