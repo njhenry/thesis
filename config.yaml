@@ -9,24 +9,30 @@ tex_style:
 preprint: true
 
 ## Options that will be passed directly to the bookdown config
-bibliography: '{thesis_docs}/bibliographies/Mendeley-export-20210712.bib'
+bibliography: '{thesis_docs}/bibliographies/Mendeley-export-20210729.bib'
 citation_style: 'nature'
 link-citations: true
 github-repo: 'nathenry/thesis'
 
 ## Directories (used to resolve brackets in filepaths below)
 dirs:
-  repo: '/home/nat/repos/thesis'
-  thesis_docs: '/home/nat/Documents/Dropbox/Writing/thesis'
-  graphics: '/home/nat/Documents/Dropbox/Writing/thesis/graphics'
-  thesis_data: '/home/nat/Documents/Dropbox/Writing/thesis/data'
+  repo: 'C:/Users/nathenry/Documents/repos/thesis'
+  thesis_docs: 'C:/Users/nathenry/Documents/thesis'
+  graphics: 'C:/Users/nathenry/Documents/thesis/graphics'
+  thesis_data: 'C:/Users/nathenry/Documents/thesis/data'
 
 ## Filepaths: Graphics
 graphics_fps:
   introduction:
     fig1: '{graphics}/introduction/fig1_CRVS_under_5_mortality_completeness.png'
   india:
-    fig1: '{graphics}/test_chapter/fig1.png'
+    mort_2000_2017: "{graphics}/india/fig1_mort_2000_2017.png"
+    u5m_aroc_2000_2017: "{graphics}/india/fig2_u5m_aroc_2000_2017.png"
+    hilo_under5: "{graphics}/india/fig3_hilo_under5.png"
+    u5m_proj_2025: "{graphics}/india/fig4_u5m_proj_2025.png"
+    srs_comparison: "{graphics}/india/fig5_srs_comparison.png"
+    sample_size: "{graphics}/india/fig6_sample_size.png"
+    rankings: "{graphics}/india/fig7_rankings.png"
   mexico:
     fig1: '{graphics}/test_chapter/fig1.png'
   italy:
