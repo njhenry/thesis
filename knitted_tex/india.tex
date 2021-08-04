@@ -4,14 +4,13 @@
 %
 \documentclass[
 ]{article}
+\usepackage{amsmath,amssymb}
 \usepackage{lmodern}
-\usepackage{amsmath}
 \usepackage{ifxetex,ifluatex}
 \ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
   \usepackage[T1]{fontenc}
   \usepackage[utf8]{inputenc}
   \usepackage{textcomp} % provide euro and other symbols
-  \usepackage{amssymb}
 \else % if luatex or xetex
   \usepackage{unicode-math}
   \defaultfontfeatures{Scale=MatchLowercase}
@@ -37,12 +36,12 @@
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
 \IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
 \hypersetup{
-  pdftitle={A space-time-age model for district-level under-5 mortality estimation in India},
+  pdftitle={A space-time-age model for subnational child mortality estimation in India},
   pdfauthor={Nathaniel Henry},
   hidelinks,
   pdfcreator={LaTeX via pandoc}}
 \urlstyle{same} % disable monospaced font for URLs
-\usepackage{longtable,booktabs}
+\usepackage{longtable,booktabs,array}
 \usepackage{calc} % for calculating minipage widths
 % Correct order of tables after \paragraph or \subparagraph
 \usepackage{etoolbox}
@@ -100,166 +99,430 @@
 \newcommand{\CSLRightInline}[1]{\parbox[t]{\linewidth - \csllabelwidth}{#1}\break}
 \newcommand{\CSLIndent}[1]{\hspace{\cslhangindent}#1}
 
-\title{A space-time-age model for district-level under-5 mortality estimation in India}
-\author{Nathaniel Henry}
-\date{2021-06-09}
+\title{A space-time-age model for subnational child mortality estimation in India}
+\author{Nathaniel Henry\textsuperscript{}}
+\date{2021-07-30}
 
 \begin{document}
 \maketitle
 
-\hypertarget{abstract}{%
-\section{Abstract}\label{abstract}}
-
-\lipsum[1]
-
 \hypertarget{introduction}{%
 \section{Introduction}\label{introduction}}
 
-\lipsum[1-3]
+In 2017, the Indian Ministry of Health and Family Welfare released the National Health Policy (NHP), the first strategic plan in 15 years to clearly lay out the Indian government's priorities and targets related to health.\textsuperscript{\protect\hyperlink{ref-IND_MOHFW2017}{1}} This document's importance extends even beyond its goal-setting function for the next ten years of health policy in India: it also represents an attempt by India's national governing party to fulfill campaign promises centered around universal health coverage.\textsuperscript{\protect\hyperlink{ref-Sundararaman2017}{2}} To carry out these core principles, Indian health policymakers first require local and focal insights about health burden nationwide. A situation analysis released alongside the NHP emphasizes how measuring inequality and diversity in health outcomes is a first step towards achieving universal good health:
 
-\hypertarget{household-surveys-as-a-tool-for-health-system-planning}{%
-\subsection{Household surveys as a tool for health system planning}\label{household-surveys-as-a-tool-for-health-system-planning}}
+\begin{quote}
+We also need to keep in mind that high degree of inequity in health outcomes and access to health care services exists in India. This is evidenced by indicators disaggregated for vulnerable groups and between and within States. Identifying the deprived areas/vulnerable population groups (including special groups) through disaggregated data is a first step to address the existing inequities in health outcomes between and within States in India.\textsuperscript{\protect\hyperlink{ref-IND_MOHFW2017a}{3}}
+\end{quote}
 
-\lipsum[4-6]
+The NHP places particular emphasis on the health and survival of one vulnerable sub-population: children under five years of age. Targets related to reducing the neonatal mortality rate (NMR), the infant mortality rate (IMR), and the under-5 mortality rate (U5MR) top the list of concrete goals for the Indian health system over the next decade. To meet these targets universally and equitably, policymakers need information about disparities in the health of children under 1 month, 1 year, and 5 years of age, respectively, across the country. However, none of India's three primary mortality surveillance systems have traditionally offered spatially-resolved information about child survival across the country.
 
-\hypertarget{under-5-mortality-across-indian-states-progress-and-inequality}{%
-\subsection{Under-5 mortality across Indian states: progress and inequality}\label{under-5-mortality-across-indian-states-progress-and-inequality}}
+In this chapter, I describe a model to estimate neonatal, infant, and child mortality at the district level using the only mortality surveillance system for which sub-state location data is available, and demonstrate how district-level estimates of mortality can reveal policy-relevant information hidden by state-level results. I then compare these estimates to the data available from the other two mortality surveillance systems and explore how local data from all three systems could provide a roadmap for increasing equity in child health outcomes across India.
 
-\lipsum[7-9]
+\hypertarget{mortality-across-indian-states-progress-transition-and-inequality}{%
+\subsection{Mortality across Indian states: progress, transition, and inequality}\label{mortality-across-indian-states-progress-transition-and-inequality}}
 
-\hypertarget{the-need-for-local-estimation}{%
-\subsection{The need for local estimation}\label{the-need-for-local-estimation}}
+The NHP's emphases on child welfare and equity reflect India's past experience in child health provision. While India halved the under-5 mortality rate from 2000 to 2017, from 80 deaths per 1,000 live births to less than 40,\textsuperscript{\protect\hyperlink{ref-Dicker2018}{4}} state-level estimates of child welfare indicate that in the drive towards improved child health, some parts of the country are being left behind. The NHP reports that as of 2013, the states of Madhya Pradesh and Assam both experienced infant mortality rates of 54/1,000, or more than 1 in 20, more than five times higher than the IMR observed across the country in Goa (9/1,000) or Manipur (10/1,000).\textsuperscript{\protect\hyperlink{ref-IND_MOHFW2017}{1}}
 
-\lipsum[10-11]
+Previous research has contextualized these striking disparities as part of a discontinuity in the standard epidemiological and demographic transitions. In some regions and sub-populations of India, life expectancy has increased dramatically, leading to an increase in non-communicable disease burden and corresponding strain on the health system related to elder care; meanwhile, particularly in rural settings and among marginalized groups, infectious diseases and maternal and child disorders are more deleterious to health.\textsuperscript{\protect\hyperlink{ref-Yadav2014}{5}} These competing needs complicate national health policymaking, leading some researchers to contend that the Indian epidemiological context must be understood as ``many nations within a nation.''\textsuperscript{\protect\hyperlink{ref-Dandona2016}{6}}
+
+Facing a rapidly-changing health context marked by fundamental differences in health needs, Indian policymakers need health information systems that accurately reflects local variation in health status and identifies groups facing the greatest burden. The World Health Organization recognizes health information systems as a necessary building block for any successful health system, following the principle that public health relies on evidence to function.\textsuperscript{\protect\hyperlink{ref-WorldHealthOrganization2010}{7},\protect\hyperlink{ref-Abouzahr2005}{8}} Do India's health information systems live up to the National Health Policy's commitments on child mortality?
+
+\hypertarget{tracking-local-variation-in-mortality-across-india}{%
+\subsection{Tracking local variation in mortality across India}\label{tracking-local-variation-in-mortality-across-india}}
+
+According to the 1969 Registration of Births and Deaths Act passed by the Parliament of India, birth and death registration are owed to every Indian citizen.\textsuperscript{\protect\hyperlink{ref-ParliamentoftheRepublicofIndia1969}{9}} This Act, passed alongside the Census and Statistics Act for India,\textsuperscript{\protect\hyperlink{ref-Subramanian1969}{10}} recognizes that civil registration and vital statistics (CRVS) systems are a key both to efficient public administration as well as to maintaining the human rights to documented citizenship and social security.{[}UNGeneralAssembly1948{]} Given the logistical challenges associated with registering all births and deaths across India, the Indian government historically developed and maintained a number of overlapping health information systems to meet these needs. In this section, I discuss three information systems that are crucial to understanding child mortality across India: the Sample Registration System, the Civil Registration System, and a system of regular household surveys focused on maternal and child health.
+
+Following the passage of the 1969 Registration of Births and Deaths Act, the Indian government implemented the Sample Registration System (SRS) in 1970, then expanded it to a nationwide system in 1976-77.\textsuperscript{\protect\hyperlink{ref-Bhat2002}{11}} As of 2017, the SRS covered a population of approximately 7.9 million people across 3,892 urban and 4,961 rural sampling units.\textsuperscript{\protect\hyperlink{ref-CensusofIndia2017}{12}} The system is based on a two-tiered sampling strategy: when a new sampling unit is added, a baseline census of the area is taken. Vital events are then registered continuously, with a survey of the sampling area conducted every six months for an independent count and demographic update.\textsuperscript{\protect\hyperlink{ref-Mahapatra2010}{13}} Indicators of fertility, population, and age-specific mortality are then generated at the national and state levels, disaggregated by urban and rural status. Infant mortality is also reported at the sub-state natural division level for select large states.\textsuperscript{\protect\hyperlink{ref-CensusofIndia2017}{12}}
+
+Conversely, the Indian Civil Registration System (CRS) is a system with national coverage that aims for universal registration of births and deaths across India. Continuous registration relies on individual reporting of vital events, which falls to household heads in cases where births and deaths occur in the home, or to facility heads for vital events that occur in institutional settings. This self-report principle can be challenging given the large number of births and deaths that occur at home or in private facilities\textsuperscript{\protect\hyperlink{ref-Mohanty2018}{14}} To partially address these challenges, the Indian government has targeted improvements in the coverage of CRS birth an death registration based in part on digital registration.\textsuperscript{\protect\hyperlink{ref-Kumar2019}{15}} Complete coverage of the CRS is the pathway by which all Indian citizens can access the rights offered by legal birth and death registration.
+
+Three major survey series conducted by the Indian government also capture aspects of maternal and child mortality nationwide. These series are the District-Level Household Surveys (DLHS); the National Family Health Surveys (NFHS), conducted in partnership with the international Demographic and Health Surveys program; and the Annual Health Surveys (AHS). Of these, the AHS is the largest, with over 4.3 million households captured in its 2013 sample.\textsuperscript{\protect\hyperlink{ref-Dandona2016}{6}} While these surveys use differing sampling strategies, survey different household members, and collect information on diverse topics, all three capture retrospective information on child mortality by requesting birth histories from women of reproductive age.\textsuperscript{\protect\hyperlink{ref-Dandona2016}{6}} While both the DLHS and NFHS surveys are conducted in five-year intervals, a two-year gap between them offers temporal survey coverage that is unparalleled in other countries. However, inconsistent coverage of questions related to adult mortality and non-communicable disease burden limit their utility for understanding the course of the epidemiological transition across India.\textsuperscript{\protect\hyperlink{ref-Yadav2014}{5}}
+
+Among these data sources, the SRS is considered to be the gold standard for estimating fertility, births, and deaths across the country; past studies have used the SRS as the baseline against which the completeness of CRS mortality reporting is estimated. Against this standard, the coverage of the CRS has been increasing: using SRS as the baseline, a study estimated that CRS coverage increased from 55\% to 77\% nationally, with completeness approaching 100\% in nine states.\textsuperscript{\protect\hyperlink{ref-Kumar2019}{15}} However, the Register General of India, which maintains the SRS, has only infrequently published estimates of the source's completeness. An independent investigation of SRS completeness using the Brass Generalized Growth Balance method found that at the state level, the completeness of death registration in the SRS between 1981-1990 varied between 81\% and 100\% for males and 74\% to 95\% for females.\textsuperscript{\protect\hyperlink{ref-Bhat2002}{11}} A more recent study of SRS completeness using the Preston and Coale method estimated that SRS completeness varied between 77\% and 99\% between 1990 and 2007 without a clear trend showing improved completeness over time. Notably, this study also found that SRS in the state of Andhra Pradesh captured only 58\% of deaths in 2007, the final year of estimation.\textsuperscript{\protect\hyperlink{ref-Mahapatra2010}{13}}
+
+As tools for identifying health disparities nationwide, the SRS and CRS are limited in the spatial and sub-population data they report. Neither of these two sources reports mortality at the sub-state level, except for the infant mortality rate (IMR), which the SRS has begun to report by district grouping in recent years.\textsuperscript{\protect\hyperlink{ref-Mahapatra2010}{13}} The survey systems report township-level geographic information associated with each sample cluster; however, these surveys capture only retrospective information about child mortality that is subject to possible response biases.\textsuperscript{\protect\hyperlink{ref-Dandona2016}{6}}
 
 \hypertarget{methods}{%
 \section{Methods}\label{methods}}
 
-\lipsum[12-15]
+In this study, I develop a space-time modeling technique to estimate spatial variation in child mortality using data from the three major household survey series. This model takes advantage of the precise spatial information offered by the household surveys while attempting to correct for possible biases inherent to this data source. I then compare these modeled estimates of child mortality to the SRS and CRS data sources to explore possible cross-source differences in mortality estimates.
 
 \hypertarget{geo-locating-complete-birth-history-data}{%
 \subsection{Geo-locating complete birth history data}\label{geo-locating-complete-birth-history-data}}
 
-\lipsum[1-2]
+The NFHS, DLHS, and AHS all collect complete birth history from women of reproductive age. Complete birth history data provide the month and year of birth and death for each child of an interviewed woman. I extracted complete birth histories from individual-level survey microdata between 2000 and 2017, then reshaped these birth histories to reflect the number of children entering distinct age groups between birth and age five, as well as the number who died within each age group, by survey cluster and retrospective year.\textsuperscript{\protect\hyperlink{ref-Burstein2019}{16},\protect\hyperlink{ref-Ahmad2000}{17}} I then matched each survey cluster with precise spatial identifiers such as GPS points, precise township names, or districts.
 
 \hypertarget{space-time-age-mortality-estimation-model}{%
 \subsection{Space-time-age mortality estimation model}\label{space-time-age-mortality-estimation-model}}
 
-\lipsum[3-9]
+To synthesize information across various sources, and to make consistent estimates across space and time, I fitted a discrete hazards geostatistical model to the data. Age groups were represented in seven mutually exclusive bins (0, 1--5, 6--11, 12--23, 24--35, 36--47 and 48--59 months), each with a baseline mortality probability that was assumed to be constant nationwide. The model explicitly accounted for variation across age bin, year and space through inclusion of both fixed and random effects. Indicator variables for each age bin were included to form a discrete baseline mortality hazard function, representing the risk of mortality in discrete bins from birth to 59 months of age with covariates set at their means. Baseline hazard functions were allowed to vary in space and time in response to changing covariate values, as well as in response to linear effect on year. These estimated fixed effects were then applied to the gridded surface of covariate values to make predictions across the entire study geography. A latent process effect was also included to account for remaining correlation across age, time and physical space after accounting for fixed effects and source-specific biases. As such, estimates at a specific age, time or place benefitted from drawing predictive strength from data points nearby in all of these dimensions.
 
-\hypertarget{bias-correction-for-retrospective-survey-data}{%
-\subsubsection{Bias correction for retrospective survey data}\label{bias-correction-for-retrospective-survey-data}}
+All data were prepared such that we counted or estimated the number of children entering into (n) and dying within (Y) each period--age bin from each GPS-point location (s) in each survey (k) within each country (c). The number of deaths for children in age band (a) in year (t) at location (s) was assumed to follow a binomial distribution:
 
-\lipsum[10-11]
+\[Y_{a,s,t} \sim Binomial(n_{a,s,t}, P_{a,s,t})\]
+
+where \(P_{a,s,t}\) is the probability of death in age bin (a), conditional on survival to that age bin for a particular space--time location. Using a generalized linear regression modelling framework, a logit link function is used to relate P to a linear combination of effects:
+
+\[logit(P_{a,s,t})=\beta_0+\sum_{a=2}^{7}{I_a\beta_a^1 + \beta^2X_{s,t} + \beta^3t + Z_{a,s,t} + \nu_{k}}\]
+The first term, \(\beta_0\), is an intercept, representing the mean for the first age band when all covariates are equal to zero, whereas \(\beta_a^1\) are fixed effects for each age band, representing the mean overall hazard deviation for each age band from the intercept, when all other covariates are equal to zero. \(\beta^2\) are the linear fixed effects of geospatial covariates (\(X_{s,t}\)), while \(\beta^3\) is a linear temporal effect by year. The term \(Z_{a,s,t} \sim GP(0, K)\) is a correlated four-dimensional separable Gaussian process, accounting for structured residual correlation across the indices of space, time, and age that are not accounted for by any of the model's other fixed effects. This structure formalizes Tobler's first law of geography and extends it to other dimensions: all observations in space-time-age are related, but observations that neighbor each other in these dimensions are more likely to take similar values than observations that are distant from each other. The covariance matrix K is constructed as a separable process across age, space and time (\(K = \Sigma_a \otimes \Sigma_t \otimes \Sigma_s\)). The continuous spatial component is modelled with a Matérn covariance function, and the age and temporal effects were each assumed to be discrete auto-regressive order 1. Finally, the term \(\nu_k \sim Normal(0,\sigma^2_k)\) is a survey-level random effect used to account for systematic variation or biases across data sources: this was used to estimate deviation from a mean-zero time trend observed across overlapping surveys, and was excluded from the final estimate as a bias term. This model draws from previous studies investigating variation in child mortality based on survey data, particular Burstein \emph{et al}'s study in low- and middle-income countries.\textsuperscript{\protect\hyperlink{ref-Burstein2019}{16},\protect\hyperlink{ref-Wakefield2019}{18}}
 
 \hypertarget{mortality-forecasting}{%
 \subsection{Mortality forecasting}\label{mortality-forecasting}}
 
-\lipsum[12-15]
+After estimating NMR, IMR, and U5MR between 2000 and 2017, I calculated a weighted annualized rate of change for all grid cells and draws, giving greater weight to more recent annual rates of change. I then applied this annual rate to each indicator cell-draw in the final year of mortality estimates, in 2017, to project estimates for all three indicators through 2025 while preserving uncertainty. Previous spatial analyses have established this method for projecting spatial estimates into the future.\textsuperscript{\protect\hyperlink{ref-Osgood-Zimmerman2018}{19}} I then applied a population-weighted aggregation to calculate estimated mortality at the district and state levels based on gridded mortality projections.
+
+\hypertarget{comparisons-to-srs-data-at-the-most-detailed-spatial-level-available}{%
+\subsection{Comparisons to SRS data at the most detailed spatial level available}\label{comparisons-to-srs-data-at-the-most-detailed-spatial-level-available}}
+
+In recent years, the Indian Sample Registration System has begun to report estimates for infant mortality rates across 68 sub-state ``natural divisions'' in the larger states of India.\textsuperscript{\protect\hyperlink{ref-CensusofIndia2017}{12}} I used population-weighted aggregation to estimate infant mortality by natural division, with uncertainty, in 2017. I then compared these estimates based on survey data with point estimates provided by the SRS at the same spatial resolution in 2017. Rather than using either source as a ``gold standard'', I review significant differences between survey and SRS data as a starting point for future research and improvement.
 
 \hypertarget{results}{%
 \section{Results}\label{results}}
 
-\lipsum[1-2]
+PAR: Found dramatic variation at the district level that was not revealed by state-level
+differences. Projections to 2030 generally show a convergence in mortality, although
+these estimates show wide uncertainty in district-level projections
+
+PAR: CRS vs SRS vs survey-based models
 
 \hypertarget{district-level-mortality-and-rankings}{%
 \subsection{District-level mortality and rankings}\label{district-level-mortality-and-rankings}}
 
-\lipsum[3-6]
+PAR: National summaries
+- Highest and lowest nationally
+- Relationship to the mean nationally
+- High and low states
+
+PAR: Differences between distributions of IMR, U5MR, and NMR across the country
+- Hot spots for U5MR, IMR, NMR specifically
+- General similarities
+
+\begin{figure}[!hbt]
+
+{\centering \includegraphics[width=0.75\linewidth,]{C:/Users/nathenry/Documents/thesis/graphics/india/fig1_mort_2000_2017} 
+
+}
+
+\caption{NMR, IMR, and U5MR per 1,000 live births in 2000 and 2017, estimated from survey data. The Indian National Health Plan 2017 calls for reducing neonatal mortality to less than 16 deaths per 1,000 live births, and under-5 mortality to less than 23 deaths per 1,000 live births, nationwide by 2025.}\label{fig:mort-summary}
+\end{figure}
+
+PAR: Change over time
+- Decrease nationally, 2000 to 2017
+- Fastest decrease in (X mortality type), notably in (X region)
+- Urban vs rural?
+
+\begin{figure}[!hbt]
+
+{\centering \includegraphics[width=0.8\linewidth,]{C:/Users/nathenry/Documents/thesis/graphics/india/fig2_u5m_aroc_2000_2017} 
+
+}
+
+\caption{Annualized rate of decline (ARoD) in U5MR between 2000 and 2017. An ARoD of 5\% is equivalent to a cumulative decline of 58\% over 17 years, while an ARoD of 1\% is equivalent to a cumulative decline of 16\% over 17 years.}\label{fig:aroc}
+\end{figure}
+
+PAR: Differences across districts within the same state
+- Note 1-2 states where these differences were pronounced
+
+\begin{figure}[!hbt]
+
+{\centering \includegraphics[width=1.1\linewidth,]{C:/Users/nathenry/Documents/thesis/graphics/india/fig3_hilo_under5} 
+
+}
+
+\caption{Absolute inequalities in U5MR across districts within each Indian state and union territory in 2000 (grey) and 2017 (blue). Each dot represents a district: the lower bound of each vertical spread represents the district with the lowest U5MR in each state and year, while the upper bound of each vertical spread represents the district with the highest U5MR in the same district and year. The large diamond in each vertical spread shows the overall U5MR across the state as a whole. A blue bar that is shorter than its grey counterpart indicats that between-district inequality has narrowed between 2000 and 2017.}\label{fig:hilo}
+\end{figure}
+
+PAR: Concentration of number of deaths by district
+- How many deaths could be averted by reducing child mortality in districts above X\%?
+- XX\% of deaths were concentrated in districts containing YY\% of the population
 
 \hypertarget{comparison-to-2025-and-2030-mortality-targets}{%
 \subsection{Comparison to 2025 and 2030 mortality targets}\label{comparison-to-2025-and-2030-mortality-targets}}
 
-\lipsum[7-8]
+PAR: Relationship to U5MR targets, with uncertainty
+- How many districts have already met the goal?
+- How many districts are on track to meet the goal?
+- How does uncertainty cloud our understanding of future trends?
+
+PAR: Relationship to IMR and NMR targets, with uncertainty
+- How many districts have already met the goal?
+- How many districts are on track to meet the goal?
+- How does uncertainty cloud our understanding of future trends?
+
+\begin{figure}[!hbt]
+
+{\centering \includegraphics[width=1\linewidth,]{C:/Users/nathenry/Documents/thesis/graphics/india/fig4_u5m_proj_2025} 
+
+}
+
+\caption{\(Left:\) Mean estimated U5MR by district in 2025, projected forward by extending the annualized rate of decline from 2000-2017. \(Right:\) Comparison between projected 2025 U5MR estimates and the Indian National Health Policy 2017 target of 23 under-5 deaths per 1,000 live births, accounting for uncertainty. Districts shaded in white have a 95\% uncertainty interval (UI) that overlaps with the NHP 2025 target; districts shaded in red have a non-overlapping UI that falls above the target; districts shaded in blue have a non-overlapping UI that falls below the target.}\label{fig:projections}
+\end{figure}
+
+\hypertarget{comparing-local-estimates-from-crs-srs-and-survey-based-estimates}{%
+\subsection{Comparing local estimates from CRS, SRS, and survey-based estimates}\label{comparing-local-estimates-from-crs-srs-and-survey-based-estimates}}
+
+PAR: Strategy - combine to level reported by all three
+
+\begin{figure}[!hbt]
+
+{\centering \includegraphics[width=1\linewidth,]{C:/Users/nathenry/Documents/thesis/graphics/india/fig5_srs_comparison} 
+
+}
+
+\caption{\(A:\) IMR per 1,000 live births in 2017 across 68 natural division in large Indian states, as estimated by the Indian SRS 2017 report. \(B:\) By aggregating survey-based estimates of IMR to the natural division level, estimates of IMR from SRS and survey sources can be compared. The ratio between SRS-based IMR estimates and survey-based mean IMR estimates are shown at the natural division level. \(C:\) Comparison between point estimates of IMR provided by the SRS with the 95\% uncertainty interval for IMR estimated by survey data. Compared to survey-based estimates in 2017, the SRS estimated significantly lower IMR for 11 of 68 natural divisions, and significantly higher IMR for 3 of 68 natural divisions.}\label{fig:srs-comparison}
+\end{figure}
+
+PAR: Uncertainty in estimates
+- In what states are there significant differences?
+- In what states are there differences that look large, but are actually non-significant due to wide uncertainty intervals?
 
 \hypertarget{discussion}{%
 \section{Discussion}\label{discussion}}
 
-\lipsum[9-10]
+PAR: Important new insights from modelling of child mortality
+
+PAR: However, still limitations compared to what could be learned from SRS and CRS data
+- Uncertainty
+- Only capturing neonatal, infant, and child mortality, which is measured across all household surveys in a way that can be reconstructed as a time series
 
 \hypertarget{scale-and-inequality-in-mortality}{%
 \subsection{Scale and inequality in mortality}\label{scale-and-inequality-in-mortality}}
 
-\lipsum[11-14]
+PAR: Scale of reporting matters when investigating differences in mortality
+- Inequality by state only (XX\%)
+- Inequality by district greater
+- Hot and cold spots in each state
+
+PAR: Targeting reduced child and infant deaths
+- Impact of reducing child deaths to target
+- Impact of reducing child deaths in a subset of districts to a higher target?
+
+PAR: Program implications
+- Resource allocation
+- Pilot programs should be targeted to high-need districts
+- Can be done by state, and by district within states
 
 \hypertarget{relationship-with-determinants-of-child-health}{%
 \subsection{Relationship with determinants of child health}\label{relationship-with-determinants-of-child-health}}
 
-\lipsum[1-2]
+PAR: Relationship to maternal education, strongest predictor
+- Lit support
+- Holding maternal education constant since 2000, we can assess the number of child deaths
+averted as XX
+- In a multivariable linear regression, the coefficient associated with maternal education
+must be interpreted carefully
+
+PAR: Relationships with the urban/rural divide
+- Used as covariates; also can be used as reporting units
+- Different definitions of urban vs.~rural: distance to population centers, administrative definitions, land use
+- Standard administrative definitions in Indian survey reporting
+- Difference in N/I/U5MR by urban/rural in 2017: (from GBD)
 
 \hypertarget{limitations-of-survey-based-spatial-mortality-mapping}{%
 \subsection{Limitations of survey-based spatial mortality mapping}\label{limitations-of-survey-based-spatial-mortality-mapping}}
 
-\lipsum[3-8]
+PAR: Programmatic conundrum - the most recent time period is of the most interest, but
+has the least data due to the retrospective nature of birth histories
+- Nature of retrospective data
+- Another issue with retrospective estimates - possible reporting bias that increases
+further in the past. An investigation in India found that this bias seemed to be small
+over the time period observed (max 16 years in the past for one survey)
+- Still, retrospective observations were capped at 10 years in the past
+
+\begin{figure}[!hbt]
+
+{\centering \includegraphics[width=0.9\linewidth,]{C:/Users/nathenry/Documents/thesis/graphics/india/fig6_sample_size} 
+
+}
+
+\caption{Sample size for under-5 mortality modeling based on survey data between 2000 and 2017 across India. The sample size for each year is approximated here as the number of individuals under age 5 entering each year according to retrospective complete birth history data. At the time of this study, no complete birth history data was available after 2016, the year of the most recent included household survey.}\label{fig:sample-size}
+\end{figure}
+
+PAR: Potential bias due to model specification
+- May not be a parametric relationship with predictors
+- Capped to observed values - this avoids unfounded extrapolation, but may also miss
+extreme values that were not found in any sampled location
 
 \hypertarget{uncertainty-in-rankings}{%
 \subsubsection{Uncertainty in rankings}\label{uncertainty-in-rankings}}
 
-\lipsum[9-10]
+PAR: Programmatic implications in rankings - but how much do they mean?
+
+PAR: Communicating uncertainty in rankings
+
+\begin{figure}[!hbt]
+
+{\centering \includegraphics[width=0.9\linewidth,]{C:/Users/nathenry/Documents/thesis/graphics/india/fig7_rankings} 
+
+}
+
+\caption{Estimated U5MR by district in 2000, 2017, and projected to 2025 across three exemplar Indian states. Each vertical line displays the bounds of the 95\% uncertainty interval in a given district and year, and the point within the vertical line displays the corresponding mean U5MR estimate for that district and year. Districts are sorted in decreasing order of their estimates U5MR in 2000. The dotted horizontal line displays the Indian NHP target of fewer than 23 under-5 deaths per 1,000 live births by 2025.}\label{fig:rankings}
+\end{figure}
 
 \hypertarget{uncertainty-in-forecasting}{%
 \subsubsection{Uncertainty in forecasting}\label{uncertainty-in-forecasting}}
 
-\lipsum[11-12]
+PAR: Greater uncertainty and less between-district inequality in 2017 mean that the
+standard methods for forecasting have great uncertainty both in relationship to targets
+and inter-district rankings several years out.
+
+\hypertarget{opportunities-offered-by-spatial-reporting-of-crs-and-srs-data}{%
+\subsection{Opportunities offered by spatial reporting of CRS and SRS data}\label{opportunities-offered-by-spatial-reporting-of-crs-and-srs-data}}
+
+PAR: How to interpret three estimates of IMR that can conflict?
+- Following other papers comparing multiple sources of death registration, we take a holistic
+approach to completeness. SRS and survey-based results both have similar intentions and
+comparable sample sizes, although only SRS is compiled annually and features surveys to
+ensure quality.
+- CRS should act as a floor for mortality reporting. We can also understand the intention
+of CRS not just as a health surveillance system, but also as the foundation for legal
+rights offered to all Indian citizens (CR vs VS).
+
+PAR: Comparison to principles of CRVS quality
+- universality, timeliness, accuracy, completeness, and confidentiality\textsuperscript{\protect\hyperlink{ref-UnitedNationsStatisticsDivision2014}{20}}
+- Completeness: largely covered by this chapter
+- Universality: only CRS is intended to cover all residents of India
+- Accuracy: Cause-of-death classification subject to additional biases, particularly
+when retrospectively recording deaths that occurred in the home.\textsuperscript{\protect\hyperlink{ref-Kotabagi2004}{21}}
+- Timeliness:
+- Confidentiality: Confidentiality for all-cause mortality tabulations can still be ensured
+at the district level, where population is typically in the tens of millions. Even for
+cause-specific reporting, a spatially-resolved CRS tabulations could follow standards
+for other countries such as the United States that require aggregation of any death
+totals below a fixed count threshold.\textsuperscript{\protect\hyperlink{ref-Thacker1988}{22}}
+
+PAR: Possible extensions to other age groups
+- How applicable are these findings to completeness of adult mortality?
+- Estimates from other countries suggest that death reporting rates may be lower for
+children under 5 than for adults, possibly due in part to different conceptions of
+``mortality'' in the neonatal context or social insurance programs offered to the
+relatives of deceased adults.\textsuperscript{\protect\hyperlink{ref-Kumar2019}{15}}
+- On the other hand, in some cases there may be disincentives to report adult mortality,
+such as for families who would lose a regular pension upon registration of death.\textsuperscript{\protect\hyperlink{ref-Kumar2019}{15}}
+- In India, adult women have lower rates of death registration than adult men, reflecting
+legal requirements for property inheritance in a patriarchal society.\textsuperscript{\protect\hyperlink{ref-Gupta2016}{23}}
+- One near-certainty is that adult mortality, like child mortality, is distributed unequally
+across the country in patterns not fully reflected by state-level tabulations.
+
+PAR: Program implications of spatially-resolved CRS and SRS data
+- Could be used for many more health conditions beyond child mortality
+- TODO: Relate to health goals!
 
 \hypertarget{conclusions}{%
 \subsection{Conclusions}\label{conclusions}}
 
-\lipsum[1]
+PAR: Contribution of this paper
+- Demand for estimates in local variation of health, particularly for MNCH
+- Despite this, no data system can be used to estimate district-level variation in mortality
+and disease burden without modeling
+- Models from survey data
+- Despite new insights, local reporting of CRS and SRS data needed to better understand
+variation in health burden by country
 
-This is an example paragraph. To conclude, let's reference Figure \ref{fig:fig1} and Table \ref{tab:t1}. Here are some example citations.\textsuperscript{\protect\hyperlink{ref-Aalbers}{1},\protect\hyperlink{ref-Aguirre2009}{2}}
+PAR: Transition to Mexico chapter
+- Even incomplete CRVS data can contribute to a greater understanding of health status
+when reported at the local level
+- Methods development allows for both CRVS and survey data to be combined into more
+robust estimates of all-cause mortality (to be shown in the next chapter)
 
 \hypertarget{references}{%
 \section{References}\label{references}}
 
 \hypertarget{refs}{}
 \begin{CSLReferences}{0}{0}
-\leavevmode\hypertarget{ref-Aalbers}{}%
+\leavevmode\hypertarget{ref-IND_MOHFW2017}{}%
 \CSLLeftMargin{1. }
-\CSLRightInline{Aalbers, M. B. {Do Maps Make Geography? Part 3: Reconnecting the Trace}. \emph{ACME: An International E-Journal for Critical Cartographies2} \textbf{13}, 586--588 (2014).}
+\CSLRightInline{Government of India Ministry of Health and Family Welfare. \emph{{National Health Policy 2017}}. 28 \url{https://www.nhp.gov.in/nhpfiles/national_health_policy_2017.pdf} (2017).}
 
-\leavevmode\hypertarget{ref-Aguirre2009}{}%
+\leavevmode\hypertarget{ref-Sundararaman2017}{}%
 \CSLLeftMargin{2. }
-\CSLRightInline{Aguirre, A. {La mortalidad infantil espa{ñ}ola en el siglo XX}. \emph{Papeles de Poblacion} \textbf{61}, 75--99 (2009).}
+\CSLRightInline{Sundararaman, T. {National Health Policy 2017: a cautious welcome}. \emph{Indian Journal of Medical Ethics} \textbf{2}, 69--71 (2017).}
+
+\leavevmode\hypertarget{ref-IND_MOHFW2017a}{}%
+\CSLLeftMargin{3. }
+\CSLRightInline{Government of India Ministry of Health and Family Welfare. \emph{{Situation Analyses: Backdrop to the National Health Policy 2017}}. 14 (2017).}
+
+\leavevmode\hypertarget{ref-Dicker2018}{}%
+\CSLLeftMargin{4. }
+\CSLRightInline{Dicker, D. \emph{et al.} {Global, regional, and national age-sex-specific mortality and life expectancy, 1950--2017: a systematic analysis for the Global Burden of Disease Study 2017}. \emph{The Lancet} \textbf{392}, 1684--1735 (2018).}
+
+\leavevmode\hypertarget{ref-Yadav2014}{}%
+\CSLLeftMargin{5. }
+\CSLRightInline{Yadav, S. \& Arokiasamy, P. {Understanding epidemiological transition in India}. \emph{Global Health Action} \textbf{7}, (2014).}
+
+\leavevmode\hypertarget{ref-Dandona2016}{}%
+\CSLLeftMargin{6. }
+\CSLRightInline{Dandona, R., Pandey, A. \& Dandona, L. {A review of national health surveys in India}. \emph{Bulletin of the World Health Organization} \textbf{94}, 286--296A (2016).}
+
+\leavevmode\hypertarget{ref-WorldHealthOrganization2010}{}%
+\CSLLeftMargin{7. }
+\CSLRightInline{World Health Organization. \emph{{Monitoring the Building Blocks of Health Systems: a Handbook of Indicators and Their Measurement Strategies}}. vol. 35 1--92 \url{http://www.annualreviews.org/doi/10.1146/annurev.ecolsys.35.021103.105711} (2010).}
+
+\leavevmode\hypertarget{ref-Abouzahr2005}{}%
+\CSLLeftMargin{8. }
+\CSLRightInline{Abouzahr, C. \& Boerma, T. {Health information systems: the foundations of public health}. \emph{Bulletin of the World Health Organization} \textbf{83}, 578--583 (2005).}
+
+\leavevmode\hypertarget{ref-ParliamentoftheRepublicofIndia1969}{}%
+\CSLLeftMargin{9. }
+\CSLRightInline{Parliament of the Republic of India. {The Registration of Births and Deaths Act, 1969}. vols Act 18 (1969).}
+
+\leavevmode\hypertarget{ref-Subramanian1969}{}%
+\CSLLeftMargin{10. }
+\CSLRightInline{Subramanian, S. {A Census and Statistics Act for India}. \emph{Calcutta Statistical Association Bulletin} \textbf{18}, 85--96 (1969).}
+
+\leavevmode\hypertarget{ref-Bhat2002}{}%
+\CSLLeftMargin{11. }
+\CSLRightInline{Bhat, P. N. M. {Completeness of India's sample registration system: An assessment using the general growth balance method}. \emph{Population Studies} \textbf{56}, 119--134 (2002).}
+
+\leavevmode\hypertarget{ref-CensusofIndia2017}{}%
+\CSLLeftMargin{12. }
+\CSLRightInline{Office of the Registrar General \& Census Commissioner. \emph{{Sample Registration System Statistical Report 2017}}. 337 \url{http://www.censusindia.gov.in/vital_statistics/SRS_Report/9Chap\%202\%20-\%202011.pdf} (2017).}
+
+\leavevmode\hypertarget{ref-Mahapatra2010}{}%
+\CSLLeftMargin{13. }
+\CSLRightInline{Mahapatra, P. {An Overview of the Sample Registration System in India}. in \emph{Prince mahidol award conference \& global health information forum} 1--13 (Institute of Health Systems, 2010).}
+
+\leavevmode\hypertarget{ref-Mohanty2018}{}%
+\CSLLeftMargin{14. }
+\CSLRightInline{Mohanty, I. \& Gebremedhin, T. A. {Maternal autonomy and birth registration in India: Who gets counted?} \emph{PLoS ONE} \textbf{13}, 1--19 (2018).}
+
+\leavevmode\hypertarget{ref-Kumar2019}{}%
+\CSLLeftMargin{15. }
+\CSLRightInline{Kumar, G. A., Dandona, L. \& Dandona, R. {Completeness of death registration in the Civil Registration System, India (2005 to 2015)}. \emph{Indian Journal of Medical Research} \textbf{149}, 740 (2019).}
+
+\leavevmode\hypertarget{ref-Burstein2019}{}%
+\CSLLeftMargin{16. }
+\CSLRightInline{Burstein, R. \emph{et al.} {Mapping 123 million neonatal, infant and child deaths between 2000 and 2017}. \emph{Nature} \textbf{574}, 353--358 (2019).}
+
+\leavevmode\hypertarget{ref-Ahmad2000}{}%
+\CSLLeftMargin{17. }
+\CSLRightInline{Ahmad, O. B., Lopez, A. D. \& Inoue, M. {The decline in child mortality: a reappraisal.} \emph{Bulletin of the World Health Organization} \textbf{78}, 1175--91 (2000).}
+
+\leavevmode\hypertarget{ref-Wakefield2019}{}%
+\CSLLeftMargin{18. }
+\CSLRightInline{Wakefield, J. \emph{et al.} {Estimating under-five mortality in space and time in a developing world context}. \emph{Statistical Methods in Medical Research} \textbf{28}, 2614--2634 (2019).}
+
+\leavevmode\hypertarget{ref-Osgood-Zimmerman2018}{}%
+\CSLLeftMargin{19. }
+\CSLRightInline{Osgood-Zimmerman, A. \emph{et al.} {Mapping child growth failure in Africa between 2000 and 2015}. \emph{Nature} \textbf{555}, 41--47 (2018).}
+
+\leavevmode\hypertarget{ref-UnitedNationsStatisticsDivision2014}{}%
+\CSLLeftMargin{20. }
+\CSLRightInline{United Nations Statistics Division. \emph{{Principles and Recommendations for a Vital Statistics System Revision 3}}. (2014).}
+
+\leavevmode\hypertarget{ref-Kotabagi2004}{}%
+\CSLLeftMargin{21. }
+\CSLRightInline{Kotabagi, R. B., Chaturvedi, R. K. \& Banerjee, A. {Medical certification of cause of death}. \emph{Medical Journal Armed Forces India} \textbf{60}, 261--272 (2004).}
+
+\leavevmode\hypertarget{ref-Thacker1988}{}%
+\CSLLeftMargin{22. }
+\CSLRightInline{Thacker, S. B. \& Berkelman, R. L. {Public Health Surveillance in the United States}. \emph{Epidemiologic Reviews} \textbf{10}, 164--190 (1988).}
+
+\leavevmode\hypertarget{ref-Gupta2016}{}%
+\CSLLeftMargin{23. }
+\CSLRightInline{Gupta, M., Rao, C., Lakshmi, P., Prinja, S. \& Kumar, R. {Estimating mortality using data from civil registration: a cross-sectional study in India}. \emph{Bulletin of the World Health Organization} \textbf{94}, 10--21 (2016).}
 
 \end{CSLReferences}
-
-\newpage
-
-\hypertarget{figures-and-tables}{%
-\section{Figures and Tables}\label{figures-and-tables}}
-
-\begin{figure}[!ht]
-
-{\centering \includegraphics[width=0.7\linewidth,]{/home/nat/Documents/Dropbox/Writing/thesis/graphics/test_chapter/fig1} 
-
-}
-
-\caption{Example caption for a figure.}\label{fig:fig1}
-\end{figure}
-\newpage
-
-\begin{table}
-
-\caption{\label{tab:t1}Example caption for a table.}
-\centering
-\begin{tabular}[t]{rr}
-\toprule
-a & b\\
-\midrule
-\cellcolor{gray!6}{-1.9089035} & \cellcolor{gray!6}{1}\\
-0.4934838 & 2\\
-\cellcolor{gray!6}{-1.2685774} & \cellcolor{gray!6}{3}\\
-0.5779566 & 4\\
-\cellcolor{gray!6}{-0.5309846} & \cellcolor{gray!6}{5}\\
-\addlinespace
--1.2905178 & 6\\
-\cellcolor{gray!6}{0.1389421} & \cellcolor{gray!6}{7}\\
--1.4467715 & 8\\
-\cellcolor{gray!6}{-0.2152460} & \cellcolor{gray!6}{9}\\
--0.4153706 & 10\\
-\bottomrule
-\end{tabular}
-\end{table}
 
 \end{document}
