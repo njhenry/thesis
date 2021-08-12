@@ -25,9 +25,9 @@
 # Script arguments
 # TODO: Convert to CLI
 conf_fp <- '~/repos/thesis/config.yaml'
-chapter <- 'italy'
+chapter <- 'india'
 chapter_type <- 'standalone'
-pdf_out_fp <- glue::glue('~/Documents/Dropbox/Writing/thesis/output/{chapter}_{Sys.Date()}.pdf')
+pdf_out_fp <- glue::glue('~/thesis/output/{chapter}_{Sys.Date()}.pdf')
 
 # Load config, required packages, and helper functions
 repo <- yaml::read_yaml(conf_fp)$dirs$repo
@@ -47,6 +47,13 @@ chapter_rmd_fp_base <- basename(chapter_rmd_fp)
 tex_dir <- file.path(repo, 'knitted_tex')
 tex_dir_fp_base <- glue::glue('{chapter}.pdf')
 
+# Fix to identify xeLatex on Windows:
+if((Sys.info()['sysname'] == 'Windows') & (Sys.which('xelatex')=='')){
+  addpath <- 'C:/Users/nathenry/AppData/Local/Programs/MiKTeX/miktex/bin/x64'
+  current_path <- Sys.getenv("PATH")
+  Sys.setenv(PATH = paste(current_path, addpath, sep = ';'))
+  if(Sys.which('xelatex')=='') stop("Still can't find xelatex")
+}
 
 ## Compile Rmd to TEX and PDF using bookdown -------------------------------------------->
 
@@ -62,11 +69,9 @@ dummy_config <- list(
 )
 dummy_config_fp <- tempfile(fileext='.yaml')
 yaml::write_yaml(dummy_config, file=dummy_config_fp)
-
-# Convert
 pdf_args <- list(
-  toc = FALSE, keep_tex = TRUE, latex_engine = 'xelatex',
-  extra_dependencies = c('booktabs', 'doi', 'float', 'makecell', 'url'),
+  toc = FALSE, keep_tex = TRUE, latex_engine = 'pdflatex',
+  extra_dependencies = c('booktabs', 'doi', 'float', 'lipsum','makecell', 'url'),
   pandoc_args = c(
     glue::glue('--lua-filter={repo}/styles/scholarly_metadata.lua'),
     glue::glue('--lua-filter={repo}/styles/author_info_blocks.lua')
