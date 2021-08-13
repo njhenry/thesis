@@ -25,9 +25,11 @@
 # Script arguments
 # TODO: Convert to CLI
 conf_fp <- '~/repos/thesis/config.yaml'
-chapter <- 'india'
+chapter <- 'italy_thesis'
 chapter_type <- 'standalone'
-pdf_out_fp <- glue::glue('~/thesis/output/{chapter}_{Sys.Date()}.pdf')
+pdf_out_fp <- glue::glue(
+  'C:/Users/nathenry/Dropbox/Writing/thesis/output/{chapter}_{Sys.Date()}.pdf'
+)
 
 # Load config, required packages, and helper functions
 repo <- yaml::read_yaml(conf_fp)$dirs$repo
@@ -70,7 +72,7 @@ dummy_config <- list(
 dummy_config_fp <- tempfile(fileext='.yaml')
 yaml::write_yaml(dummy_config, file=dummy_config_fp)
 pdf_args <- list(
-  toc = FALSE, keep_tex = TRUE, latex_engine = 'pdflatex',
+  toc = FALSE, keep_tex = TRUE, latex_engine = 'xelatex',
   extra_dependencies = c('booktabs', 'doi', 'float', 'lipsum','makecell', 'url'),
   pandoc_args = c(
     glue::glue('--lua-filter={repo}/styles/scholarly_metadata.lua'),
