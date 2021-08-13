@@ -17,9 +17,9 @@ github-repo: 'nathenry/thesis'
 ## Directories (used to resolve brackets in filepaths below)
 dirs:
   repo: 'C:/Users/nathenry/Documents/repos/thesis'
-  thesis_docs: 'C:/Users/nathenry/Documents/thesis'
-  graphics: 'C:/Users/nathenry/Documents/thesis/graphics'
-  thesis_data: 'C:/Users/nathenry/Documents/thesis/data'
+  thesis_docs: 'C:/Users/nathenry/Dropbox/Writing/thesis'
+  graphics: 'C:/Users/nathenry/Dropbox/Writing/thesis/graphics'
+  thesis_data: 'C:/Users/nathenry/Dropbox/Writing/thesis/data'
 
 ## Filepaths: Graphics
 graphics_fps:
@@ -42,6 +42,14 @@ graphics_fps:
     age_maps: '{graphics}/italy/fig4_age_maps.png'
     top_provinces: '{graphics}/italy/fig5_top_provinces.png'
     excess_neighbors: '{graphics}/italy/fig6_excess_neighbors.png'
+  italy_thesis:
+    covid_deaths: '{graphics}/italy/fig1_covid_deaths.png'
+    time_series: '{graphics}/italy/fig2_time_series.png'
+    age_excess: '{graphics}/italy/fig3_age_excess.png'
+    age_maps: '{graphics}/italy/fig4_age_maps.png'
+    top_provinces: '{graphics}/italy/fig5_top_provinces.png'
+    excess_neighbors: '{graphics}/italy/fig6_excess_neighbors.png'
+    excess_ratio: '{graphics}/italy/fig7_excess_ratio.png'
   uganda:
     fig1: '{graphics}/test_chapter/fig1.png'
   discussion:
@@ -58,6 +66,9 @@ data_fps:
   mexico:
     t1: '{thesis_data}/test_chapter/t1_test.csv'
   italy:
+    covariates_table: '{thesis_data}/italy/t1_covariates_table.csv'
+    excess_demographics: '{thesis_data}/italy/t2_excess_demographics.csv'
+  italy_thesis:
     covariates_table: '{thesis_data}/italy/t1_covariates_table.csv'
     excess_demographics: '{thesis_data}/italy/t2_excess_demographics.csv'
   uganda:
