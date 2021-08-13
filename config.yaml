@@ -42,6 +42,13 @@ graphics_fps:
     age_maps: '{graphics}/italy/fig4_age_maps.png'
     top_provinces: '{graphics}/italy/fig5_top_provinces.png'
     excess_neighbors: '{graphics}/italy/fig6_excess_neighbors.png'
+  italy_thesis:
+    covid_deaths: '{graphics}/italy/fig1_covid_deaths.png'
+    time_series: '{graphics}/italy/fig2_time_series.png'
+    age_excess: '{graphics}/italy/fig3_age_excess.png'
+    age_maps: '{graphics}/italy/fig4_age_maps.png'
+    top_provinces: '{graphics}/italy/fig5_top_provinces.png'
+    excess_neighbors: '{graphics}/italy/fig6_excess_neighbors.png'
   uganda:
     fig1: '{graphics}/test_chapter/fig1.png'
   discussion:
@@ -58,6 +65,9 @@ data_fps:
   mexico:
     t1: '{thesis_data}/test_chapter/t1_test.csv'
   italy:
+    covariates_table: '{thesis_data}/italy/t1_covariates_table.csv'
+    excess_demographics: '{thesis_data}/italy/t2_excess_demographics.csv'
+  italy_thesis:
     covariates_table: '{thesis_data}/italy/t1_covariates_table.csv'
     excess_demographics: '{thesis_data}/italy/t2_excess_demographics.csv'
   uganda:
