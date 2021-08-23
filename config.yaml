@@ -9,7 +9,7 @@ tex_style:
 preprint: true
 
 ## Options that will be passed directly to the bookdown config
-bibliography: '{thesis_docs}/bibliographies/Mendeley-export-20210815.bib'
+bibliography: '{thesis_docs}/bibliographies/Mendeley-export-20210822.bib'
 citation_style: 'nature'
 link-citations: true
 github-repo: 'nathenry/thesis'
@@ -34,7 +34,13 @@ graphics_fps:
     sample_size: "{graphics}/india/fig6_sample_size.png"
     rankings: "{graphics}/india/fig7_rankings.png"
   mexico:
-    fig1: '{graphics}/test_chapter/fig1.png'
+    capture_recapture: '{graphics}/mexico/capture_recapture.png'
+    excl_groups: '{graphics}/mexico/excl_groups.png'
+    excl_covs: '{graphics}/mexico/excl_covs.png'
+    sim_results: '{graphics}/mexico/sim_results.png'
+    nmr_wide_model: '{graphics}/mexico/nmr_wide_model.png'
+    vr_bias_wide_model: '{graphics}/mexico/vr_bias_wide_model.png'
+    crvs_bias_diff: '{graphics}/mexico/crvs_bias_diff.png'
   italy:
     covid_deaths: '{graphics}/italy/fig1_covid_deaths.png'
     time_series: '{graphics}/italy/fig2_time_series.png'
@@ -64,7 +70,7 @@ data_fps:
   india:
     t1: '{thesis_data}/test_chapter/t1_test.csv'
   mexico:
-    t1: '{thesis_data}/test_chapter/t1_test.csv'
+    sim_param_results: '{thesis_data}/mexico/sim_param_results.csv'
   italy:
     covariates_table: '{thesis_data}/italy/t1_covariates_table.csv'
     excess_demographics: '{thesis_data}/italy/t2_excess_demographics.csv'
