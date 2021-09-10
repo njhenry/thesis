@@ -13,251 +13,200 @@ knitr::opts_chunk$set(fig.pos = "!ht", out.extra = "", fig.align = 'center', ech
 
 # Set caption text
 captions <- list(
-  fig1 = "Example caption for a figure.",
-  t1 = "Example caption for a table."
+  capture_recapture = "A visual demonstration of capture-recapture analysis using linked records from two surveys.",
+  excl_groups = "Grouping of municipalities into exclusion categories based on indigenous status, proximity to clinics, adult employment in the formal economy, and literacy rates among adult women.",
+  excl_covs = "Distribution of socio-economic indicators across municipalities within each exclusion grouping. The center line of each bar represents the median value for each indicator across less marginalized (N=1852), moderately marginalized (N=437), and severely marginalized (N=152) municipalities across Mexico, while the vertical range of each bar represents the inter-quartile range of indicator values for each grouping.",
+  sim_results = "\\(Left\\) Simulated neonatal mortality rates across Mexican municipalities  compared to neonatal mortality rates recovered from the spatial statistical model. Points indicate the mean NMR estimated by the model, while vertical line spans represent the 95\\% uncertainty intervals for NMR estimated by the model for each municipality. \\(Right\\) CRVS bias terms simulated for model input data, on the x-axis, compared to the mean and 95\\% uncertainty intervals for these bias parameters recovered by the spatial statistical model, on the y-axis.",
+  nmr_wide_model = "Neonatal mortality rate per 1,000 live births by Mexican municipality, 2009-2010, estimated by a joint model that incorporates both census and CRVS data.",
+  vr_bias_wide_model = "Mean estimates for CRVS bias terms predicted by the joint model for neonatal mortality. Municipalities shaded in green indicate under-registration of births relative to neonatal deaths, leading to inflated estimates of mortality based on raw CRVS data. Municipalities shaded in brown indicate under-registration of neonatal deaths relative to births, leading to under-estimation of mortality from raw CRVS data.",
+  crvs_bias_diff = "Comparison between a joint estimation model with CRVS bias terms and a baseline model where CRVS bias is set to zero. \\(Panel\\ A\\) The two models estimate minor differences in the neonatal mortality rate by Mexican state, with overlapping 95\\% uncertainty intervals for all states. \\(Panel\\ B\\) The two models generate substantially different and non-overlapping NMR estimates for municipalities in Guerrero, Oaxaca, and Chiapas states in the far south as well as Yucatan state in the far east.",
+  sim_param_results = "Comparison between true underlying parameter terms and estimated values, with mean and 95\\% uncertainty intervals, from the simulation model."
 )
 ```
 
 
 # Introduction
 
-Proper surveillance of vital events and disease burden across a country is critical for national health planning, making it an important component of the right to proper medical care enshrined in the Universal Declaration of Human Rights (1,2). Many countries implement a system of civil registration that requires medical professionals to produce legal documents for vital events such as births and deaths; these records are compiled in nationwide vital statistics that provide the foundation for national strategic planning (1). A growing set of countries have also implemented electronic health information systems, such as the District Health Information System 2, that capture records from medical institutions and reports from field workers in a unified web platform (3). However, despite their importance in setting national priorities for health care, local variation in the quality and completeness of these Civil Registration and Vital Statistics systems (CRVS) remains poorly understood.
+Proper surveillance of vital events and disease burden across a country is critical for national health planning, making it an important component of the right to proper medical care enshrined in the Universal Declaration of Human Rights.[@Mikkelsen2010; @srs] Many countries implement a system of civil registration that requires medical professionals to produce legal documents for vital events such as births and deaths; these records are compiled in nationwide vital statistics that provide the foundation for national strategic planning.[@Abouzahr2005]  However, despite their importance in setting national priorities for health care, local variation in the quality and completeness of these Civil Registration and Vital Statistics systems (CRVS) remains poorly understood.
 
-Many geospatial studies investigating local variation in disease burden derive their estimates from cluster-level observations in household surveys and censuses (4,5). Routine health surveillance includes features that make it an appealing alternative or supplement to traditional geospatial data sources: most notably, the sample sizes associated with CRVS datasets are typically orders of magnitude larger than those collected in any household survey. While years may pass between two household surveys, functioning health surveillance systems provide an unbroken series of observations over time. Many surveillance systems already report health status at the administrative level that is most relevant to country-level financing and planning. More broadly, global health researchers have the opportunity to invest in, and advocate for, data sources that are fundamentally tied to the success of national health systems in the countries where our research is focused.
+Many geospatial studies investigating local variation in disease burden derive their estimates from cluster-level observations in household surveys and censuses.[@Diggle2016; @Wakefield2020] Routine health surveillance includes features that make it an appealing alternative or supplement to traditional geospatial data sources: most notably, the sample sizes associated with CRVS datasets are typically orders of magnitude larger than those collected in any household survey. While years may pass between two household surveys, functioning health surveillance systems provide an unbroken series of observations over time. Many surveillance systems already report health status at the administrative level that is most relevant to country-level financing and planning. More broadly, global health researchers have the opportunity to invest in, and advocate for, data sources that are fundamentally tied to the success of national health systems in the countries where our research is focused.[@AbouZahr2015]
 
-However, critical issues must be resolved before CRVS data can be incorporated into geospatial analyses of health. The most pressing of these is the question of varying incompleteness in health surveillance in space and time. Previous analyses have shown that the completeness of CRVS data varies across countries, across states or provinces within countries, and over time; completeness is also generally lower for the registration of child deaths (6,7). Figure 1, below, shows the completeness of CRVS death registration among children under 5 in the years 2000 and 2015, derived from estimated produced by the Global Burden of Disease 2017 study (8). While completeness of death registration has improved in many countries during this time period, it remains low in many low- and middle- income countries where the global burden of child mortality is concentrated. While methods have been developed to account for incompleteness in health surveillance data at the national level (6,9), these methods cannot be directly applied at more local levels due to the general geospatial problem of small sample sizes. 
+However, critical issues must be resolved before CRVS data can be incorporated into geospatial analyses of health. The most pressing of these is the question of varying incompleteness in health surveillance in space and time. Previous analyses have shown that the completeness of CRVS data varies across countries, across states or provinces within countries, and over time;[@Adair2018] completeness is also generally lower for the registration of child deaths.[@Malqvist2008] While completeness of death registration has improved in many countries since 2000, it remains low in many low- and middle- income countries where the global burden of child mortality is concentrated.[@Mikkelsen2015] While methods have been developed to account for incompleteness in health surveillance data at the national and state levels,[@Murray2010; @Silva2015; @Bhat2002] these methods cannot be directly applied at more local levels due to the general geospatial problem of small sample sizes.
 
-Geospatial researchers must also grapple with the issue that health surveillance data is naturally reported across areal units, while observations from household survey data are typically reported at precise point locations. Any model that incorporates both points and polygons must simultaneously accommodate multiple spatial scales of analysis, an issue known as the change of support problem (10). The administrative divisions within a country may also change over time, complicating typical statistical methods for analyzing areal data. Any attempt to estimate local variation in health based on health surveillance data must also account for these multiple, changing spatial scales of analysis.
-
-In the following manuscript, I present an extensible method for formatting subnational CRVS data that accounts for changing administrative units, multiple potential scales of analysis, and improper cause of death diagnoses. I then demonstrate how household survey data and CRVS data can be incorporated into a novel geostatistical model that simultaneously estimates child mortality and CRVS incompleteness at a local level. The data preparation methods have been designed to accommodate both CRVS data, while the geostatistical model could be extended to estimate cause-specific mortality or disease incidence. I discuss how these methods have been applied to subnational CRVS data. Finally, I develop a timeline towards submitting these methods for publication.
+In this chapter, I demonstrate how household survey data and CRVS data can be incorporated into a novel geostatistical model that simultaneously estimates neonatal mortality and CRVS incompleteness at a local level. I present results for this model in the context of Mexico, which has a CRVS system that is considered near-complete at the national level but may be incomplete in marginalized municipalities.
 
 
-## Neonatal mortality estimation in middle-income countries
+## Estimating completeness of birth and death registration across Latin America
 
-PAR:
+Many Latin American countries are now facing challenges and opportunities associated with estimating mortality based on CRVS records that are increasing in quality each year. Most countries across the region first developed vital statistics programs during an international push for civil registration in the 1960s;[@Rao2019] however, by the early 2000s, many of these systems remained highly incomplete.[@Mikkelsen2015] In Mexico, a health reform policy called the Seguro Popular dramatically increased health system coverage and registration during the early years of the 21st century,[@Frenk2006] while in Brazil, increased interest in health statistics performance produced a series of studies on CRVS completeness.[@Schmid2011; @DeFrias2013; @Szwarcwald2014; @Lima2018] Today, international statistical groups such as the UN Inter-agency Group on Mortality Estimation (UN IGME) and the Institute for Health Metrics and Evaluation (IHME) rate CRVS data from Argentina, Brazil, Chile, and Mexico as among the highest in the world,[@UNInter-agencyGrouponMortalityEstimationUNIGME2020; @Dicker2018] while other countries in the region such as Ecuador and Colombia are transitioning towards a health surveillance system based on primarily CRVS data.[@Ribotta2019] Data sources for health are relatively plentiful across many Latin American countries, including both household surveys and vital records.
 
-PAR:
+While the completeness of CRVS data is of great interest to ministries of health in these countries, estimating completeness of vital records for children at the subnational level remains challenging. For decades, capture-recapture analysis was the preferred method for estimating the completeness of vital records. This method was derived from ecology, where it is still used to estimate wildlife populations based on multiple surveys.[@Smith1988] The method relies on an assumption, shown graphically in Figure \@ref(fig:capture-recapture), that each event of interest has an independent and equal probability of being recorded by a particular data source, and data sources are therefore capturing independent samples of a total population. In 1949, health statisticians Chandra Sekar and Deming applied this method to estimate true underlying birth and death rates based on a combination of a government registry and a household survey in a neighborhood of Calcutta.[@ChandraSekar1949] Since then, the same basic approach has been extended to estimate disease incidence,[@Tilling2001a] cause-specific mortality, and prevalence of genetic disorders, to name a few examples.[Hook1995] It was widely used to estimate incompleteness of mortality data in middle-income countries.[@Becker1996; @Silva2015] However, this method fell out of favor in the early 2000s given the weakness of its assumptions: under realistic circumstances, events captured by one survey are typically more likely to be captured by other surveys as well, meaning that the results from capture-recapture analysis are almost always under-estimates.[@Tilling2001; @Cormack1999]
 
-PAR:
+```{r capture-recapture, out.width="75%", fig.cap = captions$capture_recapture}
+knitr::include_graphics(graphics_fps$capture_recapture)
+```
 
-PAR:
+More recently, some countries have begun to implement small-scale audits to check the completeness of CRVS records for child mortality. These audits operate in a relatively small number of districts: within each district, a trained team of investigators develops an exhaustive record of mortality based on data from hospitals, churches, graveyards, and sometimes a household survey. These audits have been conducted in select regions of Brazil,[@DeFrias2013; @Szwarcwald2014; @DeAlmeida2017a] Colombia,[@NationalAdminstrativeDepartmentofStatisticsDANE2006] and Mexico.[@Hernandez2012] In Mexico, an audit of 101 municipalities with a low Human Development Index identified that 22% of deaths before age 5 and a whopping 68% of births had not been entered into government registries, in contrast with relatively high coverage of birth and death registration across the rest of the country.[@Hernandez2012] While a previous modeling study has demonstrated how completeness estimates from these audits can be used to correct small-area mortality estimates,[@Schmertmann2018a] the relative expense of these audits reduces their capacity to enumerate child mortality completeness across large regions of Latin America.
 
-
-## History of vital statistics in Mexico
-
-PAR:
-
-PAR:
-
-PAR:
-
-
-## Estimating local variation in neonatal mortality across Mexico
-
-PAR:
-
-PAR:
-
-PAR:
-
-PAR:
+A third approach to mortality estimation across Latin America has prioritized collating data from many different sources to produce a unified estimate. Two classes of data have historically informed estimates of child mortality: birth history (BH) data, which retrospectively lists the life histories of all children born to a mother, and CRVS data, which attempts to enumerate all births and deaths in a given time period. At the national level, multi-source estimation methods have combined estimates from these two data types to estimate both mortality trends and CRVS completeness,[@Dicker2018; @Fisker2019] but the methods deployed in these studies are problematic for subnational estimation due to the smaller sample sizes available at each observation. Most modeled subnational estimates of child mortality have relied solely on birth history data from household surveys, informed by spatial covariates;[@Golding2017; @Burstein2019; @Wakefield2019] however, this paradigm is not well-suited for countries with high-quality CRVS data such as Mexico. In the following section, I propose a small-area model to estimate neonatal mortality across Mexican municipalities by combining BH and CRVS data, with an emphasis on the interpretation of CRVS bias terms.
 
 
 # Methods
 
-Two classes of data have historically informed estimates of child mortality: birth history (BH) data, which retrospectively lists the life histories of all children born to a mother, and CRVS data. At the national level, previous methods have combined estimates from these two data types to estimate both mortality trends and CRVS completeness (6,15), but these methods are problematic for subnational estimation due to the smaller sample sizes available at each observation. Most subnational estimates of child mortality have relied solely on birth history data from household surveys, informed by spatial covariates (4,5); however, this paradigm is not well-suited for countries with high-quality CRVS data and where little or no BH data is available. A previous study in Brazil found that high-quality CRVS data could be incorporated into a geospatial model of child mortality by using strong priors of CRVS completeness from field audits conducted by local public health researchers (16). Although this method successfully incorporated CRVS data at a local level, it cannot be reproduced in countries where these audits have not been conducted. To successfully incorporate CRVS data at the local level across a wider range of countries, a new method must be developed that uses more widely-available data.
-
-
-PAR:
-
-PAR:
-
-PAR:
-
-PAR:
+I developed a small area model that simultaneously estimates neonatal mortality rates and CRVS bias by municipality. This model incorporates two sources of data for neonatal mortality, both of which collect data about births and age-specific mortality: (1) birth histories collected from household surveys and (2) birth and death records from a civil registration system. To test the predictive validity of this joint estimation framework, I first fit a model using observations generated from simulated surfaces of neonatal mortality and CRVS bias, measuring the correspondence between the simulated underlying surfaces and the recovered model parameters. I then applied this model to estimate neonatal mortality and CRVS bias by Mexican municipalities in 2009-2010 using mortality data sources and covariates published by the Mexican Institute for Geography and Statistics (INEGI). By fitting multiple models with different priors on CRVS bias by municipality, I explored the effects of CRVS bias terms on municipal and state-level neonatal mortality estimates during the years 2009-2010.
 
 
 ## Data preparation
 
-PAR:
+The model incorporates birth and death data from civil registration, mortality data from household surveys, and areal-level covariates. I prepared data across two years, 2009 and 2010, in order to increase the sample sizes of observed births and to avoid CRVS reporting delays in single years while still capturing a relatively short time period within which neonatal mortality can be safely assumed to remain relatively stable. I downloaded publicly-available microdata on births and deaths by municipality from the INEGI website.[@INEGI2010] While both birth and death records were anonymized, birth records contained information on the date of birth and municipality of residence at birth, while death records contained information on the date of death, municipality of residence at death, and age at death. I summed all deaths that occurred in the years 2009-2010 among neonates under 28 days of age by municipality, and summed all births by municipality over the same time period: these summed values comprise the CRVS observations that were used as input to the geostatistical model. Less than 0.1% of all birth and deaths were registered to a state of residence, but not a municipality of residence; these observations were distributed across municipalities within a state in proportion to the number of births and deaths registered to each municipality. Neonatal deaths were assumed to occur in the same municipality where a child was registered at birth.
 
-PAR:
+I downloaded and prepared birth history (BH) data from the 2010 Mexican Population and Housing Census, which was conducted in May through June 2010. This census administered a household survey to a sample of census respondents: anonymized copies of these these survey responses were shared publicly online, along with the survey weight and municipality of residence corresponding with each household.[@INEGI2010a] The household survey asked all women over 12 about the date of birth of their most recent child, whether the child was still living, and if not, that child's age at death. I censored these birth history observations to exclude all births prior to January 2009 and after April 2010. Among all remaining birth observations, neonatal mortality was coded as any death occurring under 28 days of age. To obtain the denominator for NMR observations from the census, I summed all births observed during this time period by municipality; to calculate the numerator, I multiplied birth denominators by a weighted mean of neonatal mortality observations across households in each municipality, weighting household-level mortality observations inversely to their sampling probabilities. I also estimated social and demographic covariates from census microdata by taking survey-weighted means of household responses by municipality.
 
-PAR:
+All municipalities were matched to a shapefile, published by INEGI, which corresponds to the 2010 Population and Housing Census enumeration boundaries.[@INEGI2010b]
+
+
+### Grouping of municipalities by social exclusion
+
+Previous studies of CRVS completeness across Mexico suggest that while birth and death registration are close to complete across most municipalities, registration remains incomplete in a subset of municipalities where residents are unable to access government services due to social exclusion. Therefore, an index of social marginalization based on factors identified in previous studies of birth and death under-registration can be a useful method for informing prior estimates of CRVS bias in a joint mortality estimation model.[@Hernandez2012; @Enciso2017] While a previous study in Mexico used the Human Development Index (HDI) as a measure of social exclusion by municipality,[@Hernandez2012] the inclusion of mortality as one component of the HDI presents a circularity problem given that mortality is also a desired output of this model. Here, I group municipalities based on four dimensions of social exclusion measured by the 2010 Population and Housing Census: the literacy rate among adult women, the proportion of adults employed in the formal economy, the number of health clinics _per capita_ within a municipality, and the proportion of residents who self-identify as indigenous. Of these indicators, the first two are associated with the "knowledge" and "standard of living" components of the HDI, while the latter two correspond to barriers specifically identified in previous studies of birth registration and maternal care in Mexico.[@Enciso2017; @Paulino2019]
+
+I placed Mexican municipalities into one of three groupings based on these relevant dimensions of social marginalization. Municipalities with a majority of indigenous residents, no clinics, a formal employment rate of less than 25%, and a literacy rate of less than 75% among adult women were assigned to the most severe level marginalization grouping (N=152 of 2441). A second group of municipalities with a majority of indigenous residents, no clinics, a formal employment rate of less than 50%, and a literacy rate of less than 90% among adult women were assigned to a moderately marginalized group (N=437 of 2441). All other municipalities were assigned to the least marginalized grouping (N=1852 of 2441), corresponding to the observation from previous studies that CRVS under-registration is concentrated within a relatively small number of municipalities.[@Hernandez2012] As shown in Figure \@ref(fig:excl-groups), marginalized municipalities assigned using this standard are largely concentrated in the southern states of Guerrero, Oaxaca, Chiapas, and Yucatan.
+
+```{r excl-groups, out.width="100%", fig.cap = captions$excl_groups}
+knitr::include_graphics(graphics_fps$excl_groups)
+```
 
 
 ## Joint estimation of neonatal mortality and CRVS data completeness
 
-Here, I present a new geospatial model that simultaneously estimates child mortality and CRVS completeness in space and time, using data from both BH and CRVS sources in a single country. The two outcomes of interest are the probability of death before reaching age 5 (5q0 in demographic notation, which I will refer to as Q in the definitions below), defined on a continuous spatial surface; and the proportion of under-5 deaths captured by the CRVS system (which I will refer to as $\pi$ in the definitions below), defined for each polygon and year on a set of stable administrative boundaries. The two space-time surfaces are defined as follows:
+Here, I present a new geospatial model that simultaneously estimates neonatal mortality and CRVS completeness across small spatial areas, using data from both BH and CRVS sources in a single country. The two outcomes of interest are the probability of death before reaching one month of age ($1mo_q0$ in demographic notation, which I will refer to as $Q$ in the definitions below), and the ratio between birth and death underreporting that expresses itself as bias in CRVS estimates of neonatal mortality (which I will refer to as $\pi$ in the definitions below). Both of these terms are defined for each municipal unit across Mexico. The mortality surface of interest, $Q$, is defined as follows:
 
-TODO
+$$logit(Q_s) = \alpha + \overrightarrow{\beta}X_s + Z_s$$
 
-Here, both Q and $\pi$ are logit-linear surfaces indexed in space and time, varying according to an assigned set of covariate fixed effects that also vary in space and time, $\beta X_s,t$, although the sets of covariates can differ for Q and $\pi$. Variation not captured through covariates is fitted through a space-time random effect $\omega$, where $\omega_Q(s,t)$ has spatial correlation corresponding to a two-dimensional Gaussian process with Matern covariance (17), and $\omega_\pi(s,t)$ corresponds to a discrete polygon surface with spatial defined according to the Leroux conditional autoregressive (LCAR) formulation (18). Both surfaces have time correlation corresponding to an order-1 autoregressive process.
+Here, $Q_s$ is a logit-linear surface indexed by spatial unit (s). The estimated value for $Q_s$ is centered around an intercept $\alpha$ and varies according to covariate fixed effects $\overrightarrow{\beta}X_s$, with known $X_s$ denoting predictive covariates that vary by municipality. Remaining variation not captured by covariates is fit by a structured random effects $Z_s$, which corresponds to the BYM2 spatial model formulation described by Riebler and colleagues.[@Riebler2016] This model formulation has both spatial and I.I.D. components, with model parameters identifying the overall variance of this term as well as the proportion of excess variation associated with spatial autocorrelation. Spatial autocorrelation is fit between directly neighboring municipalities identified from the INEGI shapefile.[@INEGI2010b]
 
-Sample sizes N and number of deaths D from each birth history observation are incorporated as binomial observations of the underlying mortality probability (5q0) surface. The number of deaths from each CRVS observation in a given polygon-year is treated as a Poisson process centered at the population multiplied by the mortality rate (5m0) and the CRVS completeness $\pi$. The related demographic processes of mortality rate (5m0 or M) and mortality probability (5q0 or Q) are linked using a known demographic formula:
+The probability of dying before 1 month of age in each municipality, $Q_s$, is fit to binomial observations of births $N_{BH}$ and deaths $D_{BH}$ from aggregated birth histories collected in the 2010 census. Because the census household survey only collected information about the most recent birth for each adult woman, this survey may exclude a small number of children born in 2009 and succeeded by a more recent birth in late 2009 to 2010. To account for the potential bias associated with this exclusion, a constant bias term $\gamma_{BH}$ is applied in logit space to all BH observations from the census:
 
-$$D_{BH}(i) = Binomial(N_{BH}(i), Q(s_i, t_i))$$
-$$D_{CRVS}(i) = Poisson(N_{CRVS}(i)M(s_i, t_i)\pi(s_i, t_i))$$
-$$M(s,t) = \dfrac{Q(s,t)}{n - nQ(s,t) + A(t)Q(s,t)},~~n = 5,~~A(t) \simeq 0.4$$
-To account for the different spatial scales of analysis, following Wilson and Wakefield (10), the continuous spatial estimated are converted from 5q0 to 5m0, then aggregated from a raster grid to polygons using a population-weighted mean.
+$$ D_{BH}(i) = Binomial(N_{BH}(i), logit( logit^{-1}[Q(s_i)] + \gamma_{BH}))$$
 
-I developed this model using the Template Model Builder package in R version 3.5.0, and tested the model with BH and CRVS data simulated using the RandomFields and ar.matrix packages (19–22).
+Simultaneously, the same mortality surface is fit to birth ($N_{VR}$) and death ($D_{VR}$) observations from 2009-2010 Mexican CRVS data. Unlike the constant bias term applied to birth history observations, bias terms for CRVS are fit separately for each municipality and are therefore denoted $\pi_{s_i}$:
 
+$$D_{VR}(i) = Binomial(N_{VR}(i), logit(logit^{-1}[Q(s_i)] + \pi_{s_i}))$$
 
-PAR:
+The magnitude of these bias terms are assumed to vary based on the marginalization grouping of a given municipality. For the less marginalized municipalities, CRVS bias is assumed to have a relatively small magnitude distributed around $N(0, 0.1)$; for moderately marginalized municipalities, CRVS bias is distributed around $N(0, 0.5)$; and for the most marginalized municipalities, CRVS bias is allowed to vary widely, with a prior of $N(0, 2)$ in logit space. All bias terms $\pi_{s_i}$ and $\gamma_{BH}$ are transformed back to observation space before reporting to simplify their interpretation. No bias terms are included in the model's estimation of underlying neonatal mortality.
 
-
-### Prior specification for CRVS completeness
-
-PAR:
-
-PAR:
+I assigned priors to all model parameters and then fit the model using the Laplace approximation for mixed-effect parameter estimation[@Kristensen2016; @Thorson2016]⁠. The model was fit in R v.4.0.3 using the package Template Model Builder v.1.7.18[@Kristensen2016; @RCoreTeam2018].
 
 
 ## Simulation model
 
-I tested the model using simulated BH and CRVS data, where the underlying surfaces for both child mortality and CRVS completeness were known. I sampled data from the known underlying surfaces, then fit a model using these generated data to reconstruct the underlying surfaces. An underlying grid measuring one decimal degree square was chosen in central Mexico, and covariate and population surfaces were extracted at that grid. Four space-time covariates were used to fit the child mortality surface: the year, nighttime light intensity, DPT3 vaccination coverage, and maternal education. Two space-time covariates were used to fit CRVS completeness: population density and travel time to the nearest city.
+To determine the model's capacity to reconstruct true neonatal mortality and CRVS bias from two sources, I developed a simulation model under realistic conditions for neonatal mortality and CRVS bias in Mexico. First, I simulated neonatal mortality values by setting values for the intercept and five logit-linear covariate effects:
 
-Because the simulated data also included the true number of deaths in each polygon and year, I also created three VR field audit observations, simulating a situation where field workers used active surveillance to determine the true number of underlying deaths in a region.
+\begin{math}\begin{aligned}
+logit(Q_{SIM}(s)) = -5.5 -0.25 \times Avg\;Years\;of\;School + 0.2 \times Pct\;Low\;Wage\\
++ 0.5 \times Pct\;No\;Health\;Care-0.3 \times Pct\;Electrified\;Home
+\\- 0.1 \times Pct\;Own\;Refrigerator\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;
+\end{aligned}\end{math}
 
-PAR:
+Birth history and CRVS death observations were simulated as biased binomial draws from this surface, using the existing birth denominators set in the real data, with BH bias set to 0.2 and CRVS bias draws generated from the normal distributions specified above.
+
+In spatial models, the correlated random effect $Z_s$ is understood to account for latent variables that affect the outcome but are not directly observed.[@Divino2009] In the simulation model, the final two covariates used to simulate the mortality surface (rates of household electrification and refrigerator ownership) are excluded from the fixed effect terms available to the model, meaning that variation from these terms must be captured by the correlated random surface. I checked the model's goodness of fit by comparing estimated parameters for covariate fixed effects, VR bias parameters by municipality, and predicted neonatal mortality by municipality to the underlying values generated from simulation.
+
+
+## Application to neonatal mortality data in Mexico
+
+I fit two models for neonatal mortality across Mexican municipalities using births and deaths from the 2010 census as well as 2009-2010 CRVS records.[@INEGI2010; @INEGI2010a] I included six covariates observed at the municipality level, all of which came from the 2010 census: years of schooling among adult women, proportion of employed adults earning less than 2 times the minimum wage, proportion of adults without access to health care, proportion of electrified households, proportion of households owning a refrigerator, and proportion of households with piped water. Both model fits included a term for BH bias; the first model fit CRVS bias terms according to the model formulation described above, while the second model forced all CRVS terms to zero, essentially treating CRVS as an unbiased data source. The first model is reported below as the primary source of model results, while the no-CRVS-bias model is used as a baseline to explore the effect of the CRVS bias terms.
 
 
 # Results
 
-PAR:
-
-
-
 ## Predictive validity from simulation
 
-The results from one simulation, mimicking a scenario with high child mortality (100 per 1,000 live births) and moderate CRvS completeness (70%) is shown in Figure 1. Panel A demonstrates how this combined model can identify key features of the underlying variation in child mortaliy, including the decreasing time trend from 2009 to 2010; the general distribution of deaths across the surface; and the locations of the highest-mortality focal regions.
+In general, the simulation model accurately estimated neonatal mortality across the municipalities of Mexico, and accurately recovered known parameters. Table \@ref(tab:sim-param-results), below, lists simulated values for fixed effects and the BH bias term along with the values recovered by the model. All covariate fixed effects and the BH bias term were accurately predicted by the model within the bounds of uncertainty.
 
-These simulation results suggest that the model can reconstruct underlying surfaces for child mortality and CRVS completeness when given unbiased BH input data. However, Panel B demonstrates that wide uncertainty can surround estimates of subnational CRVS completeness even when field audit data is available.
+Figure \@ref(fig:sim-results), below, shows simulated mortality rates (left) and CRVS bias terms (right) produced in the simulation on the x-axis, while the model estimates for these terms are displayed with uncertainty on the y-axis. As shown on the left side of this figure, the simulation model produced unbiased estimates of the neonatal mortality rate by municipality, with the true mortality value falling with the model's 95% uncertainty bounds for 2434 of 2441 municipalities. The recovered estimates for the CRVS bias terms are more mixed: while the majority of mean estimates for CRVS bias match the direction (over-reporting or under-reporting) of the true term, and the 95% uncertainty intervals for CRVS bias encompass the true simulated value in 2326 of 2441 municipalities (95.2%), wide uncertainty intervals preclude confident estimation about the direction of CRVS bias.
 
-PAR:
+```{r sim-param-results}
+data_list$sim_param_results %>%
+  dplyr::mutate_all(linebreak, align='l') %>%
+  knitr::kable(
+    'latex', booktabs = T, escape = F, caption = captions$sim_param_results,
+    col.names = linebreak(colnames(data_list$sim_param_results))
+  ) %>%
+  kable_styling(latex_options = c("striped", "hold_position"))
+```
 
 
+```{r sim-results, out.width="100%", fig.cap = captions$sim_results}
+knitr::include_graphics(graphics_fps$sim_results)
+```
 
-## Case study: neonatal mortality across Mexico
 
-PAR:
+## Neonatal mortality across Mexico
 
-PAR:
+### Relationship between social marginalization and covariates predictive of mortality
 
-PAR:
+Figure \@ref(fig:excl-covs), below, shows the distribution of seven social and economic variables at the municipality level by marginalization group. By comparing the mean and inter-quartile range of values for municipalities in the "Less marginalized" and "Severely marginalized" groupings, it becomes apparent that the differences in these groups correlate not just to factors that may affect birth and death registration, but may also have an impact on neonatal mortality rates. These differences include rates of household crowding, with an IQR of 26.5% to 39.8% among less-marginalized municipalities and 45.4% to 59.0% among severely-marginalized municipalities; piped water access, with respective IQRs of 81.6%-98.4% versus 57.3%-92.0%; and maternal literacy, with respective IQRs of 93.0%-98.1% versus 67.5%-83.7%.
 
-PAR:
+```{r excl-covs, out.width="100%", fig.cap = captions$excl_covs}
+knitr::include_graphics(graphics_fps$excl_covs)
+```
 
-PAR:
 
-PAR:
+### Joint estimation model of neonatal mortality and CRVS bias
 
-PAR:
+Figure \@ref(fig:nmr-wide-model) shows the mean estimated neonatal mortality rates across Mexican municipalities in 2009-2010. At the national level, the neonatal mortality rate was estimated to be 7.4 (7.3 to 7.5) deaths per 1,000 live births. This estimate falls slightly below the NMR estimate of 9.0 (8.4 to 9.6) produced by the UN IGME, although these differences may be due to additional data sources used by UN IGME to generate national mortality estimates.
+
+At the municipal level, the neonatal mortality rate varied substantially, from 2.7 (1.6-4.3) in Oxchuc, Chiapas to 21.9 (11.0-38.3) in Maltrata, Veracruz. The state of Nayarit in central-west Mexico had the highest proportion of low-mortality municipalities, with three of its 20 municipalities measuring an NMR below 4. Conversely, the states of Mexico and Puebla in central-south Mexico, to the west and south of the Federal District, had the highest number of municipalities with mortality estimated above 10 per 1,000 (21 of 122 municipalities in Mexico state, and 37 of 217 in Puebla). Estimated counts of neonatal deaths are highly concentrated in the capitol regions of most states: of the approximately 35,000 neonatal deaths estimated in 2009-2010, 25% are concentrated in just 26 municipalities, of which 17 are state capitol regions.
+
+Figure \@ref(fig:vr-bias-wide-model) shows estimated CRVS bias terms across the municipalities of Mexico. Estimated CRVS bias is highly heterogeneous within several states, with large numbers of municipalities estimated to be both over-reporting and under-reporting neonatal mortality across the states of Guerrero, Oaxaca, Chiapas, and Yucatan. Most municipalities with large estimated bias also rank highly on the index for social exclusion; within these; similar magnitudes of bias are observed across moderately-marginalized and severely-marginalized municipalities. Smaller bias corrections can also be observed in less-marginalized municipalities across Mexico state as well as the northernmost municipalities in the country.
+
+By comparing these results to a baseline model formulation that does not include a term for municipality-specific CRVS bias, we can visualize how CRVS bias terms influence the results of the joint NMR estimation model. Figure \@ref(fig:crvs-bias-diff), below, shows the difference in estimated mortality rate between the full joint model and a model where CRVS bias is forced to zero in all municipalities. At the state level, the addition of the CRVS bias termonly has a minor affect, ranging from a decrease of .4 deaths per 1,000 live births in Chihuahua (with an NMR of 8.8 compared to 9.1 in the baseline) to an increase of .5 deaths per 1,000 live births in Chiapas (with an NMR of 5.9 compared to 5.4 in the baseline). These changes are relatively small compared to the inter-state variation in neonatal mortality, which ranges from  5.3 in Coahuila to 9.3 in Puebla. However, this stability at the state level masks large differences among municipalities. Of the 2441 municipalities, 143 exhibit absolute differences of greater than 1 death per 1,000 between the two models. These changes can dramatically change a municipality's neonatal mortality ranking within a state: for example, in the state of Oaxaca, the municipality of San Miguel Quetzaltepec's ranking fell by 300 after a CRVS term was incorporated, while the municipality of Santiago Yaveo rose by 304 positions out of 570 municipalities total. A moderate correlation, with a Pearson's coefficient of 0.61, is observed between estimated neonatal mortality and the absolute difference in neonatal mortality between the two model formulations.
+
+```{r nmr-wide-model, out.width="100%", fig.cap = captions$nmr_wide_model}
+knitr::include_graphics(graphics_fps$nmr_wide_model)
+```
+
+```{r vr-bias-wide-model, out.width="100%", fig.cap = captions$vr_bias_wide_model}
+knitr::include_graphics(graphics_fps$vr_bias_wide_model)
+```
+
+```{r crvs-bias-diff, fig.pos='!p', out.height="80%", fig.cap = captions$crvs_bias_diff}
+knitr::include_graphics(graphics_fps$crvs_bias_diff)
+```
 
 
 # Discussion
 
-PAR:
-
-PAR:
-
-PAR:
-
-
 ## Performance of the simulation model
 
-The wide applicability of the joint BH and CRVS model makes it an appealing starting point for future research. Most major household surveys include BH questions as part of their standard questionnaire, making this method potentially usable in most low and middle income countries with a functioning CRVS system. This estimation approach also overcomes some limitations of BH-only geospatial modeling strategies, acknowledged in Burstein et al. (4): in countries with high-quality CRVS data, high estimates from CRVS can push child mortality estimates upwards when BH estimates are uncertain or biased downwards.
+Simulation testing for this joint model formulations suggests a strong capacity to recover underlying estimates for neonatal mortality and relationships to predictive covariates under conditions that mimic the proposed data-generating process. Notably, the model generated unbiased estimates for mortality across all marginalization groups, with relatively conservative uncertainty intervals that overlapped the true simulated mortality estimates in 99.7% of municipalities.
 
-Because this model generates estimates both of child mortality and of CRVS completeness, it can be used programmatically to target multiple aspects of health system performance. Finally, the Bayesian modeling framework captures uncertainty in both surfaces, allowing for appropriately cautious interpretations of the results.
-
-PAR:
-
-PAR:
-
-PAR:
-
-
-## Local variation in CRVS completeness across Mexico
-
-PAR:
-
-PAR:
-
-PAR:
-
-PAR:
-
-PAR:
-
+While the model estimates of CRVS bias terms covered the simulated bias terms in 95% of municipalities, the uncertainty intervals surrounding the fitted estimates were so wide as to preclude interpretation in most municipalities. Notably, the model precisely fits bias terms that correspond to over-reporting greater than 5:1; conversely, the estimated CRVS bias term becomes more uncertain in municipalities where CRVS deaths have been substantially under-reported. This result can be explained by the relative rarity of neonatal mortality within the study area: under these circumstances, separating observations that are biased downwards from unbiased binomial draws yielding zero or very few deaths can be problematic. This suggests that in the case of Mexico, estimates of over-reporting can be more informative for policy. In other countries and for less rare outcomes, this model may be able to better identify downwards bias in routine surveillance data.
 
 
 ## Relationship between neonatal mortality and vital statistics performance
 
-PAR:
+Thanks to a history of health system reform and past investigations of vital statistics completeness, the Mexican CRVS system is widely considered to be one of the highest-quality registration systems across Latin America.[@Frenk2006; @Mikkelsen2015] Mexican CRVS data is used directly by international modeling consortia to estimate neonatal mortality at the state and national levels.[@UNInter-agencyGrouponMortalityEstimationUNIGME2020; @Dicker2018] This analysis demonstrates that while Mexican CRVS data estimates levels of neonatal mortality consistent with birth histories at the national and state levels, the relationship between these data sources is more heterogeneous at the municipality level. Any spatial model of neonatal, infant, or child mortality across Mexico should account not only for small-number variation and spatial autocorrelation, but also diverse sources of bias arising by data source and municipality. These sources of bias present both a challenge for mortality estimation as well as an opportunity to further improve access to civil registration.
 
-PAR:
-
-PAR:
+Serving all Mexican citizens regardless of wealth, location, or ethnic background is a major challenge for the Mexican health system;[@Frenk2006] this challenge extends to vital registration, which both enables service provision and is a human right in its own respect. Previous studies of Mexico's civil registration system have identified limitations in the system's ability to reach indigenous Mexican children and their parents, who are more likely to give birth at home and often face challenges to register births and deaths with the formal health system.[@Hernandez2012; @Luis2014; @Paulino2019] In this chapter, I grouped municipalities into three categories associated with well-known dimensions of social and economic marginalization that could present barriers to civil registration. As demonstrated in Figure \@ref(fig:excl-covs), these municipality groupings also exhibit wide variation in factors that can affect neonatal health and survival, such as access to health services and household water supply. The positive correlation between the magnitude of CRVS bias and neonatal mortality rates by municipality suggests that both issues are rooted in social marginalization: therefore, attempts to extend universal health care across the country must be linked to efforts to improve vital registration completeness, and vice versa.
 
 
 ## Model limitations
 
-Decause CRVS completeness is only estimated directly through relatively uncommon field audits, it can suffer from wide uncertainty even when CRVS sample sizes are relatively high. This suggests that the CRVS completeness estimates should be treated with great caution, and this aspect of the results may need further refinement before it can be used to inform policy decisions. Other predictive factors could be also be included to estimate the CRVS completeness surface: for example, a suspected inverse relationship between child mortality rates and CRVS completeness could be explicitly incorporated into the formulation for the CRVS completeness surface (20).
+Because CRVS bias parameters are only estimated indirectly through the relationship between CRVS and BH estimates, these can suffer from wide uncertainty even when both BH and CRVS sample sizes are relatively high. This suggests that the CRVS completeness estimates should be treated with great caution, and this aspect of the results may need further refinement before it can be used to inform policy decisions. Other predictive factors could be also be included to estimate the CRVS completeness surface: for example, the relationship between infant mortality rates and CRVS instability could be explicitly incorporated into the formulation for the CRVS completeness surface.
 
-There are other methodological limitations to this model that should be considered before it is widely implemented. Because mortality estimates are primarily grounded by BH data, this model is not applicable to countries where death registration is complete but recent BH surveys have not been conducted. The current model also does not account for biases in particular BH surveys, although a larger regional model incorporating many surveys might be able to include a survey-specific random effect to account for bias. The conversion from the mortality probability (5q0) to a mortality rate (5m0) relies on a national-level input from the Global Burden of Disease project. While this estimate is relatively stable across countries, there might be in-country variation that is not captured. Finally, common to all geospatial work, the uncertainty associated with local estimates must be explicitly accounted for and described in any presentation of the results.
+There are other methodological limitations to this model that should be considered before it is widely implemented. Because mortality estimates are primarily grounded by BH data, this model is not applicable to countries where death registration is complete but recent BH surveys have not been conducted. The current model also does not account for source-specific biases in particular BH surveys, although a larger regional model incorporating many surveys might be able to include a survey-specific random effect rather than the single BH bias term presented in this chapter.
 
 
 ## Conclusions
 
-PAR:
+The wide applicability of the joint BH and CRVS model makes it an appealing starting point for future research. Most major household surveys include BH questions as part of their standard questionnaire, making this method potentially usable in most low and middle income countries with a functioning CRVS system. This estimation approach also overcomes some limitations of BH-only geospatial modeling strategies, namely insufficient space-time coverage of data observations as well as relatively low sample sizes.[@Burstein2019; @Wakefield2019] In countries with high-quality CRVS data, high estimates from CRVS can push child mortality estimates upwards when BH estimates are uncertain or biased downwards.
 
+Because this model generates estimates both of child mortality and of CRVS completeness, it can be used programmatically to target multiple aspects of health system performance. Finally, the Bayesian modeling framework captures uncertainty both in estimates of neonatal mortality and CRVS bias, allowing for appropriately cautious interpretations of the results.
+
+Moving beyond mortality, the multi-source estimation approach described in this chapter can be extended to map disease prevalence and incidence. In many low- and middle-income countries, notifiable infectious diseases such as tuberculosis, malaria, and HIV offer similiar opportunities for spatial estimation based on a survey data source in conjunction with biased surveillance data sources.[@Rood2019; @Dwyer-Lindgren2019] A growing set of countries have also implemented electronic health information systems, such as the District Health Information System 2, that capture records from medical institutions and reports from field workers in a unified web platform;[@Dehnavieh2019] records collected from these systems could serve as a valuable but biased source of health information across a growing number of countries. In the following chapter, I develop a multi-source mapping approach based on routine case notifications and a household survey to describe space-time variation in tuberculosis prevalence across Uganda.
 
 
 # References
 
-1. Mikkelsen L, Lopez AD. Improving the quality and use of birth, death and cause-of-death information [Internet]. 2010. Available from: http://www.who.int/healthinfo/tool_cod_2010.pdf
-
-2. UN General Assembly. Universal declaration of human rights. Vol. 2, UN General Assembly. 1948. 
-
-3. Dehnavieh R, Haghdoost AA, Khosravi A, Hoseinabadi F, Rahimi H, Poursheikhali A, et al. The District Health Information System (DHIS2): A literature review and meta-synthesis of its strengths and operational challenges based on the experiences of 11 countries. Health Inf Manag. 2019;48(2):62–75. 
-
-4. Burstein R, Henry NJ, Collison ML, Marczak LB, Sligar A, Watson S, et al. Mapping 123 million neonatal, infant and child deaths between 2000 and 2017. Nature [Internet]. 2019 Oct 16;574(7778):353–8. Available from: http://www.nature.com/articles/s41586-019-1545-0
-
-5. Reiner RC, Graetz N, Casey DC, Troeger C, Garcia GM, Mosser JF, et al. Variation in childhood diarrheal morbidity and mortality in Africa, 2000-2015. N Engl J Med. 2018;379(12):1128–38. 
-
-6. Adair T, Lopez AD. Estimating the completeness of death registration: An empirical method. PLoS One. 2018;13(5):1–19. 
-
-7. Målqvist M, Eriksson L, Nga NT, Fagerland LI, Hoa DP, Wallin L, et al. Unreported births and deaths, a severe obstacle for improved neonatal survival in low-income countries; a population based study. BMC Int Health Hum Rights. 2008;8(4):1–7. 
-
-8. Dicker D, Nguyen G, Abate D, Abate KH, Abay SM, Abbafati C, et al. Global, regional, and national age-sex-specific mortality and life expectancy, 1950–2017: a systematic analysis for the Global Burden of Disease Study 2017. Lancet [Internet]. 2018 Nov;392(10159):1684–735. Available from: https://linkinghub.elsevier.com/retrieve/pii/S0140673618318919
-
-9. Preston SH, Lahiri S. A short-cut method for estimating death registration completeness in destabilized populations. Math Popul Stud. 1991;3(1):39–51. 
-
-10. Wilson K, Wakefield J. Pointless spatial modeling. Biostatistics [Internet]. 2018;1–16. Available from: https://doi.org/10.1093/biostatistics/kxy041
-
-11. Ross JM, Henry NJ, Dwyer-Lindgren LA, de Paula Lobo A, Marinho de Souza F, Biehl MH, et al. Progress toward eliminating TB and HIV deaths in Brazil, 2001–2015: a spatial assessment. BMC Med [Internet]. 2018 Dec 6;16(1):144. Available from: https://bmcmedicine.biomedcentral.com/articles/10.1186/s12916-018-1131-6
-
-12. Osgood-Zimmerman A, Millear AI, Stubbs RW, Shields C, Pickering B V., Earl L, et al. Mapping child growth failure in Africa between 2000 and 2015. Nature [Internet]. 2018 Mar 1;555(7694):41–7. Available from: http://www.nature.com/articles/nature25760
-
-13. Naghavi M, Makela S, Foreman K, O’Brien J, Pourmalek F, Lozano R. Algorithms for enhancing public health utility of national causes-of-death data. Popul Health Metr. 2010;8(1):1–14. 
-
-14. Naghavi M, Abajobir AA, Abbafati C, Abbas KM, Abd-Allah F, Abera SF, et al. Global, regional, and national age-sex specific mortality for 264 causes of death, 1980–2016: a systematic analysis for the Global Burden of Disease Study 2016. Lancet [Internet]. 2017 Sep;390(10100):1151–210. Available from: https://linkinghub.elsevier.com/retrieve/pii/S0140673617321529
-
-15. Roth GA, Abate D, Abate KH, Abay SM, Abbafati C, Abbasi N, et al. Global, regional, and national age-sex-specific mortality for 282 causes of death in 195 countries and territories, 1980–2017: a systematic analysis for the Global Burden of Disease Study 2017. Lancet [Internet]. 2018 Nov;392(10159):1736–88. Available from: https://linkinghub.elsevier.com/retrieve/pii/S0140673618322037
-
-16. Schmertmann CP, Gonzaga MR. Bayesian Estimation of Age-Specific Mortality and Life Expectancy for Small Areas With Defective Vital Records. Demography. 2018;55(4):1363–88. 
-
-17. Lindgren F, Rue H. An explicit link between Gaussian fields and Gaussian Markov random fields: the stochastic partial differential equation approach. J R Stat Soc Ser B. 2011;73(4):423–98. 
-
-18. Riebler A, Sørbye SH, Simpson D, Rue H, Lawson AB, Lee D, et al. An intuitive Bayesian spatial model for disease mapping that accounts for scaling. Stat Methods Med Res. 2016;25(4):1145–65. 
-
-19. R Core Team. R: A Language and Environment for Statistical Computing [Internet]. Vienna, Austria; 2018. Available from: https://www.r-project.org/
-
-20. Kristensen K, Nielsen A, Berg CW, Skaug H, Bell BM. TMB: Automatic Differentiation and Laplace Approximation. J Stat Softw. 2016;70(5). 
-
-21. Schlather M, Malinowski A, Oesting M, Boecker D, Strokorb K, Engelke S, et al. {RandomFields}: Simulation and Analysis of Random Fields [Internet]. 2019. Available from: https://cran.r-project.org/package=RandomFields
-
-22. Marquez N. ar.matrix: Simulate Auto Regressive Data from Precision Matricies [Internet]. 2018. Available from: https://cran.r-project.org/package=ar.matrix
-
-23. Krainski E, Gómez-Rubio V, Bakka H, Lenzi A, Castro-Camilo D, Simpson D, et al. Advanced Spatial Modeling with Stochastic Partial Differential Equations Using R and INLA. Advanced Spatial Modeling with Stochastic Partial Differential Equations Using R and INLA. 2018. 
+<div id="refs"></div>
