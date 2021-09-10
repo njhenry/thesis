@@ -51,7 +51,10 @@ graphics_fps:
     excess_neighbors: '{graphics}/italy/fig6_excess_neighbors.png'
     excess_ratio: '{graphics}/italy/fig7_excess_ratio.png'
   uganda:
-    fig1: '{graphics}/test_chapter/fig1.png'
+    prev_scatter: '{graphics}/uganda/prev_scatter.png'
+    notif_completeness: '{graphics}/uganda/notif_completeness.png'
+    notif_prev_ratio: '{graphics}/uganda/notif_prev_ratio.png'
+    prev_notifs_diff: '{graphics}/uganda/prev_notifs_diff.png'
   discussion:
     fig1: '{graphics}/test_chapter/fig1.png'
   test_chapter:

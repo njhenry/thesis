@@ -13,127 +13,256 @@ knitr::opts_chunk$set(fig.pos = "!ht", out.extra = "", fig.align = 'center', ech
 
 # Set caption text
 captions <- list(
-  fig1 = "Example caption for a figure.",
+  prev_scatter = "Model results compared to geopositioned prevalence survey data. Panel A: Data from the 2014-2015 Uganda National Tubserculosis Prevalence Survey, geo-positioned and aggregated to the district level. Out of 128 districts, 78 contained no underyling prevalence survey clusters. Panel B: TB prevalence estimated from the joint data model. Panel C: scatter plot between raw TB prevalence survey data and estimated TB prevalence from the joint model, with uncertainty. The model generally smooths extreme data obsrvations across districts.",
+  notif_completeness = "Mean estimated completeness for district-level TB case notifications in 2017 and 2019, as predicted by the joint data model. Completeness is estimated for pulmonary TB cases in people aged 15 and above.",
+  notif_prev_ratio = "Scatter plot showing the relationship between prevalence data, case notification reporting, and estimates of notification completeness in 2017 and 2019. The x-axis shows the ratio between the number of reported TB cases and raw prevalence from the Uganda National TB Prevalence Survey as an empirical measure of notification completeness. The y-axis displays completeness estimates predicted by the joint model, with 95 percent uncertainty bounds. In general, both empirical and estimated completeness generally rose across districts from 2017 to 2019. Trend lines in both years indicate that increased empirical completeness is weakly positively associated with increased estimated completeness.",
+  prev_notifs_diff = "Effect of adding notifications to the joint estimation model. Panel A: Mean estimated TB prevalence based on an equivalent spatial model incorporating only prevalence data from the Uganda National TB Prevalence Survey. Panel B: Difference in mean estimated TB prevalence between the joint data model and a model that only incorporated prevalence data. Panel C: Effect of adding case notifications, taking uncertainty into account. Note that because of the wide uncertainty associated with the prevalence-only model, only four districts had non-overlapping UIs between the two model specifications; all four of these districts were sampled in the national prevalence survey.",
   t1 = "Example caption for a table."
 )
 ```
 
-# Abstract
-
-\lipsum[1]
-
 
 # Introduction
 
-\lipsum[1-3]
+PAR: High-burden countries need improved case notifications to meet ambitious global goals
+ - 
+ - 
+
+PAR: Local variation is an important aspect of TB control, but under-studied because data
+ have unknown variation at the local level
+ - 
+ - 
+
+PAR: Implement a model that combines TB prevalence survey data and TB case notifications
+ to jointly estimate prevalence and notification completeness
+ - 
+ - 
 
 
-## Tuberculosis (TB) mapping in high-burden settings
+## The role of health surveillance in ending the tuberculosis epidemic
 
-\lipsum[4-5]
+In 2015, the World Health Assembly committed its member states to the ambitious goal of ending the tuberculosis (TB) epidemic by 2035. In response, the World Health Organization (WHO) developed the global End TB strategy, which succeeded the Directly Observed Therapy (DOTS, 1994-2005) and Stop TB (2006-2014) plans as the coordinating principles for addressing the tuberculosis epidemic worldwide.[@Onozaki2010] The End TB strategy outlines three ambitious targets to achieve by 2030: compared to 2015, the plan aims to reduce the number of TB deaths by 90%, reduce the number of incident TB cases by 80%, and ensure that 100% of families are protected from catastrophic costs due to TB.[@WorldHealthOrganization2015a] These goals are consistent with Sustainble Development Goal 3.3, which commits United Nations member countries to end the TB epidemic by 2030.[@WorldHealthOrganization2019] Timely and accurate TB case detection serves as a critical component for two pillars of the End TB strategy: early detection enables for adequate patient-centered care, while mandatory and universal registration of TB disease allows countries to properly allocate resources and track progress towards goals.[@WorldHealthOrganization2015] 
+
+To achieve the End TB Strategy, the World Health Organization has developed tools for systematically building health system capacity[@WHOWorldHealthOrganization2008; @WorldHealthOrganization2020; @WorldHealthOrganization2010] and has tracked progress and shared best practices through the release of annual Global Tuberculosis Reports.[@WorldHealthOrganization2019] Both these reports and external analyses have concluded that while many countries have increased their capacity to identify and treat tuberculosis, particularly drug-resistant TB and TB among people living with HIV, the majority of high-burden countries are not on track to meet the End TB 2030 targets.[@WorldHealthOrganization2019; @Kyu2018] The gap between 2030 targets and observed performance can be explained by a combination of social determinants of health and health system factors, including remaining incompleteness in TB case detection in high-burden settings.[@WorldHealthOrganization2019]
+
+The recent history of TB control in Uganda, one of the 30 high-burden countries recognized by the end TB program, exemplifies both the possibilities for health system progress and the remaining challenges to TB elimination in low-resource settings. In Uganda, TB control is overseen by the National Tuberculosis and Leprosy Programme (NTLP) within the Ugandan Ministry of Health. The NTLP's 2015/16-2019/20 strategic plan mirrors the core objectives of the global End TB plan, calling for a 5% reduction in TB incidence as well as a 30% increase in case notifications over a four-year time period. While the 2019-2020 NTLP report indicated impressive gains in TB treatment since 2015, the case notification target was barely missed (26% increase as opposed to 30%), while the estimated number of total TB cases increased slightly from 2018 to 2020.[@UgandaNationalTuberculosisandLeprosyProgramme2020] Two of the principle challenges to universal TB detection and treatment identified in the 2020 report were (1) stubbornly low case detection rates in the far eastern and southwestern regions of the country; and (2) the threat of service disruptions related to COVID-19, which could reduce health system capacity and adherence to TB treatment regimens.[@UgandaNationalTuberculosisandLeprosyProgramme2020] New approaches are needed to ensure universal access to TB treatment and, ultimately, to eliminate TB nationwide.
 
 
-## Archetypes of TB data availability
+## TB mapping in high-burden settings
 
-\lipsum[6-10]
+In recent years, TB control programs in lower-resource settings have shown increasing interest in small-area and spatial analyses of tuberculosis burden.[@Glaziou2018a] TB prevalence and incidence are expected to vary locally within a country based on differences in underlying risk factors for the disease; by identifying these differences, programs can more efficiently allocate resources to target locations and sub-populations with the highest TB burden.[@Rood2019]
 
+In countries with high TB burden, primarily in low-income settings, two data sources have historically been used to generate estimates of TB burden. TB prevalence surveys, considered to be the "gold standard" of TB data collection, estimate TB prevalence at the national level based on sampled cluster locations across a country. These surveys use a well-defined screening process to identify potential TB cases within the eligible population, typically 15 years of age and above, and then conduct lab tests on the sputum of potential cases to confirm the presence of TB.[@Glaziou2008] Depending on the underlying TB prevalence in a country and the overall sample size, each TB prevalence survey may identify as few as several dozen TB cases. Given the high costs associated with conducting TB prevalence surveys, most high-burden countries have conducted no more than two of these surveys over the past two decades.[@Glaziou2008; @WorldHealthOrganization2019]
 
-## Prior evidence on the relationship between TB burden and case notifications
+A more abundant data source for TB burden is available to countries in the form of aggregate case notifications reported to national TB control programs. Most countries mandate hospitals to report diagnosed TB cases, along with select demographic and diagnostic information, at regular intervals; in countries using electronic health information systems such as the DHIS2, reporting and aggregation of notified TB cases may happen continuously.[@WorldHealthOrganization2020; @Dehnavieh2019] Aggregate case notifications are a potentially appealing source of subnational data due to their broad geographic coverage and wide availability. However, case notifications may be incomplete due to lack of health system access, misdiagnosis, and under-reporting of TB cases from private facilities.[@Glaziou2008]
 
-\lipsum[11-14]
+Although previous studies have explored spatial variation in TB incidence and prevalence within high-burden countries, no widely-accepted standards exist for assessing subnational variation in TB. In a recent systematic review, Shaweno and colleagues identified 168 studies that conducted spatial analyes of TB, including 57 in high-burden settings.[@Shaweno2018] Of the 168 identified studies, 161 (96%) used TB case notifications as the data underlying the spatial analysis, although no studies accounted for spatial variation in case notification under-reporting. This oversight may be deeply problematic in high-burden settings: in another spatial assessment conducted in Bangladesh, Nepal, and Pakistan, Van Gurp and colleagues found that the estimated completeness of TB case notifications were correlated with programmatic factors such as the testing rate, facility density, and test positivity rate.[@VanGurp2020] The authors concluded that subnational TB case notification rates were more likely to reflect subnational variation in healthcare access and programmatic factors than underlying TB burden.
+
+The limitations identified in case notifications present a a major challenge to assessing spatial variability in TB burden across low-resource settings. Given the small sample sizes and low spatial coverage of many TB prevalence surveys, data from these surveys alone may be insufficient to estimate subnational variation in TB burden without the addition of other predictive spatial data. In the current chapter, I investigate whether case notification data can be combined with TB prevalence data to estimate spatial variation in TB burden under the assumption that notification completeness also varies across space and time. I develop this exploration in the context of Uganda, a high-burden country with a single prevalence survey conducted in 2014/15 as well as an annual series of subnational notifications.
 
 
 # Methods
 
-\lipsum[1-2]
+In this chapter, I develop a geostatistical modeling approach that incorporates both TB prevalence survey data and a time series of case notifications to estimate TB prevalence and notification incompleteness by district across Uganda. I first develop crosswalks between the differing age groups, case definitions, and indicators reported across annual notifications and the national TB prevalence survey. I then present a geostatistical model that incorporates TB prevalence survey data _directly_ as a sample of underlying TB prevalence, and incorporates TB case notifications _indirectly_ as a sample of underlying TB incidence modified by spatially-varying incompleteness. 
 
 
-## District-level TB prevalence mapping
+## Data preparation
 
-\lipsum[3-5]
+The joint geostatistical modeling approach combines data from a national TB prevalence survey conducted in 2014-2015, a time series of TB case notifications from 2015-2020, and predictive spatial covariates. I downloaded cluster-level results, which included place names for each cluster, that were published alongside the 2014-15 Uganda National TB Prevalence Survey.[@UgandaMinistryofHealth2015] Using spatial information from Google Maps and OpenStreetMap, I associated each cluster with the GPS location of the sampled township. I then extracted the number of lab-confirmed TB cases as well as the total tested population within each cluster, and summed these values to get district-level totals for each cluster. The prevalence survey tested sputum samples using both a smear test and a culture test; I included individuals who tested positive for either test to approximate the case definition for a confirmed pulmonary TB case in a clinical setting.[@UgandaNationalTuberculosisandLeprosyProgramme2017] Of the 128 districts in Uganda, 50 were associated with at least one cluster from the 2014-15 prevalence survey.
+
+Total case notifications were reported by district across Uganda from 2015 through 2020 in annual reports published by the Uganda National TB and Leprosy Programme. I extracted the total number of diagnosed individuals associated with each district and year from these reports. Although district-level case notifications were reported for all age groups combined, including both pulmonary and extra-pulmonary cases, another set of tables reported total cases by age group and pulmonary/extra-pulmonary cases across 12 program regions in the country. I associated each district with its associated TB program region, and then corrected the total number of cases downwards based on the estimated fraction of total TB cases were pulmonary cases among adults aged 15 and over. Across the 12 TB program regions, the proportion of diagnosed extra-pulmonary cases ranged from 2% in the Hoima region to 19% in the Moroio region; meanwhile, the proportion of cases diagnosed in children under age 15 varied from 6% in the Lira region to 19% in the Moroio region.[@UgandaNationalTuberculosisandLeprosyProgramme2018] While the age structure of districts could affect the proportion of children under age 15 diagnosed within each district, a preliminary investigation revealed that the proportion of under-15s varied by less than 5% across any two districts within the same program region.
+
+In populations where disease burden is relatively stable, the prevalence and incidence of a disease are related by the average duration of the disease: $Prevalence = Incidence * Duration$.[@Freeman1980] When treated, the duration of TB is widely accepted to be six months,[@WorldHealthOrganization2019] while the average duration of untreated pulmonary TB is estimated to be approximately three years.[@Tiemersma2011] In a study of two districts in Uganda, the median delay between the onset of active tuberculosis and the beginning of treatment was estimated at four weeks.[@Buregyeya2014] An estimate for the average duration of disease would combine the experiences of untreated individuals and treated individuals after accounting for treatment delay, and would fall somewhere between the two extremes of six months and three years. In their most recent published estimates that include estimates of both TB prevalence and incidence, both the WHO and the Institute for Health Metrics and Evaluation (IHME) estimate that the ratio between TB prevalence and incidence in Uganda is approximately 1, indicating an estimated average duration of approximately one year.[@WorldHealthOrganization2019; @Kyu2018] I use this estimate to crosswalk between measures of TB incidence and prevalence in the joint geostatistical model.
+
+I also include spatial covariates in this model to inform variation in both the TB burden and case reporting completeness surfaces. The TB prevalence surface varies according to known risk factors for tuberculosis in the context of Uganda: these included subnational estimates of the Human Development Index as well as cattle per capita, used as an estimate of a pastoral lifestyle.[@UgandaNationalTuberculosisandLeprosyProgramme2020a] Following Van Gurp and colleagues,[@VanGurp2020] I included covariates for the reporting completeness surface that are associated with health system access: these included average travel time to health facilities, nighttime light intensity, and urban land cover.[@Weiss2020; @Thomson2019] All gridded covariates were aggregated to the district level using population weights derived from the WorldPop project.[@Tatem2017]
 
 
-## Extrapulmonary TB correction
-
-\lipsum[6]
+## Small area model incorporating prevalence data and incomplete notifications
 
 
-## Smoothed time trend estimation using case notifications
 
-\lipsum[7-12]
+PAR: Model concepts
+ - 
+ - 
+
+PAR: Model definition - surfaces
+ - 
+ - 
+
+PAR: Model definition - incorporation of data
+ - 
+ - 
+
+PAR: Reasoning
+ - 
+ - 
+
+PAR: Relationship with Mexico neonatal mortality model
+ - 
+ - 
+
+PAR: Prevalence-only model
+ - 
+ - 
 
 
 # Results
 
-\lipsum[13]
+PAR: Highlights
+ - 
+ - 
+
+
+## Spatial variation in tuberculosis prevalence across Uganda
+
+PAR: 
+ - 
+ - 
+
+PAR: 
+ - 
+ - 
+
+PAR: 
+ - 
+ - 
+
+
+```{r prev-scatter, out.height="75%", fig.cap = captions$prev_scatter}
+knitr::include_graphics(graphics_fps$prev_scatter)
+```
+
+
+## Completeness of case notifications increases over time
+
+PAR: 
+ - 
+ - 
+
+PAR: 
+ - 
+ - 
+
+
+```{r notif-completeness, out.width="90%", fig.cap = captions$notif_completeness}
+knitr::include_graphics(graphics_fps$notif_completeness)
+```
 
 
 ## Estimating the TB prevalence to notification ratio (PNR) by district
 
-\lipsum[1-4]
+PAR: Meaning of notifications per prevalent case
+ - 
+ - 
+
+PAR: Comparing raw data with modeled notification completeness
+ - 
+ - 
 
 
-## Comparison with predictive covariates of TB burden and health systems access
+```{r notif-prev-ratio, out.width="90%", fig.cap = captions$notif_prev_ratio}
+knitr::include_graphics(graphics_fps$notif_prev_ratio)
+```
 
-\lipsum[5-10]
 
+## Effect of including notifications on estimates of TB burden
 
-## Time trends of tuberculosis prevalence, 2010-2019
+PAR: Results from prevalence-only model
+ - 
+ - 
 
-\lipsum[11-13]
+PAR: Difference in mean associated with adding TB case notifications
+ - 
+ - 
+
+PAR: Significance of differences
+ - 
+ - 
+
+```{r prev-notifs-diff, out.height="75%", fig.cap = captions$prev_notifs_diff}
+knitr::include_graphics(graphics_fps$prev_notifs_diff)
+```
 
 
 # Discussion
 
-\lipsum[14-15]
+PAR: By identifying spatial trends in case notification completeness, notifications can inform estimates of TB prevalence completeness
+ - 
+ - 
 
+PAR: Steps forward: surveillance as a tool for case reporting completeness
+ - 
+ - 
 
-## Model-based adjustment of TB case notification rates
-
-\lipsum[1-6]
 
 
 ## “Nowcasting” local variation in TB prevalence and uncertainty
 
-\lipsum[7-8]
+PAR: Modeling can supplement limited data
+ - 
+ - 
+
+PAR: Role of uncertainty
+ - 
+ - 
 
 
-## Extension to other data contexts
+## Model-based adjustment of TB case notification rates
 
-\lipsum[9-11]
+PAR: Positive relationship between case notification completeness and notifications per prevalent case
+ - 
+ - 
+
+PAR: Challenge of estimating TB based primarily on case notifications
+ - 
+ - 
+
+## Extension to other contexts
+
+PAR: Similar data contexts for TB across many high-burden countries
+ - 
+ - 
+
+PAR: HIV estimation - other sources, but notifications can improve time trends
+ - 
+ - 
+
+PAR: Disruptions to case reporting from COVID-19
+ - 
+ - 
 
 
-## Extension to TB-HIV coinfection and policy implications
+## Limitations
 
-\lipsum[12-15]
+PAR: Wide uncertainty
+ - 
+ - 
 
+PAR: Long-term issues with a single baseline
+ - 
+ - 
+
+PAR: Ultimately, need localized ground truth using active case detection
+ - 
+ - 
 
 ## Conclusions
 
-\lipsum[1]
+PAR: Notifications should not be used uncorrected, but can provide valuation information about burden and case detection
+ - 
+ - 
 
-This is an example paragraph. To conclude, let's reference Figure \@ref(fig:fig1) and Table \@ref(tab:t1). Here are some example citations [@Aalbers; @Aguirre2009].
+PAR: Link to Mexico study
+ - 
+ - 
+
+
+
+
+This is an example paragraph. To conclude, let's reference Figure \@ref(fig:prev-notifs-diff). Here are some example citations [@Aalbers; @Aguirre2009].
 
 
 # References
 
 <div id="refs"></div>
 \newpage
-
-
-# Figures and Tables
-
-```{r fig1, out.width="70%", fig.cap = captions$fig1}
-knitr::include_graphics(graphics_fps$fig1)
-```
-\newpage
-
-```{r t1}
-data_list$t1 %>%
-  dplyr::mutate_all(linebreak, align='l') %>%
-  knitr::kable(
-    'latex', booktabs = T, escape = F, caption = captions$t1,
-    col.names = linebreak(colnames(data_list$t1))
-  ) %>%
-  kable_styling(latex_options = "striped")
-```
