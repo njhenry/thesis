@@ -24,28 +24,11 @@ captions <- list(
 
 # Introduction
 
-PAR: High-burden countries need improved case notifications to meet ambitious global goals
- - 
- - 
-
-PAR: Local variation is an important aspect of TB control, but under-studied because data
- have unknown variation at the local level
- - 
- - 
-
-PAR: Implement a model that combines TB prevalence survey data and TB case notifications
- to jointly estimate prevalence and notification completeness
- - 
- - 
-
-
-## The role of health surveillance in ending the tuberculosis epidemic
-
 In 2015, the World Health Assembly committed its member states to the ambitious goal of ending the tuberculosis (TB) epidemic by 2035. In response, the World Health Organization (WHO) developed the global End TB strategy, which succeeded the Directly Observed Therapy (DOTS, 1994-2005) and Stop TB (2006-2014) plans as the coordinating principles for addressing the tuberculosis epidemic worldwide.[@Onozaki2010] The End TB strategy outlines three ambitious targets to achieve by 2030: compared to 2015, the plan aims to reduce the number of TB deaths by 90%, reduce the number of incident TB cases by 80%, and ensure that 100% of families are protected from catastrophic costs due to TB.[@WorldHealthOrganization2015a] These goals are consistent with Sustainble Development Goal 3.3, which commits United Nations member countries to end the TB epidemic by 2030.[@WorldHealthOrganization2019] Timely and accurate TB case detection serves as a critical component for two pillars of the End TB strategy: early detection enables for adequate patient-centered care, while mandatory and universal registration of TB disease allows countries to properly allocate resources and track progress towards goals.[@WorldHealthOrganization2015] 
 
 To achieve the End TB Strategy, the World Health Organization has developed tools for systematically building health system capacity[@WHOWorldHealthOrganization2008; @WorldHealthOrganization2020; @WorldHealthOrganization2010] and has tracked progress and shared best practices through the release of annual Global Tuberculosis Reports.[@WorldHealthOrganization2019] Both these reports and external analyses have concluded that while many countries have increased their capacity to identify and treat tuberculosis, particularly drug-resistant TB and TB among people living with HIV, the majority of high-burden countries are not on track to meet the End TB 2030 targets.[@WorldHealthOrganization2019; @Kyu2018] The gap between 2030 targets and observed performance can be explained by a combination of social determinants of health and health system factors, including remaining incompleteness in TB case detection in high-burden settings.[@WorldHealthOrganization2019]
 
-The recent history of TB control in Uganda, one of the 30 high-burden countries recognized by the end TB program, exemplifies both the possibilities for health system progress and the remaining challenges to TB elimination in low-resource settings. In Uganda, TB control is overseen by the National Tuberculosis and Leprosy Programme (NTLP) within the Ugandan Ministry of Health. The NTLP's 2015/16-2019/20 strategic plan mirrors the core objectives of the global End TB plan, calling for a 5% reduction in TB incidence as well as a 30% increase in case notifications over a four-year time period. While the 2019-2020 NTLP report indicated impressive gains in TB treatment since 2015, the case notification target was barely missed (26% increase as opposed to 30%), while the estimated number of total TB cases increased slightly from 2018 to 2020.[@UgandaNationalTuberculosisandLeprosyProgramme2020] Two of the principle challenges to universal TB detection and treatment identified in the 2020 report were (1) stubbornly low case detection rates in the far eastern and southwestern regions of the country; and (2) the threat of service disruptions related to COVID-19, which could reduce health system capacity and adherence to TB treatment regimens.[@UgandaNationalTuberculosisandLeprosyProgramme2020] New approaches are needed to ensure universal access to TB treatment and, ultimately, to eliminate TB nationwide.
+The recent history of TB control in Uganda, one of the 30 high-burden countries recognized by the end TB program, exemplifies both the possibilities for health system progress and the remaining challenges to TB elimination in low-resource settings. In Uganda, TB control is overseen by the National Tuberculosis and Leprosy Programme (NTLP) within the Ugandan Ministry of Health. The NTLP's 2015/16-2019/20 strategic plan mirrors the core objectives of the global End TB plan, calling for a 5% reduction in TB incidence as well as a 30% increase in case notifications over a four-year time period. While the 2019-2020 NTLP report indicated impressive gains in TB treatment since 2015, the case notification target was barely missed (26% increase as opposed to 30%), while the estimated number of total TB cases increased slightly from 2017 to 2019.[@UgandaNationalTuberculosisandLeprosyProgramme2020] Two of the principle challenges to universal TB detection and treatment identified in the 2020 report were (1) stubbornly low case detection rates in the far eastern and southwestern regions of the country; and (2) the threat of service disruptions related to COVID-19, which could reduce health system capacity and adherence to TB treatment regimens.[@UgandaNationalTuberculosisandLeprosyProgramme2020] New approaches are needed to ensure universal access to TB treatment and, ultimately, to eliminate TB nationwide.
 
 
 ## TB mapping in high-burden settings
@@ -68,9 +51,9 @@ In this chapter, I develop a geostatistical modeling approach that incorporates 
 
 ## Data preparation
 
-The joint geostatistical modeling approach combines data from a national TB prevalence survey conducted in 2014-2015, a time series of TB case notifications from 2015-2020, and predictive spatial covariates. I downloaded cluster-level results, which included place names for each cluster, that were published alongside the 2014-15 Uganda National TB Prevalence Survey.[@UgandaMinistryofHealth2015] Using spatial information from Google Maps and OpenStreetMap, I associated each cluster with the GPS location of the sampled township. I then extracted the number of lab-confirmed TB cases as well as the total tested population within each cluster, and summed these values to get district-level totals for each cluster. The prevalence survey tested sputum samples using both a smear test and a culture test; I included individuals who tested positive for either test to approximate the case definition for a confirmed pulmonary TB case in a clinical setting.[@UgandaNationalTuberculosisandLeprosyProgramme2017] Of the 128 districts in Uganda, 50 were associated with at least one cluster from the 2014-15 prevalence survey.
+The joint geostatistical modeling approach combines data from a national TB prevalence survey conducted in 2014-2015, a time series of TB case notifications from 2015-2019, and predictive spatial covariates. I downloaded cluster-level results, which included place names for each cluster, that were published alongside the 2014-15 Uganda National TB Prevalence Survey.[@UgandaMinistryofHealth2015] Using spatial information from Google Maps and OpenStreetMap, I associated each cluster with the GPS location of the sampled township. I then extracted the number of lab-confirmed TB cases as well as the total tested population within each cluster, and summed these values to get district-level totals for each cluster. The prevalence survey tested sputum samples using both a smear test and a culture test; I included individuals who tested positive for either test to approximate the case definition for a confirmed pulmonary TB case in a clinical setting.[@UgandaNationalTuberculosisandLeprosyProgramme2017] Of the 128 districts in Uganda, 50 were associated with at least one cluster from the 2014-15 prevalence survey.
 
-Total case notifications were reported by district across Uganda from 2015 through 2020 in annual reports published by the Uganda National TB and Leprosy Programme. I extracted the total number of diagnosed individuals associated with each district and year from these reports. Although district-level case notifications were reported for all age groups combined, including both pulmonary and extra-pulmonary cases, another set of tables reported total cases by age group and pulmonary/extra-pulmonary cases across 12 program regions in the country. I associated each district with its associated TB program region, and then corrected the total number of cases downwards based on the estimated fraction of total TB cases were pulmonary cases among adults aged 15 and over. Across the 12 TB program regions, the proportion of diagnosed extra-pulmonary cases ranged from 2% in the Hoima region to 19% in the Moroio region; meanwhile, the proportion of cases diagnosed in children under age 15 varied from 6% in the Lira region to 19% in the Moroio region.[@UgandaNationalTuberculosisandLeprosyProgramme2018] While the age structure of districts could affect the proportion of children under age 15 diagnosed within each district, a preliminary investigation revealed that the proportion of under-15s varied by less than 5% across any two districts within the same program region.
+Total case notifications were reported by district across Uganda from 2015 through 2019 in annual reports published by the Uganda National TB and Leprosy Programme. I extracted the total number of diagnosed individuals associated with each district and year from these reports. Although district-level case notifications were reported for all age groups combined, including both pulmonary and extra-pulmonary cases, another set of tables reported total cases by age group and pulmonary/extra-pulmonary cases across 12 program regions in the country. I associated each district with its associated TB program region, and then corrected the total number of cases downwards based on the estimated fraction of total TB cases were pulmonary cases among adults aged 15 and over. Across the 12 TB program regions, the proportion of diagnosed extra-pulmonary cases ranged from 2% in the Hoima region to 19% in the Moroio region; meanwhile, the proportion of cases diagnosed in children under age 15 varied from 6% in the Lira region to 19% in the Moroio region.[@UgandaNationalTuberculosisandLeprosyProgramme2018] While the age structure of districts could affect the proportion of children under age 15 diagnosed within each district, a preliminary investigation revealed that the proportion of under-15s varied by less than 5% across any two districts within the same program region. Gridded estimates of the over-15 population from the WorldPop project were aggregated to the district level and used as population denominators.[@Tatem2017]
 
 In populations where disease burden is relatively stable, the prevalence and incidence of a disease are related by the average duration of the disease: $Prevalence = Incidence * Duration$.[@Freeman1980] When treated, the duration of TB is widely accepted to be six months,[@WorldHealthOrganization2019] while the average duration of untreated pulmonary TB is estimated to be approximately three years.[@Tiemersma2011] In a study of two districts in Uganda, the median delay between the onset of active tuberculosis and the beginning of treatment was estimated at four weeks.[@Buregyeya2014] An estimate for the average duration of disease would combine the experiences of untreated individuals and treated individuals after accounting for treatment delay, and would fall somewhere between the two extremes of six months and three years. In their most recent published estimates that include estimates of both TB prevalence and incidence, both the WHO and the Institute for Health Metrics and Evaluation (IHME) estimate that the ratio between TB prevalence and incidence in Uganda is approximately 1, indicating an estimated average duration of approximately one year.[@WorldHealthOrganization2019; @Kyu2018] I use this estimate to crosswalk between measures of TB incidence and prevalence in the joint geostatistical model.
 
@@ -79,54 +62,41 @@ I also include spatial covariates in this model to inform variation in both the 
 
 ## Small area model incorporating prevalence data and incomplete notifications
 
+I developed a geostatistical model to jointly estimate TB prevalence and TB case notification reporting completeness by district between 2015 and 2019. TB prevalence, $p$, is represented by a time-invariant spatial surface that varies according to underlying covariates as well as a spatially-structured latent process. Notification completeness, $\pi$, is represented as a space-time surface that varies according to underlying covariates as well as a spatially-structured latent process and fixed effect with a random slope by year.
 
+Specifically, the TB prevalence surface is estimated to vary as follows:
 
-PAR: Model concepts
- - 
- - 
+$$log(p_s) = \alpha^p + \overrightarrow{\beta^p}X^p_s + Z^p_s$$
 
-PAR: Model definition - surfaces
- - 
- - 
+Here, TB prevalence $p$ is a log-linear surface that is indexed by district (s). Prevalences varies according to an intercept, $\alpha$, fixed effects $\overrightarrow{\beta^p}$ on spatial covariates $X^p_s$ that vary by district, and a structured random effect $Z^p_s$ that fits excess variation not captured by fixed effects. The latent spatial surface is parameterized using the interpretable BYM2 spatial model formulation described by Riebler and colleagues.[@Riebler2016] The superscript (p) differentiates these terms from a similar spatial field used to estimate reporting completeness ($\pi$).
 
-PAR: Model definition - incorporation of data
- - 
- - 
+Simultaneously, the reporting completeness surface is estimated to vary as follows:
 
-PAR: Reasoning
- - 
- - 
+$$logit(\pi_{s,t}) = \alpha^\pi + \overrightarrow{\beta^\pi}X^\pi_{s,t} + (\gamma^\pi + \delta^\pi_s)t' + Z^\pi_s$$
 
-PAR: Relationship with Mexico neonatal mortality model
- - 
- - 
+In this formulation, reporting completeness $\pi$ is a logit-linear surface that is indexed by district (s) and year (t). Completeness varies according to fixed effects on covariates that vary by district and year, as well as a structured random effect $Z^\pi_s$ that is parameterized in the same manner as $Z^p_s$, according to the adjacency structure of Ugandan districts. Reporting completeness also varies according to a fixed effect on time with a random slope $(\gamma^\pi + \delta^\pi_s)$. This term is multiplied by the year (t') of a particular observation, where the years 2015-2019 have been rescaled to have mean zero and range one.
 
-PAR: Prevalence-only model
- - 
- - 
+Data from the TB prevalence survey, with numerators $Y^{prev}_i$ and denominators $N^{prev}_i$, are evaluated directly against the underlying prevalence surface:
+
+$$Y^{prev}_i = Poisson(N^{prev}_i, p_{s(i)})$$
+If only data from the TB prevalence survey was incorporated into this model, it would correspond to a standard small-area estimation framework. However, in addition, case notifications with reported cases $Y^{notif}_i$ and corresponding population denominators $N^{notif}_i$ are evaluated against the fitted surfaces as follows:
+
+$$Y^{notif}_i = Poisson(p_{s(i)} ~/~ D ~*~ N^{notif}_i ~*~ \pi_{s(i),t(i)})$$
+In this formulation, the observed number of case notifications are estimated to be centered around the true incident cases in the population multiplied by case notification incompleteness. The true incidence rate is estimated as the fitted underlying prevalence in a given district, $p_{s(i)}$, multiplied by the inverse of the duration, $1/D$, which has been fixed at one. The true underlying incidence of pulmonary TB is multiplied by the over-15 population in a given district-year, $N^{notif}_i$, to obtain the true estimated incident cases in each district and year. Finally, the true estimated incident cases are multiplied by the fitted case reporting completeness in a given district and year, $\pi_{s(i),t(i)}$, to obtain an estimate of the number of observed cases in a particular district and year.
+
+I assigned priors to all model parameters and then fit the model using the Laplace approximation for mixed-effect parameter estimation[@Kristensen2016; @Thorson2016]⁠.I fit two versions of the model: one incorporating both TB prevalence survey results as well as case notifications, and a prevalence-only model incorporating just data from the TB prevalence survey. The model was fit in R v.4.0.3 using the package Template Model Builder v.1.7.18[@Kristensen2016; @RCoreTeam2018].
 
 
 # Results
 
-PAR: Highlights
- - 
- - 
+The joint spatial model identified that TB prevalence varies over 10-fold across districts in Uganda, while the completeness of TB case notification varied from less than 1 in 4 cases reported to near-complete reporting in 2019, the final year of analysis. A joint model that incorporated both TB case notifications and prevalence data predicted TB prevalence with substantially greater precision than a model using only data from the 2014-15 national TB prevalence survey.
 
 
 ## Spatial variation in tuberculosis prevalence across Uganda
 
-PAR: 
- - 
- - 
+Across the 128 districts of Uganda, estimated pulmonary TB prevalence in adults ranged from 140 per 100,000 (95% uncertainty intervals: 134 to 147) in the district of Wakiso bordering Kampala, to a maximum of 1,468 per 100,000 (1,108 to 1,977) in the northeastern district of Napak, which borders the Bokora Wildlife Reserve. As shown in Panel B of Figure \@ref(fig:prev-scatter) Prevalence was generally lowest in the southern districts bordering Lake Victoria and highest in the northern and northwestern regions of the country, mirroring programmatic experience within the NTLP.[@UgandaNationalTuberculosisandLeprosyProgramme2020a] The densely-populated districts of Kampala and Jinja experienced middling tuberculosis burden relative to the rest of the country, with estimated TB prevalence of 557 (547 to 568) and 537 (423 to 656) per 100,000, respectively.
 
-PAR: 
- - 
- - 
-
-PAR: 
- - 
- - 
-
+Panel A of Figure \@ref(fig:prev-scatter) shows the raw prevalence estimates derived by aggregating the 2014-2015 national TB prevalence survey by district, while Panel C shows the relationship between these raw survey-based estimates (on the x axis) and prevalence estimated generated from the joint model (on the y axis). In general, modeled estimates tend to follow the same overall trends as the raw survey data, with higher prevalence observed in the prevalence survey corresponding to higher modeled estimates in a given district. However, the model has substantially smoothed these raw estimates: the highest raw estimate of nearly 2,500 per 100,000 has been pulled down, while many clusters with zero observed TB-positive individuals have higher model-estimated prevalence. These modifications are due to the combined effect of the smoothing spatial random effect in the prevalence surface as well as the effects of the notifications data.
 
 ```{r prev-scatter, out.height="75%", fig.cap = captions$prev_scatter}
 knitr::include_graphics(graphics_fps$prev_scatter)
@@ -135,14 +105,9 @@ knitr::include_graphics(graphics_fps$prev_scatter)
 
 ## Completeness of case notifications increases over time
 
-PAR: 
- - 
- - 
+Figure \@ref(fig:notif-completeness), below, shows model estimates of case notification completeness by district for two years, 2017 and 2019. This figure demonstrates the general increasing trend in case notification completeness over time, matching the trend of increasing completeness estimated by the NTLP at the national level.[@UgandaNationalTuberculosisandLeprosyProgramme2020] In 2017, estimated case notification completeness varied from 21% (17% to 25%) in the rural Otuke district to 99% (92% to 100%) in Kampala. In 2019, case notification completeness ranged from an estimated 26% (21% to 31%) in the southwestern Kiruhira district to, once again, 99% (93% to 100%) reporting completeness in Kampala. Population was associated with greater reporting completeness, as the urban districts of Kampala, Wakiso, Mukono, Gulu, and Jinja all had an estimated reporting completeness of 80% or greater in 2019.
 
-PAR: 
- - 
- - 
-
+The large majority of districts, 107 out of 128, experienced an increase in reporting completeness over the duration of the study, with an average increase of eight percentage points. Although the joint model estimated that the remaining 21 districts experienced a decline in case notifications, this decline was only significant in one district, Kiruhura, which dropped from 48% completeness (39% to 56%) in 2017 to 26% (21% to 31%) in 2019, the lowest reporting completeness nationally.
 
 ```{r notif-completeness, out.width="90%", fig.cap = captions$notif_completeness}
 knitr::include_graphics(graphics_fps$notif_completeness)
@@ -151,14 +116,7 @@ knitr::include_graphics(graphics_fps$notif_completeness)
 
 ## Estimating the TB prevalence to notification ratio (PNR) by district
 
-PAR: Meaning of notifications per prevalent case
- - 
- - 
-
-PAR: Comparing raw data with modeled notification completeness
- - 
- - 
-
+Based on the fitted model parameters, TB case notification rates were negatively associated with travel time to health facilities, and positively associated with nighttime lights, urbanicity, and time. In addition, completeness was empirically associated with the number of notifications per prevalent case observed in the raw data. The x axis of Figure \@ref(fig:notif-prev-ratio), below, shows the ratio between the estimated TB prevalence rate and the TB notification rate in the raw data, including only districts where at least one prevalent case was observed in the 2014-15 prevalence survey. The y-axis shows the estimated completeness generated from the joint model in 2017 (left) and 2019 (right). Although the sample sizes from the prevalence survey are small and must be interpreted with caution, a weakly positive relationship is observed between "empirical reporting completeness" and estimated completeness from the joint model, suggesting that the model is able to indirectly estimate completeness through the relationship between prevalence survey and notification data.
 
 ```{r notif-prev-ratio, out.width="90%", fig.cap = captions$notif_prev_ratio}
 knitr::include_graphics(graphics_fps$notif_prev_ratio)
@@ -167,17 +125,9 @@ knitr::include_graphics(graphics_fps$notif_prev_ratio)
 
 ## Effect of including notifications on estimates of TB burden
 
-PAR: Results from prevalence-only model
- - 
- - 
+A second, prevalence-only model was run using only raw data from the 2014-15 national TB prevalence survey along with the same suite of spatial covariates. This model iteration represents an attempt at district-level TB prevalence estimation without incorporating data from case notifications. Panel A of Figure \@ref(fig:prev-notifs-diff) below shows the mean estimated TB prevalence based on this model. Compared to Panel A of Figure \@ref(fig:prev-scatter), the prevalence-only model captures and smooths extreme values within districts observed in the prevalence survey, but reverts to values close to the national mean in unobserved districts. Estimates of prevalence generated from this model are also much more uncertain than the joint model. In the joint model, the width of the 95% UI for prevalence varies from 13 to 869 deaths per 100,000, with an average spread of 209. In the prevalence-only model, the corresponding widths of the 95% UI for estimated prevalence ranges from 423 to 5,079, with an average spread of 1,007. 
 
-PAR: Difference in mean associated with adding TB case notifications
- - 
- - 
-
-PAR: Significance of differences
- - 
- - 
+Panels B and C in Figure \@ref(fig:prev-notifs-diff) visualize the effect of indirectly incorporating case notifications into the modeled prevalence surface. As shown in Panel B, incorporating case notifications changes the mean estimates for TB prevalence across Ugandan districts, increasing mean estimated prevalence in the northeast and decreasing estimated prevalence in the coastal south. However, given the wide uncertainty associated with the prevalence-only estimates, just four districts of 128 experience significant changes between the two model formulations.
 
 ```{r prev-notifs-diff, out.height="75%", fig.cap = captions$prev_notifs_diff}
 knitr::include_graphics(graphics_fps$prev_notifs_diff)
@@ -186,80 +136,28 @@ knitr::include_graphics(graphics_fps$prev_notifs_diff)
 
 # Discussion
 
-PAR: By identifying spatial trends in case notification completeness, notifications can inform estimates of TB prevalence completeness
- - 
- - 
+Previous research has demonstrated that unadjusted TB case notifications are an inappropriate proxy for TB incidence in high-burden settings due to confounding factors related to TB program activity and access to health care.[@Shaweno2018] In this chapter, I demonstrate how TB case notifications can be used to indirectly inform estimates of TB burden by indirectly fitting a second spatial surface for case notification completeness. While this completeness surface incorporated data from spatial covariates related to health systems access,[@VanGurp2020] it also corresponds to the notification-to-prevalence ratio which may be the best proxy for notification completeness in the unadjusted data.
 
-PAR: Steps forward: surveillance as a tool for case reporting completeness
- - 
- - 
+Because of the larger sample sizes and time series associated with TB case notifications, this joint model generates more precise estimates of TB prevalence than a comparable model based on data from a single TB prevalence survey alone. This precision facilitates the identification of exemplars and hot spots for TB. Two southern districts, Wakiso and Butaleja, have 95% uncertainty intervals that fall below the prevalence threshold of 200 per 100,000; on the other hand, the districts of Moroto and Napak have 95% UIs that fall entirely above the high prevalence threshold of 1,000 per 100,000. These high-precision identifications have programmatic value, and the differentiation between districts will allow the NTLP to use these results to allocate resources with greater confidence.
 
+The space-time surface of notification completeness generated by the joint model offers a new tool for targeting improvements in TB case-finding. The model identified 32 districts where case reporting was less than half complete with 95% certainty; four of these, Kiruhura, Butebo, Namayingo, and Mayuge, were predicted with 95% certainty to have estimated case finding of less than 40%. Measures of notification completeness could typically only be estimated through expensive audits in a small number of districts; while limited by the model assumptions, this joint modeling approach offers a supplementary method to tracking notification completeness that can be estimated nationwide each year. In the near future, this model could be applied to 2020 notifications to explore spatially-varying barriers to accessing TB care that may have arisen in the wake of the COVID-19 pandemic.[@Togun2020]
 
-
-## “Nowcasting” local variation in TB prevalence and uncertainty
-
-PAR: Modeling can supplement limited data
- - 
- - 
-
-PAR: Role of uncertainty
- - 
- - 
-
-
-## Model-based adjustment of TB case notification rates
-
-PAR: Positive relationship between case notification completeness and notifications per prevalent case
- - 
- - 
-
-PAR: Challenge of estimating TB based primarily on case notifications
- - 
- - 
 
 ## Extension to other contexts
 
-PAR: Similar data contexts for TB across many high-burden countries
- - 
- - 
+While this chapter focused on the context of Uganda, similar methods could be applied in other high-burden countries with a TB prevalence survey. According to the Global Tuberculosis Report 2019, 13 countries in Africa and six countries in Asia had completed just one TB prevalence survey since 2007.[@WorldHealthOrganization2019] Many of these countries rely on notifications data to track annual change in TB prevalence: by combining these notifications with data from a single prevalence survey, these programs could learn a substantial amount about subnational variation in TB control nationwide. In Ethopia, Pakistan, and Bangladesh, previous studies have already explored factors associated with subnational variation in case reporting completeness, and this information could be used to develop highly predictive spatial covariates for a latent completeness surface.[@Shaweno2017; @Rood2019; @VanGurp2020]
 
-PAR: HIV estimation - other sources, but notifications can improve time trends
- - 
- - 
-
-PAR: Disruptions to case reporting from COVID-19
- - 
- - 
+The paradigm of intermittent nationwide prevalence surveys combined with incomplete case notifications data arises in the context of other infectious diseases. In sub-Saharan Africa, Malaria Indicator Surveys (MIS) and AIDS Indicator Surveys (AIS) are often considered to be the gold standard for surveillance, but small sample sizes and gaps in temporal coverage limit their use for routine surveillance. Previous geospatial studies have combined these surveys with routine surveillance data, using an estimated crosswalk between data types;[@Dwyer-Lindgren2019; @Lucas2019] these models could be made more flexible using by adapting the joint model approach described in this chapter.
 
 
 ## Limitations
 
-PAR: Wide uncertainty
- - 
- - 
+While this model estimates relatively precise estimates of TB prevalence and case notification completeness across districts in Uganda, it relies on an assumption that may not hold over long time periods. Because TB incidence in Uganda has fallen by less than 5% since 2015, as estimated by the NTLP, WHO, and IHME,[@UgandaNationalTuberculosisandLeprosyProgramme2020; @WorldHealthOrganization2019; @Kyu2018], the joint model assumes that subnational variation in TB prevalence remains constant over the time period 2015-2019. Conversely, case notification reporting completeness was modeled as a space-time surface to capture documented increases in case notifications over the same time period.[@UgandaNationalTuberculosisandLeprosyProgramme2017b; @UgandaNationalTuberculosisandLeprosyProgramme2020]. While such an assumption simplifies the comparisons between prevalence and incidence data sources, it cannot hold if the End TB goals are to be met. In settings where TB burden is decreasing, the underlying TB prevalence surface should vary in both space and time, with district-specific censuses directly grounding prevalence estimates in the years following a prevalence survey.
 
-PAR: Long-term issues with a single baseline
- - 
- - 
-
-PAR: Ultimately, need localized ground truth using active case detection
- - 
- - 
 
 ## Conclusions
 
-PAR: Notifications should not be used uncorrected, but can provide valuation information about burden and case detection
- - 
- - 
-
-PAR: Link to Mexico study
- - 
- - 
-
-
-
-
-This is an example paragraph. To conclude, let's reference Figure \@ref(fig:prev-notifs-diff). Here are some example citations [@Aalbers; @Aguirre2009].
+In this chaper, I demonstrate that subnational TB case notifications can provide meaningful information about the spatial distribution of TB burden within a country. This study extends the neonatal mortality model developed in Chapter 2 to account for health surveillance data that is expected to be incomplete, with incompleteness varying in both space and time. Whether the measured outcome is all-cause mortality or infectious disease prevalence, the principle of indirect data synthesis offers programmatically useful insights about variation in both underlying risk and data quality. In the next chapter, the same principle is applied to estimate the quality of cause-specific mortality data in Italy, a country where mortality data is typically considered unbiased and complete.
 
 
 # References
