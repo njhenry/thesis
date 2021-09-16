@@ -25,10 +25,11 @@
 # Script arguments
 # TODO: Convert to CLI
 conf_fp <- '~/repos/thesis/config.yaml'
-chapter <- 'italy_thesis'
+chapter <- 'uganda'
 chapter_type <- 'standalone'
-pdf_out_fp <- glue::glue(
-  'C:/Users/nathenry/Dropbox/Writing/thesis/output/{chapter}_{Sys.Date()}.pdf'
+doc_type <- 'docx' # One of 'docx', 'pdf'
+out_fp <- glue::glue(
+  'C:/Users/nathenry/Dropbox/Writing/thesis/output/{chapter}_{Sys.Date()}.{doc_type}'
 )
 
 # Load config, required packages, and helper functions
@@ -47,7 +48,7 @@ chapter_rmd_fp_base <- basename(chapter_rmd_fp)
 
 # Set some output filenames
 tex_dir <- file.path(repo, 'knitted_tex')
-tex_dir_fp_base <- glue::glue('{chapter}.pdf')
+tex_dir_fp_base <- glue::glue('{chapter}.{doc_type}')
 
 # Fix to identify xeLatex on Windows:
 if((Sys.info()['sysname'] == 'Windows') & (Sys.which('xelatex')=='')){
@@ -66,8 +67,8 @@ if(length(tempfiles) > 0) invisible(file.remove(tempfiles))
 
 # Set up a config listing just this Rmd file
 dummy_config <- list(
-  'rmd_files' = list(latex = chapter_rmd_fp_base),
-  'top-level-division' = 'section'
+  'top-level-division' = 'section',
+  'rmd_files'= chapter_rmd_fp_base
 )
 dummy_config_fp <- tempfile(fileext='.yaml')
 yaml::write_yaml(dummy_config, file=dummy_config_fp)
@@ -79,17 +80,18 @@ pdf_args <- list(
     glue::glue('--lua-filter={repo}/styles/author_info_blocks.lua')
   )
 )
+compile_fun <- ifelse(doc_type=='pdf', bookdown::pdf_document2, bookdown::word_document2)
 if(conf$v$preprint) pdf_args$extra_dependencies <- c(pdf_args$extra_dependencies, 'arxiv')
 tex_dir_fp <- bookdown::render_book(
   input = basename(chapter_rmd_fp),
-  output_format = do.call(bookdown::pdf_document2, args = pdf_args),
+  output_format = do.call(compile_fun, args = pdf_args),
   output_file = tex_dir_fp_base,
   output_dir = tex_dir,
   config_file = dummy_config_fp
 )
 
 # Move compiled PDF file from repository to final output directory
-invisible(file.copy(from = tex_dir_fp, to = pdf_out_fp, overwrite = TRUE))
+invisible(file.copy(from = tex_dir_fp, to = out_fp, overwrite = TRUE))
 
 # Clean up by deleting temporary config
 invisible(file.remove(dummy_config_fp))

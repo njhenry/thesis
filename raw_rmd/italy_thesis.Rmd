@@ -9,7 +9,7 @@ csl: "`r paste0(conf$v$citation_style, '.csl')`"
 link-citations: true
 ---
 
-```{r set_captions, echo=FALSE}
+```{r set-captions, echo=FALSE}
 knitr::opts_chunk$set(fig.pos = "!hbt", out.extra = "", fig.align = 'center', echo=FALSE)
 
 # Set caption text
