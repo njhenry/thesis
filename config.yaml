@@ -9,7 +9,7 @@ tex_style:
 preprint: true
 
 ## Options that will be passed directly to the bookdown config
-bibliography: '{thesis_docs}/bibliographies/Mendeley-export-20210909.bib'
+bibliography: '{thesis_docs}/bibliographies/Mendeley-export-20210918.bib'
 citation_style: 'nature'
 link-citations: true
 github-repo: 'nathenry/thesis'
