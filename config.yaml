@@ -73,6 +73,7 @@ data_fps:
   india:
     t1: '{thesis_data}/test_chapter/t1_test.csv'
   mexico:
+    priors: '{thesis_data}/mexico/priors.csv'
     sim_param_results: '{thesis_data}/mexico/sim_param_results.csv'
   italy:
     covariates_table: '{thesis_data}/italy/t1_covariates_table.csv'
