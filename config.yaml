@@ -28,7 +28,7 @@ graphics_fps:
   india:
     mort_2000_2017: "{graphics}/india/fig1_mort_2000_2017.png"
     u5m_aroc_2000_2017: "{graphics}/india/fig2_u5m_aroc_2000_2017.png"
-    hilo_under5: "{graphics}/india/fig3_hilo_under5.png"
+    hilo_all_ages: "{graphics}/india/fig3_hilo_all_ages.png"
     u5m_proj_2025: "{graphics}/india/fig4_u5m_proj_2025.png"
     srs_comparison: "{graphics}/india/fig5_srs_comparison.png"
     sample_size: "{graphics}/india/fig6_sample_size.png"
