@@ -57,10 +57,13 @@ graphics_fps:
     excess_neighbors: '{graphics}/italy/fig6_excess_neighbors.png'
     excess_ratio: '{graphics}/italy/fig7_excess_ratio.png'
   uganda:
+    uga_map: '{graphics}/uganda/uga_major_cities.png'
+    data_prev_survey: '{graphics}/uganda/data_prev_survey.png'
+    data_case_notifs: '{graphics}/uganda/data_case_notifs.png'
     prev_scatter: '{graphics}/uganda/prev_scatter.png'
     notif_completeness: '{graphics}/uganda/notif_completeness.png'
-    notif_prev_ratio: '{graphics}/uganda/notif_prev_ratio.png'
     prev_notifs_diff: '{graphics}/uganda/prev_notifs_diff.png'
+    thresh_comparison: '{graphics}/uganda/thresh_comparison.png'
   discussion:
     fig1: '{graphics}/test_chapter/fig1.png'
   test_chapter:
