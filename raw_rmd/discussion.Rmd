@@ -18,66 +18,97 @@ captions <- list(
 )
 ```
 
-# Abstract
+PAR: What was the point of this thesis?
 
-\lipsum[1]
-
-
-# Spatial modeling to bridge the health data divide
-
-\lipsum[2-10]
+PAR: What is happening in this discussion?
 
 
-## New contributions
+# Chapter summary
 
-\lipsum[11-13]
+PAR: Chapter 2 discussion (Mexico)
 
+PAR: Chapter 3 discussion (India)
 
-## Limitations
+PAR: Chapter 4 discussion (Uganda)
 
-\lipsum[14-15]
-
-
-# A framework for disease mapping using incomplete health surveillance data
-
-\lipsum[1-6]
+PAR: Chapter 5 discussion (Italy)
 
 
-## Tailoring for data availability
+# Methodological discussion
 
-\lipsum[7-10]
-
-
-## Questioning the completeness assumption in high-resource contexts
-
-\lipsum[11-12]
+PAR: This section describes the statistical methods deployed in each chapter
 
 
-# Policy implications
+## Methodological strengths
 
-\lipsum[13-15]
+PAR: Strengths of SAE
 
+PAR: Directly measures parameters of interest
 
-## Increasing utility of routine health surveillance
+PAR: Using only data available
 
-\lipsum[1-6]
-
-
-## Strengthening surveillance systems
-
-\lipsum[7-10]
+PAR: Quantification of uncertainty
 
 
-## Communicating uncertainty to the policy community
+## Methodological limitations
 
-\lipsum[11-15]
+PAR: Relies on assumptions
+ - Params
+ - Spatial
+ - Relationships between data sources
+
+PAR: Communicating uncertainty in policy
+
+PAR: Complexity stymies communication
+
+PAR: Privacy concerns
+
+
+
+
+# Interpretations, implications, and future priorities
+
+PAR: 
+
+
+## Spatial analysis of the epidemiological-surveillance transition
+
+PAR: Overview of sub-section
+
+PAR: Review of epidemiological transition
+
+PAR: Scale and the epi transition - examples from chapters
+
+PAR: Posit a surveillance transition, from surveys to health surveillance
+
+PAR: Again, problematize at the subnational level
+
+
+## Modeling to enhance the utility of health surveillance data
+
+PAR: Previous literature - models vs. health surveillance
+
+PAR: Review definitions of CRVS quality
+
+PAR: By providing a use case, can actually increase incentives to improve CRVS data
+
+
+
+## Future directions
+
+PAR: New surveillance tools for spatial assessment:
+ - Spot TB surveys
+ - Child mortality?
+ - Excess mortality?
+
+PAR: Monitoring and evaluation of CRVS data
 
 
 # Conclusions
 
-\lipsum[1-5]
+PAR: CRVS and national health data systems are required for long-lasting improvements in global health. Their use cases are inherently spatial.
 
-This is an example paragraph. To conclude, let's reference Figure \@ref(fig:fig1) and Table \@ref(tab:t1). Here are some example citations [@Aalbers; @Aguirre2009].
+PAR: Bring it all together
 
 
 # References
@@ -85,20 +116,3 @@ This is an example paragraph. To conclude, let's reference Figure \@ref(fig:fig1
 <div id="refs"></div>
 \newpage
 
-
-# Figures and Tables
-
-```{r fig1, out.width="70%", fig.cap = captions$fig1}
-knitr::include_graphics(graphics_fps$fig1)
-```
-\newpage
-
-```{r t1}
-data_list$t1 %>%
-  dplyr::mutate_all(linebreak, align='l') %>%
-  knitr::kable(
-    'latex', booktabs = T, escape = F, caption = captions$t1,
-    col.names = linebreak(colnames(data_list$t1))
-  ) %>%
-  kable_styling(latex_options = "striped")
-```
