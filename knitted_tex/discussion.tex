@@ -4,14 +4,13 @@
 %
 \documentclass[
 ]{article}
+\usepackage{amsmath,amssymb}
 \usepackage{lmodern}
-\usepackage{amsmath}
 \usepackage{ifxetex,ifluatex}
 \ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
   \usepackage[T1]{fontenc}
   \usepackage[utf8]{inputenc}
   \usepackage{textcomp} % provide euro and other symbols
-  \usepackage{amssymb}
 \else % if luatex or xetex
   \usepackage{unicode-math}
   \defaultfontfeatures{Scale=MatchLowercase}
@@ -42,7 +41,7 @@
   hidelinks,
   pdfcreator={LaTeX via pandoc}}
 \urlstyle{same} % disable monospaced font for URLs
-\usepackage{longtable,booktabs}
+\usepackage{longtable,booktabs,array}
 \usepackage{calc} % for calculating minipage widths
 % Correct order of tables after \paragraph or \subparagraph
 \usepackage{etoolbox}
@@ -101,125 +100,250 @@
 \newcommand{\CSLIndent}[1]{\hspace{\cslhangindent}#1}
 
 \title{Discussion}
-\author{Nathaniel Henry}
-\date{2021-06-09}
+\author{Nathaniel Henry\textsuperscript{}}
+\date{2021-09-23}
 
 \begin{document}
 \maketitle
 
-\hypertarget{abstract}{%
-\section{Abstract}\label{abstract}}
+PAR: What was the point of this thesis?
 
-\lipsum[1]
+In this thesis, I develop a class of methods to make health surveillance data interpretable and policy-relevant at the local level. To do so, I extend traditional geostatistical and small-area estimation approaches to synthesize two or more health data sources, compensating for the limitations of each individual data type in the process. In four national case studies, I tailor this framework to accommodate country-specific data gaps, disease contexts, and existing programmatic needs. Because the resulting models identify local variation in surveillance completeness across a country, they offer a method for correcting raw surveillance data among small sub-populations, increasing the usability of this data for public health policy. Health surveillance completeness is also a measure of health system performance in its own right, and these estimates can be further used to target future health surveillance improvements, supplementing local audits that can be prohibitively expensive to implement nationwide. I demonstrate that this framework can also be applied to understand health surveillance gaps in high-income countries, which previous research has often treated as complete.
 
-\hypertarget{spatial-modeling-to-bridge-the-health-data-divide}{%
-\section{Spatial modeling to bridge the health data divide}\label{spatial-modeling-to-bridge-the-health-data-divide}}
+This discussion summarizes key findings from each chapter of the thesis, synthesizes the methods used across country contexts, and links this research to active debates in global health. I also discuss the strengths and limitations of this research, and describe considerations for communicating this class of models in a policy-oriented context. In light of these considerations, I suggest future methodological work and applications that can further improve our understanding of health surveillance data.
 
-\lipsum[2-10]
+\hypertarget{chapter-summary}{%
+\section{Chapter summary}\label{chapter-summary}}
 
-\hypertarget{new-contributions}{%
-\subsection{New contributions}\label{new-contributions}}
+The thesis begins with a description of data types commonly used to estimate disease burden and their known limitations for estimating health at the local level. Chapter 2 identifies the core issue of latent, spatially-varying bias as a barrier to utilization of health surveillance data at the local level. This chapter describes past approaches used to estimate bias in Civil Registration and Vital Statistics (CRVS) systems\textsuperscript{\protect\hyperlink{ref-ChandraSekar1949}{1}--\protect\hyperlink{ref-Murray2010}{5}}, as well as the limitations of these approaches for spatial analysis.\textsuperscript{\protect\hyperlink{ref-Tilling2001}{6}--\protect\hyperlink{ref-Schmertmann2018a}{8}} I then introduce a new approach to jointly estimate age-specific mortality and CRVS incompleteness at the district level. This approach extends previous research on Bayesian small area estimation for mortality\textsuperscript{\protect\hyperlink{ref-Schmertmann2018a}{8},\protect\hyperlink{ref-Wakefield2019}{9}} by estimating the ratio between survey-based and routinely-collected data sources, subject to priors about the relationship between these sources. I apply this model to estimate the neonatal mortality rate (NMR) by municipality in Mexico. Context-specific priors for CRVS bias were applied based on previous research that demonstrated birth and death under-reporting in indigenous and socially-marginalized communities across Mexico.\textsuperscript{\protect\hyperlink{ref-Hernandez2012}{10}--\protect\hyperlink{ref-Paulino2019}{13}}
 
-\lipsum[11-13]
+While strong priors are appropriate to a data context where health surveillance is nearly complete nationwide, the same class of model can applied in an infectious disease context where case notification completeness is known to be largely incomplete and variable across the country. In the context of global tuberculosis (TB) control, disaggregated estimates of TB prevalence and incidence are highly desirable for national TB control programs (NTPs) as a tool for targeting interventions and identifying treatment gaps.\textsuperscript{\protect\hyperlink{ref-Glaziou2018a}{14}} In Chapter 3, I explore the TB data context in Uganda, which is representative of the situation in many high-burden countries: while TB case notifications from routine diagnosis are collected and reported annually by the National TB and Leprosy Control Programme (NTLP), these notifications are known to vary in completeness due to gaps in the reporting cascade, making unadjusted notifications an inappropriate proxy for subnational variation in TB incidence.\textsuperscript{\protect\hyperlink{ref-Rood2019}{15},\protect\hyperlink{ref-Shaweno2018}{16}} A national TB prevalence survey conducted in 2014-2015 does not suffer from the same underreporting bias, but this surveys was not powered for subnational estimation.\textsuperscript{\protect\hyperlink{ref-UgandaMinistryofHealth2015}{17}} I present a spatial model that combines these data types to generate small-area estimates of both TB prevalence and case notification completeness by district. The resulting model reports subnational prevalence with greater precision than a model based on survey data alone, allowing for more precise tracking of high-burden regions within the country. Additionally, the Uganda NTLP can use estimates of notification completeness at the district level to track progress towards their strategic goal of complete TB case reporting nationwide.{[}UgandaNationalTuberculosisandLeprosyProgramme2020a{]}
 
-\hypertarget{limitations}{%
-\subsection{Limitations}\label{limitations}}
+While reporting completeness is a crucial measure of health data quality, routine surveillance data must meet several other criteria before it can be useful for policymaking at the local level. The United Nations \emph{Principles and Recommendations for a Vital Statistics System} proposes that CRVS (and other health surveillance data) should also meet stringent standards for timeliness, accuracy in reporting outcomes, and confidentiality.\textsuperscript{\protect\hyperlink{ref-UnitedNationsStatisticsDivision2014}{18}} In addition to their utility for policy, CRVS birth and death certification enable legal rights for covered individuals.\textsuperscript{\protect\hyperlink{ref-Setel2007}{19},\protect\hyperlink{ref-Duryea2006}{20}} In Chapter 4, I evaluate three overlapping mortality surveillance programs in India against these standards of quality and utility, as well as their alignment with the goals of India's National Health Plan (NHP) 2017. The household survey series conducted by the Indian government have an unparalleled sample size worldwide, allowing for disaggregated analysis of neonatal, infant, and child mortality using a novel space-time-age modeling framework.\textsuperscript{\protect\hyperlink{ref-Dandona2016}{21},\protect\hyperlink{ref-Dandona2020}{22}} This analysis demonstrates the value of spatial modeling to monitor progress towards NHP child survival goals; however, it also reveals the limitations of survey-based spatial models even in highly data-rich contexts. Because retrospective survey data on child mortality is most sparse in later years, uncertainty is greatest in the most recent year of analysis and in future projections. India's Sample Registration System, the second surveillance program for child health, is collected annually and includes larger sample sizes, making it a more timely and precise tool for health policy; also, unlike household surveys, the SRS collects data on mortality across adult age groups.\textsuperscript{\protect\hyperlink{ref-CensusofIndia2017}{23}} Previous analyses have underlined the variable completeness of the SRS at the state level.\textsuperscript{\protect\hyperlink{ref-Bhat2002}{24},\protect\hyperlink{ref-Mahapatra2010}{25}} In this chapter, I demonstrates how SRS estimates can be adjusted for incompleteness at the district grouping level through comparison to survey-based estimates. If the SRS reported estimated mortality across more disaggregated sub-populations of India, these would enable an equity-focused evaluation of India's progress towards NHP child mortality goals and allow researchers to quickly identify emerging health crises. The third program, India's Civil Registration System (CRS), is the only system designed to provide birth and death certification for all Indian citizens.\textsuperscript{\protect\hyperlink{ref-ParliamentoftheRepublicofIndia1969}{26},\protect\hyperlink{ref-Mohanty2018}{27}} Ultimately, estimates from India's household survey series and SRS should be used to evaluate progress towards complete certification in the CRS, as this is the only program that can guarantee the rights associated with birth and death registration.\textsuperscript{\protect\hyperlink{ref-Abouzahr2007}{28}}
 
-\lipsum[14-15]
+Previous geospatial and small-area research has drawn a distinction between incomplete and complete data systems. Research in low- and middle-income countries has often assumed incompleteness in health surveillance systems, requiring epidemiologists to develop corrections for reporting or otherwise limit their analyses.\textsuperscript{\protect\hyperlink{ref-Shaweno2018}{16},\protect\hyperlink{ref-Adair2018}{29},\protect\hyperlink{ref-Zeng2020}{30}} Conversely, in high-income countries, spatial analyses often treat health surveillance as complete, needing correction only for stochastic fluctuations associated with small sample sizes.\textsuperscript{\protect\hyperlink{ref-Papoila2014}{31},\protect\hyperlink{ref-Boing2020}{32}} In Chapter 5, I challenge this assumption by investigating spatial variation in excess mortality across Italy during the first months of the COVID-19 pandemic. I use all-cause mortality data from 2015-2019 to estimate baseline mortality by age group, province, and week of the year from March through May 2020; I then compare estimated excess deaths across these groupings to recorded deaths assigned to COVID-19. I find that cause of death reporting for COVID-19 missed 30\% of the true disease burden nationwide, and 42\% of true disease burden in the provinces where excess mortality was highest. This finding challenges the assumption that health surveillance systems in high-income countries can be interpreted as uniformly complete and accurate. A wider array of tools is needed, including the models proposed in this thesis, to correct for underlying biases in health surveillance data at the local level.
 
-\hypertarget{a-framework-for-disease-mapping-using-incomplete-health-surveillance-data}{%
-\section{A framework for disease mapping using incomplete health surveillance data}\label{a-framework-for-disease-mapping-using-incomplete-health-surveillance-data}}
+\hypertarget{methodological-discussion}{%
+\section{Methodological discussion}\label{methodological-discussion}}
 
-\lipsum[1-6]
+This section reviews the statistical methods used across the chapters, highlighting strengths and limitations of this class of models.
 
-\hypertarget{tailoring-for-data-availability}{%
-\subsection{Tailoring for data availability}\label{tailoring-for-data-availability}}
+\hypertarget{methodological-strengths}{%
+\subsection{Methodological strengths}\label{methodological-strengths}}
 
-\lipsum[7-10]
+Small area estimation and geostatistical methods can measure mortality and disease burden at the scale that is most programmatically relevant for health system management. In recent years, national and international health policy documents have stressed the importance of equity in delivering and sustaining health.\textsuperscript{\protect\hyperlink{ref-IND_MOHFW2017}{33}--\protect\hyperlink{ref-Buyum2020}{35}} Measurement facilitates management: tracking health status across social and geographical groupings can identify inequity, prompting responsive health policy and reform.\textsuperscript{\protect\hyperlink{ref-Roberts2008}{36},\protect\hyperlink{ref-Frenk2006}{37}} Small area estimation can also offer metrics for understanding program effectiveness at the same scale where money is disbursed and programs implemented, revealing patterns that might be obscured at the national level. Because these models are designed to accommodate data with small sample sizes,\textsuperscript{\protect\hyperlink{ref-Wakefield2019}{9},\protect\hyperlink{ref-Diggle2016}{38}} they can be extended to measure differences across other dimensions such as age group, as demonstrated in Chapters 4 and 5, without any adjustments to correct for stochastic noise.
 
-\hypertarget{questioning-the-completeness-assumption-in-high-resource-contexts}{%
-\subsection{Questioning the completeness assumption in high-resource contexts}\label{questioning-the-completeness-assumption-in-high-resource-contexts}}
+Country-specific models of health can be parameterized so that model terms directly reflect quantities of programmatic interest, as demonstrated by the case studies in this thesis. In Mexico, both birth and neonatal death reporting are estimated to be incomplete among some municipalities,\textsuperscript{\protect\hyperlink{ref-Hernandez2012}{10},\protect\hyperlink{ref-Enciso2017}{11}} so the geostatistical model was implemented with a strictly-positive bias term to show the relative completeness between these two data sources. In Uganda, incompleteness in case reporting was a key metric for the NTLP,\textsuperscript{\protect\hyperlink{ref-UgandaNationalTuberculosisandLeprosyProgramme2020}{39}} and was expected to outweigh bias in modeled estimates of population denominators in most districts: to best accommodate program needs, under-reporting was directly estimated as a quantity varying between 0 and 1 by district, allowing for the estimation of notification completeness as well as change over time. In India, a model was implemented to track mortality across age groups to track progress towards separate goals for neonatal, infant, and child survival. Within this framework, priors for each country-specific model incorporated expert knowledge and past evidence on the distribution of disease etiology and surveillance reporting across the country. The flexibility of these models allows them to be adapted for country-specific needs, increasing interpretability and utility for developing policy.
 
-\lipsum[11-12]
+In low- and middle-income contexts, small-area modeling offers can supplement existing approaches that have been used to estimate health surveillance data completeness. Local audits have been developed to estimate the completeness of CRVS data and infectious disease notifications;\textsuperscript{\protect\hyperlink{ref-DeFrias2013}{4},\protect\hyperlink{ref-Hernandez2012}{10},\protect\hyperlink{ref-Szwarcwald2014}{40}--\protect\hyperlink{ref-NationalAdminstrativeDepartmentofStatisticsDANE2006}{42}} While these studies ofer a high-quality estimate of completeness in a small number of communities, they are prohibitively expensive to implement nationwide. Completeness audits can easily be integrated into the framework described in this thesis to offer a more representative estimate of completeness nationwide that also incorporates survey and CRVS or notification data. This data synthesis approach is preferred over the previous capture-recapture method, which makes unrealistically strong assumptions about independence between data sources.\textsuperscript{\protect\hyperlink{ref-Tilling2001}{6},\protect\hyperlink{ref-Cormack1999}{7}}
 
-\hypertarget{policy-implications}{%
-\section{Policy implications}\label{policy-implications}}
+Finally, the Bayesian hierarchical modeling approach deployed here propagates uncertainty from input data and parameter fits in a principled way, allowing for nuanced analysis about the confidence of results.\textsuperscript{\protect\hyperlink{ref-McElreath2016}{43}} By saving the structured uncertainty in the resulting model fits, these estimates can be used as principled prior estimates for future analyses. The confidence of district-level estimates can also be visualized and evaluated against programmatically-relevant goals: for example, the uncertainty ``draws'' generated by this class of models can be compared to a disease reduction target to determine which districts fall below a target threshold in 95\% of potential model realizations.\textsuperscript{\protect\hyperlink{ref-Patil2011}{44}}
 
-\lipsum[13-15]
+\hypertarget{methodological-limitations}{%
+\subsection{Methodological limitations}\label{methodological-limitations}}
 
-\hypertarget{increasing-utility-of-routine-health-surveillance}{%
-\subsection{Increasing utility of routine health surveillance}\label{increasing-utility-of-routine-health-surveillance}}
+Despite their flexibility, this class of semiparametric estimation techniques relies on assumptions that may bias model results. All models drew predictive power from space-time covariates that, based on past evidence, were expected to correlate to disease burden or reporting completeness. If the parametric relationships between covariates and these outcomes are incorrect, it may skew results in areas with extreme covariate values or little observed data. Each model also included spatial latent surfaces, which formalize the assumption that unobserved risk factors and covariates are likely to vary according to an underlying spatial structure: in other words, two neighboring observations in space are more likely to be similar than two distant observations, conditional on all observed fixed effects. This assumption, while reasonable for many ecological and disease phenomena,\textsuperscript{\protect\hyperlink{ref-Diggle2016}{38}} can also over-smooth discontinuities across space, under-stating the true inequality between groups. Furthermore, these models are sensitive to priors for space-time variation:\textsuperscript{\protect\hyperlink{ref-Wakefield2019}{9}} if strong priors are inaccurate, they can bias the model in the direction of existing expert opinion. For this reason, priors for highly uncertain quantities, such as those used to set reasonable bounds of CRVS bias in Chapter 2, should be thoughtfully considered and closely inspected before a model is implemented.
 
-\lipsum[1-6]
-
-\hypertarget{strengthening-surveillance-systems}{%
-\subsection{Strengthening surveillance systems}\label{strengthening-surveillance-systems}}
-
-\lipsum[7-10]
-
-\hypertarget{communicating-uncertainty-to-the-policy-community}{%
-\subsection{Communicating uncertainty to the policy community}\label{communicating-uncertainty-to-the-policy-community}}
-
-\lipsum[11-15]
+Separate from model implementation, translating model uncertainty into a policy setting can be challenging. Many policy processes are not developed to formally handle uncertainty, and the prospect of simply interpreting summary estimates without uncertainty may be tempting from a decision-making perspective. In fact, uncertainty is arguably the most important aspect of small area models. New communication strategies are needed to intuitively demonstrate variability and uncertainty in model outcomes across space.\textsuperscript{\protect\hyperlink{ref-Patil2011}{44}}
 
 \hypertarget{conclusions}{%
 \section{Conclusions}\label{conclusions}}
 
-\lipsum[1-5]
+This thesis attempts to redefine the role of modeling in countries with developing health surveillance systems. Previous advocacy for universal CRVS have argued that models have a deleterious crowding-out effect on CRVS improvement effects: in this conception, policymakers interpret models as an alternative source of data to raw health surveillance data, reducing the momentum to improve CRVS quality.\textsuperscript{\protect\hyperlink{ref-Setel2007}{19},\protect\hyperlink{ref-Tichenor2020}{45}} In this thesis, I have described a set of models that are explicitly designed to integrate health surveillance data into health decision-making processes at the country level. These models provide a new feedback mechanism by which improved health surveillance leads to more certain measurements and better health policy, strengthening the pragmatic argument for investing in health data systems. Additionally, as demonstrated in Uganda, these models can be designed to directly measure reporting completeness, offering a new tool for tracking surveillance completeness over a country. We also agree with the authors that CRVS systems are more than a data source: they are a process for guaranteeing legal and civil rights to a country's citizens.\textsuperscript{\protect\hyperlink{ref-AbouZahr2015}{46}}
 
-This is an example paragraph. To conclude, let's reference Figure \ref{fig:fig1} and Table \ref{tab:t1}. Here are some example citations.\textsuperscript{\protect\hyperlink{ref-Aalbers}{1},\protect\hyperlink{ref-Aguirre2009}{2}}
+CRVS and national health data systems are required for long-lasting improvements in global health. As the primary data tool for national health systems, part of their utility rests on their ability to produce high-quality, timely, and disaggregated estimates of health status across a country's subpopulations. This thesis aims to strengthen the link between developing national health surveillance systems and improved health outcomes, leading to better health policies and a strong basis for human rights worldwide.
 
 \hypertarget{references}{%
 \section{References}\label{references}}
 
 \hypertarget{refs}{}
 \begin{CSLReferences}{0}{0}
-\leavevmode\hypertarget{ref-Aalbers}{}%
+\leavevmode\hypertarget{ref-ChandraSekar1949}{}%
 \CSLLeftMargin{1. }
-\CSLRightInline{Aalbers, M. B. {Do Maps Make Geography? Part 3: Reconnecting the Trace}. \emph{ACME: An International E-Journal for Critical Cartographies2} \textbf{13}, 586--588 (2014).}
+\CSLRightInline{Chandra Sekar, C. \& Deming, E. {On a Method of Estimating Birth and Death Rates and the Extent of Registration}. \emph{Journal of the American Statistical Association} \textbf{44}, 101--115 (1949).}
 
-\leavevmode\hypertarget{ref-Aguirre2009}{}%
+\leavevmode\hypertarget{ref-Yip1995}{}%
 \CSLLeftMargin{2. }
-\CSLRightInline{Aguirre, A. {La mortalidad infantil espa{ñ}ola en el siglo XX}. \emph{Papeles de Poblacion} \textbf{61}, 75--99 (2009).}
+\CSLRightInline{Yip, S. F. \emph{et al.} {Capture-recapture and multiple-record systems estimation I: History and theoretical development}. \emph{American Journal of Epidemiology} \textbf{142}, 1047--1058 (1995).}
+
+\leavevmode\hypertarget{ref-Becker1996}{}%
+\CSLLeftMargin{3. }
+\CSLRightInline{Becker, S., Waheeb, Y., El-deeb, B., Khallaf, N. \& Black, R. {Estimating the Completeness of Under-5 Death Registration in Egypt}. \emph{Demograph} \textbf{33}, 329--339 (1996).}
+
+\leavevmode\hypertarget{ref-DeFrias2013}{}%
+\CSLLeftMargin{4. }
+\CSLRightInline{Frias, P. G. de, Szwarcwald, C. L., Souza, P. R. B. de, da Silva de Almeida, W. \& Lira, P. I. C. {Correcting vital information: Estimating infant mortality, Brazil, 2000-2009}. \emph{Revista de Saude Publica} \textbf{47}, 1048--1058 (2013).}
+
+\leavevmode\hypertarget{ref-Murray2010}{}%
+\CSLLeftMargin{5. }
+\CSLRightInline{Murray, C. J. L., Rajaratnam, J. K., Marcus, J., Laakso, T. \& Lopez, A. D. {What can we conclude from death registration? Improved methods for evaluating completeness}. \emph{PLoS Medicine} \textbf{7}, (2010).}
+
+\leavevmode\hypertarget{ref-Tilling2001}{}%
+\CSLLeftMargin{6. }
+\CSLRightInline{Tilling, K. {Capture-recapture methods - Useful or misleading?} \emph{International Journal of Epidemiology} \textbf{30}, 12--14 (2001).}
+
+\leavevmode\hypertarget{ref-Cormack1999}{}%
+\CSLLeftMargin{7. }
+\CSLRightInline{Cormack, R. M. {Problems with using capture-recapture in epidemiology: An example of a measles epidemic}. \emph{Journal of Clinical Epidemiology} \textbf{52}, 909--914 (1999).}
+
+\leavevmode\hypertarget{ref-Schmertmann2018a}{}%
+\CSLLeftMargin{8. }
+\CSLRightInline{Schmertmann, C. P. \& Gonzaga, M. R. {Bayesian Estimation of Age-Specific Mortality and Life Expectancy for Small Areas With Defective Vital Records}. \emph{Demography} \textbf{55}, 1363--1388 (2018).}
+
+\leavevmode\hypertarget{ref-Wakefield2019}{}%
+\CSLLeftMargin{9. }
+\CSLRightInline{Wakefield, J. \emph{et al.} {Estimating under-five mortality in space and time in a developing world context}. \emph{Statistical Methods in Medical Research} \textbf{28}, 2614--2634 (2019).}
+
+\leavevmode\hypertarget{ref-Hernandez2012}{}%
+\CSLLeftMargin{10. }
+\CSLRightInline{Hernández, B. \emph{et al.} {Subregistro de defunciones de menores y certificaci{ó}n de nacimiento en una muestra representativa de los 101 municipios con m{á}s bajo {í}ndice de desarrollo humano en M{é}xico}. \emph{Salud P{ú}blica de M{é}xico} \textbf{54}, 393--400 (2012).}
+
+\leavevmode\hypertarget{ref-Enciso2017}{}%
+\CSLLeftMargin{11. }
+\CSLRightInline{Enciso, G. F., Del Pilar Ochoa Torres, M. \& Hernández, J. A. M. {The subsystem of information on births. Case study of an indigenous region of Chiapas, Mexico}. \emph{Estudios Demogr{á}ficos y Urbanos} \textbf{32}, 451--486 (2017).}
+
+\leavevmode\hypertarget{ref-Ribotta2019}{}%
+\CSLLeftMargin{12. }
+\CSLRightInline{Ribotta, B. S., Acosta, L. M. S. \& Bertone, C. L. {Evaluaciones subnacionales de la cobertura de las estad{í}sticas vitales. Estudios recientes en Am{é}rica Latina {[}Evaluations of the Vital Statistics Coverage at a Subnational Level. Recent Studies in Latin America{]}}. \emph{Revista Gerencia y Pol{í}ticas de Salud} \textbf{18}, (2019).}
+
+\leavevmode\hypertarget{ref-Paulino2019}{}%
+\CSLLeftMargin{13. }
+\CSLRightInline{Paulino, N. A., Vázquez, M. S. \& Bolúmar, F. {Indigenous language and inequitable maternal health care, Guatemala, Mexico, Peru and the Plurinational State of Bolivia}. \emph{Bulletin of the World Health Organization} \textbf{97}, 59--67 (2019).}
+
+\leavevmode\hypertarget{ref-Glaziou2018a}{}%
+\CSLLeftMargin{14. }
+\CSLRightInline{Glaziou, P. \& Floyd, K. \emph{{Latest developments in WHO estimates of TB disease burden}}. 1--13 (2018).}
+
+\leavevmode\hypertarget{ref-Rood2019}{}%
+\CSLLeftMargin{15. }
+\CSLRightInline{Rood, E. \emph{et al.} {A spatial analysis framework to monitor and accelerate progress towards SDG 3 to end TB in Bangladesh}. \emph{ISPRS International Journal of Geo-Information} \textbf{8}, 1--11 (2019).}
+
+\leavevmode\hypertarget{ref-Shaweno2018}{}%
+\CSLLeftMargin{16. }
+\CSLRightInline{Shaweno, D. \emph{et al.} {Methods used in the spatial analysis of tuberculosis epidemiology: A systematic review}. \emph{BMC Medicine} \textbf{16}, 1--18 (2018).}
+
+\leavevmode\hypertarget{ref-UgandaMinistryofHealth2015}{}%
+\CSLLeftMargin{17. }
+\CSLRightInline{Uganda Ministry of Health. \emph{{The Uganda National Tuberculosis Prevalence Survey, 2014-2015: survey report}}. 1--162 \url{https://www.health.go.ug/cause/the-uganda-national-tuberculosis-prevalence-survey-2014-2015-survey-report/} (2015).}
+
+\leavevmode\hypertarget{ref-UnitedNationsStatisticsDivision2014}{}%
+\CSLLeftMargin{18. }
+\CSLRightInline{United Nations Statistics Division. \emph{{Principles and Recommendations for a Vital Statistics System Revision 3}}. (2014).}
+
+\leavevmode\hypertarget{ref-Setel2007}{}%
+\CSLLeftMargin{19. }
+\CSLRightInline{Setel, P. W. \emph{et al.} {A scandal of invisibility: making everyone count by counting everyone}. \emph{Lancet} \textbf{370}, 1569--1577 (2007).}
+
+\leavevmode\hypertarget{ref-Duryea2006}{}%
+\CSLLeftMargin{20. }
+\CSLRightInline{Duryea, S., Olgiati, A. \& Stone, L. {The Under-Registration of Births in Latin America}. 25 (2006) doi:\href{https://doi.org/10.2139/ssrn.1820031}{10.2139/ssrn.1820031}.}
+
+\leavevmode\hypertarget{ref-Dandona2016}{}%
+\CSLLeftMargin{21. }
+\CSLRightInline{Dandona, R., Pandey, A. \& Dandona, L. {A review of national health surveys in India}. \emph{Bulletin of the World Health Organization} \textbf{94}, 286--296A (2016).}
+
+\leavevmode\hypertarget{ref-Dandona2020}{}%
+\CSLLeftMargin{22. }
+\CSLRightInline{Dandona, R. \emph{et al.} {Subnational mapping of under-5 and neonatal mortality trends in India: the Global Burden of Disease Study 2000--17}. \emph{The Lancet} \textbf{395}, 1640--1658 (2020).}
+
+\leavevmode\hypertarget{ref-CensusofIndia2017}{}%
+\CSLLeftMargin{23. }
+\CSLRightInline{Office of the Registrar General \& Census Commissioner. \emph{{Sample Registration System Statistical Report 2017}}. 337 \url{http://www.censusindia.gov.in/vital_statistics/SRS_Report/9Chap\%202\%20-\%202011.pdf} (2017).}
+
+\leavevmode\hypertarget{ref-Bhat2002}{}%
+\CSLLeftMargin{24. }
+\CSLRightInline{Bhat, P. N. M. {Completeness of India's sample registration system: An assessment using the general growth balance method}. \emph{Population Studies} \textbf{56}, 119--134 (2002).}
+
+\leavevmode\hypertarget{ref-Mahapatra2010}{}%
+\CSLLeftMargin{25. }
+\CSLRightInline{Mahapatra, P. {An Overview of the Sample Registration System in India}. in \emph{Prince mahidol award conference \& global health information forum} 1--13 (Institute of Health Systems, 2010).}
+
+\leavevmode\hypertarget{ref-ParliamentoftheRepublicofIndia1969}{}%
+\CSLLeftMargin{26. }
+\CSLRightInline{Parliament of the Republic of India. {The Registration of Births and Deaths Act, 1969}. vols Act 18 (1969).}
+
+\leavevmode\hypertarget{ref-Mohanty2018}{}%
+\CSLLeftMargin{27. }
+\CSLRightInline{Mohanty, I. \& Gebremedhin, T. A. {Maternal autonomy and birth registration in India: Who gets counted?} \emph{PLoS ONE} \textbf{13}, 1--19 (2018).}
+
+\leavevmode\hypertarget{ref-Abouzahr2007}{}%
+\CSLLeftMargin{28. }
+\CSLRightInline{Abouzahr, C. \emph{et al.} {The way forward}. \emph{Lancet Health Metrics Network, World Health Organization} \textbf{370}, 1791--99 (2007).}
+
+\leavevmode\hypertarget{ref-Adair2018}{}%
+\CSLLeftMargin{29. }
+\CSLRightInline{Adair, T. \& Lopez, A. D. {Estimating the completeness of death registration: An empirical method}. \emph{PLoS ONE} \textbf{13}, 1--19 (2018).}
+
+\leavevmode\hypertarget{ref-Zeng2020}{}%
+\CSLLeftMargin{30. }
+\CSLRightInline{Zeng, X. \emph{et al.} {Measuring the completeness of death registration in 2844 Chinese counties in 2018}. \emph{BMC medicine} \textbf{18}, 176 (2020).}
+
+\leavevmode\hypertarget{ref-Papoila2014}{}%
+\CSLLeftMargin{31. }
+\CSLRightInline{Papoila, A. L. \emph{et al.} {Stomach cancer incidence in Southern Portugal 1998-2006: A spatio-temporal analysis}. \emph{Biometrical Journal} \textbf{56}, 403--415 (2014).}
+
+\leavevmode\hypertarget{ref-Boing2020}{}%
+\CSLLeftMargin{32. }
+\CSLRightInline{Boing, A. F., Boing, A. C., Cordes, J., Kim, R. \& Subramanian, S. V. {Quantifying and explaining variation in life expectancy at census tract, county, and state levels in the United States}. \emph{Proceedings of the National Academy of Sciences of the United States of America} \textbf{117}, 17688--17694 (2020).}
+
+\leavevmode\hypertarget{ref-IND_MOHFW2017}{}%
+\CSLLeftMargin{33. }
+\CSLRightInline{Government of India Ministry of Health and Family Welfare. \emph{{National Health Policy 2017}}. 28 \url{https://www.nhp.gov.in/nhpfiles/national_health_policy_2017.pdf} (2017).}
+
+\leavevmode\hypertarget{ref-UgandaNationalTuberculosisandLeprosyProgramme2020a}{}%
+\CSLLeftMargin{34. }
+\CSLRightInline{Uganda National Tuberculosis and Leprosy Programme. \emph{{National strategic plan for tuberculosis and leprosy control: 2020/21-2024/25}}. 1--106 (2020).}
+
+\leavevmode\hypertarget{ref-Buyum2020}{}%
+\CSLLeftMargin{35. }
+\CSLRightInline{Büyüm, A. M., Kenney, C., Koris, A., Mkumba, L. \& Raveendran, Y. {Decolonising global health: If not now, when?} \emph{BMJ Global Health} \textbf{5}, 1--4 (2020).}
+
+\leavevmode\hypertarget{ref-Roberts2008}{}%
+\CSLLeftMargin{36. }
+\CSLRightInline{Roberts, M. J., Hsiao, W., Berman, P. \& Reich, M. R. \emph{{Getting health reform right: a guide to improving performance and equity}}. (2008).}
+
+\leavevmode\hypertarget{ref-Frenk2006}{}%
+\CSLLeftMargin{37. }
+\CSLRightInline{Frenk, J. {Bridging the divide: global lessons from evidence-based health policy in Mexico}. \emph{Lancet} \textbf{368}, 954--961 (2006).}
+
+\leavevmode\hypertarget{ref-Diggle2016}{}%
+\CSLLeftMargin{38. }
+\CSLRightInline{Diggle, P. J. \& Giorgi, E. {Model-based geostatistics for prevalence mapping in low-resource settings}. \emph{Journal of the American Statistical Association} \textbf{111}, 1096--1120 (2016).}
+
+\leavevmode\hypertarget{ref-UgandaNationalTuberculosisandLeprosyProgramme2020}{}%
+\CSLLeftMargin{39. }
+\CSLRightInline{Uganda National Tuberculosis and Leprosy Programme. \emph{{Uganda National TB and Leprosy Program: July 2019-June 2020 report}}. 1--72 (2020).}
+
+\leavevmode\hypertarget{ref-Szwarcwald2014}{}%
+\CSLLeftMargin{40. }
+\CSLRightInline{Szwarcwald, C. L., Frias, P. G. de, Júnior, P. R. B. deSouza, da Silva de Almeida, W. \& de Morais Neto, O. L. {Correction of vital statistics based on a proactive search of deaths and live births: Evidence from a study of the North and Northeast regions of Brazil}. \emph{Population Health Metrics} \textbf{12}, 1--10 (2014).}
+
+\leavevmode\hypertarget{ref-DeAlmeida2017a}{}%
+\CSLLeftMargin{41. }
+\CSLRightInline{Almeida, W. D. S. de \emph{et al.} {Capta{ç}{ã}o de {ó}bitos n{ã}o informados ao minist{é}rio da sa{ú}de: Pesquisa de busca ativa de {ó}bitos em munic{í}pios brasileiros {[}Capturing deaths not informed to the Ministry of Health: proactive search of deaths in Brazilian municipalities{]}}. \emph{Revista Brasileira de Epidemiologia} \textbf{20}, 200--211 (2017).}
+
+\leavevmode\hypertarget{ref-NationalAdminstrativeDepartmentofStatisticsDANE2006}{}%
+\CSLLeftMargin{42. }
+\CSLRightInline{National Adminstrative Department of Statistics (DANE). \emph{{La Mortalidad Materna y Perinatal en Colombia en los albores del siglo XXI. Estimaci{ó}n del subregistro de nacimientos y defunciones y estimaciones ajustadas de nacimientos, mortalidad materna y perinatal por departamentos}}. 46 \url{http://docplayer.es/40107048-Estudio-la-mortalidad-materna-y-perinatal-en-colombia-en-los-albores-del-siglo-xxi.html} (2006).}
+
+\leavevmode\hypertarget{ref-McElreath2016}{}%
+\CSLLeftMargin{43. }
+\CSLRightInline{McElreath, R. \emph{{Statistical Rethinking}}. (Taylor \& Francis, 2016). doi:\href{https://doi.org/10.1080/09332480.2017.1302722}{10.1080/09332480.2017.1302722}.}
+
+\leavevmode\hypertarget{ref-Patil2011}{}%
+\CSLLeftMargin{44. }
+\CSLRightInline{Patil, A. P., Gething, P. W., Piel, F. B. \& Hay, S. I. {Bayesian geostatistics in health cartography: The perspective of malaria}. \emph{Trends in Parasitology} \textbf{27}, 246--253 (2011).}
+
+\leavevmode\hypertarget{ref-Tichenor2020}{}%
+\CSLLeftMargin{45. }
+\CSLRightInline{Tichenor, M. \& Sridhar, D. {Metric partnerships: Global burden of disease estimates within the World Bank, the World Health Organisation and the Institute for Health Metrics and Evaluation}. \emph{Wellcome Open Research} \textbf{4}, (2020).}
+
+\leavevmode\hypertarget{ref-AbouZahr2015}{}%
+\CSLLeftMargin{46. }
+\CSLRightInline{AbouZahr, C. \emph{et al.} {Towards universal civil registration and vital statistics systems: The time is now}. \emph{The Lancet} \textbf{386}, 1407--1418 (2015).}
 
 \end{CSLReferences}
 
 \newpage
-
-\hypertarget{figures-and-tables}{%
-\section{Figures and Tables}\label{figures-and-tables}}
-
-\begin{figure}[!ht]
-
-{\centering \includegraphics[width=0.7\linewidth,]{/home/nat/Documents/Dropbox/Writing/thesis/graphics/test_chapter/fig1} 
-
-}
-
-\caption{Example caption for a figure.}\label{fig:fig1}
-\end{figure}
-\newpage
-
-\begin{table}
-
-\caption{\label{tab:t1}Example caption for a table.}
-\centering
-\begin{tabular}[t]{rr}
-\toprule
-a & b\\
-\midrule
-\cellcolor{gray!6}{-1.9089035} & \cellcolor{gray!6}{1}\\
-0.4934838 & 2\\
-\cellcolor{gray!6}{-1.2685774} & \cellcolor{gray!6}{3}\\
-0.5779566 & 4\\
-\cellcolor{gray!6}{-0.5309846} & \cellcolor{gray!6}{5}\\
-\addlinespace
--1.2905178 & 6\\
-\cellcolor{gray!6}{0.1389421} & \cellcolor{gray!6}{7}\\
--1.4467715 & 8\\
-\cellcolor{gray!6}{-0.2152460} & \cellcolor{gray!6}{9}\\
--0.4153706 & 10\\
-\bottomrule
-\end{tabular}
-\end{table}
 
 \end{document}
