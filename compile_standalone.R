@@ -25,7 +25,7 @@
 # Script arguments
 # TODO: Convert to CLI
 conf_fp <- '~/repos/thesis/config.yaml'
-chapter <- 'uganda'
+chapter <- 'discussion'
 chapter_type <- 'standalone'
 doc_type <- 'pdf' # One of 'docx', 'pdf'
 out_fp <- glue::glue(
