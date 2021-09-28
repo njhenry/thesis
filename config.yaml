@@ -65,7 +65,7 @@ graphics_fps:
     prev_notifs_diff: '{graphics}/uganda/prev_notifs_diff.png'
     thresh_comparison: '{graphics}/uganda/thresh_comparison.png'
   discussion:
-    summary_map: '{graphics}/discussion/summary_map_2021-09-26.png'
+    summary_map: '{graphics}/discussion/summary_map_2021-09-27.png'
   test_chapter:
     fig1: '{graphics}/test_chapter/fig1.png'
 
