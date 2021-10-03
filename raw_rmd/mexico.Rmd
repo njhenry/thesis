@@ -126,9 +126,9 @@ I assigned priors to all model parameters and then fit the model using the Lapla
 To determine the model's capacity to reconstruct true neonatal mortality and CRVS bias from two sources, I developed a simulation model under realistic conditions for neonatal mortality and CRVS bias in Mexico. First, I simulated neonatal mortality values by setting values for the intercept and five log-linear covariate effects, all of which were estimated based on data from the 2010 Mexican Population and Housing Census:
 
 \begin{math}\begin{aligned}
-log(Q_{SIM}(s)) = -5.5 -0.25 \times Avg\;Years\;of\;School + 0.2 \times Pct\;Low\;Wage\\
-+ 0.5 \times Pct\;No\;Health\;Care-0.3 \times Pct\;Electrified\;Home
-\\- 0.1 \times Pct\;Own\;Refrigerator\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;
+\;\;\;\;log(Q_{SIM}(s)) &= -5.5 -0.25 \times Avg\;Years\;of\;School + 0.2 \times Pct\;Low\;Wage \\
+&+ 0.5 \times Pct\;No\;Health\;Care-0.3 \times Pct\;Electrified\;Home \\
+&- 0.1 \times Pct\;Own\;Refrigerator
 \end{aligned}\end{math}
 
 Birth history and CRVS death observations were simulated as biased binomial draws from this surface, using the existing birth denominators set in the real data, with CRVS bias draws generated from the log-normal distributions specified above.
