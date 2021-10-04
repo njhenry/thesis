@@ -118,7 +118,7 @@ data_list$priors %>%
 ```
 
 
-I assigned priors to all model parameters and then fit the model using the Laplace approximation for mixed-effect parameter estimation[@Kristensen2016; @Thorson2016]⁠. The model was fit in R v.4.0.3 using the package Template Model Builder v.1.7.18[@Kristensen2016; @RCoreTeam2018].
+I assigned priors to all model parameters and then fit the model using the Laplace approximation for mixed-effect parameter estimation[@Kristensen2016; @Thorson2016]. The model was fit in R v.4.0.3 using the package Template Model Builder v.1.7.18[@Kristensen2016; @RCoreTeam2018].
 
 
 ## Simulation model
