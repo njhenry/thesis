@@ -62,6 +62,7 @@ graphics_fps:
     data_case_notifs: '{graphics}/uganda/data_case_notifs.png'
     prev_scatter: '{graphics}/uganda/prev_scatter.png'
     notif_completeness: '{graphics}/uganda/notif_completeness.png'
+    average_duration: '{graphics}/uganda/average_duration.png'
     prev_notifs_diff: '{graphics}/uganda/prev_notifs_diff.png'
     thresh_comparison: '{graphics}/uganda/thresh_comparison.png'
   discussion:
