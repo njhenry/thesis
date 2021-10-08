@@ -7,8 +7,8 @@ knitr::opts_chunk$set(fig.pos = "!hbt", out.extra = "", fig.align = 'center', ec
 
 # Set caption text
 mexico_appx_captions <- list(
-  moderately_marginalized = "List of municipalities included in the moderately marginalized category, along with relevant indicators.",
-  severely_marginalized = "List of municipalities included in the severely marginalized category, along with relevant indicators."
+  moderately_marginalized = "List of municipalities included in the moderately marginalised category, along with relevant indicators.",
+  severely_marginalized = "List of municipalities included in the severely marginalised category, along with relevant indicators."
 )
 ```
 
@@ -18,7 +18,7 @@ This section contains additional tables related to Chapter Two: Joint estimation
 
 ## Marginalization groupings {.unlisted .unnumbered}
 
-As described in Section 2.2.1, priors for VR bias were set by municipality based on an index for estimated social marginalization. Lists of municipalities in the moderately marginalized grouping (N=437/2,441) and the severely marginalized grouping (N=152/2,441) are included below in Table \@ref(tab:appx-moderately-marginalized) and Table \@ref(tab:appx-severely-marginalized), respectively. Values for the four indicators used to define the marginalization groupings are listed for each municipality.
+As described in Section 2.2.1, priors for VR bias were set by municipality based on an index for estimated social marginalization. Lists of municipalities in the moderately marginalised grouping (N=437/2,441) and the severely marginalised grouping (N=152/2,441) are included below in Table \@ref(tab:appx-moderately-marginalized) and Table \@ref(tab:appx-severely-marginalized), respectively. Values for the four indicators used to define the marginalization groupings are listed for each municipality.
 
 ```{r appx-moderately-marginalized}
 data_list$mexico_appx$moderately_marginalized %>%
@@ -92,11 +92,11 @@ data_list$uganda_appx$duration_scenarios %>%
 
 ## Model sensitivity analysis at fixed durations {.unlisted .unnumbered}
 
-The relationship between expected duration, model estimates of TB prevalence, and model estimates of TB notification completeness also deserves further attention. To test the effect of varying duration on model estimates, I ran a sensitivity analysis using two experimental models with fixed durations. The first experimental model fixed TB duration nationwide at 2.15 year, the expected duration of TB in Uganda as estimated by IHME.[@Ledesma2021] The second experimental model fixed TB duration nationwide at 1 year; this value was chosen both as a relatively low estimate for duration based on the results in Table \@ref(tab:uga-duration-scenarios), and because it makes conversion between estimates of prevalence and incidence trivial: $Prevalence = Incidence * 1$.
+The relationship between expected duration, model estimates of TB prevalence, and model estimates of TB notification completeness also deserves further attention. To test the effect of varying duration on model estimates, I ran a sensitivity analysis using two experimental models with fixed durations. The first experimental model fixed TB duration nationwide at 2.15 years, the expected duration of TB in Uganda as estimated by IHME.[@Ledesma2021] The second experimental model fixed TB duration nationwide at 1 year; this value was chosen both as a relatively low estimate for duration based on the results in Table \@ref(tab:uga-duration-scenarios), and because it makes conversion between estimates of prevalence and incidence trivial: $Prevalence = Incidence * 1$.
 
-Table \@ref(tab:uga-sensitivity-testing-results) summarizes differences in estimated prevalence and notification completeness across the three models. This sensitivity analysis finds that fixing TB duration at 1 year does not have a significant effect on prevalence nationwide or in the districts with the highest and lowest estimated prevalence values. However, estimated notification completeness drops significantly both at the national level and in Kiruhura, the district with the lowest estimated completeness.
+Table \@ref(tab:uga-sensitivity-testing-results) summarises differences in estimated prevalence and notification completeness across the three models. This sensitivity analysis finds that fixing TB duration at 1 year does not have a significant effect on prevalence nationwide or in the districts with the highest and lowest estimated prevalence values. However, estimated notification completeness drops significantly both at the national level and in Kiruhura, the district with the lowest estimated completeness.
 
-When duration is fixed at 2.15 years, estimated prevalence increases significantly nationwide and in the lowest-prevalence district of Butaleja. The estimated completeness of notifications also rises significantly at the national level and across districts, with an estimated notification completeness of nearly 100% in Kampala. This rise in both estimated prevalence and notification completeness is logical given the known relationship of $Prevalence = Incidence * E[Duration]$---when the expected duration increases, a fixed number of incidence cases corresponds to an increasingly high disease prevalence.
+When duration is fixed at 2.15 years, estimated prevalence increases significantly nationwide and in the lowest-prevalence district of Butaleja. The estimated completeness of notifications also rises significantly at the national level and across districts, with an estimated notification completeness of nearly 100% in Kampala. This rise in both estimated prevalence and notification completeness is logical given the known relationship of $Prevalence = Incidence * E[Duration]$. When expected duration increases, a fixed number of incidence cases corresponds to an increasingly high disease prevalence.
 
 ```{r uga-sensitivity-testing-results}
 data_list$uganda_appx$sensitivity_testing_results %>%
@@ -142,11 +142,11 @@ The results of these sensitivity analyses, and the relationship of each spatial 
 # Appendix to Chapter Four
 
 ```{r india-appendix-set-captions, echo=FALSE}
-knitr::opts_chunk$set(fig.pos = "!hbt", out.extra = "", fig.align = 'center', echo=FALSE)
+knitr::opts_chunk$set(fig.pos = "!h", out.extra = "", fig.align = 'center', echo=FALSE)
 
 # Set caption text
 india_appx_captions <- list(
-  cov_access = "Map of gridded covariate showing travel time by motorized vehicle to the nearest settlement of 50,000 or greater in 2000 and 2017. Source: Malaria Atlas Project",
+  cov_access = "Map of gridded covariate showing travel time by motorised vehicle to the nearest settlement of 50,000 or greater in 2000 and 2017. Source: Malaria Atlas Project",
   cov_ntl = "Map of gridded covariate showing relative nighttime light intensity in 2000 and 2017. Source: Defense Meteorological Satellite Program",
   cov_dpt3 = "Map of gridded covariate showing the estiamted proportion of children under age 5 who received the DPT3 vaccine in 2000 and 2017. Source: IHME",
   cov_edu = "Map of gridded covariate showing the estimated mean years of education attained for women aged 15-45 in 2000 and 2017. Source: IHME",
@@ -165,11 +165,7 @@ This section contains additional figures related to Chapter Four: A space-time-a
 
 The space-time-age mortality estimation model outlined in Section 4.2.2 drew predictive power from ten gridded covariates which varied by pixel and year. Each survey data point was associated with the covariate values in the same pixel-year. After fitting the mortality estimation model, fixed effects were projected across all pixels and years of India using the gridded covariate surfaces, then aggregated to the district level using a population-weighted mean. Covariates were "trimmed" before projecting to remove any values that fell outside of the range observed in the fit data; this process prevents covariate extrapolation that might yield extreme estimates for mortality. All covariates were also rescaled to have mean zero and standard deviation one before fitting to improve comparability of model fixed effects.
 
-Each of the ten gridded covariate surfaces are visualized below for the years 2000 and 2017. Gridded estimates for travel time to settlements of greater than 50,000 people as well as _Plasmodium falciparum_ incidence were provided by the Malaria Atlas Project.[@Weiss2020; @Weiss2019] Gridded estimates of population density and the population ratio of children under 5 to women 15-45 were both estimated using data from the WorldPop project.[@Tatem2017] A gridded surface of night-time light intensity was used as a proxy for local variation in economic activity; this surface was provided by the Defence Meteorological Satellite Program.[@Thomson2019] A gridded land cover covariate was provided by the Global Human Settlement Layer project.[@Thomson2019] Gridded estimates of PM 2.5 air pollution concentration, average years of education among women 15-45, coverage of the diphtheria-tetanus toxoid-pertussis (DPT3) vaccine for children under 5, and child moderate and severe stunting were all estimated by the Institute for Health Metrics and Evaluation.[@Graetz2020; @Kinyoki2020a] Fixed effects coefficients fit to these data should be interpreted cautiously due to collinearity between gridded estimate surfaces.
-
-## References {.unlisted .unnumbered}
-
-\printbibliography[segment=\therefsegment,heading=none]
+Each of the ten gridded covariate surfaces are visualised below for the years 2000 and 2017. Gridded estimates for travel time to settlements of greater than 50,000 people as well as _Plasmodium falciparum_ incidence were provided by the Malaria Atlas Project.[@Weiss2020; @Weiss2019] Gridded estimates of population density and the population ratio of children under 5 to women 15-45 were both estimated using data from the WorldPop project.[@Tatem2017] A gridded surface of night-time light intensity was used as a proxy for local variation in economic activity; this surface was provided by the Defence Meteorological Satellite Program.[@Thomson2019] A gridded land cover covariate was provided by the Global Human Settlement Layer project.[@Thomson2019] Gridded estimates of PM 2.5 air pollution concentration, average years of education among women 15-45, coverage of the diphtheria-tetanus toxoid-pertussis (DPT3) vaccine for children under 5, and child moderate and severe stunting were all estimated by the Institute for Health Metrics and Evaluation.[@Graetz2020; @Kinyoki2020a] Fixed effects coefficients fit to these data should be interpreted cautiously due to collinearity between gridded estimate surfaces.
 
 
 
@@ -181,7 +177,7 @@ knitr::include_graphics(graphics_fps$india_appx$cov_access)
 knitr::include_graphics(graphics_fps$india_appx$cov_ntl)
 ```
 
-```{r india-cov-dpt3, out.width="100%", fig.cap = india_appx_captions$cov_dp3}
+```{r india-cov-dpt3, out.width="100%", fig.cap = india_appx_captions$cov_dpt3}
 knitr::include_graphics(graphics_fps$india_appx$cov_dpt3)
 ```
 
@@ -212,6 +208,12 @@ knitr::include_graphics(graphics_fps$india_appx$cov_stunting)
 ```{r india-cov-pop-density, out.width="100%", fig.cap = india_appx_captions$cov_pop_density}
 knitr::include_graphics(graphics_fps$india_appx$cov_pop_density)
 ```
+
+
+## References {.unlisted .unnumbered}
+
+\printbibliography[segment=\therefsegment,heading=none]
+
 
 
 
@@ -296,11 +298,11 @@ data_list$italy_appx$oospv_by_group_table %>%
   kable_styling(latex_options = c("striped", "hold_position"), font_size=6)
 ```
 
-Based on out-of-sample predictive validity metrics by province-year grouping, as summarized in Table \@ref(tab:italy-oospv-by-group-table), I selected specification B as the model type that was used in the final analysis. This model specification had the lowest root mean squared error across both male and female runs, with slightly conservative empirical coverage of the 95% and 99% uncertainty intervals. Out-of-sample predictive validity metrics did not strongly differentiate between the model specifications that included any seasonality terms. However, the model specification that included no seasonality term performed worst in terms of both in-sample and out-of-sample predictive validity.
+Based on out-of-sample predictive validity metrics by province-year grouping, as summarised in Table \@ref(tab:italy-oospv-by-group-table), I selected specification B as the model type that was used in the final analysis. This model specification had the lowest root mean squared error across both male and female runs, with slightly conservative empirical coverage of the 95% and 99% uncertainty intervals. Out-of-sample predictive validity metrics did not strongly differentiate between the model specifications that included any seasonality terms. However, the model specification that included no seasonality term performed worst in terms of both in-sample and out-of-sample predictive validity.
 
 ## Excess mortality time series estimation {.unlisted .unnumbered}
 
-When calculating a time series of excess mortality among small population groups, the cumulative effect of past mortality on the base population must be taken into account. This problem is most clearly illustrated under artificial conditions of a very high mortality rate. Imagine a population of 1,000 individuals that, under normal conditions, experiences a baseline mortality rate of 100 deaths per 1,000 person-weeks and predictably gains 100 new members at the end of each week. Under normal conditions, 100 individuals from the population would die and 100 new individuals would be added each week, resulting in a stable population week-to-week. Now, imagine an event that causes the mortality rate to increase to 900 deaths per 1,000 person-weeks. In the first week under these conditions, 900 individuals from the base population of 1,000 would die and 100 would be added, leading to a population of 200 entering the second week. In the second week, 180 of 200 individuals in the population would die. Although the standardized mortality ratio of this event compared to baseline is 9 across both weeks (900/100 and 180/20), an analysis that mistakenly assumed a starting population of 1,000 in the second week would dramatically underestimate this ratio as 1.8 (180/100).
+When calculating a time series of excess mortality among small population groups, the cumulative effect of past mortality on the base population must be taken into account. This problem is most clearly illustrated under artificial conditions of a very high mortality rate. Imagine a population of 1,000 individuals that, under normal conditions, experiences a baseline mortality rate of 100 deaths per 1,000 person-weeks and predictably gains 100 new members at the end of each week. Under normal conditions, 100 individuals from the population would die and 100 new individuals would be added each week, resulting in a stable population week-to-week. Now, imagine an event that causes the mortality rate to increase to 900 deaths per 1,000 person-weeks. In the first week under these conditions, 900 individuals from the base population of 1,000 would die and 100 would be added, leading to a population of 200 entering the second week. In the second week, 180 of 200 individuals in the population would die. Although the standardised mortality ratio of this event compared to baseline is 9 across both weeks (900/100 and 180/20), an analysis that mistakenly assumed a starting population of 1,000 in the second week would dramatically underestimate this ratio as 1.8 (180/100).
 
 This analysis took into account the effects of excess mortality on subsequent population denominators throughout the study weeks beginning on February 26, 2020. Population denominators listed by Istat for January 1, 2020 were used as the starting denominators for this time series. For each predictive posterior draw and week, calculated excess deaths were subtracted from the base population used as the denominator in the subsequent week. The cumulative effect of this correction is to avoid understating the toll of excess mortality over the time period due to a reduction in the base population.
 
