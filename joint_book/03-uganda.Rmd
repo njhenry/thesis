@@ -115,7 +115,7 @@ Given uncertainty around district-level variation in HIV-TB co-infection and tre
 &Prop_b = (1-Prop_{Treat}) * (1-Prop_{HIV}) = (1-.71\pi) * .587 = .587 - .42\pi \\
 &Prop_c = Prop_{Treat} * Prop_{HIV} = .71\pi * .413 = .29\pi \\
 &Prop_d = (1-Prop_{Treat})*Prop_{HIV} = (1-.71\pi)*.413 = .413 - .29\pi\\
-&Prop_a + Prop_b + Prop_c + Prop_d = 1
+&Prop_a + Prop_b + Prop_c + Prop_d = 1 \\
 \\
 \end{aligned}\end{math}
 
@@ -126,7 +126,7 @@ Using these simplifying assumptions, the average duration of TB cases in a distr
 \;\;\;\;D(\pi) &= E[D_{Total}] \\
   &= (E[D_a] + L_a) Prop_a + E[D_b]Prop_b + (E[D_c] + L_c)Prop_c + E[D_d]Prop_d \\
   &= (1.1 + .077)(.42\pi) + 2.5(.587-.42\pi)+(.505+.077)(.29\pi)+1.005(413-.29\pi) \\
-  &= 1.88 - .67\pi
+  &= 1.88 - .67\pi \\
 \\
 \end{aligned}\end{math}
 
@@ -194,7 +194,7 @@ The large majority of districts, 100 out of 122, experienced an increase in repo
 
 Based on the fitted model parameters, TB case notification rates were negatively associated with travel time to health facilities, and positively associated with night-time lights, urbanicity, and time, although collinearity between these covariates hinders straightforward interpretation of fixed effect coefficients. Additionally, the spatially-structured effect in the completeness model identified district groupings with higher or lower completeness than would be expected from the covariate fixed effects alone: this included a group of high-completeness districts surrounding Kampala in the southern Central region, and a group of lower-completeness districts in the far east of the Northern region.
 
-Using the simplified formula for TB duration presented above, $D(\pi) = 1.62 - .56\pi$, the average duration of TB cases was estimated as a function of case notification completeness. Figure \@ref(fig:uganda-average-duration) shows the estimated duration of pulmonary TB among adults by district in 2017 and 2019. At the national level, the average duration of pulmonary TB among adults was estimated to have fallen slightly from 1.55 (1.52-1.58) years to 1.51 (1.48-1.54) years between 2017 and 2019 as a result of greater case reporting and subsequent treatment. As of 2019, the average duration of pulmonary TB was estimated to range from 1.35 (1.29-1.42) years in Kampala to 1.64 (1.61-1.67) in Kiruhira, a difference of over 15 weeks. Given that the relationship between TB incidence and prevalence is defined based on the average duration of disease, $Prevalence = Incidence * E[Duration]$, space-time variation in TB duration mediated the relationship between prevalence estimates from the 2014-2015 National TB Prevalence Survey and incidence estimates from completeness-adjusted case notifications.
+Using the simplified formula for TB duration presented above, $D(\pi) = 1.88 - .67\pi$, the average duration of TB cases was estimated as a function of case notification completeness. Figure \@ref(fig:uganda-average-duration) shows the estimated duration of pulmonary TB among adults by district in 2017 and 2019. At the national level, the average duration of pulmonary TB among adults was estimated to have fallen slightly from 1.55 (1.52-1.58) years to 1.51 (1.48-1.54) years between 2017 and 2019 as a result of greater case reporting and subsequent treatment. As of 2019, the average duration of pulmonary TB was estimated to range from 1.35 (1.29-1.42) years in Kampala to 1.64 (1.61-1.67) in Kiruhira, a difference of over 15 weeks. Given that the relationship between TB incidence and prevalence is defined based on the average duration of disease, $Prevalence = Incidence * E[Duration]$, space-time variation in TB duration mediated the relationship between prevalence estimates from the 2014-2015 National TB Prevalence Survey and incidence estimates from completeness-adjusted case notifications.
 
 ```{r uganda-average-duration, out.width="100%", fig.cap = captions_uganda$average_duration}
 knitr::include_graphics(graphics_fps$uganda$average_duration)
@@ -220,7 +220,7 @@ knitr::include_graphics(graphics_fps$uganda$thresh_comparison)
 
 ## Discussion
 
-In this chapter, I demonstrate a novel framework for estimating TB prevalence by district across Uganda by synthesizing data from a TB prevalence survey and annual case notifications. A joint estimation model compensates for the weaknesses of each data source: it increases the precision of estimates available from either source alone while also correcting for systematic under-reporting in case notifications data. This approach corrects for weaknesses in previous spatial modelling frameworks for tuberculosis, which have primarily relied solely on just one of these two data types.[@Shaweno2018]
+In this chapter, I demonstrate a novel framework for estimating TB prevalence by district across Uganda by synthesising data from a TB prevalence survey and annual case notifications. A joint estimation model compensates for the weaknesses of each data source: it increases the precision of estimates available from either source alone while also correcting for systematic under-reporting in case notifications data. This approach corrects for weaknesses in previous spatial modelling frameworks for tuberculosis, which have primarily relied solely on just one of these two data types.[@Shaweno2018]
 
 TB prevalence surveys are generally not powered to predict subnational variation in TB prevalence.[@Glaziou2008] Because of the larger sample sizes and time series associated with TB case notifications, this joint model generates more precise estimates of TB prevalence than a comparable model based on data from a single TB prevalence survey alone. This precision facilitates the identification of exemplars and hot spots for TB, allowing for more targeted and locally-appropriate policymaking. The south-eastern district of Butaleja, with an estimated TB prevalence of 161 (132 to 193), is the only district that falls below the prevalence threshold of 200 per 100,000 with high confidence; on the other hand, the four districts of Moroto and Napak have 95% UIs that fall entirely above the high prevalence threshold of 1,500 per 100,000. The stark differences between these predictions, and their high level of confidence, could be used as the basis of future studies to determine the elements of successful TB control in high-performing districts; they could also serve as the evidence base to develop new interventions in the sub-populations with the greatest burden, as recommended by the WHO End TB strategy.[@Glaziou2018; @WorldHealthOrganization2020a]
 
@@ -245,7 +245,7 @@ To relate data sources measuring tuberculosis incidence and prevalence, I roughl
 
 ### Conclusions
 
-In this chapter, I demonstrate that subnational TB case notifications can provide meaningful information about the spatial distribution of TB burden within a country. This study extends the neonatal mortality model developed in Chapter 2 to account for health surveillance data that is expected to be incomplete, with incompleteness varying in both space and time. Whether the measured outcome is all-cause mortality or infectious disease prevalence, the principle of indirect data synthesis offers programmatically useful insights about variation in both underlying risk and data quality. In the next chapter, the same principle is applied to estimate the quality of cause-specific mortality data in Italy, a country where mortality data is widely considered to be unbiased and complete.
+In this chapter, I demonstrate that subnational TB case notifications can provide meaningful information about the spatial distribution of TB burden within a country. This study extends the neonatal mortality model developed in Chapter 2 to account for health surveillance data that is expected to be incomplete, with incompleteness varying in both space and time. Whether the measured outcome is all-cause mortality or infectious disease prevalence, the principle of indirect data synthesis offers programmatically useful insights about variation in both underlying risk and data quality.
 
 
 ## References

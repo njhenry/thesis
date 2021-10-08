@@ -16,9 +16,9 @@ mexico_appx_captions <- list(
 
 This section contains additional tables related to Chapter Two: Joint estimation of neonatal mortality and vital registration completeness across Mexico.
 
-## Marginalization groupings {.unlisted .unnumbered}
+## Marginalisation groupings {.unlisted .unnumbered}
 
-As described in Section 2.2.1, priors for VR bias were set by municipality based on an index for estimated social marginalization. Lists of municipalities in the moderately marginalised grouping (N=437/2,441) and the severely marginalised grouping (N=152/2,441) are included below in Table \@ref(tab:appx-moderately-marginalized) and Table \@ref(tab:appx-severely-marginalized), respectively. Values for the four indicators used to define the marginalization groupings are listed for each municipality.
+As described in Section 2.2.1, priors for VR bias were set by municipality based on an index for estimated social marginalisation. Lists of municipalities in the moderately marginalised grouping (N=437/2,441) and the severely marginalised grouping (N=152/2,441) are included below in Table \@ref(tab:appx-moderately-marginalized) and Table \@ref(tab:appx-severely-marginalized), respectively. Values for the four indicators used to define the marginalisation groupings are listed for each municipality.
 
 ```{r appx-moderately-marginalized}
 data_list$mexico_appx$moderately_marginalized %>%
@@ -219,7 +219,7 @@ knitr::include_graphics(graphics_fps$india_appx$cov_pop_density)
 
 # Appendix to Chapter Five
 
-This section contains additional figures and tables related to Chapter Five: Variation in COVID-19 excess mortality by age, sex, and province within Italy.
+This section contains additional tables related to Chapter Five: Variation in COVID-19 excess mortality by age, sex, and province within Italy.
 
 ```{r italy-appendix-set-captions, echo=FALSE}
 knitr::opts_chunk$set(fig.pos = "!hbt", out.extra = "", fig.align = 'center', echo=FALSE)

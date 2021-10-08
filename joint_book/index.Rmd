@@ -56,9 +56,9 @@ I would also like to thank the many colleagues who have generously shared their 
 
 I am hugely appreciative of my office mates and friends who have been by my side, first in person and then in spirit, throughout my graduate studies. To my VR and U5M teams, thank you for being the salt of the earth; to my Torch Club friends, thank you for adding spice to life.
 
-None of this would have been possible without the love and support of my family. Mom and Dad, thank you for always believing in my adventures. Lizzie, thank you for always keeping it real.
+None of this would have been possible without the love and support of my family. Mom and Dad, thank you for always believing in my adventures. Lizzie, thank you for keeping it real.
 
-Finally, I dedicate this thesis to my fiancee Ellen. Four years ago, at a pivotal moment, she asked me what I wanted to work towards for the rest of my life---this is the start of my answer. Thank you for everything since and for everything to come.
+Finally, I dedicate this thesis to my fiancée Ellen. Four years ago, at a pivotal moment, she asked me what I wanted to work towards for the rest of my life---this is the start of my answer. Thank you for everything since and for everything to come.
 
 
 \setcounter{tocdepth}{3}
