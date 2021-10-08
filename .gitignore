@@ -7,4 +7,11 @@
 *.log
 *.gz
 *.txt
+*.aux
+*.bbl
+*.bcf
+*.blg
+*.lof
+*.lot
+*.toc
 
