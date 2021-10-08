@@ -9,7 +9,7 @@ tex_style:
 preprint: true
 
 ## Options that will be passed directly to the bookdown config
-bibliography: '{thesis_docs}/bibliographies/Mendeley-export-20211004.bib'
+bibliography: '{thesis_docs}/bibliographies/Mendeley-export-20211004-cleaned.bib'
 citation_style: 'nature'
 link-citations: true
 github-repo: 'nathenry/thesis'
@@ -89,6 +89,13 @@ data_fps:
     who_duration_groupings: '{thesis_data}/uganda/who_duration_groupings.csv'
   discussion:
     t1: '{thesis_data}/test_chapter/t1_test.csv'
+  italy_appx:
+    covariates_table: '{thesis_data}/italy/appendix_covariates_table.csv'
+    ispv_by_obs_table: '{thesis_data}/italy/appendix_ispv_by_obs_table.csv'
+    ispv_by_group_table: '{thesis_data}/italy/appendix_ispv_by_group_table.csv'
+    oospv_by_obs_table: '{thesis_data}/italy/appendix_oospv_by_obs_table.csv'
+    oospv_by_group_table: '{thesis_data}/italy/appendix_oospv_by_group_table.csv'
+
   test_chapter:
     t1: '{thesis_data}/test_chapter/t1_test.csv'
     t2: '{thesis_data}/test_chapter/t2_test.csv'

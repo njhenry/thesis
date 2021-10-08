@@ -1,0 +1,162 @@
+
+
+# (APPENDIX) Appendices {-} 
+
+
+# Appendix to Chapter Two
+
+This section contains additional figures and tables related to Chapter Two: Joint estimation of neonatal mortality and vital registration completeness across Mexico.
+
+
+# Appendix to Chapter Three
+
+This section contains additional figures and tables related to Chapter Three: Mapping the relationship between tuberculosis burden and case notifications in Uganda.
+
+
+# Appendix to Chapter Four
+
+This section contains additional figures and tables related to Chapter Four: A space-time-age model for subnational child mortality estimation in India.
+
+
+
+
+# Appendix to Chapter Five
+
+This section contains additional figures and tables related to Chapter Five: Variation in COVID-19 excess mortality by age, sex, and province within Italy.
+
+```{r italy-appendix-set-captions, echo=FALSE}
+knitr::opts_chunk$set(fig.pos = "!hbt", out.extra = "", fig.align = 'center', echo=FALSE)
+
+# Set caption text
+italy_appx_captions <- list(
+  covariates_table = "Summary of predictive covariates fitted in the model for baseline mortality.",
+  ispv_by_obs_table = "In-sample predictive validity metrics comparing model estimates to individual data observations. RMSE: root mean squared error. RSE: relative squared error.",
+  ispv_by_group_table = "In-sample predictive validity metrics comparing model estimates to observed data by province-year grouping. RMSE: root mean squared error. RSE: relative squared error.",
+  oospv_by_obs_table = "Out-of-sample predictive validity metrics comparing model estimates to individual data observations. RMSE: root mean squared error. RSE: relative squared error.",
+  oospv_by_group_table = "Out-of-sample predictive validity metrics comparing model estimates to observed data by province-year grouping. RMSE: root mean squared error. RSE: relative squared error."
+)
+```
+
+## Covariate preparation {-}
+
+Table \@ref(tab:italy-covariates-table) lists the predictive covariates used to estimate baseline mortality over the study time period, 2015-2020. Synoptic and single-year covariates were used across all years, while time-varying covariates not available for the final years of the time series were projected forwards by replicating values from the final observed year of data. Covariates observed at a more detailed spatial resolution than provinces were aggregated to the province level using a population-weighted mean across units within a province.
+
+### Weekly temperature covariate {-}
+
+Point estimates of daily temperature were downloaded for the three most populous pixels in each province using the Meteostat API. Because temperature was not recorded for all time periods and locations, the following process was used to fill temperatures across all provinces and weeks in the time series:
+
+1. Find average weekly temperatures across all observed days by year, week, and observed location.
+2. Interpolate by week. In cases where 3 consecutive weeks or fewer are missing between observed temperature values in a location, estimate missing temperatures by interpolating between the nearest observed weeks
+3. Aggregate by province. For each province, year, and week of the year, average available observation across the three sampled locations.
+4. In rare instances where all observations for a province were missing for a given province, year, and week, temperature was filled with recorded observations from neighboring provinces with a similar elevation and level of solar exposure.
+
+## Model validation {-}
+
+See Section \@ref(model-validation) for an overview of the model validation process. We compared predictive validity metrics across six model specifications, denoted A through G. Each model specification was fit under two sets of conditions. For in-sample testing, we fit each model type using the full baseline mortality dataset from January 2015 through February 2020, and then compared estimates of underlying mortality rates with the observed data. However, the resulting in-sample metrics for goodness of fit can mask model overfitting, allowing overly flexible models to follow spurious local trends in the data.
+
+To generate more robust estimates of model predictive validity, we also conducted out-of-sample testing that mimicked the data generation process for all-cause mortality data under a hypothetical baseline where no mortality shock occurred in 2020. Five data holdouts were created, where each holdout was missing observations from March through December in one of the five baseline years 2015-2019. We then fit each model specification based on all remaining observations, and then generated predictive validity metrics by comparing mortality rate estimates and observed data from only the held-out weeks.
+
+As described in Section \@ref(methods-3), when the number of observed outcomes is low, it may be advantageous to aggregate the results across multiple dimensions of interest before generating predictive validity estimates. For this analysis, all predictive validity metrics were generated for individual observations (disaggregated by province, age group, year, and week) as well as grouped mortality rates across each province-year.
+
+
+```{r italy-ispv-by-obs-table}
+data_list$italy_appx$ispv_by_obs_table %>%
+  dplyr::mutate_all(linebreak, align='l') %>%
+  knitr::kable(
+    'latex', booktabs = T, escape = F, caption = italy_appx_captions$ispv_by_obs_table,
+    col.names = linebreak(colnames(data_list$italy_appx$ispv_by_obs_table))
+  ) %>%
+  kable_styling(latex_options = c("striped", "hold_position"), font_size=6)
+```
+
+```{r italy-ispv-by-group-table}
+data_list$italy_appx$ispv_by_group_table %>%
+  dplyr::mutate_all(linebreak, align='l') %>%
+  knitr::kable(
+    'latex', booktabs = T, escape = F, caption = italy_appx_captions$ispv_by_group_table,
+    col.names = linebreak(colnames(data_list$italy_appx$ispv_by_group_table))
+  ) %>%
+  kable_styling(latex_options = c("striped", "hold_position"), font_size=6)
+```
+
+Supplementary Tables \@ref(tab:italy-ispv-by-obs-table) and \@ref(tab:italy-ispv-by-group-table) report in-sample predictive validity metrics for the six model specifications when compared by province-age-year-week and by province-year groupings, respectively. Supplementary Tables \@ref(tab:italy-oospv-by-obs-table) and \@ref(tab:italy-oospv-by-group-table) report out-of-sample predictive validity metrics for the six model specifications when compared by province-age-year-week and by province-year groupings, respectively. For all comparisons, root mean squared error, squared error relative to a simple mean of all observations, and squared error relative to a simpler model that uses the mean observed mortality rate for each age group were generated. We also report empirical coverage of the 50%, 80%, 90%, 95%, and 99% uncertainty intervals of each model type. Because all models are run by sex, sex-specific results as well as averages across male and female models are reported.
+
+```{r italy-oospv-by-obs-table}
+data_list$italy_appx$oospv_by_obs_table %>%
+  dplyr::mutate_all(linebreak, align='l') %>%
+  knitr::kable(
+    'latex', booktabs = T, escape = F, caption = italy_appx_captions$oospv_by_obs_table,
+    col.names = linebreak(colnames(data_list$italy_appx$oospv_by_obs_table))
+  ) %>%
+  kable_styling(latex_options = c("striped", "hold_position"), font_size=6)
+```
+
+```{r italy-oospv-by-group-table}
+data_list$italy_appx$oospv_by_group_table %>%
+  dplyr::mutate_all(linebreak, align='l') %>%
+  knitr::kable(
+    'latex', booktabs = T, escape = F, caption = italy_appx_captions$oospv_by_group_table,
+    col.names = linebreak(colnames(data_list$italy_appx$oospv_by_group_table))
+  ) %>%
+  kable_styling(latex_options = c("striped", "hold_position"), font_size=6)
+```
+
+Based on out-of-sample predictive validity metrics by province-year grouping, as summarized in Table 5, we selected specification B as the model type that was used in the final analysis. This model specification had the lowest root mean squared error across both male and female runs, with slightly conservative empirical coverage of the 95% and 99% uncertainty intervals. Out-of-sample predictive validity metrics did not strongly differentiate between the model specifications that included any seasonality terms. However, the model specification that included no seasonality term performed worst in terms of both in-sample and out-of-sample predictive validity.
+
+## Excess mortality time series estimation {-}
+
+When calculating a time series of excess mortality among small population groups, the cumulative effect of past mortality on the base population must be taken into account. This problem is most clearly illustrated under artificial conditions of a very high mortality rate. Imagine a population of 1,000 individuals that, under normal conditions, experiences a baseline mortality rate of 100 deaths per 1,000 person-weeks and predictably gains 100 new members at the end of each week. Under normal conditions, 100 individuals from the population would die and 100 new individuals would be added each week, resulting in a stable population week-to-week. Now, imagine an event that causes the mortality rate to increase to 900 deaths per 1,000 person-weeks. In the first week under these conditions, 900 individuals from the base population of 1,000 would die and 100 would be added, leading to a population of 200 entering the second week. In the second week, 180 of 200 individuals in the population would die. Although the standardized mortality ratio of this event compared to baseline is 9 across both weeks (900/100 and 180/20), an analysis that mistakenly assumed a starting population of 1,000 in the second week would dramatically underestimate this ratio as 1.8 (180/100).
+
+This analysis took into account the effects of excess mortality on subsequent population denominators throughout the study weeks beginning on February 26, 2020. Population denominators listed by Istat for January 1, 2020 were used as the starting denominators for this time series. For each predictive posterior draw and week, calculated excess deaths were subtracted from the base population used as the denominator in the subsequent week. The cumulative effect of this correction is to avoid understating the toll of excess mortality over the time period due to a reduction in the base population.
+
+
+
+
+# Publications and conference proceedings
+
+## Publications related to this thesis {-}
+
+- **Henry, N.**, Elagali, A., Nguyen, M., ... Moore, C. (Under review). Variation in COVID-19 excess mortality by age, sex, and province within Italy. Submitted to _Scientific Reports_.
+
+- Dandona, R., Kumar, G. A., **Henry, N.**, ... Dandona, L. (2020). Subnational mapping of under-5 and neonatal mortality trends in India: the Global Burden of Disease Study 2000–17. _The Lancet_, 395(10237), 1640–1658. https://doi.org/10.1016/S0140-6736(20)30471-2
+
+
+## Publications alongside this thesis {-}
+
+- Alba, S., Rood, E., Mecatti, F., ... **Henry, N.** ... Latif, A. TB Hackathon: Cross-validation of five models to predict subnational tuberculosis prevalence in Pakistan. Submitted to _Tropical Medicine and International Health_.
+
+- Browne, A. J., Chipeta, M. G., Haines-Woodhouse, G., ... **Henry, N.** … Hay, S. I. (Accepted). Global antibiotic consumption in humans, 2000-2018: a modelling study. _The Lancet Planetary Health_.
+
+- Cork, M., **Henry, N.**, Watson, S., ... Dwyer-Lindgren, L. A. (2021). Mapping subnational HIV mortality in six Latin American countries with incomplete vital registration systems. _BMC Medicine_, 19(4), 1–25. https://doi.org/10.1186/s12916-020-01876-4
+
+- **Henry, N.**, Burstein, R. (equal contribution), Collison, M. L., ... Hay, S. I. (2019). Mapping 123 million neonatal, infant and child deaths between 2000 and 2017. _Nature_, 574(7778), 353–358. https://doi.org/10.1038/s41586-019-1545-0
+
+- Kyu, H. H., Maddison, E. R., **Henry, N.**, ... Murray, C. J. L. (2018). Global, regional, and national burden of tuberculosis, 1990–2016: results from the Global Burden of Diseases, Injuries, and Risk Factors 2016 Study. _The Lancet Infectious Diseases_, 18(12), 1329–1349. https://doi.org/10.1016/S1473-3099(18)30625-X
+
+
+## Conference presentations {-}
+
+- _Variation in COVID-19 excess mortality by age, sex, and province within Italy_. Conference talk. Presented to the American Society of Tropical Medicine and Hygiene 2020 Conference, online (18 November 2020).
+
+- _Subnational burden of tuberculosis across Pakistan: the KIT TB Hackathon_ (with Ross, J., LeGrand, K.). Conference lightning talk. Presented at the 50th Union World Conference on Lung Health, Hyderabad, India (1 November 2019).
+
+- _Modeling under-5 mortality across low- and middle-income countries: methods and results_. Invited talk. Presented at the Demographic and Health Surveys Program, Rockville, MD USA (18 September 2019).
+
+- _Incorporating civil registration and vital statistics data into geospatial analyses of child mortality_. Conference poster. Presented at the Institute for Disease Modeling 2019 Symposium, Bellevue, WA USA (1-4 April 2019).
+
+- _High resolution mapping of global child mortality_. Conference talk. Presented at the American Society of Tropical Medicine and Hygiene 2018 Conference, New Orleans, LA USA (31 October 2018).
+
+
+
+
+# Code repositories
+
+All code used for the data cleaning, modelling, and production of figures is available on online in the following GitHub repositories:
+
+- **Chapter Two**: https://github.com/njhenry/thesis_nmr_joint_model
+- **Chapter Three**: https://github.com/njhenry/thesis_tb_joint_model
+- **Chapter Four**: https://github.com/njhenry/thesis_u5mr
+- **Chapter Five**: https://github.com/njhenry/covidemr
+- Additionally, the code used to format this thesis can be found online at https://github.com/njhenry/thesis.
+
+\addcontentsline{toc}{chapter}{Bibliography}
