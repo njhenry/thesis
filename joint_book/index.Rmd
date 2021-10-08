@@ -24,7 +24,7 @@ Complete registration of births and deaths ensures that all citizens receive the
 
 The COVID-19 pandemic has highlighted gaps in health surveillance capacity worldwide, including in high-income countries. In Italy, I develop a small-area excess mortality model to estimate the number of misdiagnosed COVID-19 deaths during the first six months of the pandemic. This analysis reveals important information about the mortality dynamics of the pandemic across the sub-populations of Italy.
 
-The results and conclusions of these case studies are discussed with recommendations for how these findings influence our understanding of health information systems and implications for greater integration between health surveillance data and policy.
+The results, limitations, and conclusions of these case studies are discussed with recommendations for how these findings influence our understanding of health information systems and implications for greater integration between health surveillance data and policy.
 
 \end{spacing}
 
