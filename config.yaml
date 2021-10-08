@@ -33,6 +33,17 @@ graphics_fps:
     srs_comparison: "{graphics}/india/fig5_srs_comparison.png"
     sample_size: "{graphics}/india/fig6_sample_size.png"
     rankings: "{graphics}/india/fig7_rankings.png"
+  india_appx:
+    cov_access: "{graphics}/india/IND_access2_2000_2017_maps.png"
+    cov_ntl: "{graphics}/india/IND_dmspntl_2000_2017_maps.png"
+    cov_dpt3: "{graphics}/india/IND_dpt3_cov_2000_2017_maps.png"
+    cov_edu: "{graphics}/india/IND_edu_mean_stage2_gadm_2000_2017_maps.png"
+    cov_u5_women_ratio: "{graphics}/india/IND_fertility_2000_2017_maps.png"
+    cov_urbanicity: "{graphics}/india/IND_ghslurbanicity_2000_2017_maps.png"
+    cov_pm25: "{graphics}/india/IND_ihmepm25_2000_2017_maps.png"
+    cov_pf: "{graphics}/india/IND_map_pf_incidence_2000_2017_maps.png"
+    cov_stunting: "{graphics}/india/IND_stunting_mod_b_2000_2017_maps.png"
+    cov_pop_density: "{graphics}/india/IND_worldpop_2000_2017_maps.png"
   mexico:
     capture_recapture: '{graphics}/mexico/capture_recapture.png'
     excl_groups: '{graphics}/mexico/excl_groups.png'
@@ -65,6 +76,11 @@ graphics_fps:
     average_duration: '{graphics}/uganda/average_duration.png'
     prev_notifs_diff: '{graphics}/uganda/prev_notifs_diff.png'
     thresh_comparison: '{graphics}/uganda/thresh_comparison.png'
+  uganda_appx:
+    prev_scatter_d_1: '{graphics}/uganda/prev_scatter_d_1.png'
+    notif_completeness_d_1: '{graphics}/uganda/notif_completeness_d_1.png'
+    prev_scatter_d_ihme: '{graphics}/uganda/prev_scatter_d_ihme.png'
+    notif_completeness_d_ihme: '{graphics}/uganda/notif_completeness_d_ihme.png'
   discussion:
     summary_map: '{graphics}/discussion/summary_map_2021-09-27.png'
   test_chapter:
@@ -79,22 +95,28 @@ data_fps:
   mexico:
     priors: '{thesis_data}/mexico/priors.csv'
     sim_param_results: '{thesis_data}/mexico/sim_param_results.csv'
+  mexico_appx:
+    moderately_marginalized: '{thesis_data}/mexico/moderately_marginalized.csv'
+    severely_marginalized: '{thesis_data}/mexico/severely_marginalized.csv'
   italy:
     covariates_table: '{thesis_data}/italy/t1_covariates_table.csv'
     excess_demographics: '{thesis_data}/italy/t2_excess_demographics.csv'
   italy_thesis:
     covariates_table: '{thesis_data}/italy/t1_covariates_table.csv'
     excess_demographics: '{thesis_data}/italy/t2_excess_demographics.csv'
-  uganda:
-    who_duration_groupings: '{thesis_data}/uganda/who_duration_groupings.csv'
-  discussion:
-    t1: '{thesis_data}/test_chapter/t1_test.csv'
   italy_appx:
     covariates_table: '{thesis_data}/italy/appendix_covariates_table.csv'
     ispv_by_obs_table: '{thesis_data}/italy/appendix_ispv_by_obs_table.csv'
     ispv_by_group_table: '{thesis_data}/italy/appendix_ispv_by_group_table.csv'
     oospv_by_obs_table: '{thesis_data}/italy/appendix_oospv_by_obs_table.csv'
     oospv_by_group_table: '{thesis_data}/italy/appendix_oospv_by_group_table.csv'
+  uganda:
+    who_duration_groupings: '{thesis_data}/uganda/who_duration_groupings.csv'
+  uganda_appx:
+    duration_scenarios: '{thesis_data}/uganda/duration_scenarios.csv'
+    sensitivity_testing_results: '{thesis_data}/uganda/sensitivity_testing_results.csv'
+  discussion:
+    t1: '{thesis_data}/test_chapter/t1_test.csv'
 
   test_chapter:
     t1: '{thesis_data}/test_chapter/t1_test.csv'
