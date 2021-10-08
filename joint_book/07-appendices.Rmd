@@ -67,16 +67,16 @@ uganda_appx_captions <- list(
 
 ## Scenarios: duration as a function of completeness {.unlisted .unnumbered}
 
-The relationship between between data sources describing TB prevalence and incidence is mediated by the expected (mean) duration of active TB disease: $Prevalence = Incidence * E[Duration]$. As described in Section 3.2.2, IHME and the WHO use differing methods to estimate active TB duration. I extended the WHO approach, which estimates duration among adults across four population groupings depending on whether an individual is coinfected with HIV and whether they are receiving treatment.[@Glaziou2020] I applied several simplifying assumptions to estimate average duration as a function of case notification completeness:
+The relationship between between data sources describing TB prevalence and incidence is mediated by the expected (mean) duration of active TB disease: $Prevalence = Incidence * E[Duration]$. As described in Section 3.2.2, IHME and the WHO use differing methods to estimate active TB duration. I extended the WHO approach, which estimates duration among adults across four population groupings depending on whether an individual is co-infected with HIV and whether they are receiving treatment.[@Glaziou2020] I applied several simplifying assumptions to estimate average duration as a function of case notification completeness:
 
-1. The probabilities of receiving treatment and HIV status are independent: for example, the probability of having a TB/HIV coinfection and being treated is equal to the probability of having a TB/HIV coinfection times the probability of receiving treatment.
-2. The proportion of all individuals with TB who also have an HIV coinfection is 41.3% across all districts of Uganda.
+1. The probabilities of receiving treatment and HIV status are independent: for example, the probability of having a TB/HIV co-infection and being treated is equal to the probability of having a TB/HIV co-infection times the probability of receiving treatment.
+2. The proportion of all individuals with TB who also have an HIV co-infection is 41.3% across all districts of Uganda.
 3. The proportion of individuals receiving treatment is fixed at 71% of the case detection rate, where 71% is the estimated nationwide treatment success rate in Uganda.
 4. For individuals who receive TB treatment, the average delay between the onset of active TB and the beginning of treatment is one month (0.077 years).
 
 These assumptions allow for the calculation of a linear relationship between expected duration and TB case notification completeness, $\pi$: $E[D] = 1.88 - .67 * \pi$. However, if any of these assumptions are mis-specified, it may bias the expected duration and alter the true relationship between the incidence and prevalence of active TB disease. To test the effect of these assumptions on the expected duration of TB disease, I varied each of the parameters defining the completeness-duration equation and examined differences in the functional relationship as well as changes in estimated duration values at varying levels of notification completeness.
 
-Table \@ref(tab:uga-duration-scenarios) shows the results of this analysis. These results suggest that the greatest possible biasing factor that might alter the expected duration is a large change in the expected duration of disease for individual sub-groupings. Increasing the TB/HIV coinfection rate shortens the average duration of infection and reduces the influence of notification completeness on duration; decreasing the coinfection rate has the opposite effect. Predictably, changing treatment lags and the treatment success rate changes only the slope of the duration-completeness equation, as the intercept can be interpreted as the expected duration when notification completeness is zero. Under these scenarios, the WHO approach to estimating duration only overlaps the duration estimated by IHME, 2.15 years, under two sets of circumstances (a) the expected disease duration for all population subgroups increases, or (b) TB/HIV coinfection rates are lowered and TB notification completeness is zero.
+Table \@ref(tab:uga-duration-scenarios) shows the results of this analysis. These results suggest that the greatest possible biasing factor that might alter the expected duration is a large change in the expected duration of disease for individual sub-groupings. Increasing the TB/HIV co-infection rate shortens the average duration of infection and reduces the influence of notification completeness on duration; decreasing the co-infection rate has the opposite effect. Predictably, changing treatment lags and the treatment success rate changes only the slope of the duration-completeness equation, as the intercept can be interpreted as the expected duration when notification completeness is zero. Under these scenarios, the WHO approach to estimating duration only overlaps the duration estimated by IHME, 2.15 years, under two sets of circumstances (a) the expected disease duration for all population subgroups increases, or (b) TB/HIV co-infection rates are lowered and TB notification completeness is zero.
 
 ```{r uga-duration-scenarios}
 data_list$uganda_appx$duration_scenarios %>%
@@ -109,7 +109,7 @@ data_list$uganda_appx$sensitivity_testing_results %>%
   kable_styling(latex_options = c("striped", "hold_position"), font_size=6)
 ```
 
-Maps of estimated TB prevalence and case reporting completeness for each of the experimental models can help to clarify the effects of a changing incidence-prevalence relationship on model predictions. Figure \@ref(fig:uganda-appx-prev-scatter-a) shows the predicted prevalence, and Figure \@ref(fig:uganda-appx-notif-completeness-a) shows estimated notification completeness, when duration is fixed at 1 year. These figures use the same color scheme and plotting bounds as Figures \@ref(fig:uganda-prev-scatter) and \@ref(fig:uganda-notif-completeness) to allow for easy comparison. When duration is reduced from an average of approximately 1.5 years to a fixed value of 1 year, the resulting gap between case notifications and estimated prevalent cases is estimated as lower case reporting completeness across all districts nationwide, while prevalence estimates are remarkably similar between the baseline and experimental models. This change suggests that notification data informs estimates of prevalence in a consistent manner as long as the estimated case reporting completeness remains below 1.
+Maps of estimated TB prevalence and case reporting completeness for each of the experimental models can help to clarify the effects of a changing incidence-prevalence relationship on model predictions. Figure \@ref(fig:uganda-appx-prev-scatter-a) shows the predicted prevalence, and Figure \@ref(fig:uganda-appx-notif-completeness-a) shows estimated notification completeness, when duration is fixed at 1 year. These figures use the same colour scheme and plotting bounds as Figures \@ref(fig:uganda-prev-scatter) and \@ref(fig:uganda-notif-completeness) to allow for easy comparison. When duration is reduced from an average of approximately 1.5 years to a fixed value of 1 year, the resulting gap between case notifications and estimated prevalent cases is estimated as lower case reporting completeness across all districts nationwide, while prevalence estimates are remarkably similar between the baseline and experimental models. This change suggests that notification data informs estimates of prevalence in a consistent manner as long as the estimated case reporting completeness remains below 1.
 
 ```{r uganda-appx-prev-scatter-a, out.height="80%", fig.cap = uganda_appx_captions$prev_scatter_d_1}
 knitr::include_graphics(graphics_fps$uganda_appx$prev_scatter_d_1)
@@ -165,7 +165,7 @@ This section contains additional figures related to Chapter Four: A space-time-a
 
 The space-time-age mortality estimation model outlined in Section 4.2.2 drew predictive power from ten gridded covariates which varied by pixel and year. Each survey data point was associated with the covariate values in the same pixel-year. After fitting the mortality estimation model, fixed effects were projected across all pixels and years of India using the gridded covariate surfaces, then aggregated to the district level using a population-weighted mean. Covariates were "trimmed" before projecting to remove any values that fell outside of the range observed in the fit data; this process prevents covariate extrapolation that might yield extreme estimates for mortality. All covariates were also rescaled to have mean zero and standard deviation one before fitting to improve comparability of model fixed effects.
 
-Each of the ten gridded covariate surfaces are visualized below for the years 2000 and 2017. Gridded estimates for travel time to settlements of greater than 50,000 people as well as _Plasmodium falciparum_ incidence were provided by the Malaria Atlas Project.[@Weiss2020; @Weiss2019] Gridded estimates of population density and the population ratio of children under 5 to women 15-45 were both estimated using data from the WorldPop project.[@Tatem2017] A gridded surface of nighttime light intensity was used as a proxy for local variation in economic activity; this surface was provided by the Defense Meteorological Satellite Program.[@Thomson2019] A gridded land cover covariate was provided by the Global Human Settlement Layer project.[@Thomson2019] Gridded estimates of PM 2.5 air pollution concentration, average years of education among women 15-45, coverage of the diptheria-tetanus toxoid-pertussis (DPT3) vaccine for children under 5, and child moderate and severe stunting were all estimated by the Institute for Health Metrics and Evaluation.[@Graetz2020; @Kinyoki2020a] Fixed effects coefficients fit to these data should be interpreted cautiously due to collinearity between gridded estimate surfaces.
+Each of the ten gridded covariate surfaces are visualized below for the years 2000 and 2017. Gridded estimates for travel time to settlements of greater than 50,000 people as well as _Plasmodium falciparum_ incidence were provided by the Malaria Atlas Project.[@Weiss2020; @Weiss2019] Gridded estimates of population density and the population ratio of children under 5 to women 15-45 were both estimated using data from the WorldPop project.[@Tatem2017] A gridded surface of night-time light intensity was used as a proxy for local variation in economic activity; this surface was provided by the Defence Meteorological Satellite Program.[@Thomson2019] A gridded land cover covariate was provided by the Global Human Settlement Layer project.[@Thomson2019] Gridded estimates of PM 2.5 air pollution concentration, average years of education among women 15-45, coverage of the diphtheria-tetanus toxoid-pertussis (DPT3) vaccine for children under 5, and child moderate and severe stunting were all estimated by the Institute for Health Metrics and Evaluation.[@Graetz2020; @Kinyoki2020a] Fixed effects coefficients fit to these data should be interpreted cautiously due to collinearity between gridded estimate surfaces.
 
 ## References {.unlisted .unnumbered}
 
@@ -243,11 +243,11 @@ Point estimates of daily temperature were downloaded for the three most populous
 1. Find average weekly temperatures across all observed days by year, week, and observed location.
 2. Interpolate by week. In cases where 3 consecutive weeks or fewer are missing between observed temperature values in a location, estimate missing temperatures by interpolating between the nearest observed weeks
 3. Aggregate by province. For each province, year, and week of the year, average available observation across the three sampled locations.
-4. In rare instances where all observations for a province were missing for a given province, year, and week, temperature was filled with recorded observations from neighboring provinces with a similar elevation and level of solar exposure.
+4. In rare instances where all observations for a province were missing for a given province, year, and week, temperature was filled with recorded observations from neighbouring provinces with a similar elevation and level of solar exposure.
 
 ## Model validation {.unlisted .unnumbered}
 
-See Section \@ref(model-validation) for an overview of the model validation process. I compared predictive validity metrics across six model specifications, denoted A through G. Each model specification was fit under two sets of conditions. For in-sample testing, I fit each model type using the full baseline mortality dataset from January 2015 through February 2020, and then compared estimates of underlying mortality rates with the observed data. However, the resulting in-sample metrics for goodness of fit can mask model overfitting, allowing overly flexible models to follow spurious local trends in the data.
+See Section \@ref(model-validation) for an overview of the model validation process. I compared predictive validity metrics across six model specifications, denoted A through G. Each model specification was fit under two sets of conditions. For in-sample testing, I fit each model type using the full baseline mortality dataset from January 2015 through February 2020, and then compared estimates of underlying mortality rates with the observed data. However, the resulting in-sample metrics for goodness of fit can mask model over-fitting, allowing overly flexible models to follow spurious local trends in the data.
 
 To generate more robust estimates of model predictive validity, I also conducted out-of-sample testing that mimicked the data generation process for all-cause mortality data under a hypothetical baseline where no mortality shock occurred in 2020. Five data holdouts were created, where each holdout was missing observations from March through December in one of the five baseline years 2015-2019. I then fit each model specification based on all remaining observations, and then generated predictive validity metrics by comparing mortality rate estimates and observed data from only the held-out weeks.
 
@@ -331,13 +331,13 @@ This analysis took into account the effects of excess mortality on subsequent po
 
 ## Conference presentations {.unlisted .unnumbered}
 
-- _Variation in COVID-19 excess mortality by age, sex, and province within Italy_. Conference talk. Presented to the American Society of Tropical Medicine and Hygiene 2020 Conference, online (18 November 2020).
+- _Variation in COVID-19 excess mortality by age, sex, and province within Italy_. Conference talk. Presented to the American Society of Tropical Medicine and Hygiene 2020 Conference, on-line (18 November 2020).
 
 - _Subnational burden of tuberculosis across Pakistan: the KIT TB Hackathon_ (with Ross, J., LeGrand, K.). Conference lightning talk. Presented at the 50th Union World Conference on Lung Health, Hyderabad, India (1 November 2019).
 
-- _Modeling under-5 mortality across low- and middle-income countries: methods and results_. Invited talk. Presented at the Demographic and Health Surveys Program, Rockville, MD USA (18 September 2019).
+- _Modelling under-5 mortality across low- and middle-income countries: methods and results_. Invited talk. Presented at the Demographic and Health Surveys Program, Rockville, MD USA (18 September 2019).
 
-- _Incorporating civil registration and vital statistics data into geospatial analyses of child mortality_. Conference poster. Presented at the Institute for Disease Modeling 2019 Symposium, Bellevue, WA USA (1-4 April 2019).
+- _Incorporating civil registration and vital statistics data into geospatial analyses of child mortality_. Conference poster. Presented at the Institute for Disease Modelling 2019 Symposium, Bellevue, WA USA (1-4 April 2019).
 
 - _High resolution mapping of global child mortality_. Conference talk. Presented at the American Society of Tropical Medicine and Hygiene 2018 Conference, New Orleans, LA USA (31 October 2018).
 
@@ -346,12 +346,12 @@ This analysis took into account the effects of excess mortality on subsequent po
 
 # Code repositories
 
-All code used for the data cleaning, modelling, and production of figures is available on online in the following GitHub repositories:
+All code used for the data cleaning, modelling, and production of figures is available on on-line in the following GitHub repositories:
 
 - **Chapter Two**: https://github.com/njhenry/thesis_nmr_joint_model
 - **Chapter Three**: https://github.com/njhenry/thesis_tb_joint_model
 - **Chapter Four**: https://github.com/njhenry/thesis_u5mr
 - **Chapter Five**: https://github.com/njhenry/covidemr
-- Additionally, the code used to format this thesis can be found online at https://github.com/njhenry/thesis.
+- Additionally, the code used to format this thesis can be found on-line at https://github.com/njhenry/thesis.
 
 \addcontentsline{toc}{chapter}{Bibliography}
