@@ -1,0 +1,359 @@
+
+
+# (APPENDIX) Appendices {.unlisted .unnumbered} 
+
+```{r mexico-appendix-set-captions, echo=FALSE}
+knitr::opts_chunk$set(fig.pos = "!hbt", out.extra = "", fig.align = 'center', echo=FALSE)
+
+# Set caption text
+mexico_appx_captions <- list(
+  moderately_marginalized = "List of municipalities included in the moderately marginalised category, along with relevant indicators.",
+  severely_marginalized = "List of municipalities included in the severely marginalised category, along with relevant indicators."
+)
+```
+
+# Appendix to Chapter Two
+
+This section contains additional tables related to Chapter Two: Joint estimation of neonatal mortality and vital registration completeness across Mexico.
+
+## Marginalisation groupings {.unlisted .unnumbered}
+
+As described in Section 2.2.1, priors for VR bias were set by municipality based on an index for estimated social marginalisation. Lists of municipalities in the moderately marginalised grouping (N=437/2,441) and the severely marginalised grouping (N=152/2,441) are included below in Table \@ref(tab:appx-moderately-marginalized) and Table \@ref(tab:appx-severely-marginalized), respectively. Values for the four indicators used to define the marginalisation groupings are listed for each municipality.
+
+```{r appx-moderately-marginalized}
+data_list$mexico_appx$moderately_marginalized %>%
+  dplyr::mutate_all(linebreak, align='l') %>%
+  knitr::kable(
+    'latex', booktabs = T, longtable = T, escape = F,
+    caption = mexico_appx_captions$moderately_marginalized,
+    col.names = linebreak(colnames(data_list$mexico_appx$moderately_marginalized))
+  ) %>%
+  kable_styling(latex_options = c("striped", "hold_position", "repeat_header"), font_size=8)
+```
+
+```{r appx-severely-marginalized}
+data_list$mexico_appx$severely_marginalized %>%
+  dplyr::mutate_all(linebreak, align='l') %>%
+  knitr::kable(
+    'latex', booktabs = T, longtable = T, escape = F,
+    caption = mexico_appx_captions$severely_marginalized,
+    col.names = linebreak(colnames(data_list$mexico_appx$severely_marginalized))
+  ) %>%
+  kable_styling(latex_options = c("striped", "hold_position", "repeat_header"), font_size=8)
+```
+
+
+
+
+
+# Appendix to Chapter Three
+
+This section contains additional figures and tables related to Chapter Three: Mapping the relationship between tuberculosis burden and case notifications in Uganda.
+
+```{r uganda-appendix-set-captions, echo=FALSE}
+knitr::opts_chunk$set(fig.pos = "!hbt", out.extra = "", fig.align = 'center', echo=FALSE)
+
+# Set caption text
+uganda_appx_captions <- list(
+  duration_scenarios = "Estimates of active TB duration as a function of case notification completeness, contingent on various assumptions about other factors influencing disease duration. The default scenario corresponds to the duration function applied in Chapter 3. All following scenarios change one parameter other than completeness. The duration equation is listed for each scenario, along with estimated values of duration at varying levels of case notification completeness (denoted as PI).",
+  sensitivity_testing_results = "Results of sensitivity testing based on duration. Summaries for estimated TB prevalence and notification completeness are provided for each of the three model specifications.",
+  prev_scatter_d_1 = "Reproduction of Figure 3.4 for a model with a fixed disease duration of 1 year.",
+  notif_completeness_d_1 = "Reproduction of Figure 3.5 for a model with a fixed disease duration of 1 year.",
+  prev_scatter_d_ihme = "Reproduction of Figure 3.4 for a model with a fixed disease duration of 2.15 years.",
+  notif_completeness_d_ihme = "Reproduction of Figure 3.5 for a model with a fixed disease duration of 2.15 years."
+)
+```
+
+
+## Scenarios: duration as a function of completeness {.unlisted .unnumbered}
+
+The relationship between between data sources describing TB prevalence and incidence is mediated by the expected (mean) duration of active TB disease: $Prevalence = Incidence * E[Duration]$. As described in Section 3.2.2, IHME and the WHO use differing methods to estimate active TB duration. I extended the WHO approach, which estimates duration among adults across four population groupings depending on whether an individual is co-infected with HIV and whether they are receiving treatment.[@Glaziou2020] I applied several simplifying assumptions to estimate average duration as a function of case notification completeness:
+
+1. The probabilities of receiving treatment and HIV status are independent: for example, the probability of having a TB/HIV co-infection and being treated is equal to the probability of having a TB/HIV co-infection times the probability of receiving treatment.
+2. The proportion of all individuals with TB who also have an HIV co-infection is 41.3% across all districts of Uganda.
+3. The proportion of individuals receiving treatment is fixed at 71% of the case detection rate, where 71% is the estimated nationwide treatment success rate in Uganda.
+4. For individuals who receive TB treatment, the average delay between the onset of active TB and the beginning of treatment is one month (0.077 years).
+
+These assumptions allow for the calculation of a linear relationship between expected duration and TB case notification completeness, $\pi$: $E[D] = 1.88 - .67 * \pi$. However, if any of these assumptions are mis-specified, it may bias the expected duration and alter the true relationship between the incidence and prevalence of active TB disease. To test the effect of these assumptions on the expected duration of TB disease, I varied each of the parameters defining the completeness-duration equation and examined differences in the functional relationship as well as changes in estimated duration values at varying levels of notification completeness.
+
+Table \@ref(tab:uga-duration-scenarios) shows the results of this analysis. These results suggest that the greatest possible biasing factor that might alter the expected duration is a large change in the expected duration of disease for individual sub-groupings. Increasing the TB/HIV co-infection rate shortens the average duration of infection and reduces the influence of notification completeness on duration; decreasing the co-infection rate has the opposite effect. Predictably, changing treatment lags and the treatment success rate changes only the slope of the duration-completeness equation, as the intercept can be interpreted as the expected duration when notification completeness is zero. Under these scenarios, the WHO approach to estimating duration only overlaps the duration estimated by IHME, 2.15 years, under two sets of circumstances (a) the expected disease duration for all population subgroups increases, or (b) TB/HIV co-infection rates are lowered and TB notification completeness is zero.
+
+```{r uga-duration-scenarios}
+data_list$uganda_appx$duration_scenarios %>%
+  dplyr::mutate_all(linebreak, align='l') %>%
+  knitr::kable(
+    'latex', booktabs = T, escape = F,
+    caption = uganda_appx_captions$duration_scenarios,
+    col.names = linebreak(colnames(data_list$uganda_appx$duration_scenarios))
+  ) %>%
+  kable_styling(latex_options = c("striped", "hold_position"), font_size=6)
+```
+
+
+## Model sensitivity analysis at fixed durations {.unlisted .unnumbered}
+
+The relationship between expected duration, model estimates of TB prevalence, and model estimates of TB notification completeness also deserves further attention. To test the effect of varying duration on model estimates, I ran a sensitivity analysis using two experimental models with fixed durations. The first experimental model fixed TB duration nationwide at 2.15 years, the expected duration of TB in Uganda as estimated by IHME.[@Ledesma2021] The second experimental model fixed TB duration nationwide at 1 year; this value was chosen both as a relatively low estimate for duration based on the results in Table \@ref(tab:uga-duration-scenarios), and because it makes conversion between estimates of prevalence and incidence trivial: $Prevalence = Incidence * 1$.
+
+Table \@ref(tab:uga-sensitivity-testing-results) summarises differences in estimated prevalence and notification completeness across the three models. This sensitivity analysis finds that fixing TB duration at 1 year does not have a significant effect on prevalence nationwide or in the districts with the highest and lowest estimated prevalence values. However, estimated notification completeness drops significantly both at the national level and in Kiruhura, the district with the lowest estimated completeness.
+
+When duration is fixed at 2.15 years, estimated prevalence increases significantly nationwide and in the lowest-prevalence district of Butaleja. The estimated completeness of notifications also rises significantly at the national level and across districts, with an estimated notification completeness of nearly 100% in Kampala. This rise in both estimated prevalence and notification completeness is logical given the known relationship of $Prevalence = Incidence * E[Duration]$. When expected duration increases, a fixed number of incidence cases corresponds to an increasingly high disease prevalence.
+
+```{r uga-sensitivity-testing-results}
+data_list$uganda_appx$sensitivity_testing_results %>%
+  dplyr::mutate_all(linebreak, align='l') %>%
+  knitr::kable(
+    'latex', booktabs = T, escape = F,
+    caption = uganda_appx_captions$sensitivity_testing_results,
+    col.names = linebreak(colnames(data_list$uganda_appx$sensitivity_testing_results))
+  ) %>%
+  kable_styling(latex_options = c("striped", "hold_position"), font_size=6)
+```
+
+Maps of estimated TB prevalence and case reporting completeness for each of the experimental models can help to clarify the effects of a changing incidence-prevalence relationship on model predictions. Figure \@ref(fig:uganda-appx-prev-scatter-a) shows the predicted prevalence, and Figure \@ref(fig:uganda-appx-notif-completeness-a) shows estimated notification completeness, when duration is fixed at 1 year. These figures use the same colour scheme and plotting bounds as Figures \@ref(fig:uganda-prev-scatter) and \@ref(fig:uganda-notif-completeness) to allow for easy comparison. When duration is reduced from an average of approximately 1.5 years to a fixed value of 1 year, the resulting gap between case notifications and estimated prevalent cases is estimated as lower case reporting completeness across all districts nationwide, while prevalence estimates are remarkably similar between the baseline and experimental models. This change suggests that notification data informs estimates of prevalence in a consistent manner as long as the estimated case reporting completeness remains below 1.
+
+```{r uganda-appx-prev-scatter-a, out.height="80%", fig.cap = uganda_appx_captions$prev_scatter_d_1}
+knitr::include_graphics(graphics_fps$uganda_appx$prev_scatter_d_1)
+```
+
+```{r uganda-appx-notif-completeness-a, out.width="100%", fig.cap = uganda_appx_captions$notif_completeness_d_1}
+knitr::include_graphics(graphics_fps$uganda_appx$notif_completeness_d_1)
+```
+
+Figures \@ref(fig:uganda-appx-prev-scatter-b) and \@ref(fig:uganda-appx-notif-completeness-b) show estimates of prevalence and case notification completeness generated by the experimental model with a fixed duration of 2.15 years. In this model, estimated case notification completeness approaches 100% in Kampala and the surrounding Wakiso district. Because notification completeness cannot exceed 100%, case notifications drive up prevalence estimates across the country, although the rank order of districts in terms of prevalence remains similar to the baseline model. These results suggest that when notification completeness approaches 100% in some districts, case notifications inform not only the spatial pattern but also the overall level of TB prevalence in a country.
+
+```{r uganda-appx-prev-scatter-b, out.height="80%", fig.cap = uganda_appx_captions$prev_scatter_d_ihme}
+knitr::include_graphics(graphics_fps$uganda_appx$prev_scatter_d_ihme)
+```
+
+```{r uganda-appx-notif-completeness-b, out.width="100%", fig.cap = uganda_appx_captions$notif_completeness_d_ihme}
+knitr::include_graphics(graphics_fps$uganda_appx$notif_completeness_d_ihme)
+```
+
+The results of these sensitivity analyses, and the relationship of each spatial model to the experiences of program managers in the NTLP, can help to refine the range of plausible duration estimates by district. Further work is needed to explore whether case notification reporting can plausibly exceed 100% due to overlapping diagnoses and travel between districts for treatment.
+
+
+## References {.unlisted .unnumbered}
+
+\printbibliography[segment=\therefsegment,heading=none]
+
+
+
+
+# Appendix to Chapter Four
+
+```{r india-appendix-set-captions, echo=FALSE}
+knitr::opts_chunk$set(fig.pos = "!h", out.extra = "", fig.align = 'center', echo=FALSE)
+
+# Set caption text
+india_appx_captions <- list(
+  cov_access = "Map of gridded covariate showing travel time by motorised vehicle to the nearest settlement of 50,000 or greater in 2000 and 2017. Source: Malaria Atlas Project",
+  cov_ntl = "Map of gridded covariate showing relative nighttime light intensity in 2000 and 2017. Source: Defense Meteorological Satellite Program",
+  cov_dpt3 = "Map of gridded covariate showing the estiamted proportion of children under age 5 who received the DPT3 vaccine in 2000 and 2017. Source: IHME",
+  cov_edu = "Map of gridded covariate showing the estimated mean years of education attained for women aged 15-45 in 2000 and 2017. Source: IHME",
+  cov_u5_women_ratio = "Map of gridded covariate showing the estimated ratio between children below age 5 and women of childbearing age (15-45) in 2000 and 2017, used as an approximation of fertility. Source: Derived from WorldPop age-specific population estimates.",
+  cov_urbanicity = "Map of gridded covariate showing urban land cover extent in 2000 and 2017. Source: Global Human Settlement Layer",
+  cov_pm25 = "Map of gridded covariate for estimated PM 2.5 air pollution concentration in 2000 and 2017. Source: IHME",
+  cov_pf = "Map of gridded covariate showing estimated \\(Plasmodium\\ falciparum\\) incidence in 2000 and 2017. Source: Malaria Atlas Project",
+  cov_stunting = "Map of gridded covariate showing the estimated proportion of children under age 5 who are moderately or severely stunted (low height for age) in 2000 and 2017. Source: IHME",
+  cov_pop_density = "Map of gridded covariate showing estimated population density in 2000 and 2017. Source: WorldPop"
+)
+```
+
+This section contains additional figures related to Chapter Four: A space-time-age model for subnational child mortality estimation in India.
+
+## Spatial covariates {.unlisted .unnumbered}
+
+The space-time-age mortality estimation model outlined in Section 4.2.2 drew predictive power from ten gridded covariates which varied by pixel and year. Each survey data point was associated with the covariate values in the same pixel-year. After fitting the mortality estimation model, fixed effects were projected across all pixels and years of India using the gridded covariate surfaces, then aggregated to the district level using a population-weighted mean. Covariates were "trimmed" before projecting to remove any values that fell outside of the range observed in the fit data; this process prevents covariate extrapolation that might yield extreme estimates for mortality. All covariates were also rescaled to have mean zero and standard deviation one before fitting to improve comparability of model fixed effects.
+
+Each of the ten gridded covariate surfaces are visualised below for the years 2000 and 2017. Gridded estimates for travel time to settlements of greater than 50,000 people as well as _Plasmodium falciparum_ incidence were provided by the Malaria Atlas Project.[@Weiss2020; @Weiss2019] Gridded estimates of population density and the population ratio of children under 5 to women 15-45 were both estimated using data from the WorldPop project.[@Tatem2017] A gridded surface of night-time light intensity was used as a proxy for local variation in economic activity; this surface was provided by the Defence Meteorological Satellite Program.[@Thomson2019] A gridded land cover covariate was provided by the Global Human Settlement Layer project.[@Thomson2019] Gridded estimates of PM 2.5 air pollution concentration, average years of education among women 15-45, coverage of the diphtheria-tetanus toxoid-pertussis (DPT3) vaccine for children under 5, and child moderate and severe stunting were all estimated by the Institute for Health Metrics and Evaluation.[@Graetz2020; @Kinyoki2020a] Fixed effects coefficients fit to these data should be interpreted cautiously due to collinearity between gridded estimate surfaces.
+
+
+
+```{r india-cov-access, out.width="100%", fig.cap = india_appx_captions$cov_access}
+knitr::include_graphics(graphics_fps$india_appx$cov_access)
+```
+
+```{r india-cov-ntl, out.width="100%", fig.cap = india_appx_captions$cov_ntl}
+knitr::include_graphics(graphics_fps$india_appx$cov_ntl)
+```
+
+```{r india-cov-dpt3, out.width="100%", fig.cap = india_appx_captions$cov_dpt3}
+knitr::include_graphics(graphics_fps$india_appx$cov_dpt3)
+```
+
+```{r india-cov-edu, out.width="100%", fig.cap = india_appx_captions$cov_edu}
+knitr::include_graphics(graphics_fps$india_appx$cov_edu)
+```
+
+```{r india-cov-u5-women-ratio, out.width="100%", fig.cap = india_appx_captions$cov_u5_women_ratio}
+knitr::include_graphics(graphics_fps$india_appx$cov_u5_women_ratio)
+```
+
+```{r india-cov-urbanicity, out.width="100%", fig.cap = india_appx_captions$cov_urbanicity}
+knitr::include_graphics(graphics_fps$india_appx$cov_urbanicity)
+```
+
+```{r india-cov-pm25, out.width="100%", fig.cap = india_appx_captions$cov_pm25}
+knitr::include_graphics(graphics_fps$india_appx$cov_pm25)
+```
+
+```{r india-cov-pf, out.width="100%", fig.cap = india_appx_captions$cov_pf}
+knitr::include_graphics(graphics_fps$india_appx$cov_pf)
+```
+
+```{r india-cov-stunting, out.width="100%", fig.cap = india_appx_captions$cov_stunting}
+knitr::include_graphics(graphics_fps$india_appx$cov_stunting)
+```
+
+```{r india-cov-pop-density, out.width="100%", fig.cap = india_appx_captions$cov_pop_density}
+knitr::include_graphics(graphics_fps$india_appx$cov_pop_density)
+```
+
+
+## References {.unlisted .unnumbered}
+
+\printbibliography[segment=\therefsegment,heading=none]
+
+
+
+
+# Appendix to Chapter Five
+
+This section contains additional tables related to Chapter Five: Variation in COVID-19 excess mortality by age, sex, and province within Italy.
+
+```{r italy-appendix-set-captions, echo=FALSE}
+knitr::opts_chunk$set(fig.pos = "!hbt", out.extra = "", fig.align = 'center', echo=FALSE)
+
+# Set caption text
+italy_appx_captions <- list(
+  covariates_table = "Summary of predictive covariates fitted in the model for baseline mortality.",
+  ispv_by_obs_table = "In-sample predictive validity metrics comparing model estimates to individual data observations. RMSE: root mean squared error. RSE: relative squared error.",
+  ispv_by_group_table = "In-sample predictive validity metrics comparing model estimates to observed data by province-year grouping. RMSE: root mean squared error. RSE: relative squared error.",
+  oospv_by_obs_table = "Out-of-sample predictive validity metrics comparing model estimates to individual data observations. RMSE: root mean squared error. RSE: relative squared error.",
+  oospv_by_group_table = "Out-of-sample predictive validity metrics comparing model estimates to observed data by province-year grouping. RMSE: root mean squared error. RSE: relative squared error."
+)
+```
+
+## Covariate preparation {.unlisted .unnumbered}
+
+Table \@ref(tab:italy-covariates-table) lists the predictive covariates used to estimate baseline mortality over the study time period, 2015-2020. Synoptic and single-year covariates were used across all years, while time-varying covariates not available for the final years of the time series were projected forwards by replicating values from the final observed year of data. Covariates observed at a more detailed spatial resolution than provinces were aggregated to the province level using a population-weighted mean across units within a province.
+
+### Weekly temperature covariate {.unlisted .unnumbered}
+
+Point estimates of daily temperature were downloaded for the three most populous pixels in each province using the Meteostat API. Because temperature was not recorded for all time periods and locations, the following process was used to fill temperatures across all provinces and weeks in the time series:
+
+1. Find average weekly temperatures across all observed days by year, week, and observed location.
+2. Interpolate by week. In cases where 3 consecutive weeks or fewer are missing between observed temperature values in a location, estimate missing temperatures by interpolating between the nearest observed weeks
+3. Aggregate by province. For each province, year, and week of the year, average available observation across the three sampled locations.
+4. In rare instances where all observations for a province were missing for a given province, year, and week, temperature was filled with recorded observations from neighbouring provinces with a similar elevation and level of solar exposure.
+
+## Model validation {.unlisted .unnumbered}
+
+See Section \@ref(model-validation) for an overview of the model validation process. I compared predictive validity metrics across six model specifications, denoted A through G. Each model specification was fit under two sets of conditions. For in-sample testing, I fit each model type using the full baseline mortality dataset from January 2015 through February 2020, and then compared estimates of underlying mortality rates with the observed data. However, the resulting in-sample metrics for goodness of fit can mask model over-fitting, allowing overly flexible models to follow spurious local trends in the data.
+
+To generate more robust estimates of model predictive validity, I also conducted out-of-sample testing that mimicked the data generation process for all-cause mortality data under a hypothetical baseline where no mortality shock occurred in 2020. Five data holdouts were created, where each holdout was missing observations from March through December in one of the five baseline years 2015-2019. I then fit each model specification based on all remaining observations, and then generated predictive validity metrics by comparing mortality rate estimates and observed data from only the held-out weeks.
+
+As described in Section \@ref(methods-3), when the number of observed outcomes is low, it may be advantageous to aggregate the results across multiple dimensions of interest before generating predictive validity estimates. For this analysis, all predictive validity metrics were generated for individual observations (disaggregated by province, age group, year, and week) as well as grouped mortality rates across each province-year.
+
+
+```{r italy-ispv-by-obs-table}
+data_list$italy_appx$ispv_by_obs_table %>%
+  dplyr::mutate_all(linebreak, align='l') %>%
+  knitr::kable(
+    'latex', booktabs = T, escape = F, caption = italy_appx_captions$ispv_by_obs_table,
+    col.names = linebreak(colnames(data_list$italy_appx$ispv_by_obs_table))
+  ) %>%
+  kable_styling(latex_options = c("striped", "hold_position"), font_size=6)
+```
+
+```{r italy-ispv-by-group-table}
+data_list$italy_appx$ispv_by_group_table %>%
+  dplyr::mutate_all(linebreak, align='l') %>%
+  knitr::kable(
+    'latex', booktabs = T, escape = F, caption = italy_appx_captions$ispv_by_group_table,
+    col.names = linebreak(colnames(data_list$italy_appx$ispv_by_group_table))
+  ) %>%
+  kable_styling(latex_options = c("striped", "hold_position"), font_size=6)
+```
+
+Supplementary Tables \@ref(tab:italy-ispv-by-obs-table) and \@ref(tab:italy-ispv-by-group-table) report in-sample predictive validity metrics for the six model specifications when compared by province-age-year-week and by province-year groupings, respectively. Supplementary Tables \@ref(tab:italy-oospv-by-obs-table) and \@ref(tab:italy-oospv-by-group-table) report out-of-sample predictive validity metrics for the six model specifications when compared by province-age-year-week and by province-year groupings, respectively. For all comparisons, root mean squared error, squared error relative to a simple mean of all observations, and squared error relative to a simpler model that uses the mean observed mortality rate for each age group were generated. I also report empirical coverage of the 50%, 80%, 90%, 95%, and 99% uncertainty intervals of each model type. Because all models are run by sex, sex-specific results as well as averages across male and female models are reported.
+
+```{r italy-oospv-by-obs-table}
+data_list$italy_appx$oospv_by_obs_table %>%
+  dplyr::mutate_all(linebreak, align='l') %>%
+  knitr::kable(
+    'latex', booktabs = T, escape = F, caption = italy_appx_captions$oospv_by_obs_table,
+    col.names = linebreak(colnames(data_list$italy_appx$oospv_by_obs_table))
+  ) %>%
+  kable_styling(latex_options = c("striped", "hold_position"), font_size=6)
+```
+
+```{r italy-oospv-by-group-table}
+data_list$italy_appx$oospv_by_group_table %>%
+  dplyr::mutate_all(linebreak, align='l') %>%
+  knitr::kable(
+    'latex', booktabs = T, escape = F, caption = italy_appx_captions$oospv_by_group_table,
+    col.names = linebreak(colnames(data_list$italy_appx$oospv_by_group_table))
+  ) %>%
+  kable_styling(latex_options = c("striped", "hold_position"), font_size=6)
+```
+
+Based on out-of-sample predictive validity metrics by province-year grouping, as summarised in Table \@ref(tab:italy-oospv-by-group-table), I selected specification B as the model type that was used in the final analysis. This model specification had the lowest root mean squared error across both male and female runs, with slightly conservative empirical coverage of the 95% and 99% uncertainty intervals. Out-of-sample predictive validity metrics did not strongly differentiate between the model specifications that included any seasonality terms. However, the model specification that included no seasonality term performed worst in terms of both in-sample and out-of-sample predictive validity.
+
+## Excess mortality time series estimation {.unlisted .unnumbered}
+
+When calculating a time series of excess mortality among small population groups, the cumulative effect of past mortality on the base population must be taken into account. This problem is most clearly illustrated under artificial conditions of a very high mortality rate. Imagine a population of 1,000 individuals that, under normal conditions, experiences a baseline mortality rate of 100 deaths per 1,000 person-weeks and predictably gains 100 new members at the end of each week. Under normal conditions, 100 individuals from the population would die and 100 new individuals would be added each week, resulting in a stable population week-to-week. Now, imagine an event that causes the mortality rate to increase to 900 deaths per 1,000 person-weeks. In the first week under these conditions, 900 individuals from the base population of 1,000 would die and 100 would be added, leading to a population of 200 entering the second week. In the second week, 180 of 200 individuals in the population would die. Although the standardised mortality ratio of this event compared to baseline is 9 across both weeks (900/100 and 180/20), an analysis that mistakenly assumed a starting population of 1,000 in the second week would dramatically underestimate this ratio as 1.8 (180/100).
+
+This analysis took into account the effects of excess mortality on subsequent population denominators throughout the study weeks beginning on February 26, 2020. Population denominators listed by Istat for January 1, 2020 were used as the starting denominators for this time series. For each predictive posterior draw and week, calculated excess deaths were subtracted from the base population used as the denominator in the subsequent week. The cumulative effect of this correction is to avoid understating the toll of excess mortality over the time period due to a reduction in the base population.
+
+
+
+
+# Publications and conference proceedings
+
+## Publications related to this thesis {.unlisted .unnumbered}
+
+- **Henry, N.**, Elagali, A., Nguyen, M., ... Moore, C. (Under review). Variation in COVID-19 excess mortality by age, sex, and province within Italy. Submitted to _Scientific Reports_.
+
+- Dandona, R., Kumar, G. A., **Henry, N.**, ... Dandona, L. (2020). Subnational mapping of under-5 and neonatal mortality trends in India: the Global Burden of Disease Study 2000–17. _The Lancet_, 395(10237), 1640–1658. https://doi.org/10.1016/S0140-6736(20)30471-2
+
+
+## Publications alongside this thesis {.unlisted .unnumbered}
+
+- Alba, S., Rood, E., Mecatti, F., ... **Henry, N.** ... Latif, A. TB Hackathon: Cross-validation of five models to predict subnational tuberculosis prevalence in Pakistan. Submitted to _Tropical Medicine and International Health_.
+
+- Browne, A. J., Chipeta, M. G., Haines-Woodhouse, G., ... **Henry, N.** … Hay, S. I. (Accepted). Global antibiotic consumption in humans, 2000-2018: a modelling study. _The Lancet Planetary Health_.
+
+- Cork, M., **Henry, N.**, Watson, S., ... Dwyer-Lindgren, L. A. (2021). Mapping subnational HIV mortality in six Latin American countries with incomplete vital registration systems. _BMC Medicine_, 19(4), 1–25. https://doi.org/10.1186/s12916-020-01876-4
+
+- **Henry, N.**, Burstein, R. (equal contribution), Collison, M. L., ... Hay, S. I. (2019). Mapping 123 million neonatal, infant and child deaths between 2000 and 2017. _Nature_, 574(7778), 353–358. https://doi.org/10.1038/s41586-019-1545-0
+
+- Kyu, H. H., Maddison, E. R., **Henry, N.**, ... Murray, C. J. L. (2018). Global, regional, and national burden of tuberculosis, 1990–2016: results from the Global Burden of Diseases, Injuries, and Risk Factors 2016 Study. _The Lancet Infectious Diseases_, 18(12), 1329–1349. https://doi.org/10.1016/S1473-3099(18)30625-X
+
+
+## Conference presentations {.unlisted .unnumbered}
+
+- _Variation in COVID-19 excess mortality by age, sex, and province within Italy_. Conference talk. Presented to the American Society of Tropical Medicine and Hygiene 2020 Conference, on-line (18 November 2020).
+
+- _Subnational burden of tuberculosis across Pakistan: the KIT TB Hackathon_ (with Ross, J., LeGrand, K.). Conference lightning talk. Presented at the 50th Union World Conference on Lung Health, Hyderabad, India (1 November 2019).
+
+- _Modelling under-5 mortality across low- and middle-income countries: methods and results_. Invited talk. Presented at the Demographic and Health Surveys Program, Rockville, MD USA (18 September 2019).
+
+- _Incorporating civil registration and vital statistics data into geospatial analyses of child mortality_. Conference poster. Presented at the Institute for Disease Modelling 2019 Symposium, Bellevue, WA USA (1-4 April 2019).
+
+- _High resolution mapping of global child mortality_. Conference talk. Presented at the American Society of Tropical Medicine and Hygiene 2018 Conference, New Orleans, LA USA (31 October 2018).
+
+
+
+
+# Code repositories
+
+All code used for the data cleaning, modelling, and production of figures is available on on-line in the following GitHub repositories:
+
+- **Chapter Two**: https://github.com/njhenry/thesis_nmr_joint_model
+- **Chapter Three**: https://github.com/njhenry/thesis_tb_joint_model
+- **Chapter Four**: https://github.com/njhenry/thesis_u5mr
+- **Chapter Five**: https://github.com/njhenry/covidemr
+- Additionally, the code used to format this thesis can be found on-line at https://github.com/njhenry/thesis.
+
+\addcontentsline{toc}{chapter}{Bibliography}

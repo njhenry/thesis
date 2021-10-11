@@ -1,0 +1,121 @@
+---
+title: "Assessing local health outcomes using spatially-resolved health surveillance data"
+author: "Nathaniel Henry"
+documentclass: "report"
+bibliography: "`r conf$v$bibliography`"
+biblatexoptions: [backend=biber,bibencoding=utf8,refsegment=chapter,style=nature,giveninits=true,doi=false,url=true,isbn=false,clearlang=true,defernumbers=true]
+link-citations: true
+---
+
+\pagenumbering{roman}
+
+
+# Abstract {-}
+
+\begin{spacing}{1.15}
+
+Complete and accurate health information systems are necessary inputs for effective health policy. Although many countries maintain civil registration and infectious disease surveillance systems, variation in data completeness often impedes analysis of aggregated health records at the spatial level where policymaking occurs, discouraging greater investment in these systems.
+
+This thesis aims to integrate health information systems into local health decision-making using spatial modelling approaches. In four case studies, I introduce a class of spatial statistical models based on incomplete vital and health surveillance records that offer insights into the health of a country that would be impossible to derive from other sources.
+
+I demonstrate how CRVS can be synthesised with supplementary spatial data sources to estimate both neonatal mortality and CRVS completeness by municipality across Mexico. This spatial modelling strategy can be applied to a wide array of health outcomes, including infectious diseases. I demonstrate how an analogous model can combine data from a tuberculosis (TB) prevalence survey and TB case notifications to estimate TB prevalence across Uganda.
+
+Complete registration of births and deaths ensures that all citizens receive the same legal and health protections. I take a holistic approach to analyse the India's three health surveillance systems in relation to the Indian National Health Plan’s child survival goals.
+
+The COVID-19 pandemic has highlighted gaps in health surveillance capacity worldwide, including in high-income countries. In Italy, I develop a small-area excess mortality model to estimate the number of misdiagnosed COVID-19 deaths during the first six months of the pandemic. This analysis reveals important information about the mortality dynamics of the pandemic across the sub-populations of Italy.
+
+The results, limitations, and conclusions of these case studies are discussed with recommendations for how these findings influence our understanding of health information systems and implications for greater integration between health surveillance data and policy.
+
+\end{spacing}
+
+
+# Statement of contributions {-}
+
+\begin{spacing}{1.15}
+
+My supervisors, Catrin Moore, Pete Gething, and Simon Hay, provided methodological and scientific guidance throughout all stages of this work. Additional contributors for each chapter are listed below.
+
+For Chapter Two, the Mexican National Institute for Geography and Statistics (INEGI) provided data on births and neonatal deaths by municipality. I developed the research question, extracted all data, and developed the underlying statistical model. Bernardo Hernandez provided guidance on factors influencing birth and death registration completeness across Mexico. Michael Chipeta provided guidance for the tuning and validation of the statistical model.
+
+For Chapter Three, data was provided by the Uganda National Tuberculosis and Leprosy Control Programme (NTLP). Tim Lucas, Ewan Cameron, and Dan Weiss provided feedback on early iterations of the joint statistical model. Jennifer Ross at the University of Washington provided guidance on tuberculosis burden estimation methods. Michael Chipeta reviewed this chapter and provided guidance for the sensitivity analyses presented in Appendix B.
+
+The research questions addressed in Chapter Four emerged from a study led by Rakhi Dandona at the Public Health Foundation of India (PHFI), for which I developed the spatial modelling approach: Dandona, R., Kumar, G. A., Henry, N., \textit{et al.} (2020). Subnational mapping of under-5 and neonatal mortality trends in India: the Global Burden of Disease Study 2000–17. \textit{The Lancet}, 395(10237), 1640–1658. I developed the research questions and analysis strategy for Chapter Four in conversation with Catrin Moore and Simon Hay. For the analysis in this chapter, I extended code that was developed by the Local Burden of Disease team at the Institute for Health Metrics and Evaluation (IHME) with assistance from Michael Collison. Stefanie Watson at IHME extracted survey data that was used in this work. Lalit Dandona at PHFI provided guidance on the relationship between health data and policy in India. I produced the model estimates, projections, all figures, and comparisons between data sources presented in this chapter.
+
+For Chapter Five, data was provided by the Italian National Institute of Statistics (Istat). Michael Chipeta, Ahmed Elagali, and Michele Nguyen provided guidance for the tuning and validation of the excess mortality statistical model. The work for Chapter Five is currently under review as: Henry, N. \textit{et al.} Variation in COVID-19 excess mortality by age, sex, and province within Italy [submitted to \textit{Scientific Reports}, June 2020]. I would like to thank all co-authors for their contributions to the manuscript and can confirm that the work produced in this thesis is my own. Other paper contributions alongside this thesis are detailed in Appendix E.
+
+\end{spacing}
+
+
+# Acknowledgments {-}
+
+\begin{spacing}{1.15}
+
+Every thesis is the culmination of a journey---mine was marked by detours, late nights, unexpected joys, and the greatest health crisis in a century. I am extremely grateful to Simon Hay for showing me the potential and the purpose of disease mapping. Thank you also to Pete Gething, who helped me refine a passion for seemingly intractable data into a concrete research project. To Catrin Moore, who offered me her unwavering support through the hardest days of my thesis: thank you for guiding the way.
+
+I would also like to thank the many colleagues who have generously shared their time and knowledge with me. I have been enormously lucky to work with and learn from members of the Malaria Atlas Project, the Oxford AMR group, and the Local Burden of Disease team over the past three years. A special thanks to Michael Chipeta, who went above and beyond to help me grow as a spatial statistician and researcher. I am also enormously grateful to have worked with Jennifer Ross, whose deep knowledge of and passion for TB research continues to inspire me.
+
+I am hugely appreciative of my office mates and friends who have been by my side, first in person and then in spirit, throughout my graduate studies. To my VR and U5M teams, thank you for being the salt of the earth; to my Torch Club friends, thank you for adding spice to life.
+
+None of this would have been possible without the love and support of my family. Mom and Dad, thank you for always believing in my adventures. Lizzie, thank you for keeping it real.
+
+Finally, I dedicate this thesis to my fiancée Ellen. Four years ago, at a pivotal moment, she asked me what I wanted to work towards for the rest of my life---this is the start of my answer. Thank you for everything since and for everything to come.
+
+
+\setcounter{tocdepth}{3}
+\tableofcontents
+\addcontentsline{toc}{chapter}{Table of contents}
+
+\listoffigures
+\addcontentsline{toc}{chapter}{List of figures}
+
+
+\listoftables
+\addcontentsline{toc}{chapter}{List of tables}
+\end{spacing}
+
+
+# List of abbreviations {-}
+
+\begin{acronym}
+  \acro{AHS}{Annual Health Surveys, India}
+  \acro{AIS}{AIDS Indicator Surveys}
+  \acro{ART}{Antiretroviral therapy}
+  \acro{BH}{Birth history}
+  \acro{CAR}{Conditional autoregressive}
+  \acro{CRS}{Civil Registration System, India}
+  \acro{CRVS}{Civil registration and vital statistics}
+  \acro{DHS}{Demographic and Health Surveys}
+  \acro{DLHS}{District Level Household Surveys, India}
+  \acro{DPT3}{Diptheria, tetanus toxoid, and pertussis vaccine}
+  \acro{EuroMOMO}{European Mortality Monitoring Activity}
+  \acro{GLM}{Generalised linear modelling}
+  \acro{HAQ}{Health Access and Quality Index}
+  \acro{HDI}{Human Development Index}
+  \acro{IHME}{Institute for Health Metrics and Evaluation}
+  \acro{IID}{Independently and identically distributed}
+  \acro{IMR}{Infant mortality rate}
+  \acro{INEGI}{National Institute for Geography and Statistics, Mexico}
+  \acro{INLA}{Integrated Nested Laplace Approximation}
+  \acro{IQR}{Inter-quartile range}
+  \acro{Istat}{Italian National Institute of Statistics}
+  \acro{KEMRI}{Kenya Medical Research Institute}
+  \acro{LMICs}{Low- and middle-income countries}
+  \acro{MAP}{Malaria Atlas Project}
+  \acro{MICS}{Multiple Indicator Cluster Surveys}
+  \acro{MIS}{Malaria Indicator Surveys}
+  \acro{NFHS}{National Family Health Surveys, India}
+  \acro{NHP}{National Health Policy, India}
+  \acro{NMR}{Neonatal mortality rate}
+  \acro{NTLP}{National Tuberculosis and Leprosy Programme, Uganda}
+  \acro{SCORE}{Survey, Count, Optimise, Review, Enable}
+  \acro{SMR}{Standardised mortality ratio}
+  \acro{SRS}{Sample Registration System, India}
+  \acro{TB}{Tuberculosis}
+  \acro{U5MR}{Under-5 mortality rate}
+  \acro{UI}{Uncertainty Interval}
+  \acro{UN}{United Nations}
+  \acro{UN IGME}{United Nations Inter-agency Group on Mortality Estimation}
+  \acro{UNICEF}{United Nations Children's Fund}
+  \acro{USAID}{United States Agency for International Development}
+  \acro{WHO}{World Health Organization}
+\end{acronym}

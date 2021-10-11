@@ -1,0 +1,130 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%
+%%%% OXFORD THESIS TEMPLATE - HEADER SECTION
+%%%%
+%%%% Adapted from https://github.com/mcmanigle/OxThesis
+%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\setlength{\parskip}{0pt plus 1pt}
+\setlength{\parfillskip}{0pt plus .7\textwidth}
+
+% JEM: Lengths for single spacing (ie separate abstract, captions), front matter (abstract,
+%   acknowledgements, table of contents, etc), and main body text.
+\newlength{\singlebaselineskip}
+\newlength{\frontmatterbaselineskip}
+\newlength{\textbaselineskip}
+
+\setlength{\singlebaselineskip}{\baselineskip}
+\setlength{\frontmatterbaselineskip}{17pt plus1pt minus1pt}
+\setlength{\textbaselineskip}{22pt plus2pt}
+
+
+% %
+% % Define text area of page and margin offsets
+% %
+
+\usepackage[includehead,hmargin={3.1cm, 3.1cm}, vmargin={2.5cm,2.7cm}, headsep=.8cm,footskip=1.2cm]{geometry}
+
+% % New packages
+\usepackage[nohyperlinks]{acronym}
+\usepackage{color}
+\usepackage{colortbl}
+\usepackage{doi}
+\usepackage{float}
+\usepackage{lipsum}
+\usepackage{makecell}
+\usepackage{url}
+\usepackage{setspace}
+\usepackage{xcolor}
+\usepackage{graphicx}
+
+\usepackage{fancyhdr}
+\setlength{\headheight}{24pt}
+\fancyhf{} % clear the header and footers
+\pagestyle{fancy}
+\fancyhead[LO]{\emph{\leftmark}}
+\fancyhead[RE]{\emph{\rightmark}}
+\fancyhead[RO,LE]{\emph{\thepage}}
+\fancypagestyle{plain}{\fancyhf{}\fancyfoot[C]{\emph{\thepage}}}
+
+\usepackage{microtype}
+\usepackage{nicefrac}
+\usepackage{textcomp}
+
+% Nicer captions
+\usepackage[font=small,labelfont=bf]{caption}
+
+% No hyphenation in titles
+\usepackage[raggedright]{titlesec}
+
+\usepackage{booktabs}
+	% For better looking tables
+
+\usepackage{hyperref}
+	% for linking between references, figures, TOC, etc in the pdf document
+
+% JEM: Stuff for List of Abbreviations (or Glossary or other list)
+\usepackage{calc}
+
+% % JEM: for highlighting corrections
+% \newlength{\mccurrentbaselineskip}
+% \newlength{\mccurrentparskip}
+% \newlength{\mccurrentparindent}
+% \newif\ifcorrections
+% \newif\ifm@csection
+% \m@csectionfalse
+% \correctionsfalse
+
+% \colorlet{shadecolor}{blue!20}
+
+% \usepackage{framed}
+% \OuterFrameSep=-9pt
+% \newenvironment{mccorrection}
+% {\ifcorrections\if@nobreak\m@csectiontrue\fi\begin{shaded}\ifm@csection\noindent\ignorespaces\fi\fi}
+% {\ifcorrections\end{shaded}\m@csectionfalse\ifx\@captype\@undefined\@nobreakfalse\fi\fi}
+
+% \usepackage{soul}
+% \sethlcolor{shadecolor}
+% \newcommand{\mccorrect}[1]{\ifcorrections\hl{#1}\else#1\fi}
+
+
+%%%% ORIGINAL HEADER ------------------------------------------------------------------->
+
+%%%%% DRAFT OPTIONS
+
+% This highlights (in blue) corrections marked with (for words) \mccorrect{text} or (for whole
+% paragraphs) \begin{mccorrection} . . . \end{mccorrection}.  This can be useful for sending a PDF of
+% your corrected thesis to your examiners for review.  Turn it off, and the blue disappears.
+% \correctionstrue
+
+\renewcommand{\maketitle}{
+	\thispagestyle{empty}
+		\begin{center}
+	    \LARGE{\textbf{Assessing local health outcomes using spatially-resolved health surveillance data}}\\
+	    \vspace*{30mm}
+	    \includegraphics{beltcrest.pdf}\\
+	    \vspace*{25mm}
+	    \textbf{Nathaniel Henry}\\
+		\vspace*{1ex}
+	    St. Hugh's College\\
+		\vspace*{1ex}
+	    University of Oxford\\
+		\vspace*{20mm}
+	    A thesis submitted for the degree of\\
+		\vspace*{1ex}
+	    \textit{Doctor of Philosophy}\\
+		\vspace*{2ex}
+	    Trinity Term 2021
+	\end{center}
+}
+
+%%%% Figure caption helper function
+\let\oldcaption\caption
+\def\splitter #1. #2@@{\oldcaption[#1]{#1. #2}}
+\def\caption#1{\splitter #1@@}
+
+%%%% Don't add vertical space to lot and lof
+\newcommand*{\noaddvspace}{\renewcommand*{\addvspace}[1]{}}
+\addtocontents{lof}{\protect\noaddvspace}
+\addtocontents{lot}{\protect\noaddvspace}
