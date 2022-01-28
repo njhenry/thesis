@@ -15,3 +15,6 @@
 *.lot
 *.toc
 
+# Compiled files
+knitted_tex/*.pdf
+knitted_tex/*.docx
