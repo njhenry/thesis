@@ -4,14 +4,13 @@
 %
 \documentclass[
 ]{article}
+\usepackage{amsmath,amssymb}
 \usepackage{lmodern}
-\usepackage{amsmath}
 \usepackage{ifxetex,ifluatex}
 \ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
   \usepackage[T1]{fontenc}
   \usepackage[utf8]{inputenc}
   \usepackage{textcomp} % provide euro and other symbols
-  \usepackage{amssymb}
 \else % if luatex or xetex
   \usepackage{unicode-math}
   \defaultfontfeatures{Scale=MatchLowercase}
@@ -37,12 +36,12 @@
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
 \IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
 \hypersetup{
-  pdftitle={Variation in COVID-19 excess mortality by age, sex, and province within Italy},
-  pdfauthor={Nathaniel Henry1,; Ahmed Elagali2; Michele Nguyen3; Michael Chipeta1; Catrin Moore1},
+  pdftitle={Variation in excess all-cause mortality by age, sex, and province during the first wave of the COVID-19 pandemic within Italy},
+  pdfauthor={Nathaniel J. Henry1,; Ahmed Elagali2; Michele Nguyen3; Michael Chipeta1; Catrin E. Moore1},
   hidelinks,
   pdfcreator={LaTeX via pandoc}}
 \urlstyle{same} % disable monospaced font for URLs
-\usepackage{longtable,booktabs}
+\usepackage{longtable,booktabs,array}
 \usepackage{calc} % for calculating minipage widths
 % Correct order of tables after \paragraph or \subparagraph
 \usepackage{etoolbox}
@@ -72,6 +71,7 @@
 \usepackage{booktabs}
 \usepackage{doi}
 \usepackage{float}
+\usepackage{lipsum}
 \usepackage{makecell}
 \usepackage{url}
 \usepackage{arxiv}
@@ -99,9 +99,9 @@
 \newcommand{\CSLRightInline}[1]{\parbox[t]{\linewidth - \csllabelwidth}{#1}\break}
 \newcommand{\CSLIndent}[1]{\hspace{\cslhangindent}#1}
 
-\title{Variation in COVID-19 excess mortality by age, sex, and province within Italy}
-\author{Nathaniel Henry\textsuperscript{1,*} \and Ahmed Elagali\textsuperscript{2} \and Michele Nguyen\textsuperscript{3} \and Michael Chipeta\textsuperscript{1} \and Catrin Moore\textsuperscript{1}}
-\date{2021-08-11}
+\title{Variation in excess all-cause mortality by age, sex, and province during the first wave of the COVID-19 pandemic within Italy}
+\author{Nathaniel J. Henry\textsuperscript{1,*} \and Ahmed Elagali\textsuperscript{2} \and Michele Nguyen\textsuperscript{3} \and Michael Chipeta\textsuperscript{1} \and Catrin E. Moore\textsuperscript{1}}
+\date{2021-12-06}
 
 \begin{document}
 \maketitle
@@ -110,12 +110,12 @@
 \textsuperscript{2} Telethon Kids Institute, Perth Children's Hospital, Perth, Western Australia, Australia\\
 \textsuperscript{3} Asian School of the Environment, Nanyang Technological University, Singapore 639798, Singapore
 
-\textsuperscript{*} Correspondence: \href{mailto:nathaniel.henry@ndm.ox.ac.uk}{Nathaniel Henry \textless{}\href{mailto:nathaniel.henry@ndm.ox.ac.uk}{\nolinkurl{nathaniel.henry@ndm.ox.ac.uk}}\textgreater{}}
+\textsuperscript{*} Correspondence: \href{mailto:nathaniel.henry@ndm.ox.ac.uk}{Nathaniel J. Henry \textless{}\href{mailto:nathaniel.henry@ndm.ox.ac.uk}{\nolinkurl{nathaniel.henry@ndm.ox.ac.uk}}\textgreater{}}
 
 \hypertarget{abstract}{%
 \section{Abstract}\label{abstract}}
 
-Although previous evidence suggests that the infection fatality rate from COVID-19 varies by age and sex, and that transmission intensity varies geographically within countries, no study has yet explored the age-sex-space distribution of excess mortality associated with the COVID pandemic. By applying the principles of small-area estimation to existing model formulations for excess mortality, this study develops a method for assessing excess mortality across small populations and assesses the pattern of COVID excess mortality by province, year, week, age group, and sex in Italy from March through May 2020. We estimate that 53,200 excess deaths occurred across Italy during this time period, compared to just 35,500 deaths where COVID-19 was registered as the underlying cause of death. Out of the total excess mortality burden, 97\% of excess deaths occurred among adults over age 60, and 68\% of excess deaths were concentrated among adults over age 80. The burden of excess mortality was unevenly distributed across the country, with just three of Italy's 107 provinces accounting for 32\% of all excess mortality. This method for estimating excess mortality can be adapted to other countries where COVID-19 diagnostic capacity is still insufficient, and could be incorporated into public health rapid response systems.
+Although previous evidence suggests that the infection fatality rate from COVID-19 varies by age and sex, and that transmission intensity varies geographically within countries, no study has yet explored the age-sex-space distribution of excess mortality associated with the COVID pandemic. By applying the principles of small-area estimation to existing model formulations for excess mortality, this study develops a novel method for assessing excess mortality across small populations and assesses the pattern of COVID excess mortality by province, year, week, age group, and sex in Italy from March through May 2020. We estimate that 53,200 excess deaths occurred across Italy during this time period, compared to just 35,500 deaths where COVID-19 was registered as the underlying cause of death. Out of the total excess mortality burden, 97\% of excess deaths occurred among adults over age 60, and 68\% of excess deaths were concentrated among adults over age 80. The burden of excess mortality was unevenly distributed across the country, with just three of Italy's 107 provinces accounting for 32\% of all excess mortality. This method for estimating excess mortality can be adapted to other countries where COVID-19 diagnostic capacity is still insufficient, and could be incorporated into public health rapid response systems.
 
 \hypertarget{introduction}{%
 \section{Introduction}\label{introduction}}
@@ -126,18 +126,20 @@ Aside from the timing and magnitude of the first wave of COVID-19 transmission w
 
 \begin{figure}[!hbt]
 
-{\centering \includegraphics[width=0.7\linewidth,]{/home/nat/Documents/Dropbox/Writing/thesis/graphics/italy/fig1_covid_deaths} 
+{\centering \includegraphics[width=0.7\linewidth,]{C:/Users/nathenry/Dropbox/Writing/thesis/graphics/italy/fig1_covid_deaths} 
 
 }
 
 \caption{Registered COVID-19 deaths per 100,000 population by Italian region prior to August 31, 2020. Nationally, 35,500 deaths were registered during this time, or approximately 59 deaths per 100,000 population.}\label{fig:covid-deaths}
 \end{figure}
 
-Istat and other research groups drew conclusions about the mortality burden of the COVID-19 pandemic based on a series of excess mortality analyses. Excess mortality analyses attempt to measure the net effect of a discontinuity, such as a COVID-19 outbreak, on all-cause mortality. This is a two-step process: first, the investigator constructs an estimated baseline number of deaths expected during the period in question. While various methods have been used in the past to construct this baseline\textsuperscript{\protect\hyperlink{ref-Serfling1963}{7}--\protect\hyperlink{ref-Noufaily2013}{9}}⁠, previous studies in Italy have averaged the number of deaths recorded by week in the years from 2015 through 2019 to generate a baseline estimate for the same weeks in 2020\textsuperscript{\protect\hyperlink{ref-Alicandro2020}{2},\protect\hyperlink{ref-Michelozzi2020}{10}}⁠. Next, the investigator compares that expected baseline with the count of recorded deaths during the same time period. Excess deaths, a count, are measured as the difference between the observed death count and the expected baseline. Standardized mortality ratios (SMRs) are measured as the ratio between the observed death count and the expected baseline\textsuperscript{\protect\hyperlink{ref-Dickman2004}{11},\protect\hyperlink{ref-Lambert2005}{12}}⁠. Excess mortality analyses of the COVID-19 pandemic are becoming widely used in the media: among others, the Economist, the Financial Times and the New York Times have estimated excess mortality across dozens of countries in Europe, the Americas, and Asia\textsuperscript{\protect\hyperlink{ref-Wu2020}{13}--\protect\hyperlink{ref-FTVisualux5cux26DataJournalismteam2020}{15}}⁠. Previous investigations have also examined how excess mortality analysis can capture deaths caused by COVID-19 but attributed to other causes, as well the indirect mortality burden of the COVID-19 pandemic\textsuperscript{\protect\hyperlink{ref-Weinberger2020a}{8},\protect\hyperlink{ref-U.S.NationalCenterforHealthStatistics2021}{16}}.
+Istat and other research groups drew conclusions about the mortality burden of the COVID-19 pandemic based on a series of excess mortality analyses. Excess mortality analyses attempt to measure the net effect of a discontinuity, such as a COVID-19 outbreak, on all-cause mortality. This is a two-step process: first, the investigator constructs an estimated baseline number of deaths expected during the period in question. While various methods have been used in the past to construct this baseline\textsuperscript{\protect\hyperlink{ref-Serfling1963}{7}--\protect\hyperlink{ref-Noufaily2013}{9}}⁠, previous studies in Italy have averaged the number of deaths recorded by week in the years from 2015 through 2019 to generate a baseline estimate for the same weeks in 2020\textsuperscript{\protect\hyperlink{ref-Alicandro2020}{2},\protect\hyperlink{ref-Michelozzi2020}{10}}⁠. Next, the investigator compares that expected baseline with the count of recorded deaths during the same time period. Excess deaths, a count, are measured as the difference between the observed death count and the expected baseline. Standardized mortality ratios (SMRs) are measured as the ratio between the observed death count and the expected baseline\textsuperscript{\protect\hyperlink{ref-Dickman2004}{11},\protect\hyperlink{ref-Lambert2005}{12}}⁠. Excess mortality analyses of the COVID-19 pandemic are becoming widely used in the media: among others, the Economist, the Financial Times and the New York Times have estimated excess mortality across dozens of countries in Europe, the Americas, and Asia\textsuperscript{\protect\hyperlink{ref-Wu2020}{13}--\protect\hyperlink{ref-FTVisualDataJournalismteam2020}{15}}⁠. Previous investigations have also examined how excess mortality analysis can capture deaths caused by COVID-19 but attributed to other causes, as well the indirect mortality burden of the COVID-19 pandemic\textsuperscript{\protect\hyperlink{ref-Weinberger2020a}{8},\protect\hyperlink{ref-U.S.NationalCenterforHealthStatistics2021}{16}}.
 
 This study explores another central issue for excess mortality estimation: how can we detect increases in mortality at the local level or across multiple age groups, where the expected number of baseline deaths in each subpopulation of interest is relatively low? This question addresses a tension central to many forms of public health surveillance, where the imperative to identify clustering and high-risk subgroups in health surveillance data must be balanced against reduced study power and possible biases associated with small samples\textsuperscript{\protect\hyperlink{ref-Thacker1988}{17}}⁠. Any suitable approach for estimating small-group excess mortality must quantify uncertainty due to stochastic variation as well as limited data informing the baseline. Even at the national level, weekly estimates of COVID-19 excess mortality presented without uncertainty intervals can leave viewers confused about what constitutes a meaningful departure from the baseline.
 
-To better understand the relationship between registered COVID-19 deaths and excess mortality across Italy, we developed a model to estimate excess mortality by age group, sex, and week across the country's 107 provinces. Our approach estimated counterfactual baseline mortality rates for each of these groups from March through August 2021, based on mortality rates and predictive covariates observed from January 2015 through February 2021. Our baseline mortality model combined elements from a widely-used Poisson generalized linear modeling (GLM) strategy for mortality estimation\textsuperscript{\protect\hyperlink{ref-Noufaily2013}{9}}⁠; a structured province-year-age random effect that draws power from local correlations in mortality across those three dimensions, based on disease mapping principles\textsuperscript{\protect\hyperlink{ref-Banerjee2014}{18}}⁠; and a Fourier curve-fitting method to fit capture seasonal trends in age-specific all-cause mortality\textsuperscript{\protect\hyperlink{ref-Serfling1963}{7}}⁠. Once baseline mortality was estimated for each week and subpopulation in the study period, we compared these estimates to observed counts from vital records over the same period while preserving uncertainty in the expected baseline mortality. Here, we present major findings on excess deaths (the difference between observed and baseline death counts) as well as SMRs (the ratio between observed and expected deaths) across these subpopulations of Italy.
+To better understand the relationship between registered COVID-19 deaths and excess mortality across Italy, we developed a model to estimate excess mortality by age group, sex, and week across the country's 107 provinces. Our approach estimated counterfactual baseline mortality rates for each of these groups from March through August 2021, based on mortality rates and predictive covariates observed from January 2015 through February 2021. Our baseline mortality model combined elements from a widely-used Poisson generalized linear modeling (GLM) strategy for mortality estimation\textsuperscript{\protect\hyperlink{ref-Noufaily2013}{9}}⁠; a structured province-year-age random effect that draws power from local correlations in mortality across those three dimensions, based on disease mapping principles\textsuperscript{\protect\hyperlink{ref-Banerjee2014}{18}}⁠; and a Fourier curve-fitting method to fit capture seasonal trends in age-specific all-cause mortality\textsuperscript{\protect\hyperlink{ref-Serfling1963}{7}}⁠. Once baseline mortality was estimated for each week and subpopulation in the study period, we compared these estimates to observed counts from vital records over the same period while preserving uncertainty in the expected baseline mortality.
+
+This study contributes two methodological advancements to existing literature on excess mortality analysis and mortality mapping. First, this is the first study to our knowledge to apply disease mapping methods to estimate excess mortality. Second, whereas previous studies have applied Fourier curve-fitting methods to estimate seasonality among large populations at the national and state levels, this study combines Fourier seasonality analysis with a space-time smoothing model to estimate seasonality of mortality among small populations. We apply these modeling methods to estimate excess mortality and SMRs across Italy at an unprecedented level of detail. Here, we present major findings on excess deaths (the difference between observed and baseline death counts) as well as SMRs (the ratio between observed and expected deaths) across subpopulations of Italy.
 
 \hypertarget{results}{%
 \section{Results}\label{results}}
@@ -149,7 +151,7 @@ At the national level, the aggregated results from our model generally agreed wi
 
 \begin{figure}[!hbt]
 
-{\centering \includegraphics[width=0.7\linewidth,]{/home/nat/Documents/Dropbox/Writing/thesis/graphics/italy/fig2_time_series} 
+{\centering \includegraphics[width=0.7\linewidth,]{C:/Users/nathenry/Dropbox/Writing/thesis/graphics/italy/fig2_time_series} 
 
 }
 
@@ -163,7 +165,7 @@ Our findings can be aggregated across sexes and provinces to understand the age 
 
 \begin{figure}[!hbt]
 
-{\centering \includegraphics[width=1\linewidth,]{/home/nat/Documents/Dropbox/Writing/thesis/graphics/italy/fig3_age_excess} 
+{\centering \includegraphics[width=1\linewidth,]{C:/Users/nathenry/Dropbox/Writing/thesis/graphics/italy/fig3_age_excess} 
 
 }
 
@@ -193,11 +195,13 @@ Females & 90 & 11,043 (5,784 to 16,432) & 1.41 (1.18 to 1.76) & 0.58 (1.0\%)\\
 \end{tabular}
 \end{table}
 
+From March through May 2020, 18 province-age groupings observed significantly fewer deaths than the expected baseline. Of these significantly lower mortality observations, 11 were among the 0 to 59 age group. These negative excess deaths were included in calculations of total excess mortality nationwide, but do not significantly change the national totals or the age distribution of excess mortality. Tables summarizing excess mortality by age and province grouping have been provided in the supplementary appendix.
+
 The outsized proportion of excess deaths observed within older age categories reflects two aspects of age-structured mortality across Italy during this period: baseline mortality is highest in older age groups even in normal years, and these age groups also experienced a larger relative increase in mortality during the study period. Figure \ref{fig:age-maps} maps the standardized mortality ratio, or the ratio between observed and baseline mortality rates, by age group and province across the entire 13-week period from 26 February through 26 May 2020. Note that the standardized mortality ratio uniformly increases across the northern provinces of Italy when moving from the 0-59 age group to the 60-69 and 70-79 age groups, and remain heightened in the oldest age groups, with some provinces in Lombardy and Emilia Romagna experiencing over three times the expected baseline mortality in older age groups. The greater increase in excess mortality among older age groups can also be expressed by comparing the proportion of excess mortality with each age group with that age group's share of all-cause mortality in the years 2015 through 2019. Adults over age 60 accounted for 92.6\% of all deaths in the years 2015-2019 (2.99 million deaths out of 3.23 million total), but 97.0\% of all excess mortality in March through May of 2020 (51,600 of 53,200 excess deaths). Similarly, adults over age 80 experienced 63.4\% of all deaths in previous years (2.04 million deaths out of 3.23 million), but 68.4\% of excess mortality (36,400 of 53,200 excess deaths).
 
 \begin{figure}[!hbt]
 
-{\centering \includegraphics[width=1\linewidth,]{/home/nat/Documents/Dropbox/Writing/thesis/graphics/italy/fig4_age_maps} 
+{\centering \includegraphics[width=1\linewidth,]{C:/Users/nathenry/Dropbox/Writing/thesis/graphics/italy/fig4_age_maps} 
 
 }
 
@@ -211,7 +215,7 @@ This model is also able to characterize spatial variation in excess mortality du
 
 \begin{figure}[!p]
 
-{\centering \includegraphics[width=25in,height=0.85\textheight,]{/home/nat/Documents/Dropbox/Writing/thesis/graphics/italy/fig5_top_provinces} 
+{\centering \includegraphics[height=0.85\textheight,]{C:/Users/nathenry/Dropbox/Writing/thesis/graphics/italy/fig5_top_provinces} 
 
 }
 
@@ -225,7 +229,7 @@ Comparing Figures \ref{fig:covid-deaths}, \ref{fig:age-maps}, and \ref{fig:top-p
 
 \begin{figure}[H]
 
-{\centering \includegraphics[width=1\linewidth,]{/home/nat/Documents/Dropbox/Writing/thesis/graphics/italy/fig6_excess_neighbors} 
+{\centering \includegraphics[width=1\linewidth,]{C:/Users/nathenry/Dropbox/Writing/thesis/graphics/italy/fig6_excess_neighbors} 
 
 }
 
@@ -243,7 +247,7 @@ This study extends regression-based methods for estimating age-structured baseli
 
 This method for measuring excess mortality also has several limitations that should be noted. Because the process for estimating baseline deaths is more complicated and requires additional inputs compared to a simpler averaging method, it is less accessible to a wide range of users. The model for estimating baseline mortality assumes the same relationship between each covariate and mortality across age groups. In reality, some covariates may have a differential effect by age---for example, temperature may have more of an impact on mortality in older age groups due to the greater prevalence of risk factors that inhibit the body's thermoregulatory response\textsuperscript{\protect\hyperlink{ref-Yu2010}{20},\protect\hyperlink{ref-Stafoggia2008}{21}}⁠. This limitation is partly addressed by the separate harmonic seasonality fits for each age group. This study is also limited to the set of covariates which can be estimated by province and year: other covariates that may be predictive of all-cause mortality, such as the prevalence of environmental and occupational risk factors, were excluded due to lack of availability at the province level. While the population groupings reported in this study could be divided into even more granular units, any small-area investigation must protect the privacy rights of individuals\textsuperscript{\protect\hyperlink{ref-Bayer2000}{22}}⁠. Finally, as described in the Introduction, findings from excess mortality analyses must be carefully interpreted due to the many possible sources for changing mortality which are not accounted for in the modeling strategy.
 
-Additional mechanisms for public health monitoring are needed to catch future resurgences of COVID-19 and future epidemics. In the context of high-income countries such as Italy, where high-quality mortality data has been rapidly prepared and cleaned for public use, this approach to small-area excess mortality analysis could be employed as a routine surveillance tool, allowing health officials to identify high-mortality subgroups in a population and to introduce intervention measures in a timely manner. This approach could also be applied in many countries across Latin America which maintain high-quality mortality registration systems\textsuperscript{\protect\hyperlink{ref-Mikkelsen2015}{23}}⁠, but where increases in COVID-19 mortality early in the pandemic have outstripped diagnostic capacity in some countries\textsuperscript{\protect\hyperlink{ref-LeonCabrera2020}{24}}⁠. Combining this excess mortality data with cause-of-death information by province would also reveal new insights about the local drivers of excess mortality. We hope that this study provides a new avenue to convert excess mortality analysis into a tool for decision-making in public health.
+Additional mechanisms for public health monitoring are needed to catch future resurgences of COVID-19 and future epidemics. In the context of high-income countries such as Italy, where high-quality mortality data has been rapidly prepared and cleaned for public use, this approach to small-area excess mortality analysis could be employed as a routine surveillance tool, allowing health officials to identify high-mortality subgroups in a population and to introduce intervention measures in a timely manner. This approach could also be applied to assess patterns of excess all-cause mortality across countries such as Brazil, Mexico, and Colombia, which maintain nearly complete vital registration systems\textsuperscript{\protect\hyperlink{ref-GBD2019DemographicsCollaborators2020}{23}}⁠, but where increases in COVID-19 mortality early in the pandemic may have outstripped diagnostic capacity early in the pandemic\textsuperscript{\protect\hyperlink{ref-LeonCabrera2020}{24},\protect\hyperlink{ref-Burki2020}{25}}⁠. Combining this excess mortality data with cause-of-death information by province would also reveal new insights about the local drivers of excess mortality. We hope that this study provides a new avenue to convert excess mortality analysis into a tool for decision-making in public health.
 
 \hypertarget{methods}{%
 \section{Methods}\label{methods}}
@@ -251,16 +255,16 @@ Additional mechanisms for public health monitoring are needed to catch future re
 \hypertarget{overview}{%
 \subsection{Overview}\label{overview}}
 
-We fitted a spatially-explicit hierarchical model with fixed effects by age group and for seven covariates, correlated age-province-year structured random effects, and harmonic curves capturing seasonal variation for each age group and province. Separate models were fit for each sex. We fit this model using mortality and population data from 1 January 2015 through 25 February 2020, then generated 1,000 predictive samples of the baseline mortality rate for each sex, age group, and province for the weeks of 26 February through 31 August 2020. For each of the 1,000 sampled draws, we compared the baseline mortality rate with the observed mortality rate to estimate a Standardized Mortality Ratio, and compared the predicted baseline deaths with observed deaths to estimate excess deaths. The code used to produce this model can be accessed online at \url{https://github.com/njhenry/covidemr}.
+We fitted a spatially-explicit hierarchical model with fixed effects by age group and for seven covariates, correlated age-province-year structured random effects, and harmonic curves capturing seasonal variation for each age group and province. Separate models were fit for each sex. We fit this model using mortality and population data from 1 January 2015 through 25 February 2020, then generated 1,000 predictive samples of the baseline mortality rate for each sex, age group, and province for the weeks of 26 February through 31 August 2020. For each of the 1,000 sampled draws, we compared the baseline mortality rate with the observed mortality rate to estimate a Standardized Mortality Ratio, and compared the predicted baseline deaths with observed deaths to estimate excess deaths from all causes. The code used to produce this model can be accessed online at \url{https://github.com/njhenry/covidemr}.
 
 \hypertarget{data}{%
 \subsection{Data}\label{data}}
 
-Mortality and population data were downloaded from Istat, the Italian National Institute of Statistics. As of 22 October 2020, complete mortality data covering all provinces and municipalities of Italy over the time period 1 January 2015 through 31 August 2020 was available for download from Istat\textsuperscript{\protect\hyperlink{ref-ItalianNationalInstituteofStatisticsIstat2020a}{25}}⁠. The number of deaths over this time period were recorded by year, month, day, Italian municipality, sex, and five-year age group. For the purposes of analysis, these observations were aggregated by sex, Italian province, age group, and week of the year. The five age groups used in this analysis were 0-59 years, 60-69 years, 70-79 years, 80-89 years, and 90+ years of age. These age groups were chosen based on the prior knowledge that the large majority of both all-cause mortality and registered COVID-19 deaths occurred among adults aged 60 and above. Weeks of the year were assigned based on the numeric day of the year, where January 1st of each year was assigned as the first day of the first week. The 365th and 366th days of the year were assigned to week 52, with the hierarchical model adjusting for observed weeks with more than seven days.
+All-cause mortality and population data were downloaded from Istat, the Italian National Institute of Statistics. As of 22 October 2020, complete mortality data covering all provinces and municipalities of Italy over the time period 1 January 2015 through 31 August 2020 was available for download from Istat\textsuperscript{\protect\hyperlink{ref-ItalianNationalInstituteofStatisticsIstat2020a}{26}}⁠. The number of deaths over this time period were recorded by year, month, day, Italian municipality, sex, and five-year age group. For the purposes of analysis, these observations were aggregated by sex, Italian province, age group, and week of the year. The five age groups used in this analysis were 0-59 years, 60-69 years, 70-79 years, 80-89 years, and 90+ years of age. These age groups were chosen based on the prior knowledge that the large majority of both all-cause mortality and registered COVID-19 deaths occurred among adults aged 60 and above. Weeks of the year were assigned based on the numeric day of the year, where January 1st of each year was assigned as the first day of the first week. The 365th and 366th days of the year were assigned to week 52, with the hierarchical model adjusting for observed weeks with more than seven days.
 
-Population data by sex, age, and province for the years 2015 through 2020 was downloaded from the Istat web data portal\textsuperscript{\protect\hyperlink{ref-ItalianNationalInstituteofStatisticsIstat2020}{26}}⁠. Population counts were aggregated by sex, province, year, and the five age groups listed above.
+Population data by sex, age, and province for the years 2015 through 2020 was downloaded from the Istat web data portal\textsuperscript{\protect\hyperlink{ref-ItalianNationalInstituteofStatisticsIstat2020}{27}}⁠. Population counts were aggregated by sex, province, year, and the five age groups listed above.
 
-We downloaded or extracted data for each of seven covariates, listed below in Table \ref{tab:covariates-table}. After extraction, all covariates were normalized and rescaled to have a mean of zero and a standard deviation of 1 across all data observations.
+We downloaded or extracted data for each of seven covariates, listed below in Table \ref{tab:covariates-table}. Covariates were selected based on previous evidence of association between the covariate and all-cause mortality in a high-income context. Further information supporting the inclusion of each covariate is included in the supplementary appendix. After extraction, all covariates were normalized and rescaled to have a mean of zero and a standard deviation of 1 across all data observations.
 
 \begin{table}[!h]
 
@@ -292,22 +296,22 @@ To construct a mortality baseline for the months of March through August 2020 th
 In the formulation above, \(D\) is the number of observed deaths, \(N\) is the population, and \(r\) is the underlying mortality rate per person-week. The quantity \(r\) is then fit in log space to a space-time surface which varies by province, age, year, and week:
 
 \[log(r_{p,a,t,w}) \sim \sum_{k=1}^{5}[I_{\alpha}\alpha_{k}] + \beta X_{p,a,t,w} + Z_{p,a,t} + f_{p,a}(w)\]
-The first three terms on the right-hand side of this equation capture age and covariate fixed effects, corresponding to a discrete-time proportional hazards model where the baseline hazard varies by age group\textsuperscript{\protect\hyperlink{ref-Cox1972}{27},\protect\hyperlink{ref-Burstein2019}{28}}⁠. In this specification, \(\alpha_k\) is the weekly baseline hazard for each of the five age groups, while \(I_\alpha\) is a boolean variable that is 1 when the age group index of an observation is equal to \(k\) and zero otherwise. Fixed effects for the covariate design matrix \(X_{p,a,t,w}\) are denoted by \(\beta\), a vector of length seven. Together, these terms correspond with a multivariate regression approach to estimating baseline mortality\textsuperscript{\protect\hyperlink{ref-Ederer1961}{19}}⁠.
+The first three terms on the right-hand side of this equation capture age and covariate fixed effects, corresponding to a discrete-time proportional hazards model where the baseline hazard varies by age group\textsuperscript{\protect\hyperlink{ref-Cox1972}{28},\protect\hyperlink{ref-Burstein2019}{29}}⁠. In this specification, \(\alpha_k\) is the weekly baseline hazard for each of the five age groups, while \(I_\alpha\) is a boolean variable that is 1 when the age group index of an observation is equal to \(k\) and zero otherwise. Fixed effects for the covariate design matrix \(X_{p,a,t,w}\) are denoted by \(\beta\), a vector of length seven. Together, these terms correspond with a multivariate regression approach to estimating baseline mortality\textsuperscript{\protect\hyperlink{ref-Ederer1961}{19}}⁠.
 
-The term \(Z_{p,a,t}\) is a structured random effect that accounts for residual variation across provinces, age groups, and years that is not captured by the age or covariate fixed effects. \(Z\) is structured as a Gaussian process with mean zero and covariance matrix \(K\), where \(K\) is a separable process across the dimensions of space, age, and time: \(K = \Sigma_p \otimes \Sigma_a \otimes \Sigma_t\). The spatial covariance structure \(\Sigma_p\) corresponds to a conditional autoregressive (CAR) process in space\textsuperscript{\protect\hyperlink{ref-Riebler2016}{29}}, while the age and temporal covariance structures both correspond to discrete autoregressive processes of order 1. Separable covariance structures have been widely used in the fields of ecology and public health to construct models across space, time, and other dimensions\textsuperscript{\protect\hyperlink{ref-Thorson2017}{30},\protect\hyperlink{ref-Wakefield2019}{31}}⁠, and have been found to fit a wide variety of space-time covariance structures\textsuperscript{\protect\hyperlink{ref-Huang2007}{32}}.
+The term \(Z_{p,a,t}\) is a structured random effect that accounts for residual variation across provinces, age groups, and years that is not captured by the age or covariate fixed effects. \(Z\) is structured as a Gaussian process with mean zero and covariance matrix \(K\), where \(K\) is a separable process across the dimensions of space, age, and time: \(K = \Sigma_p \otimes \Sigma_a \otimes \Sigma_t\). The spatial covariance structure \(\Sigma_p\) corresponds to a conditional autoregressive (CAR) process in space\textsuperscript{\protect\hyperlink{ref-Riebler2016}{30}}, while the age and temporal covariance structures both correspond to discrete autoregressive processes of order 1. Separable covariance structures have been widely used in the fields of ecology and public health to construct models across space, time, and other dimensions\textsuperscript{\protect\hyperlink{ref-Thorson2017}{31},\protect\hyperlink{ref-Wakefield2019}{32}}⁠, and have been found to fit a wide variety of space-time covariance structures\textsuperscript{\protect\hyperlink{ref-Huang2007}{33}}.
 
 The term \(f_{p,a}(w)\) refers to a set of harmonic functions that are fit to account for weekly variation in mortality not captured by covariates. A separate function is fit for each age group and province to account for the fact that seasonal variation in mortality may be driven by different factors across space and by age group. Each function is tuned to fit the parameters \(A\) and \(B\) to the following harmonics:
 
-\[f(w) = \large\sum_{j=1}^{2}[A_{j}sin(\frac{2\pi j w}{52}) + B_{j}cos(\frac{2\pi j w}{52})]\]
+\[f_{p,a}(w) = \sum_{j=1}^{2}[A_{p,a,j}sin(\frac{2\pi j w}{52}) + B_{p,a,j}cos(\frac{2\pi j w}{52})]\]
 
-This harmonic series, which adapts principles from Fourier analysis, is the basis for a classic model for predicting seasonality in flu mortality developed by Robert Serfling\textsuperscript{\protect\hyperlink{ref-Serfling1963}{7}}⁠. In Serfling's original formulation as well as more recent excess mortality papers, seasonality was fit using two Fourier terms\textsuperscript{\protect\hyperlink{ref-Weinberger2020a}{8},\protect\hyperlink{ref-Woolf2020}{33}}⁠. We performed five-fold cross-validation estimate the best grouping variables and harmonic terms for seasonal curve fits. Based on the metrics of out-of-sample mean squared error and coverage, we found that the model performed best when seasonal curves were fit separately by province and age group, using two Fourier terms.
+This harmonic series, which adapts principles from Fourier analysis, is the basis for a classic model for predicting seasonality in flu mortality developed by Robert Serfling\textsuperscript{\protect\hyperlink{ref-Serfling1963}{7}}⁠. In Serfling's original formulation as well as more recent excess mortality papers, seasonality was fit using two Fourier terms\textsuperscript{\protect\hyperlink{ref-Weinberger2020a}{8},\protect\hyperlink{ref-Woolf2020}{34}}⁠. We performed five-fold cross-validation estimate the best grouping variables and harmonic terms for seasonal curve fits. Based on the metrics of out-of-sample mean squared error and coverage, we found that the model performed best when seasonal curves were fit separately by province and age group, using two Fourier terms.
 
-We assigned priors to all model parameters and then fit the model using the Laplace approximation for mixed-effect parameter estimation\textsuperscript{\protect\hyperlink{ref-Kristensen2016}{34},\protect\hyperlink{ref-Thorson2016}{35}}⁠. The model was fit in R v.4.0.3 using the package Template Model Builder v.1.7.18\textsuperscript{\protect\hyperlink{ref-Kristensen2016}{34},\protect\hyperlink{ref-RCoreTeam2018}{36}}.
+We assigned priors to all model parameters and then fit the model using the Laplace approximation for mixed-effect parameter estimation\textsuperscript{\protect\hyperlink{ref-Kristensen2016}{35},\protect\hyperlink{ref-Thorson2016}{36}}⁠. The model was fit in R v.4.0.3 using the package Template Model Builder v.1.7.18\textsuperscript{\protect\hyperlink{ref-Kristensen2016}{35},\protect\hyperlink{ref-RCoreTeam2018}{37}}.
 
 \hypertarget{compiling-and-interpreting-results}{%
 \subsection{Compiling and interpreting results}\label{compiling-and-interpreting-results}}
 
-Using the maximum a posteriori predictions and joint precision matrix for all parameters, we generated 1,000 samples for all model parameters using a multivariate-normal approximation of the posterior predictive distribution. These parameter samples were then entered into the original model to construct 1,000 draws or ``candidate maps'' estimating the mortality rate across all provinces, age groups, and weeks in the study period\textsuperscript{\protect\hyperlink{ref-Patil2011}{37}}⁠. Although the model was fit to data from 1 January 2015 through 25 February 2020, the fitted parameter fixed effects, random effects, and seasonality terms could all be applied forward to estimate 1,000 draws of predicted baseline mortality from 26 February through 31 August 2020. All subsequent calculations were performed across draws to preserve the correlation structure within draws as well as the model uncertainty across draws.
+Using the maximum a posteriori predictions and joint precision matrix for all parameters, we generated 1,000 samples for all model parameters using a multivariate-normal approximation of the posterior predictive distribution. These parameter samples were then entered into the original model to construct 1,000 draws or ``candidate maps'' estimating the mortality rate across all provinces, age groups, and weeks in the study period\textsuperscript{\protect\hyperlink{ref-Patil2011}{38}}⁠. Although the model was fit to data from 1 January 2015 through 25 February 2020, the fitted parameter fixed effects, random effects, and seasonality terms could all be applied forward to estimate 1,000 draws of predicted baseline mortality from 26 February through 31 August 2020. All subsequent calculations were performed across draws to preserve the correlation structure within draws as well as the model uncertainty across draws.
 
 We compared the distribution of predicted mortality rates with observed mortality rates, calculated as observed deaths divided by population, to calculate 1,000 draws of standardized mortality ratios (SMRs) for each province-age-sex-year-week grouping \(g\) using the following formula:
 
@@ -341,7 +345,7 @@ The authors wish to thank the Italian National Institute of Statistics for their
 \hypertarget{author-contributions}{%
 \section{Author contributions}\label{author-contributions}}
 
-NH and CEM conceived and planned the study. NH identified, extracted, and processed the input data. NH carried out the statistical analyses with assistance and input from AE, MN, and MC. NH wrote the first draft of the manuscript with assistance from CEM and AE, and all authors contributed to subsequent revisions. All authors provided intellectual input into aspects of this study.
+NJH and CEM conceived and planned the study. NJH identified, extracted, and processed the input data. NJH carried out the statistical analyses with assistance and input from AE, MN, and MC. NJH wrote the first draft of the manuscript with assistance from CEM and AE, and all authors contributed to subsequent revisions. All authors provided intellectual input into aspects of this study.
 
 \hypertarget{additional-information}{%
 \section{Additional information}\label{additional-information}}
@@ -409,7 +413,7 @@ The authors declare no competing interests.
 \CSLLeftMargin{14. }
 \CSLRightInline{The Economist. {COVID-19 Data: Tracking COVID-19 excess deaths across countries}. (2020).}
 
-\leavevmode\hypertarget{ref-FTVisualux5cux26DataJournalismteam2020}{}%
+\leavevmode\hypertarget{ref-FTVisualDataJournalismteam2020}{}%
 \CSLLeftMargin{15. }
 \CSLRightInline{FT Visual \& Data Journalism team. {FT Coronavirus Tracker}. (2020).}
 
@@ -441,64 +445,68 @@ The authors declare no competing interests.
 \CSLLeftMargin{22. }
 \CSLRightInline{Bayer, R. \& Fairchild, A. L. {Surveillance and privacy}. \emph{Science} \textbf{290}, 1898--1899 (2000).}
 
-\leavevmode\hypertarget{ref-Mikkelsen2015}{}%
+\leavevmode\hypertarget{ref-GBD2019DemographicsCollaborators2020}{}%
 \CSLLeftMargin{23. }
-\CSLRightInline{Mikkelsen, L. \emph{et al.} {A global assessment of civil registration and vital statistics systems: Monitoring data quality and progress}. \emph{The Lancet} \textbf{386}, 1395--1406 (2015).}
+\CSLRightInline{GBD 2019 Demographics Collaborators. {Global age-sex-specific fertility, mortality, healthy life expectancy (HALE), and population estimates in 204 countries and territories, 1950--2019: a comprehensive demographic analysis for the Global Burden of Disease Study 2019}. \emph{The Lancet} \textbf{396}, 1160--1203 (2020).}
 
 \leavevmode\hypertarget{ref-LeonCabrera2020}{}%
 \CSLLeftMargin{24. }
 \CSLRightInline{León Cabrera, J. M. \& Kurmanaev, A. {Ecuador's Death Toll During Outbreak Is Among the Worst in the World}. A8 (2020).}
 
-\leavevmode\hypertarget{ref-ItalianNationalInstituteofStatisticsIstat2020a}{}%
+\leavevmode\hypertarget{ref-Burki2020}{}%
 \CSLLeftMargin{25. }
+\CSLRightInline{Burki, T. {COVID-19 in Latin America}. \emph{The Lancet. Infectious diseases} \textbf{20}, 547--548 (2020).}
+
+\leavevmode\hypertarget{ref-ItalianNationalInstituteofStatisticsIstat2020a}{}%
+\CSLLeftMargin{26. }
 \CSLRightInline{Italian National Institute of Statistics (Istat). {All-cause mortality by Italian municipality, January 2015 through August 2020 (release: 22 October 2020).} (2020).}
 
 \leavevmode\hypertarget{ref-ItalianNationalInstituteofStatisticsIstat2020}{}%
-\CSLLeftMargin{26. }
+\CSLLeftMargin{27. }
 \CSLRightInline{Italian National Institute of Statistics (Istat). {Resident municipal population by age, sex and marital status}. (2020).}
 
 \leavevmode\hypertarget{ref-Cox1972}{}%
-\CSLLeftMargin{27. }
+\CSLLeftMargin{28. }
 \CSLRightInline{Cox, D. R. {Regression Models and Life-Tables}. \emph{Journal of the Royal Statistical Society. Series B (Methodological)} \textbf{34}, 187--220 (1972).}
 
 \leavevmode\hypertarget{ref-Burstein2019}{}%
-\CSLLeftMargin{28. }
+\CSLLeftMargin{29. }
 \CSLRightInline{Burstein, R. \emph{et al.} {Mapping 123 million neonatal, infant and child deaths between 2000 and 2017}. \emph{Nature} \textbf{574}, 353--358 (2019).}
 
 \leavevmode\hypertarget{ref-Riebler2016}{}%
-\CSLLeftMargin{29. }
+\CSLLeftMargin{30. }
 \CSLRightInline{Riebler, A. \emph{et al.} {An intuitive Bayesian spatial model for disease mapping that accounts for scaling}. \emph{Statistical Methods in Medical Research} \textbf{25}, 1145--1165 (2016).}
 
 \leavevmode\hypertarget{ref-Thorson2017}{}%
-\CSLLeftMargin{30. }
+\CSLLeftMargin{31. }
 \CSLRightInline{Thorson, J. T. \& Barnett, L. A. K. {Comparing estimates of abundance trends and distribution shifts using single- and multispecies models of fishes and biogenic habitat}. \emph{ICES Journal of Marine Science} \textbf{74}, 1311--1321 (2017).}
 
 \leavevmode\hypertarget{ref-Wakefield2019}{}%
-\CSLLeftMargin{31. }
+\CSLLeftMargin{32. }
 \CSLRightInline{Wakefield, J. \emph{et al.} {Estimating under-five mortality in space and time in a developing world context}. \emph{Statistical Methods in Medical Research} \textbf{28}, 2614--2634 (2019).}
 
 \leavevmode\hypertarget{ref-Huang2007}{}%
-\CSLLeftMargin{32. }
+\CSLLeftMargin{33. }
 \CSLRightInline{Huang, H. C., Martinez, F., Mateu, J. \& Montes, F. {Model comparison and selection for stationary space-time models}. \emph{Computational Statistics and Data Analysis} \textbf{51}, 4577--4596 (2007).}
 
 \leavevmode\hypertarget{ref-Woolf2020}{}%
-\CSLLeftMargin{33. }
+\CSLLeftMargin{34. }
 \CSLRightInline{Woolf, S. H., Chapman, D. A., Sabo, R. T., Weinberger, D. M. \& Hill, L. {Excess Deaths From COVID-19 and Other Causes, March-April 2020}. \emph{JAMA} \textbf{324}, 510 (2020).}
 
 \leavevmode\hypertarget{ref-Kristensen2016}{}%
-\CSLLeftMargin{34. }
+\CSLLeftMargin{35. }
 \CSLRightInline{Kristensen, K., Nielsen, A., Berg, C. W., Skaug, H. \& Bell, B. M. {TMB: Automatic Differentiation and Laplace Approximation}. \emph{Journal of Statistical Software} \textbf{70}, (2016).}
 
 \leavevmode\hypertarget{ref-Thorson2016}{}%
-\CSLLeftMargin{35. }
+\CSLLeftMargin{36. }
 \CSLRightInline{Thorson, J. T. \& Kristensen, K. {Implementing a generic method for bias correction in statistical models using random effects, with spatial and population dynamics examples}. \emph{Fisheries Research} \textbf{175}, 66--74 (2016).}
 
 \leavevmode\hypertarget{ref-RCoreTeam2018}{}%
-\CSLLeftMargin{36. }
+\CSLLeftMargin{37. }
 \CSLRightInline{R Core Team. {R: A Language and Environment for Statistical Computing}. (2018).}
 
 \leavevmode\hypertarget{ref-Patil2011}{}%
-\CSLLeftMargin{37. }
+\CSLLeftMargin{38. }
 \CSLRightInline{Patil, A. P., Gething, P. W., Piel, F. B. \& Hay, S. I. {Bayesian geostatistics in health cartography: The perspective of malaria}. \emph{Trends in Parasitology} \textbf{27}, 246--253 (2011).}
 
 \end{CSLReferences}
