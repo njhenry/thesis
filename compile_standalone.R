@@ -25,9 +25,9 @@
 # Script arguments
 # TODO: Convert to CLI
 conf_fp <- '~/repos/thesis/config.yaml'
-chapter <- 'uganda'
+chapter <- 'italy'
 chapter_type <- 'standalone'
-doc_type <- 'docx' # One of 'docx', 'pdf'
+doc_type <- 'pdf' # One of 'docx', 'pdf'
 out_fp <- glue::glue(
   'C:/Users/nathenry/Dropbox/Writing/thesis/output/{chapter}_{Sys.Date()}.{doc_type}'
 )

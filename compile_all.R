@@ -26,8 +26,9 @@ rm(list=ls())
 
 # Script arguments
 conf_fp <- '~/repos/thesis/config.yaml'
+doc_type <- 'docx' # One of 'docx', 'pdf'
 out_fp <- glue::glue(
-  'C:/Users/nathenry/Dropbox/Writing/thesis/output/full_thesis_{Sys.Date()}.pdf'
+  'C:/Users/nathenry/Dropbox/Writing/thesis/output/full_thesis_{Sys.Date()}.{doc_type}'
 )
 
 # Load config, required packages, and helper functions
@@ -44,7 +45,7 @@ graphics_fps <- conf$v$graphics_fps
 
 # Set some output filenames
 tex_dir <- file.path(repo, 'knitted_tex')
-tex_dir_fp_base <- 'full_thesis.pdf'
+tex_dir_fp_base <- glue('full_thesis.{doc_type}')
 
 # Fix to identify xeLatex on Windows:
 if((Sys.info()['sysname'] == 'Windows') & (Sys.which('xelatex')=='')){
@@ -65,6 +66,7 @@ Sys.setenv(RSTUDIO_PDFLATEX = "latexmk")
 
 # Set up a config listing just this Rmd file
 # Dependencies are now defined as part of the 'ociamthesis' class
+compile_fun <- ifelse(doc_type=='pdf', bookdown::pdf_book, bookdown::word_document2)
 pdf_args <- list(
   keep_tex = TRUE, latex_engine = 'xelatex', citation_package = 'biblatex',
   includes = list(
@@ -74,7 +76,7 @@ pdf_args <- list(
   toc = FALSE, number_sections = TRUE, lot = TRUE, lof = TRUE
 )
 tex_dir_fp <- bookdown::render_book(
-  output_format = do.call('pdf_book', args = pdf_args),
+  output_format = do.call(compile_fun, args = pdf_args),
   output_file = tex_dir_fp_base,
   output_dir = tex_dir
 )
