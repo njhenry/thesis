@@ -26,7 +26,7 @@ rm(list=ls())
 
 # Script arguments
 conf_fp <- '~/repos/thesis/config.yaml'
-doc_type <- 'docx' # One of 'docx', 'pdf'
+doc_type <- 'pdf' # One of 'docx', 'pdf'
 out_fp <- glue::glue(
   'C:/Users/nathenry/Dropbox/Writing/thesis/output/full_thesis_{Sys.Date()}.{doc_type}'
 )
