@@ -139,6 +139,7 @@ These findings can be aggregated across sexes and provinces to understand the ag
 knitr::include_graphics(graphics_fps$italy_thesis$age_excess)
 ```
 
+\renewcommand{\arraystretch}{1.5}
 ```{r italy-excess-demographics}
 data_list$italy_thesis$excess_demographics %>%
   knitr::kable(
@@ -147,6 +148,7 @@ data_list$italy_thesis$excess_demographics %>%
   ) %>%
   kable_styling(latex_options = c("striped", "hold_position"))
 ```
+\renewcommand{\arraystretch}{1}
 
 The outsize proportion of excess deaths observed within older age categories reflects two aspects of age-structured mortality across Italy during this period: baseline mortality is highest in older age groups even in normal years, and these age groups also experienced a larger relative increase in mortality during the study period. Figure \@ref(fig:italy-age-maps) maps the standardised mortality ratio, or the ratio between observed and baseline mortality rates, by age group and province across the entire 13-week period from 26 February through 26 May 2020. Note that the standardised mortality ratio uniformly increases across the northern provinces of Italy when moving from the 0-59 age group to the 60-69 and 70-79 age groups, and remain heightened in the oldest age groups, with some provinces in Lombardy and Emilia Romagna experiencing over three times the expected baseline mortality in older age groups. The greater increase in excess mortality among older age groups can also be expressed by comparing the proportion of excess mortality with each age group with that age group’s share of all-cause mortality in the years 2015 through 2019. Adults over age 60 accounted for 92.6% of all deaths in the years 2015-2019 (2.99 million deaths out of 3.23 million total), but accounted for 97.0% of all excess deaths (51,600 of 53,200), a significantly higher proportion, in March through May of 2020. Similarly, adults over age 80 experienced 63.4% of all deaths in previous years (2.04 million deaths out of 3.23 million), but 68.4% of excess mortality in these 13 weeks (36,400 of 53,200 excess deaths).
 
