@@ -26,6 +26,7 @@ graphics_fps:
   introduction:
     fig1: '{graphics}/introduction/fig1_CRVS_under_5_mortality_completeness.png'
   india:
+    flowchart: '{graphics}/flowcharts/india_v2.png'
     mort_2000_2017: "{graphics}/india/fig1_mort_2000_2017.png"
     u5m_aroc_2000_2017: "{graphics}/india/fig2_u5m_aroc_2000_2017.png"
     hilo_all_ages: "{graphics}/india/fig3_hilo_all_ages.png"
@@ -46,6 +47,7 @@ graphics_fps:
     cov_pop_density: "{graphics}/india/IND_worldpop_2000_2017_maps.png"
   mexico:
     capture_recapture: '{graphics}/mexico/capture_recapture.png'
+    flowchart: '{graphics}/flowcharts/mexico_v2.png'
     excl_groups: '{graphics}/mexico/excl_groups.png'
     excl_covs: '{graphics}/mexico/excl_covs.png'
     sim_results: '{graphics}/mexico/sim_results.png'
@@ -61,6 +63,7 @@ graphics_fps:
     excess_neighbors: '{graphics}/italy/fig6_excess_neighbors.png'
   italy_thesis:
     covid_deaths: '{graphics}/italy/fig1_covid_deaths.png'
+    flowchart: '{graphics}/flowcharts/italy_v2.png'
     time_series: '{graphics}/italy/fig2_time_series.png'
     age_excess: '{graphics}/italy/fig3_age_excess.png'
     age_maps: '{graphics}/italy/fig4_age_maps.png'
@@ -68,6 +71,7 @@ graphics_fps:
     excess_neighbors: '{graphics}/italy/fig6_excess_neighbors.png'
     excess_ratio: '{graphics}/italy/fig7_excess_ratio.png'
   uganda:
+    flowchart: '{graphics}/flowcharts/uganda_v2.png'
     uga_map: '{graphics}/uganda/uga_major_cities.png'
     data_prev_survey: '{graphics}/uganda/data_prev_survey.png'
     data_case_notifs: '{graphics}/uganda/data_case_notifs.png'
@@ -98,6 +102,8 @@ data_fps:
   mexico_appx:
     moderately_marginalized: '{thesis_data}/mexico/moderately_marginalized.csv'
     severely_marginalized: '{thesis_data}/mexico/severely_marginalized.csv'
+  india:
+    data_sources: '{thesis_data}/india/t1_india_data_sources.csv'
   italy:
     covariates_table: '{thesis_data}/italy/t1_covariates_table.csv'
     excess_demographics: '{thesis_data}/italy/t2_excess_demographics.csv'

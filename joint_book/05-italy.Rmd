@@ -6,6 +6,7 @@ knitr::opts_chunk$set(fig.pos = "!hbt", out.extra = "", fig.align = 'center', ec
 # Set caption text
 italy_captions <- list(
   covid_deaths = "Registered COVID-19 deaths per 100,000 people by Italian region prior to August 31, 2020. Nationally, 35,500 deaths were registered during this time, or approximately 59 deaths per 100,000 population.",
+  flowchart = "Summary of data sources, analyses, and results described in Chapter 5.",
   time_series = "\\(Top:\\) Predicted baseline and observed deaths aggregated nationwide across Italy, March through August 2020. Bounds of the 95\\% uncertainty interval for predicted baseline deaths are shaded in light brown. \\(Bottom:\\) Estimated weekly excess deaths across Italy from March through May 2020, in red, compared with medically-certified deaths from COVID-19, in green.",
   age_excess = "Mean estimates for weekly excess deaths across Italy by age group, March through May 2020. Two nationwide age group breakdowns are shown to the right for comparison: the national age distribution as of 1 January 2020, and the proportion of nationwide deaths that occurred in each age group during the years 2015 through 2019.",
   age_maps = 'Map of standardised mortality ratios by age group and province over the entire period of March through May 2020. In these figures, significance is defined as falling outside of the 95\\% uncertainty interval for baseline mortality for a given age group and province during this period.',
@@ -38,7 +39,12 @@ To better understand the relationship between registered COVID-19 deaths and exc
 
 ### Overview
 
-I fitted a spatially-explicit hierarchical model with fixed effects by age group and for seven covariates, correlated age-province-year structured random effects, and harmonic curves capturing seasonal variation for each age group and province. Separate models were fit for each sex. I fit this model using mortality and population data from 1 January 2015 through 25 February 2020, then generated 1,000 predictive samples of the baseline mortality rate for each sex, age group, and province for the weeks of 26 February through 31 August 2020. For each of the 1,000 sampled draws, I compared the baseline mortality rate with the observed mortality rate to estimate a Standardised Mortality Ratio, and compared the predicted baseline deaths with observed deaths to estimate excess deaths.
+I fitted a spatially-explicit hierarchical model with fixed effects by age group and for seven covariates, correlated age-province-year structured random effects, and harmonic curves capturing seasonal variation for each age group and province. Separate models were fit for each sex. I fit this model using mortality and population data from 1 January 2015 through 25 February 2020, then generated 1,000 predictive samples of the baseline mortality rate for each sex, age group, and province for the weeks of 26 February through 31 August 2020. For each of the 1,000 sampled draws, I compared the baseline mortality rate with the observed mortality rate to estimate a Standardised Mortality Ratio, and compared the predicted baseline deaths with observed deaths to estimate excess deaths. Figure \@ref(fig:italy-flowchart), below, summarizes the analyses described in this chapter.
+
+```{r italy-flowchart, out.width="100%", fig.cap = italy_captions$flowchart}
+knitr::include_graphics(graphics_fps$italy_thesis$flowchart)
+```
+
 
 ### Data
 

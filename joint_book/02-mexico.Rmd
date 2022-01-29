@@ -8,6 +8,7 @@ knitr::opts_chunk$set(fig.pos = "!ht", out.extra = "", fig.align = 'center', ech
 # Set caption text
 mexico_captions <- list(
   capture_recapture = "A visual demonstration of capture-recapture analysis using linked records from two surveys.",
+  flowchart = 'Summary of data sources, analyses, and results described in Chapter 2. NMR: neonatal mortality rate, CRVS: civil registration and vital statistics.',
   excl_groups = "Grouping of municipalities into exclusion categories based on indigenous status, proximity to clinics, adult employment in the formal economy, and literacy rates among adult women.",
   excl_covs = "Distribution of socio-economic indicators across municipalities within each exclusion grouping. The centre line of each bar represents the median value for each indicator across less marginalised (N=1852), moderately marginalised (N=437), and severely marginalised (N=152) municipalities across Mexico, while the vertical range of each bar represents the inter-quartile range of indicator values for each grouping.",
   sim_results = "\\(Left:\\) Simulated neonatal mortality rates across Mexican municipalities compared to neonatal mortality rates recovered from the spatial statistical model. Points indicate the mean NMR estimated by the model, while vertical line spans represent the 95\\% uncertainty intervals for NMR estimated by the model for each municipality. \\(Right:\\) CRVS bias terms simulated for model input data, on the x-axis, compared to the mean and 95\\% uncertainty intervals for these bias parameters recovered by the spatial statistical model, on the y-axis.",
@@ -51,7 +52,12 @@ In the following section, I describe a small-area model to estimate neonatal mor
 
 ## Methods
 
-I developed a small area model that simultaneously estimates neonatal mortality rates and CRVS bias by municipality. This model incorporates two sources of data for neonatal mortality, both of which collect data about births and age-specific mortality: (1) birth histories collected from household surveys and (2) birth and death records from a civil registration system. To test the predictive validity of this joint estimation framework, I first fit a model using observations generated from simulated surfaces of neonatal mortality and CRVS bias, measuring the correspondence between the simulated underlying surfaces and the recovered model parameters. I then applied this model to estimate neonatal mortality and CRVS bias by Mexican municipalities in 2009-2010 using mortality data sources and covariates published by the Mexican Institute for Geography and Statistics (INEGI). By fitting multiple models with different priors on CRVS bias by municipality, I explored the effects of CRVS bias terms on municipal and state-level neonatal mortality estimates during the years 2009-2010.
+I developed a small area model that simultaneously estimates neonatal mortality rates and CRVS bias by municipality. This model incorporates two sources of data for neonatal mortality, both of which collect data about births and age-specific mortality: (1) birth histories collected from household surveys and (2) birth and death records from a civil registration system. To test the predictive validity of this joint estimation framework, I first fit a model using observations generated from simulated surfaces of neonatal mortality and CRVS bias, measuring the correspondence between the simulated underlying surfaces and the recovered model parameters. I then applied this model to estimate neonatal mortality and CRVS bias by Mexican municipalities in 2009-2010 using mortality data sources and covariates published by the Mexican Institute for Geography and Statistics (INEGI). By fitting multiple models with different priors on CRVS bias by municipality, I explored the effects of CRVS bias terms on municipal and state-level neonatal mortality estimates during the years 2009-2010. Figure \@ref(fig:mexico-flowchart), below, summarizes the modelling process described in this chapter.
+
+
+```{r mexico-flowchart, out.width="100%", fig.cap = mexico_captions$flowchart}
+knitr::include_graphics(graphics_fps$mexico$flowchart)
+```
 
 
 ### Data preparation

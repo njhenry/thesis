@@ -7,6 +7,7 @@ knitr::opts_chunk$set(fig.pos = "!ht", out.extra = "", fig.align = 'center', ech
 # Set caption text
 captions_uganda <- list(
   uga_map = "Regions and population centers of Uganda.",
+  flowchart = "Summary of data sources, analyses, and results described in Chapter 3.",
   data_prev_survey = "Unadjusted prevalence data from the 2014-2015 Uganda National TB Prevalence Survey, aggregated by district. Districts not containing any sampled clusters are symbolised in grey.",
   data_case_notifs = "Reported case notification rates for pulmonary TB among adults aged 15 and above in 2017 and 2019, the two years for which notification data was available at the district level.",
   prev_scatter = "Results from the joint model compared to underlying data sources. \\(Panel\\ A:\\) TB prevalence estimated from the joint data model. \\(Panel\\ B:\\) scatter plot comparing modeled estimates, with uncertainty, against raw TB prevalence survey data in 56 districts. Panel C: scatter plot comparing modeled estimates by district, with uncertainty, against TB case notification rates among adults averaged across the years 2015-2019.",
@@ -51,9 +52,14 @@ Uganda's diverse geography and population both imply that the risk factors for t
 knitr::include_graphics(graphics_fps$uganda$uga_map)
 ```
 
+
 ## Methods
 
-In this chapter, I develop a small area modelling approach that simultaneously estimates TB prevalence and case notification completeness by district across Uganda. This approach synthesises data from a single national TB prevalence survey and an annual time series of case notifications, two data sources that are widely used for TB surveillance in high-burden settings. I first develop cross walks between the differing age groups, case definitions, and indicators reported across annual notifications and the national TB prevalence survey. I then present a geostatistical model that incorporates TB prevalence survey data _directly_ as a sample of underlying TB prevalence, and incorporates TB case notifications _indirectly_ as a sample of underlying TB incidence modified by spatially-varying completeness. District-level estimates of prevalence and case reporting completeness are hypothesised to vary in accordance with predictive space-time covariates as well as the neighbourhood structure of districts across Uganda.
+In this chapter, I develop a small area modelling approach that simultaneously estimates TB prevalence and case notification completeness by district across Uganda. This approach synthesises data from a single national TB prevalence survey and an annual time series of case notifications, two data sources that are widely used for TB surveillance in high-burden settings. Figure \@ref(fig:uganda-flowchart), below, summarizes the modelling process described in this chapter. I first develop cross walks between the differing age groups, case definitions, and indicators reported across annual notifications and the national TB prevalence survey. I then present a spatial model that incorporates TB prevalence survey data _directly_ as a sample of underlying TB prevalence, and incorporates TB case notifications _indirectly_ as a sample of underlying TB incidence modified by spatially-varying completeness. District-level estimates of prevalence and case reporting completeness are hypothesised to vary in accordance with predictive space-time covariates as well as the neighbourhood structure of districts across Uganda.
+
+```{r uganda-flowchart, out.width="100%", fig.cap = uganda_captions$flowchart}
+knitr::include_graphics(graphics_fps$uganda$flowchart)
+```
 
 
 ### Data preparation
