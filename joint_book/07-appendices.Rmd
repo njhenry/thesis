@@ -313,16 +313,16 @@ This analysis took into account the effects of excess mortality on subsequent po
 
 ## Publications related to this thesis {.unlisted .unnumbered}
 
-- **Henry, N.**, Elagali, A., Nguyen, M., ... Moore, C. (Under review). Variation in COVID-19 excess mortality by age, sex, and province within Italy. Submitted to _Scientific Reports_.
+- **Henry, N. J.**, Elagali, A., Nguyen, M., Chipeta, M. G., & Moore, C. E. (2022). Variation in excess all-cause mortality by age, sex, and province during the first wave of the COVID-19 pandemic in Italy. Scientific Reports, 12(1), 1–12. https://doi.org/10.1038/s41598-022-04993-7
 
 - Dandona, R., Kumar, G. A., **Henry, N.**, ... Dandona, L. (2020). Subnational mapping of under-5 and neonatal mortality trends in India: the Global Burden of Disease Study 2000–17. _The Lancet_, 395(10237), 1640–1658. https://doi.org/10.1016/S0140-6736(20)30471-2
 
 
 ## Publications alongside this thesis {.unlisted .unnumbered}
 
-- Alba, S., Rood, E., Mecatti, F., ... **Henry, N.** ... Latif, A. TB Hackathon: Cross-validation of five models to predict subnational tuberculosis prevalence in Pakistan. Submitted to _Tropical Medicine and International Health_.
+- Alba, S., Rood, E., Mecatti, F., Ross, J. M., Dodd, P. J., Chang, S., Potgieter, M., Bertarelli, G., **Henry, N. J.**, LeGrand, K. E., Trouleau, W., Shaweno, D., MacPherson, P., Qin, Z. Z., Mergenthaler, C., Giardina, F., Augustijn, E.-W., Baloch, A. Q., & Latif, A. (2022). TB Hackathon: Development and Comparison of Five Models to Predict Subnational Tuberculosis Prevalence in Pakistan. Tropical Medicine and Infectious Disease, 7(1), 13. https://doi.org/10.3390/tropicalmed7010013
 
-- Browne, A. J., Chipeta, M. G., Haines-Woodhouse, G., ... **Henry, N.** … Hay, S. I. (Accepted). Global antibiotic consumption in humans, 2000-2018: a modelling study. _The Lancet Planetary Health_.
+- Browne, A. J., Chipeta, M. G., Haines-Woodhouse, G., Kumaran, E. P. A., Hamadani, B. H. K., Zaraa, S., **Henry, N. J.**, Deshpande, A., Reiner, R. C., Day, N. P. J., Lopez, A. D., Dunachie, S., Moore, C. E., Stergachis, A., Hay, S. I., & Dolecek, C. (2021). Global antibiotic consumption and usage in humans, 2000–18: a spatial modelling study. The Lancet Planetary Health, 5(12), e893–e904. https://doi.org/10.1016/s2542-5196(21)00280-1
 
 - Cork, M., **Henry, N.**, Watson, S., ... Dwyer-Lindgren, L. A. (2021). Mapping subnational HIV mortality in six Latin American countries with incomplete vital registration systems. _BMC Medicine_, 19(4), 1–25. https://doi.org/10.1186/s12916-020-01876-4
 
