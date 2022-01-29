@@ -95,15 +95,13 @@ data_fps:
   introduction:
     t1: '{thesis_data}/test_chapter/t1_test.csv'
   india:
-    t1: '{thesis_data}/test_chapter/t1_test.csv'
+    data_sources: '{thesis_data}/india/t1_india_data_sources.csv'
   mexico:
     priors: '{thesis_data}/mexico/priors.csv'
     sim_param_results: '{thesis_data}/mexico/sim_param_results.csv'
   mexico_appx:
     moderately_marginalized: '{thesis_data}/mexico/moderately_marginalized.csv'
     severely_marginalized: '{thesis_data}/mexico/severely_marginalized.csv'
-  india:
-    data_sources: '{thesis_data}/india/t1_india_data_sources.csv'
   italy:
     covariates_table: '{thesis_data}/italy/t1_covariates_table.csv'
     excess_demographics: '{thesis_data}/italy/t2_excess_demographics.csv'
